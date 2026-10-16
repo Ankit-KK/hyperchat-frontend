@@ -1,0 +1,5 @@
+# HyperChat V2 assets
+
+No external image assets are required for this landing page. The original centerpiece is live procedural Three.js geometry: interlocking ceramic and copper architectural frames, inset metal seams, a central waveform, and a restrained broadcast orbit; waveform, orbital composition, and grain texture are local CSS/SVG artwork. No ElevenLabs tool was available in this Codex session. No KAIRO assets are used.
+
+If creator photography is added in a later iteration, commission an original 1600×1200 image (deliver optimized AVIF/WebP, under 250 KB): “Cinematic editorial portrait of a creator in an architectural recording space, natural side lighting, charcoal surfaces, ivory clothing, sand ceramic objects, one restrained copper detail, authentic relaxed expression, negative space for typography, no logos, no neon, no purple, no science fiction.” Use only approved local assets and supply meaningful alt text. Photography is optional and is not needed to complete the current design.
