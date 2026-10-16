@@ -6,19 +6,19 @@ const states = [
     mode: "connection",
     label: "Connection",
     icon: Orbit,
-    caption: "Distinct voices. Shared space.",
+    caption: "A viewer. A creator. A shared moment.",
   },
   {
     mode: "voice",
     label: "Voice",
     icon: AudioLines,
-    caption: "Every voice changes the shape.",
+    caption: "A human voice behind the message.",
   },
   {
     mode: "presence",
     label: "Presence",
     icon: Shapes,
-    caption: "A moment held together.",
+    caption: "One interaction. A whole community.",
   },
 ] as const;
 
@@ -29,7 +29,7 @@ export default function SceneControls() {
       <div className="scene-controls-heading">
         <span className="tiny-cross">+</span>
         <span>
-          THE CONNECTION OBJECT <small>INTERACTIVE STUDY / 001</small>
+          THE HYPERCHAT OBJECT <small>HC / A SHARED VOICE</small>
         </span>
       </div>
       <div

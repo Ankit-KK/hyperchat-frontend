@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
-import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
-import { mergeVertices } from "three/examples/jsm/utils/BufferGeometryUtils.js";
+import { createHyperchatGeometry } from "../scene/hyperchatGeometry";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -16,77 +15,18 @@ type Pose = {
 
 const MODES: Record<SceneMode, [Pose, Pose]> = {
   connection: [
-    { position: [-0.64, 0.18, 0.08], rotation: [0.16, -0.46, -0.28] },
-    { position: [0.65, -0.14, 0.03], rotation: [-0.14, 0.62, 0.26] },
+    { position: [-1.332, 0, 0], rotation: [0, 0, 0] },
+    { position: [0.765, 0, 0.04], rotation: [0, 0, 0] },
   ],
   voice: [
-    { position: [-1.18, 0.09, -0.13], rotation: [0.12, -0.36, -0.12] },
-    { position: [1.18, -0.09, -0.13], rotation: [-0.12, 0.36, 0.12] },
+    { position: [-1.55, 0.08, 0.05], rotation: [0.04, -0.16, -0.04] },
+    { position: [0.88, 0, 0.13], rotation: [-0.04, 0.14, 0.03] },
   ],
   presence: [
-    { position: [-0.32, 0.18, -0.28], rotation: [0.35, -0.68, -0.62] },
-    { position: [0.42, -0.18, 0.39], rotation: [-0.26, 0.65, 0.62] },
+    { position: [-1.36, 0.06, -0.18], rotation: [0.1, -0.08, -0.025] },
+    { position: [0.77, -0.04, 0.15], rotation: [-0.08, 0.12, 0.025] },
   ],
 };
-
-/** A rounded architectural frame, rather than an imported model or a logo. */
-function roundedPath(width: number, height: number, radius: number) {
-  const shape = new THREE.Shape();
-  const x = -width / 2;
-  const y = -height / 2;
-  shape.moveTo(x + radius, y);
-  shape.lineTo(x + width - radius, y);
-  shape.quadraticCurveTo(x + width, y, x + width, y + radius);
-  shape.lineTo(x + width, y + height - radius);
-  shape.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-  shape.lineTo(x + radius, y + height);
-  shape.quadraticCurveTo(x, y + height, x, y + height - radius);
-  shape.lineTo(x, y + radius);
-  shape.quadraticCurveTo(x, y, x + radius, y);
-  return shape;
-}
-
-function frameGeometry() {
-  const outline = roundedPath(2.12, 2.95, 0.76);
-  const opening = roundedPath(1.22, 2.05, 0.37);
-  outline.holes.push(new THREE.Path(opening.getPoints(24).reverse()));
-  const geometry = new THREE.ExtrudeGeometry(outline, {
-    depth: 0.33,
-    bevelEnabled: true,
-    bevelSegments: 5,
-    steps: 1,
-    bevelSize: 0.105,
-    bevelThickness: 0.105,
-    curveSegments: 24,
-  });
-  geometry.translate(0, 0, -0.165);
-  // Extrusion duplicates its bevel vertices. Weld them before calculating normals
-  // so studio reflections flow continuously around the ceramic and metal edges.
-  geometry.deleteAttribute("normal");
-  geometry.deleteAttribute("uv");
-  const smooth = mergeVertices(geometry, 0.0001);
-  geometry.dispose();
-  smooth.computeVertexNormals();
-  return smooth;
-}
-
-function seamGeometry(
-  width: number,
-  height: number,
-  radius: number,
-  depth: number,
-) {
-  const points = roundedPath(width, height, radius)
-    .getSpacedPoints(128)
-    .map((point) => new THREE.Vector3(point.x, point.y, depth));
-  return new THREE.TubeGeometry(
-    new THREE.CatmullRomCurve3(points, true),
-    128,
-    0.012,
-    5,
-    true,
-  );
-}
 
 /** Original, procedurally built communication sculpture. All assets stay local. */
 export default function Sculpture() {
@@ -209,11 +149,6 @@ export default function Sculpture() {
       metalness: 0.55,
       roughness: 0.35,
     });
-    const innerMetal = new THREE.MeshStandardMaterial({
-      color: "#8C847B",
-      metalness: 0.88,
-      roughness: 0.34,
-    });
     const orbitMaterial = new THREE.MeshStandardMaterial({
       color: "#8C847B",
       metalness: 0.7,
@@ -221,62 +156,25 @@ export default function Sculpture() {
       transparent: true,
       opacity: 0.42,
     });
-    const materials = [
-      ceramic,
-      copper,
-      edgeMetal,
-      darkMetal,
-      innerMetal,
-      orbitMaterial,
-    ];
+    const materials = [ceramic, copper, edgeMetal, darkMetal, orbitMaterial];
     const geometries = new Set<THREE.BufferGeometry>();
     const remember = <T extends THREE.BufferGeometry>(geometry: T): T => {
       geometries.add(geometry);
       return geometry;
     };
-    const frameGeo = remember(frameGeometry());
-    const frontSeam = remember(seamGeometry(1.88, 2.71, 0.64, 0.267));
-    const rearSeam = remember(seamGeometry(1.88, 2.71, 0.64, -0.267));
-    const edgeInset = remember(seamGeometry(1.37, 2.2, 0.43, 0.265));
-    const ribGeo = remember(
-      new RoundedBoxGeometry(0.027, 0.19, 0.014, 2, 0.006),
-    );
-    const fastenerGeo = remember(
-      new THREE.CylinderGeometry(0.025, 0.025, 0.01, 10),
-    );
     const frames: THREE.Group[] = [];
-
-    for (let index = 0; index < 2; index++) {
+    for (const [index, part] of (["h", "chat"] as const).entries()) {
       const assembly = new THREE.Group();
-      const body = new THREE.Mesh(frameGeo, index === 0 ? ceramic : copper);
+      const geometry = remember(createHyperchatGeometry(part));
+      const body = new THREE.Mesh(geometry, index === 0 ? ceramic : copper);
       body.castShadow = true;
       body.receiveShadow = true;
       assembly.add(body);
-      assembly.add(
-        new THREE.Mesh(frontSeam, index === 0 ? innerMetal : edgeMetal),
-      );
-      assembly.add(new THREE.Mesh(rearSeam, darkMetal));
-      assembly.add(
-        new THREE.Mesh(edgeInset, index === 0 ? innerMetal : darkMetal),
-      );
-      // The tactile grooves and small fasteners give each loop a manufactured, human scale.
-      for (let i = 0; i < 9; i++) {
-        const rib = new THREE.Mesh(
-          ribGeo,
-          index === 0 ? innerMetal : darkMetal,
-        );
-        rib.position.set((i - 4) * 0.06, -1.245, 0.272);
-        assembly.add(rib);
-      }
-      for (const side of [-1, 1]) {
-        const fastener = new THREE.Mesh(
-          fastenerGeo,
-          index === 0 ? innerMetal : edgeMetal,
-        );
-        fastener.rotation.x = Math.PI / 2;
-        fastener.position.set(side * 0.43, 1.245, 0.27);
-        assembly.add(fastener);
-      }
+      // A dark backplate adds manufactured depth without changing the silhouette.
+      const backplate = new THREE.Mesh(geometry, darkMetal);
+      backplate.position.z = -0.09;
+      backplate.scale.set(0.985, 0.985, 1);
+      assembly.add(backplate);
       const pose = MODES.connection[index];
       assembly.position.set(...pose.position);
       assembly.rotation.set(...pose.rotation);
@@ -284,7 +182,7 @@ export default function Sculpture() {
       floatGroup.add(assembly);
     }
 
-    // Five polished elements form a quiet waveform in the shared space between the frames.
+    // A restrained waveform occupies the C aperture, leaving the speech tail clear.
     const voice = new THREE.Group();
     const capsuleGeometry = remember(
       new THREE.CapsuleGeometry(0.043, 0.45, 4, 10),
@@ -298,8 +196,8 @@ export default function Sculpture() {
       voiceBars.push(bar);
       voice.add(bar);
     }
-    voice.position.set(0.02, 0.02, 0.94);
-    voice.rotation.z = -0.08;
+    voice.position.set(0.78, 0.18, 0.55);
+    voice.rotation.z = 0;
     floatGroup.add(voice);
 
     // A partial, hairline orbit references a broadcast field without adding glow.
@@ -432,7 +330,7 @@ export default function Sculpture() {
       camera.aspect = viewportWidth / viewportHeight;
       camera.updateProjectionMatrix();
       // Keep the silhouette generously framed on both portrait and landscape screens.
-      baseScale = Math.min(1.02, camera.aspect * 1.14);
+      baseScale = Math.min(0.9, camera.aspect);
       render(performance.now());
     };
     resize();
@@ -645,13 +543,9 @@ export default function Sculpture() {
       ref={mount}
       aria-hidden="true"
       data-mode="connection"
+      data-sculpture="hc-speech-mark"
     >
-      {unavailable && (
-        <>
-          <i />
-          <i />
-        </>
-      )}
+      {unavailable && <span className="sculpture-monogram-fallback">HC</span>}
     </div>
   );
 }

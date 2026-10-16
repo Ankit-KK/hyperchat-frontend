@@ -1,27 +1,43 @@
 import { lazy, Suspense, useRef } from "react";
 import {
-  ArrowUpRight,
   ArrowDown,
-  ArrowDownRight,
-  Asterisk,
   ArrowUp,
-  AudioLines,
-  Radio,
-  MoveUpRight,
+  ArrowUpRight,
+  Check,
+  ShieldCheck,
+  SlidersHorizontal,
+  Users,
 } from "lucide-react";
 import Navigation from "./components/Navigation";
 import SceneControls from "./components/SceneControls";
-import Faq from "./components/Faq";
-import LiveRoom from "./components/LiveRoom";
+import InteractionDemo from "./components/InteractionDemo";
+import CreatorFeatures from "./components/CreatorFeatures";
+import Moments from "./components/Moments";
 import { useExperienceMotion } from "./hooks/useExperienceMotion";
 const Sculpture = lazy(() => import("./components/Sculpture"));
+
+const onboarding = [
+  ["Apply", "Tell HyperChat about you and your channel."],
+  ["Manual review", "The team reviews your creator application."],
+  [
+    "Account setup",
+    "Approved creators receive an invitation to set up their account.",
+  ],
+  [
+    "Didit verification",
+    "Complete identity verification as part of the planned V2 process.",
+  ],
+  [
+    "Activation",
+    "Creator access is activated after approval and verification.",
+  ],
+];
 
 export default function App() {
   const root = useRef<HTMLDivElement>(null);
   useExperienceMotion(root);
-
   return (
-    <div ref={root}>
+    <div ref={root} className="site-root">
       <a href="#main" className="skip-link">
         Skip to content
       </a>
@@ -32,259 +48,218 @@ export default function App() {
       </div>
       <Suspense
         fallback={
-          <div className="sculpture scene-loading" aria-hidden="true">
-            <span>SHAPING A CONNECTION</span>
-          </div>
+          <div className="sculpture scene-loading" aria-hidden="true" />
         }
       >
         <Sculpture />
       </Suspense>
+      <div className="grain" aria-hidden="true" />
       <Navigation />
       <main id="main" tabIndex={-1}>
         <section className="hero" aria-labelledby="hero-title">
-          <div className="hero-top">
-            <span className="eyebrow">
-              <span className="status-dot" /> A NEW FREQUENCY OF CONNECTION
+          <div className="hero-top eyebrow">
+            <span>
+              <i className="status-dot" /> BUILT AROUND YOUR AUDIENCE
             </span>
-            <span className="edition">
-              INDEPENDENT VOICES / SHARED POSSIBILITIES
-            </span>
+            <span>CREATOR CONNECTION / V.02</span>
           </div>
           <div className="hero-content">
-            <div className="hero-index">
-              <span className="index-line" /> THE HUMAN SIDE OF LIVE
-            </div>
+            <span className="eyebrow hero-kicker">
+              A LITTLE SUPPORT. A SHARED MOMENT.
+            </span>
             <h1 id="hero-title">
-              Less distance.
+              Your Stream.
               <br />
-              More <em>presence.</em>
+              Your Community.
+              <br />
+              <em>Your HyperChat.</em>
             </h1>
             <p>
-              A space for voices to meet, stories to unfold,
-              <br className="desktop-break" /> and moments to become something
-              shared.
+              Turn viewer support into on-stream moments.
+              <br className="desktop-break" /> Donations, alerts, and audience
+              interactions —<br className="desktop-break" /> alongside the
+              platform you already stream on.
             </p>
             <div className="hero-actions">
-              <a href="#live-room" className="button ivory">
-                Find your frequency <ArrowUpRight size={18} />
+              <a href="#interaction" className="button ivory">
+                See it in action <ArrowUpRight size={18} />
               </a>
-              <a href="#about" className="subtle-link">
-                Discover HyperChat{" "}
-                <ArrowDownRight size={15} aria-hidden="true" />
+              <a href="#onboarding" className="text-link">
+                For creators <ArrowUpRight size={16} />
               </a>
             </div>
-            <span className="hero-footnote">
-              OPEN MINDS. OPEN CONVERSATIONS.
-            </span>
           </div>
           <SceneControls />
-          <div className="hero-bottom">
-            <a href="#about" className="scroll-link">
+          <div className="hero-bottom eyebrow">
+            <a href="#interaction">
               <span className="round-icon">
-                <ArrowDown size={15} />
+                <ArrowDown size={16} />
               </span>{" "}
-              SCROLL TO TUNE IN
+              SCROLL INTO THE MOMENT
             </a>
-            <span>REAL PEOPLE. REAL TIME. REAL CONNECTION.</span>
-            <span className="coordinates">A NEW CHAPTER — V.02</span>
+            <span>YOUR BROADCAST. A CLOSER COMMUNITY.</span>
           </div>
         </section>
-        <section className="intro section-shell" id="about">
-          <div className="section-label" data-reveal>
-            <span>01 / THE IDEA</span>
-            <span>BUILT AROUND PEOPLE</span>
-          </div>
-          <div className="intro-grid">
-            <h2 data-reveal>
-              The internet is loud.
-              <br />
-              Let’s make it
-              <br />
-              <em>feel closer.</em>
-            </h2>
-            <div className="intro-copy" data-reveal>
-              <span className="mini-mark">
-                <AudioLines size={38} />
-              </span>
-              <p>
-                Some moments deserve more than a like. A conversation that goes
-                somewhere. A voice that feels familiar. That feeling of being
-                part of it.
-              </p>
-              <p>
-                HyperChat is being built for those moments. A more human way to
-                go live, find your people, and be here. Together.
-              </p>
-              <a className="text-link" href="#live-room">
-                Step into a conversation <ArrowUpRight size={18} />
-              </a>
-            </div>
-          </div>
-          <div className="manifesto" data-reveal>
-            <span>LESS BROADCAST.</span>
-            <span>MORE BACK-AND-FORTH.</span>
-            <AudioLines size={22} />
-          </div>
-        </section>
-        <section className="experience section-shell" id="experience">
-          <div className="section-label" data-reveal>
-            <span>02 / THE EXPERIENCE</span>
-            <span>DESIGNED TO BRING YOU IN</span>
-          </div>
-          <div className="experience-heading" data-reveal>
-            <h2>
-              Don’t just watch.
-              <br />
-              <em>Be part of it.</em>
-            </h2>
-            <p>
-              From the first hello to the last
-              <br />
-              “one more minute.”
-            </p>
-          </div>
-          <div className="experience-grid">
-            <article className="feature-card conversation" data-reveal>
-              <div className="card-visual">
-                <div className="signal-label">
-                  <span className="status-dot" /> A CONVERSATION IN MOTION
-                </div>
-                <div className="waveform" aria-hidden="true">
-                  {Array.from({ length: 39 }, (_, i) => (
-                    <i
-                      key={i}
-                      style={{
-                        height: `${14 + Math.abs(Math.sin(i * 1.7)) * 65}%`,
-                        animationDelay: `${i * 0.06}s`,
-                      }}
-                    />
-                  ))}
-                </div>
-                <div className="visual-bottom">
-                  <span>YOUR VOICE BELONGS HERE</span>
-                  <Radio size={19} />
-                </div>
-              </div>
-              <div className="card-copy">
-                <span className="card-number">01</span>
-                <h3>Live, with feeling.</h3>
-                <p>
-                  A shared space for spontaneous conversation. Less performing.
-                  More being yourself.
-                </p>
-                <a href="#live-room" className="card-link">
-                  Try a conversation <ArrowUpRight size={16} />
-                </a>
-              </div>
-            </article>
-            <article className="feature-card connection" data-reveal>
-              <div className="card-visual orbital">
-                <div className="orbit orbit-one" />
-                <div className="orbit orbit-two" />
-                <div className="orbit orbit-three" />
-                <div className="orbit-center">
-                  <AudioLines size={36} />
-                </div>
-                <span className="orbit-node node-one" />
-                <span className="orbit-node node-two" />
-                <span className="signal-label">
-                  DIFFERENT WORLDS. SAME WAVELENGTH.
-                </span>
-                <span className="orbital-foot">
-                  A LITTLE CLOSER, EVERY DAY.
-                </span>
-              </div>
-              <div className="card-copy">
-                <span className="card-number">02</span>
-                <h3>Your kind of people.</h3>
-                <p>
-                  Follow your curiosity. Find familiar energy. Build connections
-                  that outlast the stream.
-                </p>
-                <a href="#live-room" className="card-link">
-                  Explore the rooms <ArrowUpRight size={16} />
-                </a>
-              </div>
-            </article>
-          </div>
-          <div className="experience-principles" data-reveal>
-            <div>
-              <span>01</span>Come as you are.
-            </div>
-            <div>
-              <span>02</span>Stay curious.
-            </div>
-            <div>
-              <span>03</span>Make room for others.
-            </div>
-          </div>
-        </section>
-        <section className="interlude">
-          <div data-reveal>
-            <span className="eyebrow">A SMALL REMINDER</span>
-            <h2>
-              Great things happen
-              <br />
-              when we <em>show up.</em>
-            </h2>
-            <span className="interlude-note">
-              BRING YOUR VOICE. WE’LL MAKE ROOM.
-            </span>
-            <a
-              className="interlude-link"
-              href="#live-room"
-              aria-label="Enter the listening room"
-            >
-              <ArrowDown size={21} />
-            </a>
-          </div>
-          <span className="interlude-symbol" aria-hidden="true">
-            <Asterisk size={90} strokeWidth={1} />
-          </span>
-        </section>
-        <LiveRoom />
-        <Faq />
-        <section className="next section-shell" id="next">
+        <section
+          className="interaction section-shell light"
+          id="interaction"
+          aria-labelledby="interaction-title"
+        >
           <div className="section-label">
-            <span>05 / THIS IS JUST THE BEGINNING</span>
-            <span className="eyebrow">
-              <span className="status-dot" /> IN DEVELOPMENT
-            </span>
+            <span>01 / THE CONNECTION</span>
+            <span>FROM ONE VIEWER TO EVERYONE</span>
           </div>
-          <div data-reveal>
-            <h2>
-              The next chapter
+          <div className="section-heading" data-reveal>
+            <h2 id="interaction-title">
+              Every interaction
               <br />
-              sounds like <em>us.</em>
+              <em>matters.</em>
             </h2>
             <p>
-              A new space for live connection is taking shape.
+              A message of support becomes part of the show.
               <br />
-              Come curious. Leave a little more connected.
+              Follow its journey from viewer to stream.
             </p>
-            <a className="button dark" href="#live-room">
-              Make yourself at home <MoveUpRight size={18} />
-            </a>
           </div>
-          <span className="next-stamp" aria-hidden="true">
-            <AudioLines size={60} />
-          </span>
+          <InteractionDemo />
+          <div className="section-foot">
+            <span>ONE SMALL GESTURE. A MOMENT SHARED.</span>
+            <span>INTERACTIVE PRODUCT PREVIEW ↗</span>
+          </div>
+        </section>
+        <CreatorFeatures />
+        <Moments />
+        <section
+          className="onboarding section-shell light"
+          id="onboarding"
+          aria-labelledby="onboarding-title"
+        >
+          <div className="section-label">
+            <span>04 / YOUR NEXT CHAPTER</span>
+            <span>THOUGHTFUL FROM THE START</span>
+          </div>
+          <div className="section-heading" data-reveal>
+            <h2 id="onboarding-title">
+              Your community.
+              <br />
+              <em>Your next step.</em>
+            </h2>
+            <div>
+              <p>
+                Creator access begins with an application and a human review.
+              </p>
+              <span className="note-tag">PLANNED V2 ONBOARDING</span>
+            </div>
+          </div>
+          <ol className="onboarding-steps">
+            {onboarding.map(([title, copy], i) => (
+              <li key={title} data-reveal>
+                <span className="step-number">0{i + 1}</span>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </li>
+            ))}
+          </ol>
+          <div className="setup-note">
+            <span className="eyebrow">AFTER ACTIVATION</span>
+            <p>
+              Set your donation preferences, choose your moderation settings,
+              and connect your OBS browser sources. Then bring HyperChat into
+              your broadcast.
+            </p>
+            <span className="availability">
+              V2 verification and activation are still being completed. This
+              preview does not accept applications.
+            </span>
+          </div>
+        </section>
+        <section
+          className="control section-shell"
+          id="control"
+          aria-labelledby="control-title"
+        >
+          <div className="section-label">
+            <span>05 / YOUR SPACE, YOUR SAY</span>
+            <span>SAFETY & CONTROL</span>
+          </div>
+          <div className="control-grid">
+            <div data-reveal>
+              <ShieldCheck className="control-icon" size={42} strokeWidth={1} />
+              <h2 id="control-title">
+                Keep the energy.
+                <br />
+                <em>Set the boundaries.</em>
+              </h2>
+              <p>
+                Your community has its own rhythm.
+                <br />
+                Choose how interactions reach your stream.
+              </p>
+            </div>
+            <div className="control-list">
+              <article data-reveal>
+                <SlidersHorizontal size={22} />
+                <div>
+                  <h3>Review before the spotlight.</h3>
+                  <p>
+                    Choose manual review or automatic approval. Hide messages
+                    and manage the moderation queue.
+                  </p>
+                </div>
+              </article>
+              <article data-reveal>
+                <Users size={22} />
+                <div>
+                  <h3>Make room for your team.</h3>
+                  <p>
+                    Manage moderator permissions and banned donors with controls
+                    scoped to your creator account.
+                  </p>
+                </div>
+              </article>
+              <article data-reveal>
+                <Check size={22} />
+                <div>
+                  <h3>Keep access in your hands.</h3>
+                  <p>
+                    Manage your OBS connection tokens and revoke access when
+                    your setup changes.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section
+          className="closing section-shell light"
+          id="next"
+          aria-labelledby="closing-title"
+        >
+          <div className="section-label">
+            <span>06 / MORE THAN A MESSAGE</span>
+            <span>MADE FOR THE MOMENTS BETWEEN</span>
+          </div>
+          <div className="closing-content" data-reveal>
+            <span className="eyebrow">LET YOUR AUDIENCE BE PART OF IT.</span>
+            <h2 id="closing-title">
+              Make it <em>mean more.</em>
+            </h2>
+            <a href="#interaction" className="button dark">
+              Experience HyperChat <ArrowUpRight size={18} />
+            </a>
+            <p>Explore the preview. See what a little support can become.</p>
+          </div>
+          <div className="closing-word" aria-hidden="true">
+            HYPERCHAT
+          </div>
         </section>
       </main>
       <footer className="footer">
-        <a className="brand" href="#main">
-          <AudioLines size={24} /> hyperchat<span>V2</span>
-        </a>
-        <span>BE HERE. TOGETHER.</span>
+        <span>© {new Date().getFullYear()} HyperChat</span>
+        <span>CREATOR TOOLS. HUMAN CONNECTION.</span>
         <a href="#main">
-          Back to the top <ArrowUp size={15} />
+          Back to top <ArrowUp size={15} />
         </a>
-        <div className="footer-bottom">
-          <span>
-            © {new Date().getFullYear()} HyperChat. All rights reserved.
-          </span>
-          <span>INDEPENDENT VOICES. SHARED POSSIBILITIES.</span>
-        </div>
       </footer>
     </div>
   );

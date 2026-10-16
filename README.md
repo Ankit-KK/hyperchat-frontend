@@ -1,62 +1,66 @@
 # HyperChat V2
 
-An original cinematic public website and browser-local conversation experience. React, TypeScript, Vite, Tailwind CSS, Three.js, GSAP ScrollTrigger, and Lenis.
+A public creator-engagement landing page built with React, TypeScript, Vite, Tailwind CSS, Three.js, GSAP ScrollTrigger, and Lenis. It explains viewer support and on-stream interactions alongside a creator's existing streaming platform.
 
 ## Run
 
-Use Node.js 24 and npm 11. From this repository:
+Use Node.js 24 and npm 11 in this checkout:
 
 ```sh
 npm ci --cache /tmp/hyperchat-npm-cache
 npm run dev
 ```
 
-For production:
+Production build and local verification:
 
 ```sh
 npm run build
 npm run preview
+npm test
 ```
 
-No credentials or backend service is needed. This cloud onboarding interface does not expose a public browser preview. Deploy `dist/` to a static host to obtain a public URL. Vercel and Netlify project configuration files are included. Deployments require your hosting account; this repository has not been deployed automatically.
+No backend or credentials are needed. Demos run entirely in memory and never submit donations, applications, messages, or payments. Vercel and Netlify configuration emits `dist/`. The cloud onboarding interface does not expose a public localhost preview. On 17 October 2026 the owner explicitly requested pushing the current redesign to GitHub with the documented logo-download limitation. A push to the connected main branch can trigger Vercel deployment.
 
 ## Experience
 
-- Procedural architectural sculpture with ceramic and copper forms, inset details, a central waveform, and broadcast orbit.
-- Three interactive sculpture states: Connection, Voice, and Presence.
-- Scroll-driven rotation, scale, camera movement, light changes, and editorial reveals, with coordinated smooth scrolling.
-- Responsive navigation and keyboard-accessible FAQ.
-- A browser-local listening-room demo with topic selection, join/leave controls, local messages, and explicitly labeled scripted replies.
-- Reduced-motion support, WebGL fallback, capped rendering resolution, hidden-tab and covered-scene suspension, software-renderer adaptation, and lazy-loaded 3D code.
-- Locally bundled Manrope and Instrument Serif fonts. No third-party image or font requests at runtime.
-
-The conversation demo does not connect people, perform real streaming, or use an AI service. Real authentication, payments, creator dashboards, moderation, and backend integration are intentionally outside this public frontend. No backend repository was modified.
+- Seven editorial sections: hero, viewer interaction, creator toolkit, stream moments, planned onboarding, safety/control, closing CTA.
+- Copper/ceramic HC speech-mark sculpture based on the owner-supplied reference; scroll-driven rotation, camera, scale and lighting; three accessible pose controls.
+- Four-stage interactive support preview with replay/reset; capability tabs, moderation example, and fictional stream interactions.
+- Desktop pinned story; unpinned mobile/tablet and reduced-motion layouts.
+- Required layers: background 0, wordmark 1, canvas 2, grain 4, content 5, header 40.
+- Self-hosted Bodoni Moda and Inter. Ivory, charcoal, copper, stone and sand. No external imagery or font requests.
+- Reduced motion, keyboard controls, WebGL failure/context-loss fallback, capped pixel ratio, hidden-tab/covered-scene suspension, software-renderer adaptation, lazy-loaded Three.js.
 
 ## Structure
 
-- `src/App.tsx`: editorial page composition.
-- `src/components/Sculpture.tsx`: Three.js lifecycle, geometry, lighting, interaction, and fallback.
-- `src/components/SceneControls.tsx`: accessible sculpture-state controls.
-- `src/components/LiveRoom.tsx`: isolated local room state and interactions.
-- `src/components/Navigation.tsx` and `Faq.tsx`: navigation and disclosure controls.
-- `src/hooks/useExperienceMotion.ts`: Lenis and GSAP lifecycle.
-- `src/styles.css`, `src/refinements.css`, and component CSS: responsive presentation and palette.
+| File | Responsibility |
+| --- | --- |
+| `src/App.tsx` | Page composition, product positioning, approval flow and control copy |
+| `src/components/Navigation.tsx` | Responsive navigation and keyboard dismissal |
+| `src/components/Sculpture.tsx` | Procedural geometry, GPU lifecycle, motion, lighting, fallbacks |
+| `src/components/SceneControls.tsx` | Accessible sculpture poses |
+| `src/scene/hyperchatGeometry.ts` | Original 3D interpretation of the supplied HC/speech-tail silhouette |
+| `src/components/InteractionDemo.tsx` | Local support-event sequence and timer cleanup |
+| `src/components/StreamStage.tsx` | Reusable fictional studio/alert presentation |
+| `src/components/CreatorFeatures.tsx` | Accessible capability tabs and representative UI |
+| `src/components/Moments.tsx` | Scroll-pinned interaction story and manual controls |
+| `src/hooks/useExperienceMotion.ts` | Lenis/GSAP coordination and reduced-motion lifecycle |
+| `src/styles.css`, `src/fonts.css` | Responsive presentation and local font definitions |
 
-Future integration with `Ankit-KK/hyperchat-v2` should replace the demo's local state through a dedicated service layer with documented APIs. The visual components should remain independent of transport and authentication.
+The old generic listening room, scripted chat persistence, unrelated FAQ, and generic logo icon were removed. The existing rendering, motion, build and hosting infrastructure is preserved. Future integration belongs in a dedicated API/service layer, not in the presentation components. Authentication, actual creator dashboards, checkout and applications are not built here. No backend code was changed.
 
-## Validation
+## Evidence, assets and limitations
 
-```sh
-npm test
-npm run build
-```
+See [PRODUCT_AUDIT.md](PRODUCT_AUDIT.md) for source revisions, capability evidence, reference-access limits and owner-confirmation items; [ASSET_REQUIREMENTS.md](ASSET_REQUIREMENTS.md) for the required official logo; [TESTING.md](TESTING.md) for verification results.
 
-`npm test` first builds the app, then checks the production output on port 5174. Playwright uses `/usr/bin/chromium` in this cloud environment. Adjust `executablePath` in `playwright.config.ts` for another machine. Tests cover desktop (1440px), tablet (820px), mobile (390px), navigation, FAQ, sculpture states, local conversation interactions, reduced motion, WebGL fallback, and serious/critical accessibility violations. Screenshots are saved to ignored `test-results/`.
+**Logo file integration remains pending:** the official image and source URL were supplied on 17 October 2026, and the 3D sculpture now follows its HC/speech-tail silhouette. The cloud proxy currently blocks the R2 download. Until the exact artwork can be retrieved locally, navigation retains plain text; no recreated logo is substituted. The original logo colors will be preserved, with neutral/copper materials elsewhere.
 
-The Three.js chunk has a Vite bundle-size advisory. It is lazy loaded; the scene caps pixel ratio and animation rate on mobile. Software renderers use demand-driven updates and simpler reflective materials; hardware-accelerated browsers retain continuous motion and clearcoat. Real-device performance and Safari/Firefox still need testing before a public production launch.
+KAIRO's outer shell loaded, but its published content service was blocked. The two HyperChat public sites were also blocked. Exact reference fidelity and live production feature availability remain unverified.
 
-## Reference and assets
+The Three.js chunk exceeds Vite's 500 KB advisory and is loaded separately. Real hardware, Safari and Firefox need follow-up testing. No production deployment was performed.
 
-The KAIRO reference URL returned HTTP 403 from the environment proxy. Its actual page, exact type choices, breakpoints, and animation timing could not be inspected. This implementation follows the supplied art direction rather than claiming verified visual parity.
+## Tests
 
-Palette: ivory `#F3EDE2`, charcoal `#221F1C`, copper `#B8702F`, stone `#8C847B`, sand `#D7CBB9`. No purple or neon hues. All geometric visuals are original and local; no KAIRO assets are used. See `ASSET_REQUIREMENTS.md` for optional future imagery.
+Playwright builds production output and serves it on port 5174. The cloud runner uses `/usr/bin/chromium`; override `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` for a different installed Chromium, or install Playwright Chromium and omit that path on machines without the system binary. Screenshots/results go to ignored `test-results/`.
+
+Tests cover 1440×1000 desktop, 820×1180 tablet, and 390×844 mobile: navigation, layering, scroll pinning, fictional transaction sequence, reset, capability tabs, moderation preview, stream selection, keyboard access, reduced motion, WebGL fallback, sculpture controls and serious/critical axe checks.

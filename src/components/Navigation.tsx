@@ -1,16 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, AudioLines, Menu, X } from "lucide-react";
-
+import { ArrowUpRight, Menu, X } from "lucide-react";
 const links = [
-  { href: "#about", text: "The idea" },
-  { href: "#experience", text: "The experience" },
-  { href: "#questions", text: "Good to know" },
+  { href: "#interaction", text: "The interaction" },
+  { href: "#creators", text: "For creators" },
+  { href: "#control", text: "Your control" },
 ];
-
 export default function Navigation() {
   const [expanded, setExpanded] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
-
   useEffect(() => {
     const close = (event: KeyboardEvent) => {
       if (event.key === "Escape" && expanded) {
@@ -21,11 +18,10 @@ export default function Navigation() {
     window.addEventListener("keydown", close);
     return () => window.removeEventListener("keydown", close);
   }, [expanded]);
-
   return (
     <header className="header">
       <a href="#main" className="brand" title="HyperChat home">
-        <AudioLines size={27} strokeWidth={2.3} /> hyperchat<span>V2</span>
+        hyperchat<span>V2</span>
       </a>
       <nav
         id="main-navigation"
@@ -44,10 +40,10 @@ export default function Navigation() {
       </nav>
       <a
         className="header-cta"
-        href="#live-room"
+        href="#onboarding"
         onClick={() => setExpanded(false)}
       >
-        Enter a room <ArrowUpRight size={15} />
+        Creator access <ArrowUpRight size={15} />
       </a>
       <button
         ref={toggle}

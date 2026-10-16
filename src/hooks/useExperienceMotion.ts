@@ -7,7 +7,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function useExperienceMotion(root: RefObject<HTMLDivElement | null>) {
   useEffect(() => {
+    let disposed = false;
     const media = gsap.matchMedia();
+    document.fonts.ready.then(() => {
+      if (!disposed) ScrollTrigger.refresh();
+    });
     media.add("(prefers-reduced-motion: no-preference)", () => {
       const lenis = new Lenis({
         duration: 1.05,
@@ -55,6 +59,9 @@ export function useExperienceMotion(root: RefObject<HTMLDivElement | null>) {
         lenis.destroy();
       };
     });
-    return () => media.revert();
+    return () => {
+      disposed = true;
+      media.revert();
+    };
   }, [root]);
 }
