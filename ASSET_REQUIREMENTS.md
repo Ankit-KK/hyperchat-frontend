@@ -1,31 +1,35 @@
 # HyperChat V2 assets
 
+## Current original visual
+
+One original studio image was generated for this page using the image-generation tool available in Codex. It is not an ElevenLabs output or a photograph of a real creator. It is used only inside the labelled fictional broadcast preview.
+
+| Local file | Dimensions | Size |
+| --- | --- | --- |
+| `public/images/hyperchat-studio.webp` | 1200×800 | 53,316 bytes |
+| `public/images/hyperchat-studio-small.webp` | 640×427 | 18,698 bytes |
+
+The responsive `srcset` loads a suitable local image. Explicit dimensions and a fixed frame reserve layout space. No third-party image hotlink is used.
+
+Generation direction: original editorial still life in a quiet architectural creator studio; charcoal plaster, a brushed copper microphone, compact dark speaker and ivory notebook; believable directional window light and tactile materials; clean negative space on the left for typography. No people, logos, UI text, neon, purple, violet, magenta or science fiction. Natural photographic light provides depth; the interface uses solid surfaces and no CSS gradients.
+
+The 1536×1024 generated master is preserved outside the checkout at `/workspace/generated_images/exec-1e1fa698-e8fd-478c-9504-bbbdfe9aad87.png` in this development session. Optimized delivery assets are committed.
+
+## Voice and sound previews
+
+ElevenLabs tools and credentials are not exposed in this Codex environment. The user's ChatGPT connection was not assumed to provide direct API access.
+
+- Voice preview: explicit Play/Stop using a browser-provided **local** speech voice. It is labelled device-generated, selects only `localService` voices, never autoplays, and cancels on mode/tab changes. Browsers without a local voice show a readable fallback. This is not a sample of HyperChat's production AI voice or an ElevenLabs recording.
+- Soundboard: three original, low-volume tones synthesized locally with Web Audio. No downloaded samples or external audio service. User-triggered only, with cleanup on Stop, completion and panel change.
+
+For a consistent future ElevenLabs voice asset, use an authorized built-in/licensed voice, not a cloned creator voice. Required asset: one 3–5 second, mono MP3 or Opus clip, under 100 KB; no music or ambience; normalize approximately to −18 LUFS with peaks below −1 dBTP. Exact script: “This made my evening. Keep creating!” Direction: warm, conversational English, a slight smile, natural pace, clear diction, no announcer performance or exaggerated emotion. Store the approved audio locally under `public/audio/`, retain the transcript and explicit Play/Stop controls, and record provider/voice/license provenance. The current page works without this future asset.
+
 ## Official brand artwork
 
-The owner supplied the HC speech-bubble logo in chat and its source URL on 17 October 2026: `https://pub-3968c5ed4c4c448d85e9dc68e6552634.r2.dev/hc-logo.png`. Its silhouette and original blue/purple/magenta colors were inspected. Downloading the exact file remains blocked by the cloud proxy. Navigation therefore uses plain text; no logo recreation is substituted.
+The owner's source is `https://pub-3968c5ed4c4c448d85e9dc68e6552634.r2.dev/hc-logo.png`. It was successfully retrieved with normal TLS verification on 17 October 2026 after environment access changed. The earlier proxy limitation no longer applies.
 
-- Preferred source: original SVG with a valid viewBox, outlined text, original colors and approved clear space. Include full lockup and standalone mark if both are approved.
-- Raster alternative: transparent PNG, at least 1200 pixels on its long edge. A transparent 512×512 approved standalone mark can support favicon adaptation.
-- Navigation target: approximately 150×32 CSS pixels desktop, 125×28 mobile, preserving aspect ratio and clear space.
-- Store approved originals under `public/brand/`; optimize local copies without altering geometry or colors. Preserve original logo colors as the owner instructed.
-- A flat ivory/copper variant would fit the neutral page, but it requires approved artwork. Do not recolor the supplied image automatically.
+The supplied HC image contains blue/magenta gradients and a baked-in dark background. The current direction requests no gradient colors, so navigation continues using the existing typographic wordmark. No primary logo was redrawn or automatically recolored. A future flat ivory/copper variant should come from approved brand artwork, preferably SVG, with a transparent PNG fallback and an approved standalone favicon mark.
 
-The current design replaces the large 3D HC mark with a layered product demonstration. No 3D logo asset is required. The former procedural sculpture remains available in Git history, not in the current build.
+## Other local assets
 
-## Original assets already used
-
-- CSS architectural studio illustration: window light, acoustic panel, microphone, speaker, work surface and notebook. It is explicitly a fictional broadcast, not a real creator endorsement or a video feed.
-- Layered interface cards, example support alert, fine grain and neutral atmospheric background. No downloaded models, external textures, or hotlinked images.
-- Three original Web Audio preview tones synthesized in the browser: Warm bell, Double tap, Soft chime. User-initiated only; no copyrighted samples or provider services.
-- Self-hosted Bodoni Moda and Inter variable WOFF2 Latin subsets. SIL Open Font License copies are in `public/licenses/`.
-- Lucide functional UI icons; none substitutes for the brand mark.
-
-No AI imagery was necessary. ElevenLabs availability was not assumed, and no proprietary KAIRO assets were used.
-
-## Optional future studio image
-
-The implementation is complete without photography. If a photographic art direction is chosen later:
-
-- Generate a 1600×1000 master; optimize locally to AVIF/WebP, targeting under 200 KB. A 900×1100 mobile crop is optional.
-- Prompt: “An original editorial still life in a creator's quiet architectural studio. Sand plaster walls, charcoal work surface, a brushed copper microphone, a compact dark speaker and an ivory notebook. Natural directional window light, believable soft shadows, restrained premium product photography. Leave negative space on the left and lower third for stream labels and an alert. No people, brand marks, interface text, colorful lighting, neon, purple, violet, lavender, magenta, or science fiction. Wide landscape composition.”
-- Preserve the fictional-preview label. Do not treat generated imagery as a real stream or endorsement.
+Bodoni Moda and Inter variable WOFF2 subsets are self-hosted; SIL Open Font License copies are in `public/licenses/`. Lucide icons indicate interface actions and do not replace the brand mark. No KAIRO imagery, legacy-site design assets, endorsements or creator portraits were copied.

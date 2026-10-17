@@ -1,10 +1,11 @@
 /** Fictional, browser-local examples. Never pass these records to a real API. */
-export const demoDonations = [
+export const demoInteractions = [
   {
     id: "demo-ari",
     name: "Ari",
     amount: 250,
     kind: "Message",
+    status: "Shown on stream",
     message: "This made my evening. Keep creating!",
     time: "20:42",
   },
@@ -13,6 +14,7 @@ export const demoDonations = [
     name: "Noor",
     amount: 500,
     kind: "Voice",
+    status: "Played on stream",
     message: "Thanks for making this space for us.",
     time: "20:38",
   },
@@ -20,7 +22,8 @@ export const demoDonations = [
     id: "demo-sam",
     name: "Sam",
     amount: 100,
-    kind: "Soundboard",
+    kind: "Sound",
+    status: "Played on stream",
     message: "A little applause for that moment.",
     time: "20:31",
   },

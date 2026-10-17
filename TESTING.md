@@ -1,46 +1,48 @@
-# HyperChat V2 product-led redesign verification
+# HyperChat V2 interaction-first refinement verification
 
-17 October 2026. Checks use the local production build. They do not establish the state of a hosted Vercel deployment or any backend/provider service.
+17 October 2026. Checks use the local production build. They do not certify a hosted Vercel deployment, backend rollout, or production voice provider.
 
-## Build and browser checks
+## Build and functional verification
 
-- `npm test`: **27 passed**, zero failed/skipped, across desktop 1440×1000, tablet 820×1180 and mobile 390×844.
-- The suite builds with TypeScript/Vite before running Playwright in system Chromium.
-- Navigation and scroll destinations, all internal anchor targets, six-section composition, horizontal overflow, mobile first-screen preview, mobile menu closure, Escape, skip link, keyboard tab navigation and reduced motion passed.
-- Hero sequence: amount selection, disabled controls during playback, receipt, audience alert, replay, reset and timer cancellation. No non-GET transaction requests occurred.
-- Moderation: independent approve/hide decisions, visible status, hidden-message replacement, undo and reset.
-- Reporting: case-insensitive filtering, empty state, filtered totals and exact downloaded CSV contents from fictional records.
-- Soundboard: no autoplay, oscillator scheduling after a user action, stop, natural completion and audio-context closure on panel change. Unavailable audio reports its limitation without breaking other controls. Physical speaker output was not audited.
-- Alert scale and illustrative OBS visual/audio source toggles passed.
-- The page works with WebGL unavailable because the product theatre has no WebGL dependency.
-- Axe found zero serious or critical violations on the initial page and active reporting/moderation panels in each viewport. This does not replace a manual assistive-technology audit.
-- The tests caught and resolved a Tailwind `hidden` class collision in moderation status and accumulated scroll offsets in Lenis anchor navigation.
+- TypeScript/Vite production build passed.
+- Playwright: 15 scenarios across desktop 1440×1000, tablet 820×1180 and mobile 390×844 — **45 cases verified**. The full run passed 42 cases and identified three accessibility findings on the decorative wordmark. After representing that decorative artwork as an aria-hidden SVG, all three accessibility cases passed against a fresh build. No assertions were disabled.
+- Editable hero: the visitor's exact message reaches the example alert; blank input disables playback; controls disable while running; replay/reset cancels pending timers. Script-like input renders as text. No transaction requests occur.
+- Positioning and surfaces: every creator panel uses interaction terminology; no donation/donor wording is rendered. Computed page backgrounds contain no CSS gradients.
+- Original local studio image loads successfully. The image is decorative within a clearly labelled fictional broadcast, with responsive sources and reserved layout space.
+- Navigation, internal anchors, skip link, mobile menu dismissal/Escape, keyboard tab arrows/Home/End, reduced motion and operation without WebGL passed.
+- Interaction history: filtering, empty state, filtered records and exact local CSV download content passed.
+- Moderation: independent approve/hide decisions, status feedback, hidden-message replacement, undo and reset passed.
+- Soundboard: no autoplay, user-triggered oscillator scheduling, stop, completion, panel cleanup and unavailable-audio feedback passed.
+- Voice: mocked browser speech interfaces verified loading, explicit Play/Stop, local-only voice selection, completion, errors, mode/tab cleanup, unavailable API and remote-only voice rejection. Actual voice quality depends on the device; headless Chromium does not provide a usable local speech voice. No claim of an ElevenLabs or production HyperChat voice recording is made.
+- Overlay resizing and illustrative OBS visual/audio source toggles passed.
+- Axe: zero serious or critical findings after the decorative wordmark fix across the hero and history, moderation and voice panels in all three viewports. Automated axe checks do not replace a manual screen-reader audit.
 
-## Final visual and performance checks
+## Visual review
 
-- Final alert-spacing regression and accessibility checks: **6/6 passed** across the three primary viewports after moving the alert clear of the viewer card.
-- Additional responsive checks include 320×740 and 1024×768, plus a width sweep from 320 to 1920 pixels. Small alert/card overlaps at the 901/1101-pixel breakpoints were identified and corrected; affected widths were rechecked and the production rebuild passed.
-- Desktop/tablet/mobile hero and interaction screenshots reviewed, plus the full desktop composition and functional toolkit panels. Local review artifacts are outside the checkout under `/workspace/hyperchat-product-*`; test screenshots are under ignored `test-results/`.
-- `git diff --check`: clean. No backend files were changed.
+Desktop, tablet and mobile hero/interaction screenshots were reviewed. Additional 320×740 and 1024×768 rendered checks found no horizontal overflow or alert/card overlap. The mobile headline, primary action and meaningful studio/message preview remain visible on the first screen at 390×844. Local screenshots are under `/workspace/hyperchat-interaction-*`; Playwright results are in ignored `test-results/`.
+
+The final decorative SVG change passed the repeated accessibility checks. A final wording correction removes the spatially inaccurate “below” from the voice invitation; the production build passed afterward.
+
+## Performance
 
 Lighthouse 13.0.3, default simulated mobile throttling, local production preview, system Chromium:
 
 | Category | Score |
 | --- | --- |
-| Performance | **98** |
+| Performance | **97** |
 | Accessibility | **100** |
 | Best practices | **100** |
 | SEO | **100** |
 
-First contentful paint 1.5 s; largest contentful paint 2.3 s; speed index 1.5 s; total blocking time **10 ms**; cumulative layout shift **0**. No run warnings. Raw report: `/workspace/hyperchat-product-lighthouse.json`.
+First contentful paint 1.5 s; largest contentful paint 2.4 s; speed index 1.5 s; total blocking time 40 ms; cumulative layout shift **0**. No Lighthouse run warnings. Raw report: `/workspace/hyperchat-interactions-lighthouse.json`.
 
-The previous HC sculpture revision measured performance 63 and blocking time 3,550 ms in the cloud lab. Removing WebGL initialization and the approximately 553 KB Three.js chunk materially reduced startup work. These are local lab measurements, not public-hosting or real-device guarantees. Final alert-position adjustments followed the Lighthouse run; they do not change the 390-pixel mobile layout or loading path.
+Current build: entry JavaScript approximately 389 KB (130 KB gzip), CSS 38 KB (9 KB gzip), local fonts 104 KB combined. Studio WebP assets are 53 KB and 19 KB; responsive image selection avoids downloading both. No oversized-chunk warning. These are local lab measurements, not hosted or physical-device performance guarantees.
 
-Current build: entry JavaScript approximately 386 KB (129 KB gzip), CSS 41 KB (10 KB gzip), three local WOFF2 files 104 KB combined. No oversized-chunk warning remains.
+## Environment and scope
 
-## Limits
-
-- Local Chromium checks only; Safari, Firefox, real iOS/Android devices, screen readers and physical-device energy use remain follow-up checks.
-- Live transactions, authentication, applications, verification, payments, creator accounts and provider integrations are not part of this frontend preview and were not tested.
-- The exact official logo download remains blocked by the cloud proxy. Navigation retains plain text; no unapproved recolored variant is used.
-- KAIRO's published design content and the public HyperChat sites were blocked. Exact reference fidelity and production capability availability cannot be asserted.
+- Existing npm installation/build instructions were exercised successfully. Updated reusable startup notes were saved as an environment configuration draft to reflect the interaction previews and current asset/tool limitations; this is not publication of a new environment snapshot.
+- Public HyperChat HTML/client content and the official logo URL now respond with verified TLS. Product facts were researched from the old site; its design, media and unsupported marketing claims were not copied.
+- `git diff --check` passed. Backend files were not modified. No credentials or backend environment variables are required.
+- Real payments, accounts, applications, identity verification, OBS/provider connections and production voice generation are outside this landing-page preview.
+- Safari, Firefox, physical iOS/Android, screen readers and the hosted deployment remain unverified.
+- ElevenLabs is not exposed in this Codex session. The image uses the available image-generation tool; voice examples use local device voices with a readable fallback. See ASSET_REQUIREMENTS.md for a future consistent voice-asset brief.

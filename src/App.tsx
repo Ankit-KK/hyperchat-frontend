@@ -40,9 +40,23 @@ export default function App() {
       </a>
       <div className="reading-progress" aria-hidden="true" />
       <div className="atmosphere" aria-hidden="true" />
-      <div className="scene-word" aria-hidden="true">
-        HYPERCHAT
-      </div>
+      <svg
+        className="scene-word"
+        viewBox="0 0 1500 240"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <text
+          x="750"
+          y="190"
+          textAnchor="middle"
+          fontSize="230"
+          letterSpacing="-17"
+          fill="currentColor"
+        >
+          HYPERCHAT
+        </text>
+      </svg>
       <div className="grain" aria-hidden="true" />
       <Navigation />
       <main id="main" tabIndex={-1}>
@@ -83,7 +97,7 @@ export default function App() {
           <div className="setup-note">
             <span className="eyebrow">AFTER ACTIVATION</span>
             <p>
-              Set your donation preferences, choose your moderation settings,
+              Set your interaction preferences, choose your moderation settings,
               and connect your OBS browser sources. Then bring HyperChat into
               your broadcast.
             </p>
@@ -132,8 +146,8 @@ export default function App() {
                 <div>
                   <h3>Make room for your team.</h3>
                   <p>
-                    Manage moderator permissions and banned donors with controls
-                    scoped to your creator account.
+                    Manage moderator permissions and viewer restrictions with
+                    controls scoped to your creator account.
                   </p>
                 </div>
               </article>
@@ -167,7 +181,7 @@ export default function App() {
             <a href="#interaction" className="button dark">
               Experience HyperChat <ArrowUpRight size={18} />
             </a>
-            <p>Explore the preview. See what a little support can become.</p>
+            <p>Explore the preview. See what a small interaction can become.</p>
           </div>
           <div className="closing-word" aria-hidden="true">
             HYPERCHAT

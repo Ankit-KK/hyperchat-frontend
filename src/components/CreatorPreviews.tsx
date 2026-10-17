@@ -10,23 +10,53 @@ import {
   Search,
   Square,
 } from "lucide-react";
-import { demoDonations, formatAmount } from "../data/demo";
+import { demoInteractions, formatAmount } from "../data/demo";
+import { useVoicePreview } from "../hooks/useVoicePreview";
+
+function VoicePreview() {
+  const { availability, isPlaying, notice, play, stop } = useVoicePreview();
+  return (
+    <div className="voice-preview">
+      <div className="support-message">
+        <AudioLines size={26} aria-hidden="true" />
+        <span>
+          “This made my evening. Keep creating!”
+          <small>Ari · example viewer · device-generated voice</small>
+        </span>
+      </div>
+      <div className="voice-preview-controls">
+        <button
+          className="icon-text-button"
+          onClick={isPlaying ? stop : play}
+          disabled={availability !== "ready" && !isPlaying}
+        >
+          {isPlaying ? <Square size={12} /> : <Play size={12} />}
+          {isPlaying ? "Stop voice preview" : "Play voice preview"}
+        </button>
+        <p className="tool-note" role="status">
+          {notice}
+        </p>
+      </div>
+    </div>
+  );
+}
 
 export function SupportPreview() {
   const [kind, setKind] = useState("Message");
   return (
     <div className="tool-preview support-tool">
       <div className="tool-heading">
-        <h3>Ari’s support</h3>
+        <h3>Ari’s interaction</h3>
         <span>FICTIONAL EXAMPLE</span>
       </div>
-      <div className="support-total">
-        ₹250<span>A MOMENT OF ENCOURAGEMENT</span>
+      <div className="interaction-preview-title">
+        A message.
+        <br />A moment.
       </div>
       <div
         className="segmented-control"
         role="group"
-        aria-label="Example support type"
+        aria-label="Example interaction type"
       >
         {["Message", "Voice"].map((type) => (
           <button
@@ -38,27 +68,19 @@ export function SupportPreview() {
           </button>
         ))}
       </div>
-      <div className="support-message">
-        {kind === "Voice" ? (
-          <>
-            <AudioLines size={26} />
-            <span>
-              Voice interaction
-              <small>Illustrative voice message · no recording</small>
-            </span>
-          </>
-        ) : (
-          <>
-            <span className="small-avatar">A</span>
-            <span>
-              “This made my evening. Keep creating!”
-              <small>Ari · example viewer</small>
-            </span>
-          </>
-        )}
-      </div>
+      {kind === "Voice" ? (
+        <VoicePreview />
+      ) : (
+        <div className="support-message">
+          <span className="small-avatar">A</span>
+          <span>
+            “This made my evening. Keep creating!”
+            <small>Ari · example viewer</small>
+          </span>
+        </div>
+      )}
       <div className="tool-note">
-        <Heart size={13} /> Your viewer’s support, with a personal touch.
+        <Heart size={13} /> A familiar name. A personal touch.
       </div>
     </div>
   );
@@ -77,8 +99,8 @@ export function AlertPreview() {
         <div className="sample-alert" style={{ transform: `scale(${scale})` }}>
           <Heart size={20} />
           <div>
-            <span>THANK YOU FOR THE SUPPORT</span>
-            <strong>Ari sent ₹250</strong>
+            <span>A MESSAGE FOR YOUR STREAM</span>
+            <strong>Ari joined the moment</strong>
             <p>This made my evening.</p>
           </div>
         </div>
@@ -220,30 +242,33 @@ export function SoundboardPreview() {
 
 export function HistoryPreview() {
   const [query, setQuery] = useState("");
-  const rows = demoDonations.filter((row) =>
+  const rows = demoInteractions.filter((row) =>
     `${row.name} ${row.kind} ${row.message}`
       .toLowerCase()
       .includes(query.toLowerCase().trim()),
   );
   const exportCsv = () => {
     const csv =
-      "name,amount_inr,type,time\n" +
+      "viewer,interaction,status,time,support_inr\n" +
       rows
-        .map((row) => `${row.name},${row.amount},${row.kind},${row.time}`)
+        .map(
+          (row) =>
+            `${row.name},${row.kind},${row.status},${row.time},${row.amount}`,
+        )
         .join("\n");
     const url = URL.createObjectURL(
       new Blob([csv], { type: "text/csv;charset=utf-8" }),
     );
     const anchor = document.createElement("a");
     anchor.href = url;
-    anchor.download = "hyperchat-fictional-donations.csv";
+    anchor.download = "hyperchat-fictional-interactions.csv";
     anchor.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
   return (
     <div className="tool-preview history-tool">
       <div className="tool-heading">
-        <h3>Donation history</h3>
+        <h3>Interaction history</h3>
         <span>FICTIONAL RECORDS</span>
       </div>
       <div className="history-toolbar">
@@ -251,7 +276,7 @@ export function HistoryPreview() {
           <Search size={14} />
           <input
             type="search"
-            aria-label="Filter example donations"
+            aria-label="Filter example interactions"
             placeholder="Find a viewer or interaction"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -268,7 +293,7 @@ export function HistoryPreview() {
       </div>
       <div className="history-table-wrap">
         <table className="history-table">
-          <caption className="sr-only">Fictional donation history</caption>
+          <caption className="sr-only">Fictional interaction history</caption>
           <thead>
             <tr>
               <th scope="col">Viewer</th>
@@ -283,7 +308,10 @@ export function HistoryPreview() {
                   <strong>{row.name}</strong>
                   <small>{row.time} · example</small>
                 </td>
-                <td>{row.kind}</td>
+                <td>
+                  {row.kind}
+                  <small>{row.status}</small>
+                </td>
                 <td>{formatAmount(row.amount)}</td>
               </tr>
             ))}
@@ -291,18 +319,15 @@ export function HistoryPreview() {
         </table>
         {!rows.length && (
           <p className="empty-history" role="status">
-            No example donations match “{query}”.
+            No example interactions match “{query}”.
           </p>
         )}
       </div>
       <div className="history-summary">
-        <span>{rows.length} of 3 examples</span>
         <span>
-          Example total{" "}
-          <strong>
-            {formatAmount(rows.reduce((total, row) => total + row.amount, 0))}
-          </strong>
+          {rows.length} of {demoInteractions.length} examples
         </span>
+        <span>Fictional interactions · local preview</span>
       </div>
     </div>
   );
@@ -311,7 +336,7 @@ export function HistoryPreview() {
 type ReviewState = "pending" | "approved" | "hidden";
 export function ModerationPreview() {
   const [states, setStates] = useState<Record<string, ReviewState>>({});
-  const rows = demoDonations.slice(0, 2);
+  const rows = demoInteractions.slice(0, 2);
   const pending = rows.filter(
     (row) => !states[row.id] || states[row.id] === "pending",
   ).length;
@@ -330,14 +355,12 @@ export function ModerationPreview() {
             <article
               className="review-item"
               key={row.id}
-              aria-label={`Example message from ${row.name}`}
+              aria-label={`Example interaction from ${row.name}`}
             >
               <div className="review-meta">
                 <strong>
                   {row.name}
-                  <span>
-                    {formatAmount(row.amount)} · {row.kind}
-                  </span>
+                  <span>{row.kind} interaction</span>
                 </strong>
                 <span
                   className="review-status"
@@ -349,7 +372,7 @@ export function ModerationPreview() {
               </div>
               <p>
                 {state === "hidden"
-                  ? "Message hidden in this preview."
+                  ? "Interaction hidden in this preview."
                   : `“${row.message}”`}
               </p>
               <div className="review-actions">
@@ -420,7 +443,7 @@ export function ObsPreview() {
           <div
             className={alerts ? "mini-overlay" : "mini-overlay hidden-overlay"}
           >
-            Ari sent ₹250<small>A little support for your stream.</small>
+            Ari joined the moment<small>This made my evening.</small>
           </div>
           <AudioLines size={25} style={{ opacity: audio ? 1 : 0.2 }} />
           <span>

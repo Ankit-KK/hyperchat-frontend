@@ -6,8 +6,15 @@ test("hero and interactive creator panels have no serious accessibility violatio
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  for (const tab of [null, "04 Creator reporting", "05 Community moderation"]) {
+  for (const tab of [
+    null,
+    "04 Interaction history",
+    "05 Community moderation",
+    "01 Viewer interactions",
+  ]) {
     if (tab) await page.getByRole("tab", { name: tab }).click();
+    if (tab === "01 Viewer interactions")
+      await page.getByRole("button", { name: "Voice", exact: true }).click();
     const results = await new AxeBuilder({ page }).analyze();
     expect(
       results.violations.filter((violation) =>

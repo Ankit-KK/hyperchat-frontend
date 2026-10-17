@@ -10,46 +10,51 @@ import StreamStage from "./StreamStage";
 import { useDemoSequence } from "../hooks/useDemoSequence";
 import { useState } from "react";
 const statuses = [
-  "Try a fictional interaction. No payment or account needed.",
-  "Ari’s example support is received.",
-  "The approved example event reaches the stream.",
-  "Ari’s message is now on screen for the audience.",
+  "A local preview. Your words stay in this browser.",
+  "Your example interaction reaches the creator.",
+  "The example message clears the creator’s queue.",
+  "Your words are now part of the scene.",
 ];
 export default function ProductHero() {
   const { step, running, play, reset } = useDemoSequence();
-  const [amount, setAmount] = useState(250);
+  const [message, setMessage] = useState(
+    "This made my evening. Keep creating!",
+  );
   return (
     <section className="hero" id="interaction" aria-labelledby="hero-title">
       <div className="hero-top eyebrow">
         <span>
-          <i className="status-dot" /> CREATOR TOOLS. HUMAN CONNECTION.
+          <i className="status-dot" /> LIVE CREATOR ENGAGEMENT.
         </span>
         <span>THE NEXT CHAPTER / V.02</span>
       </div>
       <div className="hero-layout">
         <div className="hero-content">
           <span className="hero-kicker eyebrow">
-            YOUR AUDIENCE HAS SOMETHING TO ADD.
+            SMALL INTERACTIONS. SHARED EXPERIENCES.
           </span>
           <h1 id="hero-title">
             Your stream.
             <br />
-            Their support.
+            Their voice.
             <br />
             <em>A shared moment.</em>
           </h1>
           <p>
-            Donations, alerts, and audience interactions.
-            <br className="desktop-break" /> HyperChat brings your community
-            into the broadcast you already create.
+            Messages, voices, sounds, and moments worth sharing. HyperChat
+            brings your audience into the broadcast, on your terms.
           </p>
           <div className="hero-actions">
-            <button className="button ivory" onClick={play} disabled={running}>
+            <button
+              className="button ivory"
+              onClick={play}
+              disabled={running || !message.trim()}
+            >
               {running
                 ? "Following the moment…"
                 : step === 3
                   ? "Play it again"
-                  : "Try the moment"}
+                  : "Try an interaction"}
               <Play size={14} fill="currentColor" />
             </button>
             <a href="#creators" className="text-link">
@@ -81,7 +86,7 @@ export default function ProductHero() {
                   hyperchat<span className="chrome-edition"> V2</span>
                 </span>
               </div>
-              <StreamStage visible={step === 3} amount={amount} />
+              <StreamStage visible={step === 3} message={message.trim()} />
             </div>
             <div className="viewer-ticket">
               <div className="ticket-top">
@@ -92,32 +97,32 @@ export default function ProductHero() {
                 </div>
                 <Send size={14} />
               </div>
-              <p>
-                “This made my evening.
-                <br />
-                Keep creating!”
-              </p>
-              <fieldset disabled={running}>
-                <legend>Example support amount</legend>
-                <div className="amount-options">
-                  {[100, 250, 500].map((value) => (
-                    <button
-                      key={value}
-                      type="button"
-                      aria-pressed={amount === value}
-                      onClick={() => {
-                        reset();
-                        setAmount(value);
-                      }}
-                    >
-                      ₹{value}
-                    </button>
-                  ))}
-                </div>
-              </fieldset>
+              <label className="message-label" htmlFor="example-message">
+                Make the moment yours.
+              </label>
+              <textarea
+                id="example-message"
+                aria-label="Your example message"
+                className="message-input"
+                aria-describedby="message-hint"
+                maxLength={96}
+                rows={3}
+                value={message}
+                disabled={running}
+                onChange={(event) => {
+                  reset();
+                  setMessage(event.target.value);
+                }}
+              />
+              <div className="message-hint" id="message-hint">
+                <span>Try your own words</span>
+                <span>{message.length}/96</span>
+              </div>
               <div className="ticket-foot">
                 <span>
-                  {step > 0 ? "EXAMPLE SUPPORT SENT" : "READY WHEN YOU ARE"}
+                  {step > 0
+                    ? "EXAMPLE INTERACTION SENT"
+                    : "TEXT · VOICE · SOUND · MEDIA"}
                 </span>
                 {step > 0 ? <Check size={14} /> : <ArrowUpRight size={14} />}
               </div>
@@ -126,7 +131,9 @@ export default function ProductHero() {
               <span>
                 <Check size={12} />
               </span>
-              {step >= 2 ? "Example event received" : "Awaiting the moment"}
+              {step >= 2
+                ? "Example interaction received"
+                : "Awaiting the moment"}
             </div>
           </div>
           <div className="theatre-status">
@@ -141,7 +148,7 @@ export default function ProductHero() {
             </button>
           </div>
           <ol className="moment-route" aria-label="Interaction progress">
-            {["Viewer support", "Creator receives", "Audience sees"].map(
+            {["Audience joins", "Creator chooses", "The stream reacts"].map(
               (label, i) => (
                 <li
                   key={label}

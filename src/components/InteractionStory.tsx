@@ -2,7 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 const steps = [
   [
     "An audience with a voice.",
-    "A viewer chooses how to support you: a message, a voice interaction, or an available sound.",
+    "A message that lands. A voice you recognize. The sound your community knows by heart.",
   ],
   [
     "A moment on your terms.",
@@ -21,14 +21,14 @@ export default function InteractionStory() {
       aria-labelledby="story-title"
     >
       <div className="section-label">
-        <span>01 / FROM SUPPORT TO SCREEN</span>
+        <span>01 / FROM AUDIENCE TO EXPERIENCE</span>
         <span>YOUR PLATFORM. A CLOSER COMMUNITY.</span>
       </div>
       <div className="section-heading" data-reveal>
         <h2 id="story-title">
-          A little support.
+          A small interaction.
           <br />
-          <em>A lasting connection.</em>
+          <em>A different energy.</em>
         </h2>
         <p>
           You bring the broadcast.

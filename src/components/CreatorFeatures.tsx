@@ -10,13 +10,13 @@ import {
 } from "./CreatorPreviews";
 const features = [
   {
-    id: "support",
-    name: "Donations & support",
-    heading: "Support with a story.",
-    copy: "Give viewers a way to support your work and leave a message that belongs in the moment.",
+    id: "interactions",
+    name: "Viewer interactions",
+    heading: "Give every interaction a voice.",
+    copy: "Text, voice, sound, images, GIFs, and video. Let your audience join in through the interactions you choose to enable.",
     detail:
-      "Donation messages, voice interactions, and creator-specific options.",
-    label: "01 / SUPPORT",
+      "Try a device-generated voice example. Available interaction types depend on creator settings.",
+    label: "01 / PARTICIPATION",
   },
   {
     id: "alerts",
@@ -37,17 +37,18 @@ const features = [
   },
   {
     id: "reporting",
-    name: "Creator reporting",
-    heading: "Understand your support.",
-    copy: "Review donation history, see support totals, and export records from your creator dashboard.",
-    detail: "Donation reporting, including daily and monthly totals.",
+    name: "Interaction history",
+    heading: "Keep track of the conversation.",
+    copy: "Find an interaction, revisit its context, and export your records. The details are there when you need them.",
+    detail:
+      "Explore fictional records here. Creator reporting is part of the documented V2 toolkit.",
     label: "04 / INSIGHT",
   },
   {
     id: "moderation",
     name: "Community moderation",
     heading: "Your stream. Your boundaries.",
-    copy: "Review interactions, hide messages, and manage donor restrictions with your moderation team.",
+    copy: "Review interactions, hide messages, and manage viewer restrictions with your moderation team.",
     detail: "Choose manual review or automatic approval in creator settings.",
     label: "05 / CONTROL",
   },

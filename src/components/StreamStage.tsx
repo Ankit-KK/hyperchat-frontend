@@ -1,33 +1,28 @@
-import { AudioLines, Heart, Radio } from "lucide-react";
-import { formatAmount } from "../data/demo";
+import { AudioLines, MessageCircle, Radio } from "lucide-react";
 export default function StreamStage({
   visible = false,
-  amount = 250,
+  message,
 }: {
   visible?: boolean;
-  amount?: number;
+  message: string;
 }) {
   return (
     <div className="stream-stage">
+      <img
+        className="studio-image"
+        src="/images/hyperchat-studio.webp"
+        srcSet="/images/hyperchat-studio-small.webp 640w, /images/hyperchat-studio.webp 1200w"
+        sizes="(max-width: 600px) 80vw, (max-width: 900px) 75vw, 48vw"
+        width="1200"
+        height="800"
+        alt=""
+        fetchPriority="high"
+      />
       <div className="stream-topline">
         <span>
           <Radio size={12} /> THE OPEN STUDIO
         </span>
         <span>FICTIONAL BROADCAST</span>
-      </div>
-      <div className="studio-art" aria-hidden="true">
-        <div className="studio-window" />
-        <div className="studio-panel" />
-        <div className="studio-desk" />
-        <div className="studio-mic">
-          <i />
-          <span />
-        </div>
-        <div className="studio-speaker">
-          <i />
-          <i />
-        </div>
-        <div className="studio-notebook" />
       </div>
       <div className="stream-title">
         <span>A SESSION IN GOOD COMPANY</span>
@@ -42,12 +37,12 @@ export default function StreamStage({
         aria-hidden={!visible}
       >
         <span className="alert-symbol">
-          <Heart size={19} />
+          <MessageCircle size={19} />
         </span>
         <div>
-          <span className="alert-meta">A LITTLE SUPPORT, A BIG MOMENT</span>
-          <strong>Ari sent {formatAmount(amount)}</strong>
-          <p>This made my evening. Keep creating!</p>
+          <span className="alert-meta">A FEW WORDS. A SHARED MOMENT.</span>
+          <strong>Ari joined the conversation</strong>
+          <p>{message}</p>
         </div>
         <span className="alert-signature">hyperchat</span>
       </div>
