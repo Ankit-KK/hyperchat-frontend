@@ -1,12 +1,13 @@
 import { useState, type KeyboardEvent } from "react";
+import { ArrowUpRight } from "lucide-react";
 import {
-  ArrowUpRight,
-  AudioLines,
-  Check,
-  CheckCheck,
-  Link,
-  ShieldCheck,
-} from "lucide-react";
+  SupportPreview,
+  AlertPreview,
+  SoundboardPreview,
+  HistoryPreview,
+  ModerationPreview,
+  ObsPreview,
+} from "./CreatorPreviews";
 const features = [
   {
     id: "support",
@@ -62,8 +63,6 @@ const features = [
 ];
 export default function CreatorFeatures() {
   const [active, setActive] = useState(0);
-  const [moderated, setModerated] = useState(false);
-  const [played, setPlayed] = useState(false);
   const feature = features[active];
   const keydown = (e: KeyboardEvent<HTMLButtonElement>, index: number) => {
     let next = index;
@@ -130,126 +129,12 @@ export default function CreatorFeatures() {
           className="feature-panel"
         >
           <div className="feature-visual" key={feature.id}>
-            <div className="mini-ui-header">
-              <span>HYPERCHAT / {feature.name.toUpperCase()}</span>
-              <span>ILLUSTRATIVE UI</span>
-            </div>
-            {active === 0 && (
-              <div className="support-visual">
-                <span className="large-amount">
-                  ₹250<span>EXAMPLE SUPPORT</span>
-                </span>
-                <div className="mini-message">
-                  <span className="small-avatar">A</span>
-                  <div>
-                    <strong>Ari</strong>
-                    <p>“Here for what you create.”</p>
-                  </div>
-                  <CheckCheck size={19} />
-                </div>
-              </div>
-            )}
-            {active === 1 && (
-              <div className="alert-visual">
-                <span className="fine-line" />
-                <div className="sample-alert">
-                  <AudioLines size={30} />
-                  <div>
-                    <span>A MOMENT OF SUPPORT</span>
-                    <strong>Ari sent ₹250</strong>
-                    <p>Here for what you create.</p>
-                  </div>
-                </div>
-                <span className="visual-hint">
-                  YOUR OVERLAY. YOUR BROADCAST.
-                </span>
-              </div>
-            )}
-            {active === 2 && (
-              <div className="sound-visual">
-                <div className="waveform" aria-hidden="true">
-                  {Array.from({ length: 33 }, (_, i) => (
-                    <i
-                      key={i}
-                      style={{
-                        height: `${16 + Math.abs(Math.sin(i * 1.9)) * 65}%`,
-                      }}
-                    />
-                  ))}
-                </div>
-                <button
-                  className="button ivory"
-                  onClick={() => setPlayed(!played)}
-                  aria-pressed={played}
-                >
-                  {played ? "Selected: applause" : "Select example sound"}
-                  <AudioLines size={17} />
-                </button>
-                <span className="visual-hint">
-                  {played
-                    ? "Example sound selected · visual preview only"
-                    : "A REPRESENTATIVE SOUNDBOARD SELECTION"}
-                </span>
-              </div>
-            )}
-            {active === 3 && (
-              <div className="report-visual">
-                <div>
-                  <span>EXAMPLE DONATION HISTORY</span>
-                  <strong>
-                    Every gesture,
-                    <br />
-                    in perspective.
-                  </strong>
-                </div>
-                <div className="bar-chart" aria-hidden="true">
-                  {[25, 42, 31, 68, 49, 84, 65, 95, 71].map((h, i) => (
-                    <i key={i} style={{ height: `${h}%` }} />
-                  ))}
-                </div>
-                <span className="visual-hint">
-                  ILLUSTRATIVE CHART · NOT PLATFORM METRICS
-                </span>
-              </div>
-            )}
-            {active === 4 && (
-              <div className="moderation-visual">
-                <ShieldCheck size={30} />
-                <span className="eyebrow">EXAMPLE REVIEW QUEUE</span>
-                <p>
-                  {moderated
-                    ? "Message hidden in this preview."
-                    : "“Here for what you create.”"}
-                </p>
-                <button
-                  className="button ivory"
-                  aria-pressed={moderated}
-                  onClick={() => setModerated(!moderated)}
-                >
-                  {moderated
-                    ? "Example message hidden"
-                    : "Hide example message"}
-                  <Check size={16} />
-                </button>
-                <span className="visual-hint" role="status">
-                  {moderated
-                    ? "Hidden in this preview. Click again to restore."
-                    : "Try a creator control. No live data is changed."}
-                </span>
-              </div>
-            )}
-            {active === 5 && (
-              <div className="obs-visual">
-                <span className="connection-node">HyperChat</span>
-                <div className="connection-line">
-                  <Link size={21} />
-                </div>
-                <span className="connection-node">OBS</span>
-                <span className="visual-hint">
-                  ALERTS + AUDIO → YOUR BROADCAST
-                </span>
-              </div>
-            )}
+            {active === 0 && <SupportPreview />}
+            {active === 1 && <AlertPreview />}
+            {active === 2 && <SoundboardPreview />}
+            {active === 3 && <HistoryPreview />}
+            {active === 4 && <ModerationPreview />}
+            {active === 5 && <ObsPreview />}
           </div>
           <div className="feature-description">
             <span className="eyebrow">{feature.label}</span>

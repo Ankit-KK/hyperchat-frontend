@@ -1,42 +1,46 @@
-# HyperChat V2 redesign verification
+# HyperChat V2 product-led redesign verification
 
-17 October 2026. The full 21-test matrix was rerun after replacing the provisional loops with the supplied-logo-inspired HC/speech-tail sculpture. Tests ran against the local production build, not the public Vercel deployment.
+17 October 2026. Checks use the local production build. They do not establish the state of a hosted Vercel deployment or any backend/provider service.
 
-## Build and functional checks
+## Build and browser checks
 
-- `npm test`: **21 passed**, zero failed/skipped (7 each on desktop, tablet, mobile). It runs TypeScript/Vite build before Playwright.
-- After the final reduced-motion layout, font preload, favicon-request and robots corrections: production rebuild passed; **6/6 targeted reduced-motion/keyboard/accessibility checks** passed across the same three viewports.
-- Desktop 1440×1000, tablet 820×1180, mobile 390×844.
-- Verified hero rendering and successful WebGL draw, six required stacking layers, section navigation/CTA destinations, desktop pinning through the last story beat, mobile navigation closure, keyboard tabs, Escape behavior, reduced motion, WebGL-unavailable fallback, and all three sculpture controls.
-- Interactive support preview: example amount selection, disabled control while playing, receipt and audience alert, replay/reset, cancellation of pending timers. No non-GET transaction requests occurred.
-- Creator examples: sound selection, moderation state, and three stream interaction controls.
-- Axe: zero serious or critical violations in each viewport. This automated check does not replace a full manual assistive-technology audit.
-- Extra rendered checks at 320×740 and 1024×768, plus desktop/mobile: no horizontal overflow, no missing internal anchor targets, seven sections, correct Bodoni Moda/Inter font families, and no page errors.
-- Desktop/mobile full-page and hero screenshots reviewed; tablet hero and section screenshots reviewed. Screenshots from Playwright are in ignored `test-results/`; current HC hero screenshots are outside the checkout at `/workspace/hyperchat-hc-desktop.png` and `/workspace/hyperchat-hc-mobile.png`.
-- `git diff --check`: clean.
-- Backend audit checkout: no modifications.
+- `npm test`: **27 passed**, zero failed/skipped, across desktop 1440×1000, tablet 820×1180 and mobile 390×844.
+- The suite builds with TypeScript/Vite before running Playwright in system Chromium.
+- Navigation and scroll destinations, all internal anchor targets, six-section composition, horizontal overflow, mobile first-screen preview, mobile menu closure, Escape, skip link, keyboard tab navigation and reduced motion passed.
+- Hero sequence: amount selection, disabled controls during playback, receipt, audience alert, replay, reset and timer cancellation. No non-GET transaction requests occurred.
+- Moderation: independent approve/hide decisions, visible status, hidden-message replacement, undo and reset.
+- Reporting: case-insensitive filtering, empty state, filtered totals and exact downloaded CSV contents from fictional records.
+- Soundboard: no autoplay, oscillator scheduling after a user action, stop, natural completion and audio-context closure on panel change. Unavailable audio reports its limitation without breaking other controls. Physical speaker output was not audited.
+- Alert scale and illustrative OBS visual/audio source toggles passed.
+- The page works with WebGL unavailable because the product theatre has no WebGL dependency.
+- Axe found zero serious or critical violations on the initial page and active reporting/moderation panels in each viewport. This does not replace a manual assistive-technology audit.
+- The tests caught and resolved a Tailwind `hidden` class collision in moderation status and accumulated scroll offsets in Lenis anchor navigation.
 
-## Performance
+## Final visual and performance checks
 
-Lighthouse 13.0.3, default simulated mobile throttling, local production preview, system Chromium with SwiftShader:
+- Final alert-spacing regression and accessibility checks: **6/6 passed** across the three primary viewports after moving the alert clear of the viewer card.
+- Additional responsive checks include 320×740 and 1024×768, plus a width sweep from 320 to 1920 pixels. Small alert/card overlaps at the 901/1101-pixel breakpoints were identified and corrected; affected widths were rechecked and the production rebuild passed.
+- Desktop/tablet/mobile hero and interaction screenshots reviewed, plus the full desktop composition and functional toolkit panels. Local review artifacts are outside the checkout under `/workspace/hyperchat-product-*`; test screenshots are under ignored `test-results/`.
+- `git diff --check`: clean. No backend files were changed.
+
+Lighthouse 13.0.3, default simulated mobile throttling, local production preview, system Chromium:
 
 | Category | Score |
 | --- | --- |
-| Performance | **63** |
+| Performance | **98** |
 | Accessibility | **100** |
 | Best practices | **100** |
 | SEO | **100** |
 
-First contentful paint 1.9 s; largest contentful paint 3.1 s; speed index 1.9 s; total blocking time 3,550 ms; cumulative layout shift **0**. No Lighthouse run warnings. Raw final report: `/workspace/hyperchat-hc-lighthouse.json`. Font preloading and a stable wordmark eliminated the earlier measured 0.101 layout shift; favicon and robots response errors were resolved.
+First contentful paint 1.5 s; largest contentful paint 2.3 s; speed index 1.5 s; total blocking time **10 ms**; cumulative layout shift **0**. No run warnings. Raw report: `/workspace/hyperchat-product-lighthouse.json`.
 
-**Performance limitation:** initial 3D setup is expensive under throttled software rendering. A score of 63 is not a production performance sign-off. Real-device profiling and possible precomputed environment lighting/geometry work remain appropriate follow-up before launch. The cloud lab result is not a hardware-GPU or public-hosting benchmark.
+The previous HC sculpture revision measured performance 63 and blocking time 3,550 ms in the cloud lab. Removing WebGL initialization and the approximately 553 KB Three.js chunk materially reduced startup work. These are local lab measurements, not public-hosting or real-device guarantees. Final alert-position adjustments followed the Lighthouse run; they do not change the 390-pixel mobile layout or loading path.
 
-Build output: entry JavaScript about 383 KB (128 KB gzip); lazy-loaded Three.js sculpture chunk about 553 KB (141 KB gzip); CSS about 35 KB (9 KB gzip); three local WOFF2 font files about 104 KB combined. Vite reports a 500 KB advisory for the Three.js chunk. The warning is not suppressed. Scene resolution/frame rate are capped, software rendering is demand-driven, and covered/hidden scenes stop drawing.
+Current build: entry JavaScript approximately 386 KB (129 KB gzip), CSS 41 KB (10 KB gzip), three local WOFF2 files 104 KB combined. No oversized-chunk warning remains.
 
 ## Limits
 
-- Validation covers the local production build. The owner authorized publishing this revision; any resulting hosted deployment has not been verified. Live backend transactions, applications, identity verification, authentication, payments and provider integrations were not tested.
-- The supplied logo reference informed the HC sculpture, whose desktop/mobile rendering was visually reviewed. Exact navigation/favicon artwork remains blocked by the cloud proxy denying the supplied R2 host.
-- Public HyperChat sites and KAIRO's published design content were blocked; exact visual parity and live availability cannot be asserted.
-- Safari, Firefox, iOS devices, low-power physical Android hardware, screen readers and real GPU energy use remain follow-up checks.
-- Soundboard selection is a labelled visual preview; it does not play actual creator audio.
+- Local Chromium checks only; Safari, Firefox, real iOS/Android devices, screen readers and physical-device energy use remain follow-up checks.
+- Live transactions, authentication, applications, verification, payments, creator accounts and provider integrations are not part of this frontend preview and were not tested.
+- The exact official logo download remains blocked by the cloud proxy. Navigation retains plain text; no unapproved recolored variant is used.
+- KAIRO's published design content and the public HyperChat sites were blocked. Exact reference fidelity and production capability availability cannot be asserted.

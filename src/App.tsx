@@ -1,6 +1,5 @@
-import { lazy, Suspense, useRef } from "react";
+import { useRef } from "react";
 import {
-  ArrowDown,
   ArrowUp,
   ArrowUpRight,
   Check,
@@ -9,12 +8,10 @@ import {
   Users,
 } from "lucide-react";
 import Navigation from "./components/Navigation";
-import SceneControls from "./components/SceneControls";
-import InteractionDemo from "./components/InteractionDemo";
+import ProductHero from "./components/ProductHero";
+import InteractionStory from "./components/InteractionStory";
 import CreatorFeatures from "./components/CreatorFeatures";
-import Moments from "./components/Moments";
 import { useExperienceMotion } from "./hooks/useExperienceMotion";
-const Sculpture = lazy(() => import("./components/Sculpture"));
 
 const onboarding = [
   ["Apply", "Tell HyperChat about you and your channel."],
@@ -46,96 +43,19 @@ export default function App() {
       <div className="scene-word" aria-hidden="true">
         HYPERCHAT
       </div>
-      <Suspense
-        fallback={
-          <div className="sculpture scene-loading" aria-hidden="true" />
-        }
-      >
-        <Sculpture />
-      </Suspense>
       <div className="grain" aria-hidden="true" />
       <Navigation />
       <main id="main" tabIndex={-1}>
-        <section className="hero" aria-labelledby="hero-title">
-          <div className="hero-top eyebrow">
-            <span>
-              <i className="status-dot" /> BUILT AROUND YOUR AUDIENCE
-            </span>
-            <span>CREATOR CONNECTION / V.02</span>
-          </div>
-          <div className="hero-content">
-            <span className="eyebrow hero-kicker">
-              A LITTLE SUPPORT. A SHARED MOMENT.
-            </span>
-            <h1 id="hero-title">
-              Your Stream.
-              <br />
-              Your Community.
-              <br />
-              <em>Your HyperChat.</em>
-            </h1>
-            <p>
-              Turn viewer support into on-stream moments.
-              <br className="desktop-break" /> Donations, alerts, and audience
-              interactions —<br className="desktop-break" /> alongside the
-              platform you already stream on.
-            </p>
-            <div className="hero-actions">
-              <a href="#interaction" className="button ivory">
-                See it in action <ArrowUpRight size={18} />
-              </a>
-              <a href="#onboarding" className="text-link">
-                For creators <ArrowUpRight size={16} />
-              </a>
-            </div>
-          </div>
-          <SceneControls />
-          <div className="hero-bottom eyebrow">
-            <a href="#interaction">
-              <span className="round-icon">
-                <ArrowDown size={16} />
-              </span>{" "}
-              SCROLL INTO THE MOMENT
-            </a>
-            <span>YOUR BROADCAST. A CLOSER COMMUNITY.</span>
-          </div>
-        </section>
-        <section
-          className="interaction section-shell light"
-          id="interaction"
-          aria-labelledby="interaction-title"
-        >
-          <div className="section-label">
-            <span>01 / THE CONNECTION</span>
-            <span>FROM ONE VIEWER TO EVERYONE</span>
-          </div>
-          <div className="section-heading" data-reveal>
-            <h2 id="interaction-title">
-              Every interaction
-              <br />
-              <em>matters.</em>
-            </h2>
-            <p>
-              A message of support becomes part of the show.
-              <br />
-              Follow its journey from viewer to stream.
-            </p>
-          </div>
-          <InteractionDemo />
-          <div className="section-foot">
-            <span>ONE SMALL GESTURE. A MOMENT SHARED.</span>
-            <span>INTERACTIVE PRODUCT PREVIEW ↗</span>
-          </div>
-        </section>
+        <ProductHero />
+        <InteractionStory />
         <CreatorFeatures />
-        <Moments />
         <section
           className="onboarding section-shell light"
           id="onboarding"
           aria-labelledby="onboarding-title"
         >
           <div className="section-label">
-            <span>04 / YOUR NEXT CHAPTER</span>
+            <span>03 / YOUR NEXT CHAPTER</span>
             <span>THOUGHTFUL FROM THE START</span>
           </div>
           <div className="section-heading" data-reveal>
@@ -179,7 +99,7 @@ export default function App() {
           aria-labelledby="control-title"
         >
           <div className="section-label">
-            <span>05 / YOUR SPACE, YOUR SAY</span>
+            <span>04 / YOUR SPACE, YOUR SAY</span>
             <span>SAFETY & CONTROL</span>
           </div>
           <div className="control-grid">
@@ -236,7 +156,7 @@ export default function App() {
           aria-labelledby="closing-title"
         >
           <div className="section-label">
-            <span>06 / MORE THAN A MESSAGE</span>
+            <span>05 / MORE THAN A MESSAGE</span>
             <span>MADE FOR THE MOMENTS BETWEEN</span>
           </div>
           <div className="closing-content" data-reveal>

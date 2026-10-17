@@ -15,7 +15,7 @@ export function useExperienceMotion(root: RefObject<HTMLDivElement | null>) {
     media.add("(prefers-reduced-motion: no-preference)", () => {
       const lenis = new Lenis({
         duration: 1.05,
-        anchors: { offset: -40 },
+        anchors: true,
         prevent: (node) => node.hasAttribute("data-lenis-prevent"),
       });
       lenis.on("scroll", ScrollTrigger.update);
@@ -39,6 +39,18 @@ export function useExperienceMotion(root: RefObject<HTMLDivElement | null>) {
             start: "top top",
             end: "bottom bottom",
             scrub: true,
+          },
+        });
+        gsap.to(".theatre-scene", {
+          rotationY: 0,
+          rotationX: 0,
+          y: -12,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
           },
         });
         gsap.to(".scene-word", {

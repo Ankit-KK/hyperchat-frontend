@@ -1,80 +1,63 @@
 import { AudioLines, Heart, Radio } from "lucide-react";
-export type PreviewKind = "support" | "sound" | "voice";
-export const eventCopy = {
-  support: {
-    label: "A LITTLE LOVE FOR THE STREAM",
-    name: "Ari",
-    detail: "This made my evening. Keep creating!",
-    type: "MESSAGE OF SUPPORT",
-  },
-  sound: {
-    label: "THE COMMUNITY HAS A SOUNDTRACK",
-    name: "Sam",
-    detail: "A little applause for that moment.",
-    type: "SOUNDBOARD INTERACTION",
-  },
-  voice: {
-    label: "A MESSAGE WITH A HUMAN TOUCH",
-    name: "Noor",
-    detail: "Thanks for making this space for us.",
-    type: "VOICE MESSAGE",
-  },
-};
+import { formatAmount } from "../data/demo";
 export default function StreamStage({
-  kind = "support",
-  visible = true,
+  visible = false,
   amount = 250,
 }: {
-  kind?: PreviewKind;
   visible?: boolean;
   amount?: number;
 }) {
-  const event = eventCopy[kind];
   return (
-    <div className="stream-stage" data-event={kind}>
+    <div className="stream-stage">
       <div className="stream-topline">
         <span>
-          <Radio size={13} /> STUDIO SESSION
+          <Radio size={12} /> THE OPEN STUDIO
         </span>
-        <span>FICTIONAL STREAM</span>
+        <span>FICTIONAL BROADCAST</span>
       </div>
       <div className="studio-art" aria-hidden="true">
-        <div className="studio-disc disc-back" />
-        <div className="studio-disc disc-front" />
-        <div className="studio-plinth" />
-        <div className="studio-shadow" />
+        <div className="studio-window" />
+        <div className="studio-panel" />
+        <div className="studio-desk" />
+        <div className="studio-mic">
+          <i />
+          <span />
+        </div>
+        <div className="studio-speaker">
+          <i />
+          <i />
+        </div>
+        <div className="studio-notebook" />
       </div>
       <div className="stream-title">
-        <span>THE OPEN STUDIO</span>
+        <span>A SESSION IN GOOD COMPANY</span>
         <strong>
-          Good things.
+          Stay a little.
           <br />
-          <em>In the making.</em>
+          <em>Make something.</em>
         </strong>
       </div>
       <div
         className={`stream-alert ${visible ? "visible" : ""}`}
         aria-hidden={!visible}
       >
-        <div className="alert-symbol">
-          {kind === "support" ? <Heart size={22} /> : <AudioLines size={22} />}
-        </div>
+        <span className="alert-symbol">
+          <Heart size={19} />
+        </span>
         <div>
-          <span className="alert-meta">{event.type}</span>
-          <strong>
-            {event.name}{" "}
-            {kind === "support"
-              ? `sent ₹${amount}`
-              : kind === "sound"
-                ? "sent a sound"
-                : "sent a voice message"}
-          </strong>
-          <p>{event.detail}</p>
+          <span className="alert-meta">A LITTLE SUPPORT, A BIG MOMENT</span>
+          <strong>Ari sent {formatAmount(amount)}</strong>
+          <p>This made my evening. Keep creating!</p>
         </div>
+        <span className="alert-signature">hyperchat</span>
       </div>
       <div className="stream-bottomline">
-        <span>REPRESENTATIVE OVERLAY</span>
-        <span>HYPERCHAT / PREVIEW</span>
+        <span className="studio-avatar">S</span>
+        <span>
+          Studio session<small>Illustrative creator stream</small>
+        </span>
+        <AudioLines size={23} />
+        <span className="broadcast-time">20:42</span>
       </div>
     </div>
   );

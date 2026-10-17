@@ -1,17 +1,17 @@
 # HyperChat V2
 
-A public creator-engagement landing page built with React, TypeScript, Vite, Tailwind CSS, Three.js, GSAP ScrollTrigger, and Lenis. It explains viewer support and on-stream interactions alongside a creator's existing streaming platform.
+A public landing page for HyperChat's creator-engagement tools, built with React, TypeScript, Vite, Tailwind CSS, GSAP ScrollTrigger, and Lenis. Viewer support becomes an on-stream moment in an interactive, browser-local product preview.
 
 ## Run
 
-Use Node.js 24 and npm 11 in this checkout:
+Use Node.js 24 and npm 11:
 
 ```sh
 npm ci --cache /tmp/hyperchat-npm-cache
 npm run dev
 ```
 
-Production build and local verification:
+Production build and verification:
 
 ```sh
 npm run build
@@ -19,48 +19,42 @@ npm run preview
 npm test
 ```
 
-No backend or credentials are needed. Demos run entirely in memory and never submit donations, applications, messages, or payments. Vercel and Netlify configuration emits `dist/`. The cloud onboarding interface does not expose a public localhost preview. On 17 October 2026 the owner explicitly requested pushing the current redesign to GitHub with the documented logo-download limitation. A push to the connected main branch can trigger Vercel deployment.
+No backend, credentials, or environment variables are required. Vercel and Netlify configurations build to `dist/`. A push to the connected GitHub main branch can trigger Vercel deployment. The cloud onboarding interface does not expose a public localhost preview.
 
 ## Experience
 
-- Seven editorial sections: hero, viewer interaction, creator toolkit, stream moments, planned onboarding, safety/control, closing CTA.
-- Copper/ceramic HC speech-mark sculpture based on the owner-supplied reference; scroll-driven rotation, camera, scale and lighting; three accessible pose controls.
-- Four-stage interactive support preview with replay/reset; capability tabs, moderation example, and fictional stream interactions.
-- Desktop pinned story; unpinned mobile/tablet and reduced-motion layouts.
-- Required layers: background 0, wordmark 1, canvas 2, grain 4, content 5, header 40.
-- Self-hosted Bodoni Moda and Inter. Ivory, charcoal, copper, stone and sand. No external imagery or font requests.
-- Reduced motion, keyboard controls, WebGL failure/context-loss fallback, capped pixel ratio, hidden-tab/covered-scene suspension, software-renderer adaptation, lazy-loaded Three.js.
+- Six editorial sections: interactive hero, short product explanation, creator toolkit, planned onboarding, safety/control, closing action.
+- Original studio illustration, layered broadcast window and viewer support card. CSS perspective and restrained GSAP scroll movement provide depth without a WebGL dependency.
+- One support sequence with amount selection, receipt, audience alert, replay and timer-safe reset.
+- Six accessible creator tabs: message/voice illustration, adjustable alert overlay, playable soundboard, filterable donation history with CSV export, moderation queue, and illustrative OBS source toggles.
+- Original example tones are synthesized locally, only after a Play action. Playback stops on request, completion or panel change.
+- Self-hosted Bodoni Moda and Inter; ivory, charcoal, copper, stone and sand surfaces; directional light, fine grain and oversized background typography.
+- Responsive navigation, keyboard tab controls, reduced-motion support and native mobile touch scrolling. The mobile hero places its explanation, action and product preview in the first screen at 390×844.
+
+All preview records are fictional and remain in the browser. There are no donation, application, payment, recording, OBS or provider requests. This is a landing page with interactive demonstrations, not an authenticated creator dashboard. V2 verification/activation is clearly labelled as planned. No backend code was changed.
 
 ## Structure
 
 | File | Responsibility |
 | --- | --- |
-| `src/App.tsx` | Page composition, product positioning, approval flow and control copy |
+| `src/App.tsx` | Page composition, planned onboarding and control copy |
 | `src/components/Navigation.tsx` | Responsive navigation and keyboard dismissal |
-| `src/components/Sculpture.tsx` | Procedural geometry, GPU lifecycle, motion, lighting, fallbacks |
-| `src/components/SceneControls.tsx` | Accessible sculpture poses |
-| `src/scene/hyperchatGeometry.ts` | Original 3D interpretation of the supplied HC/speech-tail silhouette |
-| `src/components/InteractionDemo.tsx` | Local support-event sequence and timer cleanup |
-| `src/components/StreamStage.tsx` | Reusable fictional studio/alert presentation |
-| `src/components/CreatorFeatures.tsx` | Accessible capability tabs and representative UI |
-| `src/components/Moments.tsx` | Scroll-pinned interaction story and manual controls |
-| `src/hooks/useExperienceMotion.ts` | Lenis/GSAP coordination and reduced-motion lifecycle |
-| `src/styles.css`, `src/fonts.css` | Responsive presentation and local font definitions |
+| `src/components/ProductHero.tsx` | Layered broadcast/product preview and primary action |
+| `src/components/StreamStage.tsx` | Original illustrated studio and example alert |
+| `src/components/InteractionStory.tsx` | Concise explanation of viewer-to-stream interaction |
+| `src/components/CreatorFeatures.tsx` | Accessible capability tabs |
+| `src/components/CreatorPreviews.tsx` | Functional browser-local tool demonstrations |
+| `src/data/demo.ts` | Explicitly fictional preview records |
+| `src/hooks/useDemoSequence.ts` | Sequence state and timer cleanup |
+| `src/hooks/useExperienceMotion.ts` | Lenis/GSAP coordination, reveals and reduced motion |
+| `src/styles.css`, `src/fonts.css` | Responsive composition and local font definitions |
 
-The old generic listening room, scripted chat persistence, unrelated FAQ, and generic logo icon were removed. The existing rendering, motion, build and hosting infrastructure is preserved. Future integration belongs in a dedicated API/service layer, not in the presentation components. Authentication, actual creator dashboards, checkout and applications are not built here. No backend code was changed.
+The large HC sculpture and duplicated pinned interaction story were replaced following the owner's approval of a product-led direction. Three.js and its unused geometry/lifecycle code were removed; the prior implementation remains in Git history. Future integration should use a dedicated API/service layer and approved production configuration.
 
-## Evidence, assets and limitations
+## Verification and remaining assets
 
-See [PRODUCT_AUDIT.md](PRODUCT_AUDIT.md) for source revisions, capability evidence, reference-access limits and owner-confirmation items; [ASSET_REQUIREMENTS.md](ASSET_REQUIREMENTS.md) for the required official logo; [TESTING.md](TESTING.md) for verification results.
+See [TESTING.md](TESTING.md) for measured results, [PRODUCT_AUDIT.md](PRODUCT_AUDIT.md) for capability evidence and reference-access limits, and [ASSET_REQUIREMENTS.md](ASSET_REQUIREMENTS.md) for brand artwork requirements.
 
-**Logo file integration remains pending:** the official image and source URL were supplied on 17 October 2026, and the 3D sculpture now follows its HC/speech-tail silhouette. The cloud proxy currently blocks the R2 download. Until the exact artwork can be retrieved locally, navigation retains plain text; no recreated logo is substituted. The original logo colors will be preserved, with neutral/copper materials elsewhere.
+The supplied official logo URL is still blocked by the cloud proxy. Navigation retains plain text. No substitute logo or unapproved recolored variant has been created. KAIRO's content service and the public HyperChat sites were also blocked, so exact reference fidelity and deployed feature availability cannot be asserted.
 
-KAIRO's outer shell loaded, but its published content service was blocked. The two HyperChat public sites were also blocked. Exact reference fidelity and live production feature availability remain unverified.
-
-The Three.js chunk exceeds Vite's 500 KB advisory and is loaded separately. Real hardware, Safari and Firefox need follow-up testing. No production deployment was performed.
-
-## Tests
-
-Playwright builds production output and serves it on port 5174. The cloud runner uses `/usr/bin/chromium`; override `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` for a different installed Chromium, or install Playwright Chromium and omit that path on machines without the system binary. Screenshots/results go to ignored `test-results/`.
-
-Tests cover 1440×1000 desktop, 820×1180 tablet, and 390×844 mobile: navigation, layering, scroll pinning, fictional transaction sequence, reset, capability tabs, moderation preview, stream selection, keyboard access, reduced motion, WebGL fallback, sculpture controls and serious/critical axe checks.
+Playwright verifies the production build at desktop 1440×1000, tablet 820×1180 and mobile 390×844. It uses system Chromium when present; set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to override, or install Playwright Chromium on other machines. Results/screenshots are written to ignored `test-results/`. Real-device Safari/Firefox and hosted-deployment checks remain separate follow-up work.
