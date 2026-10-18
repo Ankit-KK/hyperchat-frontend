@@ -1,0 +1,10 @@
+/* Change only the src path to switch the display font across the website.
+   Add your .woff2, .woff, .otf or .ttf file to src/assets/fonts first.
+   Keep the family alias below unchanged; all display styles use it. */
+@font-face {
+  font-family: "HyperChat Display";
+  src: url("./assets/fonts/orange-avenue-regular.otf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}

@@ -21,6 +21,18 @@ npm test
 
 No backend, credentials, or environment variables are required. Vercel and Netlify configurations build to `dist/`. A push to the connected GitHub main branch can trigger Vercel deployment. The cloud onboarding interface does not expose a public localhost preview.
 
+## Change the display font in one line
+
+Open [`src/font-config.css`](src/font-config.css) and change only this line:
+
+```css
+src: url("./assets/fonts/orange-avenue-regular.otf");
+```
+
+To try the previous font, use `./assets/fonts/flaviotte-regular.woff2` instead. For any new font, extract its regular `.woff2`, `.woff`, `.otf` or `.ttf` file into `src/assets/fonts/`, then put its filename in that same line. Keep the `HyperChat Display` family alias unchanged.
+
+Run `npm run dev` to see the change immediately. All headings and editorial display text share this alias; body text and compact controls stay in Inter. Vite discovers and packages only the selected font, so no import, component, family-name or preload edits are needed. Confirm the layout at mobile and desktop sizes because font widths vary; use a font licensed for your website. Run `npm run build` before publishing and check the browser preview for font-loading errors.
+
 ## Experience
 
 - Six editorial sections: interactive hero, short product explanation, creator toolkit, planned onboarding, safety/control, closing action.
@@ -28,7 +40,7 @@ No backend, credentials, or environment variables are required. Vercel and Netli
 - One interaction sequence with editable message, creator receipt, audience alert, replay and timer-safe reset. No amount selector or transaction framing.
 - Six accessible creator tabs: message/device-voice preview, adjustable alert overlay, playable soundboard, filterable interaction history with CSV export, moderation queue, and illustrative OBS source toggles.
 - Original example tones are synthesized locally, only after a Play action. Voice examples use an available local device voice and are labelled accordingly. Both stop on request, completion or panel change; unsupported voice playback degrades gracefully.
-- Self-hosted Flaviotte display type and Inter for body text and controls; ivory, charcoal, copper, stone and sand surfaces; fine grain, layered solid surfaces and oversized background typography. No CSS gradients.
+- Self-hosted Orange Avenue display type and Inter for body text and controls; ivory, charcoal, copper, stone and sand surfaces; fine grain, layered solid surfaces and oversized background typography. No CSS gradients.
 - Responsive navigation, keyboard tab controls, reduced-motion support and native mobile touch scrolling. The mobile hero places its explanation, action and product preview in the first screen at 390×844.
 
 All preview records are fictional and remain in the browser. There are no application, payment, recording, OBS or provider requests. This is a landing page with interactive demonstrations, not an authenticated creator dashboard. V2 verification/activation is clearly labelled as planned. No backend code was changed.
@@ -49,6 +61,7 @@ All preview records are fictional and remain in the browser. There are no applic
 | `src/hooks/useDemoSequence.ts` | Sequence state and timer cleanup |
 | `src/hooks/useVoicePreview.ts` | Explicit local-device speech and playback cleanup |
 | `src/hooks/useExperienceMotion.ts` | Lenis/GSAP coordination, reveals and reduced motion |
+| `src/font-config.css` | One-line display font selection |
 | `src/styles.css`, `src/fonts.css` | Responsive composition and local font definitions |
 
 The large HC sculpture and duplicated pinned interaction story were replaced following the owner's approval of a product-led direction. Three.js and its unused geometry/lifecycle code were removed; the prior implementation remains in Git history. Future integration should use a dedicated API/service layer and approved production configuration.

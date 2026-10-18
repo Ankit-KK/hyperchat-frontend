@@ -1,0 +1,20 @@
+Orange Avenue Regular — owner-supplied font
+
+Source: orange-avenue-demo.zip, supplied by the project owner.
+Archive member: OrangeAvenueDEMO-Regular.otf
+Repository asset: src/assets/fonts/orange-avenue-regular.otf
+The original 42,152-byte font is retained unchanged.
+The outline variant and promotional images are not included in the site.
+
+Font metadata:
+Copyright © 2022 by Ratna Krismawati. All rights reserved.
+Manufacturer: Krismagraph
+Designer: Ratna Krismawati
+Family: Orange Avenue DEMO
+Style: Regular
+
+The supplied archive's original personal-use notice is retained in
+orange-avenue-readme.txt. On 18 October 2026, the owner explicitly confirmed:
+“Yes, I have a commercial web license.”
+This records the owner's confirmation; it is not an independent license grant.
+The Inter license in this directory applies only to Inter.

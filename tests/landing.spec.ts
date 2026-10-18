@@ -80,8 +80,14 @@ test("responsive platform hero, complete navigation and scroll experience", asyn
       exact: false,
     }),
   ).toBeVisible();
-  await page.locator("#next").scrollIntoViewIfNeeded();
-  await page.getByRole("link", { name: "Experience HyperChat" }).click();
+  // Use wheel input so Lenis owns the scroll instead of mixing its animation
+  // with Playwright's native scrollIntoView jump.
+  await expect(page.locator("html")).not.toHaveClass(/lenis-scrolling/);
+  const returnLink = page.getByRole("link", { name: "Experience HyperChat" });
+  await page.mouse.wheel(0, 10000);
+  await expect(returnLink).toBeInViewport();
+  await expect(page.locator("html")).not.toHaveClass(/lenis-scrolling/);
+  await returnLink.click();
   await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThan(150);
   await expect(
     page.getByRole("button", { name: "Try an interaction", exact: true }),

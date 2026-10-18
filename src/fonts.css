@@ -1,4 +1,6 @@
-/* Self-hosted WOFF2 fonts; no third-party font requests. */
+@import "./font-config.css";
+
+/* Self-hosted fonts; no third-party font requests. */
 @font-face {
   font-family: "Inter Variable";
   font-style: normal;
@@ -6,12 +8,4 @@
   font-display: swap;
   src: url("@fontsource-variable/inter/files/inter-latin-wght-normal.woff2")
     format("woff2");
-}
-/* Owner-supplied Flaviotte Regular; original WOFF2 retained unchanged. */
-@font-face {
-  font-family: "Flaviotte";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("./assets/fonts/flaviotte-regular.woff2") format("woff2");
 }

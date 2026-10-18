@@ -1,6 +1,16 @@
 # HyperChat V2 verification
 
-## Flaviotte typography — 18 October 2026
+## One-line font selection and Orange Avenue — 18 October 2026
+
+- Replaced Flaviotte with the owner-supplied solid Orange Avenue Regular face in headings and editorial display text. Inter remains in body copy and compact controls. The owner confirmed a commercial web license before publication.
+- Production builds passed for both Orange Avenue and the one-line Flaviotte alternative. All **12 responsive/accessibility cases passed** on the final Orange Avenue configuration.
+- The tablet scroll test mixed native programmatic scrolling with an active Lenis animation. It now uses wheel input and waits for scroll completion while retaining the original return-to-top assertion. Three targeted repeats passed; no application scrolling code changed.
+- The original 42.2 KB OpenType font is self-hosted through `src/font-config.css`. Both active fonts total approximately 90.4 KB. The reusable Flaviotte alternative stays in source but is not bundled when unselected. A font-specific HTML preload was removed so switching requires only the configuration line.
+- Added `src/font-config.css`: change its `src` line to select a local regular font without changing components, CSS family names or HTML. Verified a one-line switch to Flaviotte in a separate production build; Chromium confirmed the actual Flaviotte face rendered and Orange Avenue was absent from its asset requests. Restored Orange Avenue and confirmed its actual face renders through the same alias.
+- Adjusted the hero font size/tracking to preserve the three-line composition with Orange Avenue’s wider letterforms. No content or backend changes.
+- Chromium font inspection and rendered review cover 1440, 1024, 820, 390 and 320 px widths. Physical devices, Safari/Firefox and the hosted deployment remain unverified.
+
+## Flaviotte typography — 18 October 2026 (historical)
 
 - The supplied Flaviotte Regular WOFF2 replaces Bodoni Moda in headings and editorial display text. Inter remains in compact controls and body text. Only typography, font assets/preloads and related documentation/dependencies changed.
 - TypeScript/Vite production build passed. The emitted Flaviotte asset is 18.3 KB; total delivered fonts are now approximately 66.6 KB, down from 104.4 KB.
