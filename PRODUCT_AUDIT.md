@@ -1,6 +1,6 @@
 # HyperChat V2 product and reference audit
 
-Updated 17 October 2026. The public page presents live creator engagement through interactions. It is not a payment application or a production-readiness certification.
+Updated 18 October 2026. The public page presents live creator engagement through interactions. It is not a payment application or a production-readiness certification.
 
 ## Verified public-site information
 
@@ -34,14 +34,14 @@ The previous review inspected `Ankit-KK/hyperchat-v2` read-only at `0bb4230a6507
 
 1. “Your stream. Their voice. A shared moment.” leads a personal, interaction-first hero.
 2. Visitors can edit an example message and see those exact words move through the fictional creator queue onto the broadcast. Blank input cannot play; values are rendered as text and never submitted.
-3. One original local studio visual replaces the previous CSS illustration. Solid neutral surfaces, editorial typography, grain and restrained copper accents replace all decorative CSS gradients.
+3. The home section identifies HyperChat as an interaction platform and shows audience → creator controls → existing stream. This replaces the studio image while preserving solid neutral surfaces, editorial typography, grain and restrained copper accents.
 4. Six capability tabs show interactions, alerts, soundboard, history, moderation and OBS. Voice playback is explicit and device-generated, with graceful unavailable feedback.
 5. Planned onboarding, creator control and a working return-to-preview action complete the page. No authentication, payments, real dashboards or backend functionality were introduced.
 6. The previously approved product-led direction remains: shallow CSS perspective and scroll motion instead of a large WebGL logo. The earlier sculpture remains in Git history.
 
 ## Assets and limits
 
-ElevenLabs is not callable in this Codex session. One original image was created with the available image-generation tool; its optimized local assets and the voice-preview requirements are documented in [ASSET_REQUIREMENTS.md](ASSET_REQUIREMENTS.md).
+ElevenLabs is not callable in this Codex session. The earlier generated studio image is no longer displayed. Its retained assets and the voice-preview requirements are documented in [ASSET_REQUIREMENTS.md](ASSET_REQUIREMENTS.md).
 
 The official logo URL is now accessible. Its supplied gradient artwork has not been recolored or inserted into the gradient-free page; the existing typographic wordmark remains. KAIRO's full published design was not verifiable during the earlier review and was not used as a source of assets in this refinement.
 
@@ -50,3 +50,7 @@ Backend rollout, real provider behavior, verification readiness, and production 
 ## Publication
 
 The owner authorized completion and GitHub push. The preceding product-led iteration was pushed as `70e85472275ce57d60f1dd39c701dfbec349b29a`. This refinement follows the owner's subsequent request for interaction-first terminology, original assets and no gradient colors. Main may trigger a connected Vercel deployment; a successful push is not a hosted-deployment check.
+
+## Current scope: home section
+
+At the owner’s request, this update is limited to the home section. TTS playback and the distinct user-recorded voice-message preview are deferred to a separate section review. The hero labels TTS and recorded voice separately; this does not claim the existing toolkit audio has been repaired.

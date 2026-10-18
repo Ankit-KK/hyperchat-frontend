@@ -41,8 +41,9 @@ export default function ProductHero() {
             <em>A shared moment.</em>
           </h1>
           <p>
-            Messages, voices, sounds, and moments worth sharing. HyperChat
-            brings your audience into the broadcast, on your terms.
+            The interaction platform for live creators. Bring messages,
+            text-to-speech, recorded voices, and sounds into your existing
+            stream.
           </p>
           <div className="hero-actions">
             <button
@@ -64,10 +65,10 @@ export default function ProductHero() {
         </div>
         <div
           className="product-theatre"
-          aria-label="Interactive broadcast preview"
+          aria-label="Interactive HyperChat platform preview"
         >
           <div className="theatre-caption">
-            <span>YOUR STREAM, WITH HYPERCHAT</span>
+            <span>YOUR AUDIENCE. YOUR STREAM. HYPERCHAT.</span>
             <span>INTERACTIVE PREVIEW ↗</span>
           </div>
           <div
@@ -81,12 +82,16 @@ export default function ProductHero() {
                   <i />
                   <i />
                 </span>
-                <span>CREATOR VIEW</span>
+                <span>THE INTERACTION PLATFORM</span>
                 <span>
                   hyperchat<span className="chrome-edition"> V2</span>
                 </span>
               </div>
-              <StreamStage visible={step === 3} message={message.trim()} />
+              <StreamStage
+                visible={step === 3}
+                message={message.trim()}
+                step={step}
+              />
             </div>
             <div className="viewer-ticket">
               <div className="ticket-top">
@@ -122,7 +127,7 @@ export default function ProductHero() {
                 <span>
                   {step > 0
                     ? "EXAMPLE INTERACTION SENT"
-                    : "TEXT · VOICE · SOUND · MEDIA"}
+                    : "TEXT · TTS · VOICE · SOUND"}
                 </span>
                 {step > 0 ? <Check size={14} /> : <ArrowUpRight size={14} />}
               </div>

@@ -1,4 +1,17 @@
-# HyperChat V2 interaction-first refinement verification
+# HyperChat V2 verification
+
+## Home section refinement — 18 October 2026
+
+This update is limited to the home section. The studio visual is replaced with an audience → HyperChat → existing-stream diagram. TTS and user-recorded voice-message fixes are deferred to the next section review.
+
+- Final TypeScript/Vite production build passed.
+- **15/15 homepage-focused Playwright cases passed.** Checks cover editable message delivery, replay/reset, plain-text rendering, responsive layout, navigation, keyboard operation, reduced motion and accessibility across desktop 1440×1000, tablet 820×1180 and mobile 390×844.
+- Automated bounds checks verify the platform card and completed alert are clear of the editable viewer ticket. Additional rendered checks at 320×740 and 1024×768 found no horizontal overflow or card/alert overlap.
+- The current studio image is no longer displayed or requested. No gradient colors, backend requests or new application functionality were added.
+- Final JavaScript: 390 KB (130 KB gzip); CSS: 44 KB (10 KB gzip). No new Lighthouse run; the earlier scores below describe the previous iteration only.
+- Safari, Firefox, physical devices and the hosted deployment remain unverified. Audio fixes are not part of this update.
+
+## Prior interaction-first refinement — 17 October 2026 (historical)
 
 17 October 2026. Checks use the local production build. They do not certify a hosted Vercel deployment, backend rollout, or production voice provider.
 

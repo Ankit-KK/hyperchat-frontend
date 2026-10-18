@@ -1,15 +1,19 @@
 # HyperChat V2 assets
 
-## Current original visual
+## Home section: platform diagram
 
-One original studio image was generated for this page using the image-generation tool available in Codex. It is not an ElevenLabs output or a photograph of a real creator. It is used only inside the labelled fictional broadcast preview.
+The home section now uses an original HTML/CSS diagram showing audience interactions passing through HyperChat into the creator’s existing stream. This preserves the neutral palette and layered composition without suggesting HyperChat is a physical recording studio. No new image asset or external image request is needed.
+
+## Previous studio visual (not displayed)
+
+One original studio image was generated for this page using the image-generation tool available in Codex. It is not an ElevenLabs output or a photograph of a real creator. It is retained locally from the previous iteration but is no longer displayed or requested by the page.
 
 | Local file | Dimensions | Size |
 | --- | --- | --- |
 | `public/images/hyperchat-studio.webp` | 1200×800 | 53,316 bytes |
 | `public/images/hyperchat-studio-small.webp` | 640×427 | 18,698 bytes |
 
-The responsive `srcset` loads a suitable local image. Explicit dimensions and a fixed frame reserve layout space. No third-party image hotlink is used.
+These files are unused by the current home section. No third-party image hotlink is used.
 
 Generation direction: original editorial still life in a quiet architectural creator studio; charcoal plaster, a brushed copper microphone, compact dark speaker and ivory notebook; believable directional window light and tactile materials; clean negative space on the left for typography. No people, logos, UI text, neon, purple, violet, magenta or science fiction. Natural photographic light provides depth; the interface uses solid surfaces and no CSS gradients.
 

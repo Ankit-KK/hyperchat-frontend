@@ -1,36 +1,92 @@
-import { AudioLines, MessageCircle, Radio } from "lucide-react";
+import {
+  AudioLines,
+  Check,
+  MessageCircle,
+  Mic,
+  Monitor,
+  ShieldCheck,
+  Volume2,
+} from "lucide-react";
+import "./PlatformPreview.css";
+
+const formats = [
+  { label: "Text", icon: MessageCircle },
+  { label: "TTS", icon: Volume2 },
+  { label: "Voice", icon: Mic },
+  { label: "Sound", icon: AudioLines },
+];
+
 export default function StreamStage({
   visible = false,
   message,
+  step = 0,
 }: {
   visible?: boolean;
   message: string;
+  step?: number;
 }) {
   return (
-    <div className="stream-stage">
-      <img
-        className="studio-image"
-        src="/images/hyperchat-studio.webp"
-        srcSet="/images/hyperchat-studio-small.webp 640w, /images/hyperchat-studio.webp 1200w"
-        sizes="(max-width: 600px) 80vw, (max-width: 900px) 75vw, 48vw"
-        width="1200"
-        height="800"
-        alt=""
-        fetchPriority="high"
-      />
-      <div className="stream-topline">
-        <span>
-          <Radio size={12} /> THE OPEN STUDIO
-        </span>
-        <span>FICTIONAL BROADCAST</span>
-      </div>
-      <div className="stream-title">
-        <span>A SESSION IN GOOD COMPANY</span>
-        <strong>
-          Stay a little.
-          <br />
-          <em>Make something.</em>
-        </strong>
+    <div className="stream-stage platform-stage" data-platform-step={step}>
+      <div
+        className="platform-diagram"
+        role="img"
+        aria-label="Audience messages, text-to-speech, recorded voice, and sounds pass through HyperChat creator controls into your existing stream."
+      >
+        <div className="platform-composition" aria-hidden="true">
+          <div className="platform-audience">
+            <span className="platform-people">
+              <span>A</span>
+              <span>N</span>
+              <span>S</span>
+            </span>
+            <span>Your audience</span>
+            <span className="platform-audience-line" />
+          </div>
+          <div className="platform-connector platform-connector-in">
+            <span />
+          </div>
+          <div className="platform-card">
+            <div className="platform-card-heading">
+              <span>
+                hyperchat<span className="platform-version"> V2</span>
+              </span>
+              <span className="platform-interaction-dot" />
+            </div>
+            <p>The interaction layer.</p>
+            <div className="platform-formats">
+              {formats.map(({ label, icon: Icon }) => (
+                <span key={label}>
+                  <Icon strokeWidth={1.4} />
+                  {label}
+                </span>
+              ))}
+            </div>
+            <div className="platform-control">
+              <span>
+                <ShieldCheck /> Creator controls
+              </span>
+              <span>
+                {step >= 2 ? (
+                  <Check />
+                ) : (
+                  <span className="platform-control-dot" />
+                )}
+                {step >= 2 ? "Approved" : "Review queue"}
+              </span>
+            </div>
+          </div>
+          <div className="platform-connector platform-connector-out">
+            <span />
+          </div>
+          <div className="platform-stream">
+            <Monitor strokeWidth={1.4} />
+            <div>
+              <strong>Your existing stream</strong>
+              <span>ADD WITH AN OBS OVERLAY</span>
+            </div>
+            <AudioLines className="platform-stream-signal" />
+          </div>
+        </div>
       </div>
       <div
         className={`stream-alert ${visible ? "visible" : ""}`}
@@ -45,14 +101,6 @@ export default function StreamStage({
           <p>{message}</p>
         </div>
         <span className="alert-signature">hyperchat</span>
-      </div>
-      <div className="stream-bottomline">
-        <span className="studio-avatar">S</span>
-        <span>
-          Studio session<small>Illustrative creator stream</small>
-        </span>
-        <AudioLines size={23} />
-        <span className="broadcast-time">20:42</span>
       </div>
     </div>
   );

@@ -24,11 +24,11 @@ No backend, credentials, or environment variables are required. Vercel and Netli
 ## Experience
 
 - Six editorial sections: interactive hero, short product explanation, creator toolkit, planned onboarding, safety/control, closing action.
-- Original generated studio image, layered broadcast window and editable viewer message card. CSS perspective and restrained GSAP scroll movement provide depth without a WebGL dependency.
+- A layered platform diagram connects the audience, HyperChat creator controls and an existing stream, alongside an editable viewer message card. CSS perspective and restrained GSAP scroll movement provide depth without a WebGL dependency.
 - One interaction sequence with editable message, creator receipt, audience alert, replay and timer-safe reset. No amount selector or transaction framing.
 - Six accessible creator tabs: message/device-voice preview, adjustable alert overlay, playable soundboard, filterable interaction history with CSV export, moderation queue, and illustrative OBS source toggles.
 - Original example tones are synthesized locally, only after a Play action. Voice examples use an available local device voice and are labelled accordingly. Both stop on request, completion or panel change; unsupported voice playback degrades gracefully.
-- Self-hosted Bodoni Moda and Inter; ivory, charcoal, copper, stone and sand surfaces; natural light in the studio asset, fine grain and oversized background typography. No CSS gradients.
+- Self-hosted Bodoni Moda and Inter; ivory, charcoal, copper, stone and sand surfaces; fine grain, layered solid surfaces and oversized background typography. No CSS gradients.
 - Responsive navigation, keyboard tab controls, reduced-motion support and native mobile touch scrolling. The mobile hero places its explanation, action and product preview in the first screen at 390×844.
 
 All preview records are fictional and remain in the browser. There are no application, payment, recording, OBS or provider requests. This is a landing page with interactive demonstrations, not an authenticated creator dashboard. V2 verification/activation is clearly labelled as planned. No backend code was changed.
@@ -40,7 +40,8 @@ All preview records are fictional and remain in the browser. There are no applic
 | `src/App.tsx` | Page composition, planned onboarding and control copy |
 | `src/components/Navigation.tsx` | Responsive navigation and keyboard dismissal |
 | `src/components/ProductHero.tsx` | Layered broadcast/product preview and primary action |
-| `src/components/StreamStage.tsx` | Responsive original studio image and editable-message alert |
+| `src/components/StreamStage.tsx` | Audience → HyperChat → existing-stream diagram and editable-message alert |
+| `src/components/PlatformPreview.css` | Responsive platform diagram styling |
 | `src/components/InteractionStory.tsx` | Concise explanation of viewer-to-stream interaction |
 | `src/components/CreatorFeatures.tsx` | Accessible capability tabs |
 | `src/components/CreatorPreviews.tsx` | Functional browser-local tool demonstrations |
@@ -56,6 +57,6 @@ The large HC sculpture and duplicated pinned interaction story were replaced fol
 
 See [TESTING.md](TESTING.md) for measured results, [PRODUCT_AUDIT.md](PRODUCT_AUDIT.md) for capability evidence and reference-access limits, and [ASSET_REQUIREMENTS.md](ASSET_REQUIREMENTS.md) for brand artwork requirements.
 
-The live HyperChat site was verified for product facts only; its design/assets were not copied. The supplied logo URL is now accessible, but its gradient artwork does not fit the latest direction; navigation retains the existing typographic wordmark. No unapproved recolored variant was created. ElevenLabs is not exposed here: the studio image uses the available image-generation tool, and voice previews explicitly use local device voices. Production AI voice, provider readiness and exact KAIRO fidelity are not claimed.
+The live HyperChat site was verified for product facts only; its design/assets were not copied. The supplied logo URL is now accessible, but its gradient artwork does not fit the latest direction; navigation retains the existing typographic wordmark. No unapproved recolored variant was created. ElevenLabs is not exposed here. The previous studio image is no longer displayed; the home section uses an original interface diagram. Voice previews currently use local device voices, pending a separate audio-section fix. Production AI voice, provider readiness and exact KAIRO fidelity are not claimed.
 
 Playwright verifies the production build at desktop 1440×1000, tablet 820×1180 and mobile 390×844. It uses system Chromium when present; set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to override, or install Playwright Chromium on other machines. Results/screenshots are written to ignored `test-results/`. Real-device Safari/Firefox and hosted-deployment checks remain separate follow-up work.

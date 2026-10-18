@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("responsive hero, local imagery, complete navigation and scroll experience", async ({
+test("responsive platform hero, complete navigation and scroll experience", async ({
   page,
 }, info) => {
   const errors: string[] = [];
@@ -12,23 +12,35 @@ test("responsive hero, local imagery, complete navigation and scroll experience"
   await page.evaluate(() => document.fonts.ready);
   await expect(page.locator("main > section")).toHaveCount(6);
   await expect(page.locator("canvas")).toHaveCount(0);
-  await expect
-    .poll(() =>
-      page
-        .locator(".studio-image")
-        .evaluate(
-          (image: HTMLImageElement) => image.complete && image.naturalWidth > 0,
-        ),
-    )
-    .toBeTruthy();
-  expect(
-    await page
-      .locator(".studio-image")
-      .evaluate(
-        (image: HTMLImageElement) =>
-          new URL(image.currentSrc).origin === location.origin,
-      ),
-  ).toBeTruthy();
+  await expect(page.locator(".hero-content")).toContainText(
+    "The interaction platform for live creators.",
+  );
+  await expect(page.locator(".platform-diagram")).toHaveAccessibleName(
+    "Audience messages, text-to-speech, recorded voice, and sounds pass through HyperChat creator controls into your existing stream.",
+  );
+  await expect(page.locator(".platform-diagram")).toContainText(
+    "Your audience",
+  );
+  await expect(page.locator(".platform-diagram")).toContainText(
+    "Your existing stream",
+  );
+  const diagramBounds = await page.locator(".platform-diagram").boundingBox();
+  for (const selector of [
+    ".platform-audience",
+    ".platform-card",
+    ".platform-stream",
+  ]) {
+    const bounds = await page.locator(selector).boundingBox();
+    expect(bounds!.x).toBeGreaterThanOrEqual(diagramBounds!.x);
+    expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(
+      diagramBounds!.x + diagramBounds!.width + 1,
+    );
+  }
+  const cardBounds = await page.locator(".platform-card").boundingBox();
+  const ticketBounds = await page.locator(".viewer-ticket").boundingBox();
+  expect(cardBounds!.y + cardBounds!.height).toBeLessThanOrEqual(
+    ticketBounds!.y,
+  );
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,
@@ -114,6 +126,11 @@ test("keyboard navigation, reduced motion and demo without WebGL", async ({
     .getByRole("button", { name: "Try an interaction", exact: true })
     .click();
   await expect(page.locator(".stream-alert")).toHaveClass(/visible/);
+  const alertBounds = await page.locator(".stream-alert").boundingBox();
+  const ticketBounds = await page.locator(".viewer-ticket").boundingBox();
+  expect(alertBounds!.y + alertBounds!.height).toBeLessThanOrEqual(
+    ticketBounds!.y,
+  );
   await expect(page.locator(".theatre-scene")).toHaveCSS("transform", "none");
   await page.getByRole("tab", { name: "01 Viewer interactions" }).focus();
   await page.keyboard.press("ArrowDown");

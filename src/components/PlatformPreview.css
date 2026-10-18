@@ -1,0 +1,359 @@
+.platform-stage.stream-stage {
+  background: #29251f;
+}
+.platform-diagram {
+  position: absolute;
+  inset: 0;
+  padding: 7% 12% 8%;
+}
+.platform-composition {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.platform-audience {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--sand);
+  font-size: clamp(8px, 0.8vw, 11px);
+  letter-spacing: 0.02em;
+}
+.platform-people {
+  display: flex;
+  padding-right: 2px;
+}
+.platform-people > span {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #8c847b;
+  border-radius: 50%;
+  background: #332e27;
+  color: var(--sand);
+  font-size: 8px;
+}
+.platform-people > span + span {
+  margin-left: -5px;
+}
+.platform-audience-line {
+  flex: 1;
+  height: 1px;
+  background: #8c847b40;
+  margin-left: 2px;
+}
+.platform-connector {
+  width: 1px;
+  min-height: 12px;
+  flex: 1;
+  background: #8c847b66;
+  position: relative;
+}
+.platform-connector > span {
+  position: absolute;
+  top: 45%;
+  left: -2px;
+  width: 5px;
+  height: 5px;
+  background: var(--stone);
+  transform: rotate(45deg);
+  transition: background 0.3s;
+}
+.platform-connector-in {
+  flex: 0;
+}
+.platform-card {
+  position: relative;
+  width: 100%;
+  padding: 6% 7% 0;
+  background: var(--ivory);
+  border: 1px solid #d7cbb9;
+  color: var(--charcoal);
+  box-shadow:
+    8px 10px 0 #1c1916,
+    8px 10px 0 1px #8c847b30;
+}
+.platform-card-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: clamp(20px, 2.15vw, 31px);
+  font-weight: 650;
+  letter-spacing: -0.065em;
+  line-height: 1;
+}
+.platform-version {
+  font-size: 8px;
+  font-weight: 500;
+  color: #6d655d;
+  letter-spacing: 0;
+  vertical-align: super;
+  margin-left: 2px;
+}
+.platform-interaction-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--copper);
+}
+.platform-card > p {
+  margin: 7px 0 0;
+  font-size: clamp(9px, 0.85vw, 12px);
+  color: #655d53;
+}
+.platform-formats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin: 7% 0;
+}
+.platform-formats > span {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 8px;
+  color: #655d53;
+}
+.platform-formats > span + span {
+  border-left: 1px solid #d7cbb9;
+}
+.platform-formats svg {
+  width: 21px;
+  height: 21px;
+  color: #946030;
+}
+.platform-control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid #d7cbb9;
+  padding: 10px 0;
+  color: #655d53;
+  font-size: 7px;
+  letter-spacing: 0.01em;
+}
+.platform-control > span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.platform-control svg {
+  width: 11px;
+  height: 11px;
+}
+.platform-control-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--stone);
+}
+.platform-stream {
+  width: 62%;
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--sand);
+}
+.platform-connector-out {
+  align-self: flex-end;
+  margin-right: 30%;
+}
+.platform-stream > svg:first-child {
+  width: 28px;
+  height: 28px;
+  padding: 5px;
+  border: 1px solid #8c847b66;
+}
+.platform-stream strong {
+  display: block;
+  font-size: clamp(8px, 0.8vw, 11px);
+  font-weight: 500;
+}
+.platform-stream div > span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 5px;
+  letter-spacing: 0.1em;
+}
+.platform-stream-signal {
+  margin-left: auto;
+  width: 19px;
+  height: 19px;
+  color: var(--stone);
+  transition: color 0.3s;
+}
+.platform-stage[data-platform-step="1"] .platform-connector-in > span,
+.platform-stage[data-platform-step="2"] .platform-connector > span,
+.platform-stage[data-platform-step="3"] .platform-connector > span {
+  background: var(--copper);
+}
+.platform-stage[data-platform-step="3"] .platform-stream-signal {
+  color: var(--copper);
+}
+.platform-stage .stream-alert {
+  bottom: 34%;
+}
+@media (max-width: 1100px) {
+  .product-theatre .theatre-scene {
+    padding-bottom: 140px;
+  }
+}
+@media (max-width: 1100px) and (min-width: 901px) {
+  .platform-diagram {
+    padding: 6% 10%;
+  }
+  .platform-card {
+    padding: 5% 6% 0;
+  }
+  .platform-formats {
+    margin: 6% 0;
+  }
+  .platform-formats svg {
+    width: 17px;
+    height: 17px;
+  }
+  .platform-formats > span {
+    gap: 4px;
+    font-size: 7px;
+  }
+  .platform-control {
+    padding: 8px 0;
+    font-size: 6px;
+  }
+}
+@media (max-width: 600px) {
+  .platform-diagram {
+    padding: 4% 7% 5%;
+  }
+  .platform-audience {
+    font-size: 7px;
+    gap: 8px;
+  }
+  .platform-people > span {
+    width: 16px;
+    height: 16px;
+    font-size: 6px;
+  }
+  .platform-people > span + span {
+    margin-left: -3px;
+  }
+  .platform-connector {
+    min-height: 6px;
+  }
+  .platform-connector > span {
+    width: 3px;
+    height: 3px;
+    left: -1px;
+  }
+  .platform-card {
+    padding: 4% 5% 0;
+    box-shadow:
+      5px 6px 0 #1c1916,
+      5px 6px 0 1px #8c847b30;
+  }
+  .platform-card-heading {
+    font-size: 20px;
+  }
+  .platform-version {
+    font-size: 6px;
+  }
+  .platform-interaction-dot {
+    width: 4px;
+    height: 4px;
+  }
+  .platform-card > p {
+    font-size: 7px;
+    margin-top: 4px;
+  }
+  .platform-formats {
+    margin: 5% 0;
+  }
+  .platform-formats > span {
+    gap: 4px;
+    font-size: 6px;
+  }
+  .platform-formats svg {
+    width: 15px;
+    height: 15px;
+  }
+  .platform-control {
+    padding: 5px 0;
+    font-size: 5.5px;
+    gap: 5px;
+  }
+  .platform-control svg {
+    width: 8px;
+    height: 8px;
+  }
+  .platform-stream {
+    gap: 7px;
+  }
+  .platform-stream > svg:first-child {
+    width: 22px;
+    height: 22px;
+    padding: 4px;
+  }
+  .platform-stream strong {
+    font-size: 7px;
+  }
+  .platform-stream div > span {
+    margin-top: 2px;
+    font-size: 4px;
+    letter-spacing: 0.08em;
+  }
+  .platform-stream-signal {
+    width: 15px;
+    height: 15px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .platform-connector > span,
+  .platform-stream-signal {
+    transition: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .platform-card-heading {
+    font-size: 17px;
+  }
+  .platform-card > p {
+    font-size: 6px;
+    margin-top: 3px;
+  }
+  .platform-formats {
+    margin: 4% 0;
+  }
+  .platform-formats svg {
+    width: 12px;
+    height: 12px;
+  }
+  .platform-formats > span {
+    gap: 2px;
+  }
+  .platform-control {
+    padding: 4px 0;
+    font-size: 5px;
+  }
+  .platform-stream > svg:first-child {
+    display: none;
+  }
+  .platform-stream {
+    width: 51%;
+  }
+  .platform-stream strong {
+    font-size: 6px;
+  }
+  .platform-stream-signal {
+    width: 11px;
+    height: 11px;
+  }
+}
