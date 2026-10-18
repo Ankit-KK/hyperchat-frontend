@@ -41,16 +41,18 @@ the character itself appears approximately 120–140 CSS pixels wide.
   click excitement lasts 2.4 seconds. Event delegation handles existing controls
   without changing their event handlers.
 - Only the initial idle clip loads on activation. Other clips load on demand.
-  Two bounded video elements retain the current decoded frame while the next is
-  prepared; an atomic visibility swap prevents blank frames and double mascots.
+  Four lazy video elements (one per state) retain loaded clips for reuse. The
+  current decoded frame stays visible while the next is prepared; an atomic visibility swap prevents blank frames and double mascots.
   Only the visible video plays after handoff. A failed next clip keeps the current
-  one; initial playback/alpha failure leaves the native cursor available.
-- Speech appears for 5.2 seconds with a 20-second cooldown. Intro appears once per
+  one; initial playback/alpha failure leaves the native cursor available. Returning
+  from a suspended state resumes the valid clip even if the requested state failed.
+- Ambient speech appears for 5.2 seconds with a 20-second cooldown. Explicit
+  hover feedback bypasses that cooldown, once per pointer entry onto a control. Intro appears once per
   tab's browser session through `sessionStorage`, including across reloads. If
   storage is blocked, the fallback remembers it for the current page lifetime.
-  Hover speech waits 1.1 seconds, movement speech waits for a pause, and consecutive
+  Hover speech waits 350ms, movement speech waits for a pause, and consecutive
   duplicate messages are avoided. Bubbles are clamped inside the viewport.
-- Typing/editable controls, selection drags, keyboard use, modal dialogs, loss of
+- Hovering editable controls, typing, selection drags, keyboard use, modal dialogs, loss of
   window focus and document hiding suspend the companion. Scroll dismisses speech
   and rechecks the element under the pointer. Existing hash navigation and history
   events are handled without introducing a router.

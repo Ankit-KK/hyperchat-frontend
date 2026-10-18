@@ -78,7 +78,7 @@ test("decoded states swap without a blank frame or two visible mascots; clicks s
   expect(await page.locator(".mascot-video").evaluateAll((videos) => videos.filter((video) => !(video as HTMLVideoElement).paused).length)).toBe(1);
 });
 
-test("introduction is once per session; speech has cooldown, no consecutive repeats and viewport bounds", async ({ page }) => {
+test("introduction is once per session; hover responds during cooldown with no consecutive repeats and viewport bounds", async ({ page }) => {
   await start(page, 1420, 980);
   const speech = page.locator(".mascot-bubble");
   await expect(speech).toHaveAttribute("data-open", "true");
@@ -90,8 +90,8 @@ test("introduction is once per session; speech has cooldown, no consecutive repe
   expect(bounds!.y + bounds!.height).toBeLessThanOrEqual(1000);
   const button = page.getByRole("button", { name: "Try an interaction", exact: true });
   await button.hover();
-  await page.waitForTimeout(1250);
-  await expect(speech).toHaveText("Hey! I'm your little HyperChat companion.");
+  await expect(speech).toHaveAttribute("data-open", "true", { timeout: 1500 });
+  await expect(speech).not.toHaveText("Hey! I'm your little HyperChat companion.");
   await expect(speech).toHaveAttribute("data-open", "false", { timeout: 6500 });
   await page.clock.setFixedTime(new Date(Date.now() + 25000));
   await page.mouse.move(600, 350);
@@ -121,7 +121,7 @@ test("typing, selection, keyboard and dialogs keep native interaction", async ({
   await input.selectText();
   expect(await input.evaluate((el: HTMLTextAreaElement) => el.selectionEnd - el.selectionStart)).toBe(30);
   await expect(page.locator('.mascot-bubble')).toHaveAttribute("data-open", "false");
-  await page.keyboard.press("Tab");
+  // Moving away must restore the mascot even while the textbox retains focus.
   await page.mouse.move(540, 350);
   await expect(root(page)).toHaveAttribute("data-active", "true");
   await page.keyboard.press("Tab");
@@ -245,4 +245,37 @@ test("a failed next clip retains the current decoded mascot", async ({ page }) =
   await expect(currentVideo(page)).toHaveAttribute("src", "/mascot/mascot-1.webm");
   await expect(currentVideo(page)).toHaveCount(1);
   expect(await currentVideo(page).evaluate((video: HTMLVideoElement) => video.paused)).toBe(false);
+  await page.evaluate(() => window.dispatchEvent(new Event("blur")));
+  await expect(root(page)).toHaveAttribute("data-active", "false");
+  await page.getByRole("button", { name: "Try an interaction", exact: true }).hover();
+  await expect(root(page)).toHaveAttribute("data-active", "true");
+  expect(await currentVideo(page).evaluate((video: HTMLVideoElement) => video.paused)).toBe(false);
+});
+
+
+test("revisited states reuse loaded video elements and hovering after reload shows speech promptly", async ({ page }) => {
+  await page.addInitScript(() => {
+    const load = HTMLMediaElement.prototype.load;
+    Object.assign(window, { mascotLoads: [] as string[] });
+    HTMLMediaElement.prototype.load = function () {
+      if (this.getAttribute("src")?.includes("/mascot/")) {
+        (window as unknown as { mascotLoads: string[] }).mascotLoads.push(this.getAttribute("src")!);
+      }
+      load.call(this);
+    };
+    sessionStorage.setItem("hyperchat:mascot-introduction:v1", "shown");
+  });
+  await start(page);
+  const button = page.getByRole("button", { name: "Try an interaction", exact: true });
+  await button.hover();
+  await expect(page.locator(".mascot-bubble")).toHaveAttribute("data-open", "true", { timeout: 1500 });
+  await expect(root(page)).toHaveAttribute("data-state", "curious");
+  await page.mouse.move(600, 350);
+  await expect(root(page)).toHaveAttribute("data-state", "idle");
+  await button.hover();
+  await expect(root(page)).toHaveAttribute("data-state", "curious");
+  const loads = await page.evaluate(() => (window as unknown as { mascotLoads: string[] }).mascotLoads);
+  expect(loads.filter((src) => src.endsWith("mascot-1.webm"))).toHaveLength(1);
+  expect(loads.filter((src) => src.endsWith("mascot-5.webm"))).toHaveLength(1);
+  await expect(currentVideo(page)).toHaveCount(1);
 });

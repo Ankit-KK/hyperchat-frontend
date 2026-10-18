@@ -1,5 +1,12 @@
 # HyperChat V2 verification
 
+## Mascot hover and playback refinements — 19 October 2026
+
+- Production build and all **10 targeted Chromium mascot scenarios passed**. Added verification that revisiting idle/curious states does not reload their video elements, and hover speech appears promptly even after a session reload.
+- Hover bubbles now wait 350ms and bypass the ambient 20-second speech cooldown, once per control entry. Clips remain loaded in four lazy state-specific players; only the visible player continues playing after a transition.
+- Regression checks cover restoration while a text field retains focus, and resuming the valid animation after another state has failed. Existing transition, scrolling, selection, keyboard, reduced-motion, touch opt-out and failure checks still pass.
+- Original videos remain unchanged. First-time downloads still depend on network speed; no Safari/Firefox or deployed-site verification was performed.
+
 ## Animated mascot cursor — 18 October 2026
 
 - TypeScript/Vite production build passed. The full Chromium suite passed **54 cases**, with 18 desktop-only cursor cases intentionally skipped in the tablet/mobile projects. Dedicated cursor tests also verify touch-first, narrow viewport and reduced-motion opt-outs without video requests.

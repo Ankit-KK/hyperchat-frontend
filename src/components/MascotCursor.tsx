@@ -12,7 +12,7 @@ export default function MascotCursor() {
     <div ref={root} className="mascot-cursor" aria-hidden="true" data-active="false">
       <span className="mascot-hotspot" />
       <div className="mascot-character" style={{ width: mascotConfig.width, height: mascotConfig.height }}>
-        {[0, 1].map((slot) => (
+        {[0, 1, 2, 3].map((slot) => (
           <video
             key={slot}
             className="mascot-video"

@@ -19,7 +19,7 @@ export const mascotConfig = {
   introductionDelay: 1100,
   messageDuration: 5200,
   messageCooldown: 20000,
-  hoverDwell: 1100,
+  hoverDwell: 350,
   stateDwell: 240,
   movementIdle: 750,
   excitementDuration: 2400,

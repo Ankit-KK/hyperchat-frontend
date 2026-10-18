@@ -28,6 +28,7 @@ function mountCursor(root: HTMLDivElement) {
   let visible = false;
   let blocked = false;
   let hovered: Element | null = null;
+  let spokenHover: Element | null = null;
   let moved = false;
   let motion: MascotState = "idle";
   let desired: MascotState = "idle";
@@ -90,8 +91,8 @@ function mountCursor(root: HTMLDivElement) {
     cancel("hover-speech");
   };
   const allowed = () => inside && available && !keyboard && !dragging && !blocked && !document.hidden;
-  const say = (message: string, introduction = false) => {
-    if (!visible || !allowed() || Date.now() < nextMessageAt || lastMessage === message) return;
+  const say = (message: string, introduction = false, hover = false) => {
+    if (!visible || !allowed() || (!hover && Date.now() < nextMessageAt) || lastMessage === message) return;
     bubble.textContent = message;
     bubbleHeight = bubble.offsetHeight;
     paint();
@@ -105,10 +106,10 @@ function mountCursor(root: HTMLDivElement) {
     later("speech-hide", () => { bubble.dataset.open = "false"; }, config.messageDuration);
   };
   const speak = (kind: "movement" | "hover") => {
-    if (!introductionSeen() || Date.now() < nextMessageAt) return;
+    if (kind !== "hover" && (!introductionSeen() || Date.now() < nextMessageAt)) return;
     const choices = mascotMessages[kind];
     const message = choices[messageIndex++ % choices.length];
-    say(message === lastMessage ? choices[messageIndex++ % choices.length] : message);
+    say(message === lastMessage ? choices[messageIndex++ % choices.length] : message, false, kind === "hover");
   };
   const hide = () => {
     visible = false;
@@ -126,7 +127,8 @@ function mountCursor(root: HTMLDivElement) {
     document.documentElement.classList.add("has-mascot-cursor");
     visible = true;
     paint();
-    if (!introductionSeen() && !timers.has("introduction")) {
+    scheduleHover();
+    if (!hovered && !introductionSeen() && !timers.has("introduction")) {
       later("introduction", () => say(mascotMessages.introduction, true), config.introductionDelay);
     }
   }, () => {
@@ -140,19 +142,27 @@ function mountCursor(root: HTMLDivElement) {
     desired = state;
     later("state", () => { if (allowed()) playback.request(desired); }, immediate ? 0 : config.stateDwell);
   };
+  const scheduleHover = () => {
+    if (!hovered || hovered === spokenHover || blocked || !visible || timers.has("hover-speech")) return;
+    later("hover-speech", () => {
+      if (!hovered || !allowed()) return;
+      cancel("introduction");
+      spokenHover = hovered;
+      speak("hover");
+    }, config.hoverDwell);
+  };
   const context = () => {
     const element = document.elementFromPoint(pointer.x, pointer.y);
-    blocked = !!document.activeElement?.matches(editable) || !!element?.closest(editable)
+    blocked = !!element?.closest(editable)
       || !!document.querySelector("dialog[open], [aria-modal='true']");
     const candidate = element?.closest(clickable) ?? null;
     const next = candidate?.matches(":disabled, [aria-disabled='true']") ? null : candidate;
     if (hovered !== next) {
       hovered = next;
-      cancel("hover-speech");
+      spokenHover = null;
+      dismissSpeech();
     }
-    if (hovered && !blocked && introductionSeen() && Date.now() >= nextMessageAt && !timers.has("hover-speech")) {
-      later("hover-speech", () => speak("hover"), config.hoverDwell);
-    }
+    scheduleHover();
     chooseState();
     if (!allowed()) hide();
   };

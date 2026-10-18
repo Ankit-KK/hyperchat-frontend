@@ -1,6 +1,7 @@
 import { mascotVideos, type MascotState } from "./mascotConfig";
 
-/** Two bounded players: the current frame remains visible until the next clip
+/** One lazy player per state: decoded clips are retained for reuse. The current
+ * frame remains visible until the next clip
  * really decodes. The handoff is atomic, never a two-character crossfade. */
 export function createMascotPlayback(
   videos: HTMLVideoElement[],
@@ -21,14 +22,14 @@ export function createMascotPlayback(
   probe.width = probe.height = 1;
   const context = probe.getContext("2d", { willReadFrequently: true });
 
-  const cancelPending = () => {
+  const cancelPending = (release = false) => {
     generation++;
     clearTimeout(deadline);
     if (pending >= 0) {
       const video = videos[pending];
       if (frame !== undefined) video.cancelVideoFrameCallback?.(frame);
       video.pause();
-      if (pending !== active) {
+      if (release && pending !== active) {
         video.removeAttribute("src");
         video.load();
         states[pending] = undefined;
@@ -40,19 +41,23 @@ export function createMascotPlayback(
 
   const request = (state: MascotState) => {
     desired = state;
-    if (disposed || suspended || pending >= 0 || failed.has(state)) return;
+    if (disposed || suspended || pending >= 0) return;
+    if (failed.has(state)) {
+      if (active >= 0 && states[active] !== state) request(states[active]!);
+      return;
+    }
     if (active >= 0 && states[active] === state && !videos[active].paused) {
       onReady(state);
       return;
     }
-    const index = active >= 0 && states[active] === state ? active : active === 0 ? 1 : 0;
+    const index = (Object.keys(mascotVideos) as MascotState[]).indexOf(state);
     const video = videos[index];
     pending = index;
     const version = ++generation;
     const fail = () => {
       if (disposed || version !== generation) return;
       failed.add(state);
-      cancelPending();
+      cancelPending(true);
       if (active < 0 || index === active) onUnavailable();
     };
     const commit = () => {
