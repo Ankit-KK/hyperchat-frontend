@@ -129,7 +129,15 @@ function mountCursor(root: HTMLDivElement) {
     paint();
     scheduleHover();
     if (!hovered && !introductionSeen() && !timers.has("introduction")) {
-      later("introduction", () => say(mascotMessages.introduction, true), config.introductionDelay);
+      later(
+        "introduction",
+        () => {
+          const choices = mascotMessages.introduction;
+          const message = choices[messageIndex++ % choices.length];
+          say(message, true);
+        },
+        config.introductionDelay,
+      );
     }
   }, () => {
     available = false;
