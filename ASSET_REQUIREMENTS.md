@@ -28,6 +28,10 @@ ElevenLabs tools and credentials are not exposed in this Codex environment. The 
 
 For a consistent future ElevenLabs voice asset, use an authorized built-in/licensed voice, not a cloned creator voice. Required asset: one 3–5 second, mono MP3 or Opus clip, under 100 KB; no music or ambience; normalize approximately to −18 LUFS with peaks below −1 dBTP. Exact script: “This made my evening. Keep creating!” Direction: warm, conversational English, a slight smile, natural pace, clear diction, no announcer performance or exaggerated emotion. Store the approved audio locally under `public/audio/`, retain the transcript and explicit Play/Stop controls, and record provider/voice/license provenance. The current page works without this future asset.
 
+## Mascot cursor videos
+
+Four original owner-supplied transparent WebMs are used unchanged from `public/mascot/`: `mascot-1.webm` (idle), `mascot-5.webm` (curious), `mascot-6.webm` (excited) and `mascot-3.webm` (looking up). All nine supplied videos were inspected. The opaque MP4 and unused alternate motions are not shipped. Videos load only on eligible desktop pointer interaction, always muted; no images replace them. See [MASCOT_CURSOR.md](MASCOT_CURSOR.md) for the complete inventory, loading policy and original-file size limitations.
+
 ## Official brand artwork
 
 The owner's source is `https://pub-3968c5ed4c4c448d85e9dc68e6552634.r2.dev/hc-logo.png`. It was successfully retrieved with normal TLS verification on 17 October 2026 after environment access changed. The earlier proxy limitation no longer applies.

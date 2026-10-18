@@ -1,0 +1,76 @@
+.mascot-cursor,
+.mascot-cursor * {
+  pointer-events: none !important;
+}
+.mascot-cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  visibility: hidden;
+  contain: layout style;
+}
+.mascot-cursor[data-active="true"] {
+  visibility: visible;
+}
+.mascot-character {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  will-change: transform;
+}
+.mascot-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: none;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+}
+.mascot-cursor[data-active="true"] .mascot-video[data-visible="true"] {
+  visibility: visible;
+}
+.mascot-hotspot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--ivory);
+  border-radius: 50%;
+  background: var(--copper);
+  box-shadow: 0 0 0 1px var(--charcoal);
+}
+.mascot-bubble {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--sand);
+  border-radius: 12px 12px 12px 3px;
+  background: var(--ivory);
+  color: var(--charcoal);
+  box-shadow: 0 6px 22px #0002;
+  font-family: "Inter Variable", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.55;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+.mascot-bubble[data-open="true"] {
+  opacity: 1;
+}
+@media (hover: hover) and (pointer: fine) and (min-width: 901px) and (min-height: 320px) and (prefers-reduced-motion: no-preference) {
+  html.has-mascot-cursor,
+  html.has-mascot-cursor * {
+    cursor: none !important;
+  }
+}
+@media (hover: none), (pointer: coarse), (max-width: 900px), (max-height: 319px), (prefers-reduced-motion: reduce) {
+  .mascot-cursor {
+    display: none;
+  }
+}

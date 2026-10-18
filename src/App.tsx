@@ -11,6 +11,7 @@ import Navigation from "./components/Navigation";
 import ProductHero from "./components/ProductHero";
 import InteractionStory from "./components/InteractionStory";
 import CreatorFeatures from "./components/CreatorFeatures";
+import MascotCursor from "./components/MascotCursor";
 import { useExperienceMotion } from "./hooks/useExperienceMotion";
 
 const onboarding = [
@@ -35,6 +36,7 @@ export default function App() {
   useExperienceMotion(root);
   return (
     <div ref={root} className="site-root">
+      <MascotCursor />
       <a href="#main" className="skip-link">
         Skip to content
       </a>

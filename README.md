@@ -35,6 +35,8 @@ Run `npm run dev` to see the change immediately. All headings and editorial disp
 
 ## Experience
 
+- Optional animated mascot cursor on supported desktop pointers, using the supplied videos. See [MASCOT_CURSOR.md](MASCOT_CURSOR.md) for states, speech timing, accessibility behavior and asset inventory.
+
 - Six editorial sections: interactive hero, short product explanation, creator toolkit, planned onboarding, safety/control, closing action.
 - A layered platform diagram connects the audience, HyperChat creator controls and an existing stream, alongside an editable viewer message card. CSS perspective and restrained GSAP scroll movement provide depth without a WebGL dependency.
 - One interaction sequence with editable message, creator receipt, audience alert, replay and timer-safe reset. No amount selector or transaction framing.

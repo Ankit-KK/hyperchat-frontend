@@ -1,5 +1,14 @@
 # HyperChat V2 verification
 
+## Animated mascot cursor — 18 October 2026
+
+- TypeScript/Vite production build passed. The full Chromium suite passed **54 cases**, with 18 desktop-only cursor cases intentionally skipped in the tablet/mobile projects. Dedicated cursor tests also verify touch-first, narrow viewport and reduced-motion opt-outs without video requests.
+- Nine cursor scenarios cover real video decoding/transparency, lazy loading, all four states, atomic visibility swaps, pointer tracking, speech timing/session persistence, viewport bounds, scrolling/hash navigation, resizing, keyboard/forms/selection/dialog behavior, playback failures and cleanup. The nine desktop scenarios passed again after the final edge-positioning and short-viewport refinements.
+- Development-mode React StrictMode activation and reduced-motion teardown passed, with no page errors or retained video sources. Rendered desktop review checked the introduction, light/dark surfaces and bottom-right viewport positioning.
+- Before publication, rebased onto the owner's newer Dirtyline font commits without changing them. The combined production build passed; its full suite returned 53 passes, 18 intentional skips and one intermittent existing tablet skip-link focus failure. That unchanged keyboard scenario then passed three consecutive targeted reruns. All nine mascot scenarios passed on the combined version.
+- All four shipped clips match the original upload bytes. They total 15,211,329 bytes, load on demand and remain muted. No new dependencies, page redesign or backend changes were introduced.
+- Automated browser coverage uses Chromium. Safari, Firefox, physical devices and the hosted deployment remain unverified. Unsupported video transparency or blocked playback retains the native cursor. See [MASCOT_CURSOR.md](MASCOT_CURSOR.md) for behavior, configuration and the full asset inventory.
+
 ## One-line font selection and Orange Avenue — 18 October 2026
 
 - Replaced Flaviotte with the owner-supplied solid Orange Avenue Regular face in headings and editorial display text. Inter remains in body copy and compact controls. The owner confirmed a commercial web license before publication.
