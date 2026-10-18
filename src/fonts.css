@@ -1,4 +1,4 @@
-/* Self-hosted Latin WOFF2 subsets; no third-party font requests. */
+/* Self-hosted WOFF2 fonts; no third-party font requests. */
 @font-face {
   font-family: "Inter Variable";
   font-style: normal;
@@ -7,19 +7,11 @@
   src: url("@fontsource-variable/inter/files/inter-latin-wght-normal.woff2")
     format("woff2");
 }
+/* Owner-supplied Flaviotte Regular; original WOFF2 retained unchanged. */
 @font-face {
-  font-family: "Bodoni Moda Variable";
+  font-family: "Flaviotte";
   font-style: normal;
-  font-weight: 400 900;
+  font-weight: 400;
   font-display: swap;
-  src: url("@fontsource-variable/bodoni-moda/files/bodoni-moda-latin-wght-normal.woff2")
-    format("woff2");
-}
-@font-face {
-  font-family: "Bodoni Moda Variable";
-  font-style: italic;
-  font-weight: 400 900;
-  font-display: swap;
-  src: url("@fontsource-variable/bodoni-moda/files/bodoni-moda-latin-wght-italic.woff2")
-    format("woff2");
+  src: url("./assets/fonts/flaviotte-regular.woff2") format("woff2");
 }

@@ -1,5 +1,12 @@
 # HyperChat V2 verification
 
+## Flaviotte typography — 18 October 2026
+
+- The supplied Flaviotte Regular WOFF2 replaces Bodoni Moda in headings and editorial display text. Inter remains in compact controls and body text. Only typography, font assets/preloads and related documentation/dependencies changed.
+- TypeScript/Vite production build passed. The emitted Flaviotte asset is 18.3 KB; total delivered fonts are now approximately 66.6 KB, down from 104.4 KB.
+- **12/12 existing responsive, navigation, interaction-demo, reduced-motion and accessibility cases passed**, covering desktop 1440×1000, tablet 820×1180 and mobile 390×844. Visual font-load and heading-fit review also passed at 320×740. Chromium’s platform-font inspection confirmed Flaviotte paints the hero heading; no horizontal overflow or page errors occurred.
+- Physical-device/Safari/Firefox validation and hosted deployment checks remain outside this verification.
+
 ## Home section refinement — 18 October 2026
 
 This update is limited to the home section. The studio visual is replaced with an audience → HyperChat → existing-stream diagram. TTS and user-recorded voice-message fixes are deferred to the next section review.

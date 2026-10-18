@@ -28,7 +28,7 @@ No backend, credentials, or environment variables are required. Vercel and Netli
 - One interaction sequence with editable message, creator receipt, audience alert, replay and timer-safe reset. No amount selector or transaction framing.
 - Six accessible creator tabs: message/device-voice preview, adjustable alert overlay, playable soundboard, filterable interaction history with CSV export, moderation queue, and illustrative OBS source toggles.
 - Original example tones are synthesized locally, only after a Play action. Voice examples use an available local device voice and are labelled accordingly. Both stop on request, completion or panel change; unsupported voice playback degrades gracefully.
-- Self-hosted Bodoni Moda and Inter; ivory, charcoal, copper, stone and sand surfaces; fine grain, layered solid surfaces and oversized background typography. No CSS gradients.
+- Self-hosted Flaviotte display type and Inter for body text and controls; ivory, charcoal, copper, stone and sand surfaces; fine grain, layered solid surfaces and oversized background typography. No CSS gradients.
 - Responsive navigation, keyboard tab controls, reduced-motion support and native mobile touch scrolling. The mobile hero places its explanation, action and product preview in the first screen at 390×844.
 
 All preview records are fictional and remain in the browser. There are no application, payment, recording, OBS or provider requests. This is a landing page with interactive demonstrations, not an authenticated creator dashboard. V2 verification/activation is clearly labelled as planned. No backend code was changed.

@@ -1,0 +1,18 @@
+Flaviotte Regular — owner-supplied font
+
+Source: Flaviotte Font.zip, uploaded by the project owner with the request to
+use it on this website and push the change to GitHub.
+Archive member: Web-PS/Flaviotte.woff2
+Repository asset: src/assets/fonts/flaviotte-regular.woff2
+The original 18,324-byte webfont is distributed unchanged.
+
+Font metadata:
+Copyright (c) 2022 by Typia Nesia Std. All rights reserved.
+Designer: Huda Typia Nesia
+Style: Regular (400), normal
+OS/2 embedding metadata: fsType = 4 (preview and print embedding)
+
+The supplied archive contains webfont files and usage examples but no separate
+license document or license URL. This provenance note does not grant or expand
+font rights and does not identify Flaviotte as open-source. The Inter license
+in this directory applies only to Inter.

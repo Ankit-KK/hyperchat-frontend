@@ -36,4 +36,4 @@ The supplied HC image contains blue/magenta gradients and a baked-in dark backgr
 
 ## Other local assets
 
-Bodoni Moda and Inter variable WOFF2 subsets are self-hosted; SIL Open Font License copies are in `public/licenses/`. Lucide icons indicate interface actions and do not replace the brand mark. No KAIRO imagery, legacy-site design assets, endorsements or creator portraits were copied.
+Flaviotte Regular is self-hosted from the owner-supplied `Flaviotte Font.zip` (`Web-PS/Flaviotte.woff2`, 18,324 bytes), unchanged, for headings and editorial display text. It contains a regular face only; emphasis uses the existing sand color without synthesizing an italic face. Inter remains self-hosted for body copy and controls, with its SIL Open Font License in `public/licenses/`. Flaviotte provenance is recorded in `public/licenses/flaviotte-provenance.txt`. Lucide icons indicate interface actions and do not replace the brand mark. No KAIRO imagery, legacy-site design assets, endorsements or creator portraits were copied.
