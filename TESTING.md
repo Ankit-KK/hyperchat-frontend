@@ -1,5 +1,12 @@
 # HyperChat V2 verification
 
+## Buddy responsiveness and additional clips — 21 October 2026
+
+- Production build and all **12 Chromium mascot scenarios passed**. A synthetic burst of 100 pointer events produces one hit-test update in the next frame; the character settles within 5px of the target within the 500ms test budget.
+- Follow easing changed from 65ms to 28ms and state debounce from 240ms to 160ms. Already validated clips reuse their decoded frames without repeated alpha readbacks. First-time downloads remain dependent on connection speed; this is not a physical-device performance benchmark.
+- All eight supplied transparent WebMs are now used unchanged. Tests exercise the four additional movement/hover/click states, one playing mascot after handoff, cached-state reuse, and the existing accessibility/failure paths. The opaque MP4 remains excluded.
+- The unfinished general-text hover change is deferred at the owner's request. No unrelated page or backend changes. Safari/Firefox, physical devices and hosted deployment are not verified here.
+
 ## Mascot hover and playback refinements — 19 October 2026
 
 - Production build and all **10 targeted Chromium mascot scenarios passed**. Added verification that revisiting idle/curious states does not reload their video elements, and hover speech appears promptly even after a session reload.

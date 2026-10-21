@@ -18,6 +18,7 @@ export function createMascotPlayback(
   let frame: number | undefined;
   const states: (MascotState | undefined)[] = [];
   const failed = new Set<MascotState>();
+  const validated = new Set<MascotState>();
   const probe = document.createElement("canvas");
   probe.width = probe.height = 1;
   const context = probe.getContext("2d", { willReadFrequently: true });
@@ -65,10 +66,13 @@ export function createMascotPlayback(
       // Some browsers decode VP9 but not its alpha channel. Never replace the
       // native cursor with an opaque rectangle on those browsers.
       try {
-        if (!context) return fail();
-        context.clearRect(0, 0, 1, 1);
-        context.drawImage(video, 0, 0, 1, 1, 0, 0, 1, 1);
-        if (context.getImageData(0, 0, 1, 1).data[3] > 16) return fail();
+        if (!validated.has(state)) {
+          if (!context) return fail();
+          context.clearRect(0, 0, 1, 1);
+          context.drawImage(video, 0, 0, 1, 1, 0, 0, 1, 1);
+          if (context.getImageData(0, 0, 1, 1).data[3] > 16) return fail();
+          validated.add(state);
+        }
       } catch {
         return fail();
       }
@@ -103,7 +107,8 @@ export function createMascotPlayback(
     deadline = setTimeout(fail, 10000);
     void video.play().then(() => {
       if (disposed || version !== generation) return;
-      if (video.requestVideoFrameCallback) frame = video.requestVideoFrameCallback(commit);
+      if (validated.has(state) && video.readyState >= 2) commit();
+      else if (video.requestVideoFrameCallback) frame = video.requestVideoFrameCallback(commit);
       else if (video.readyState >= 2) commit();
       else fail();
     }).catch(fail);

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { createPortal } from "react-dom";
 import { useMascotCursor } from "../hooks/useMascotCursor";
-import { mascotConfig } from "./mascotConfig";
+import { mascotConfig, mascotVideos } from "./mascotConfig";
 import "./MascotCursor.css";
 
 export default function MascotCursor() {
@@ -12,7 +12,7 @@ export default function MascotCursor() {
     <div ref={root} className="mascot-cursor" aria-hidden="true" data-active="false">
       <span className="mascot-hotspot" />
       <div className="mascot-character" style={{ width: mascotConfig.width, height: mascotConfig.height }}>
-        {[0, 1, 2, 3].map((slot) => (
+        {Object.keys(mascotVideos).map((slot) => (
           <video
             key={slot}
             className="mascot-video"

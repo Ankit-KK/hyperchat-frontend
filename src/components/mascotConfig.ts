@@ -3,6 +3,10 @@ export const mascotVideos = {
   idle: "/mascot/mascot-1.webm",
   curious: "/mascot/mascot-5.webm",
   excited: "/mascot/mascot-6.webm",
+  moving: "/mascot/mascot-2.webm",
+  celebrating: "/mascot/mascot-7.webm",
+  tilting: "/mascot/mascot-8.webm",
+  leaning: "/mascot/mascot-9.webm",
   lookingUp: "/mascot/mascot-3.webm",
 } as const;
 
@@ -20,7 +24,8 @@ export const mascotConfig = {
   messageDuration: 5200,
   messageCooldown: 20000,
   hoverDwell: 350,
-  stateDwell: 240,
+  stateDwell: 160,
+  followTime: 28,
   movementIdle: 750,
   excitementDuration: 2400,
   sessionKey: "hyperchat:mascot-introduction:v1",

@@ -30,6 +30,10 @@ function mountCursor(root: HTMLDivElement) {
   let hovered: Element | null = null;
   let spokenHover: Element | null = null;
   let moved = false;
+  let hoverCount = 0;
+  let clickCount = 0;
+  let inputFrame = 0;
+  let latestPointer: PointerEvent | undefined;
   let motion: MascotState = "idle";
   let desired: MascotState = "idle";
   let excitedUntil = 0;
@@ -73,7 +77,7 @@ function mountCursor(root: HTMLDivElement) {
   const tick = (time: number) => {
     frame = 0;
     if (!inside || disposed) return;
-    const factor = 1 - Math.exp(-Math.min(lastFrame ? time - lastFrame : 16, 50) / 65);
+    const factor = 1 - Math.exp(-Math.min(lastFrame ? time - lastFrame : 16, 50) / config.followTime);
     lastFrame = time;
     position.x += (target.x - position.x) * factor;
     position.y += (target.y - position.y) * factor;
@@ -145,7 +149,7 @@ function mountCursor(root: HTMLDivElement) {
   });
 
   const chooseState = (immediate = false) => {
-    const state: MascotState = Date.now() < excitedUntil ? "excited" : hovered ? "curious" : motion;
+    const state: MascotState = Date.now() < excitedUntil ? (clickCount % 2 ? "excited" : "celebrating") : hovered ? (hoverCount % 2 ? "curious" : "tilting") : motion;
     if (state === desired) return;
     desired = state;
     later("state", () => { if (allowed()) playback.request(desired); }, immediate ? 0 : config.stateDwell);
@@ -167,6 +171,7 @@ function mountCursor(root: HTMLDivElement) {
     const next = candidate?.matches(":disabled, [aria-disabled='true']") ? null : candidate;
     if (hovered !== next) {
       hovered = next;
+      if (next) hoverCount++;
       spokenHover = null;
       dismissSpeech();
     }
@@ -174,10 +179,11 @@ function mountCursor(root: HTMLDivElement) {
     chooseState();
     if (!allowed()) hide();
   };
-  const move = (event: PointerEvent) => {
+  const processMove = (event: PointerEvent) => {
     if (event.pointerType !== "mouse") { inside = false; hide(); return; }
     const first = !inside || !visible;
     const dy = event.clientY - pointer.y;
+    const dx = event.clientX - pointer.x;
     pointer.x = event.clientX;
     pointer.y = event.clientY;
     inside = true;
@@ -186,7 +192,7 @@ function mountCursor(root: HTMLDivElement) {
     moved = !first;
     placeTarget();
     if (first) { position.x = target.x; position.y = target.y; paint(); }
-    motion = moved ? dy < -3 ? "lookingUp" : "curious" : "idle";
+    motion = moved ? dy < -3 ? "lookingUp" : Math.abs(dx) > Math.abs(dy) ? "leaning" : "moving" : "idle";
     context();
     if (!allowed()) return;
     if (!visible) playback.resume(desired);
@@ -197,12 +203,29 @@ function mountCursor(root: HTMLDivElement) {
       if (!hovered && moved) speak("movement");
     }, config.movementIdle);
   };
-  const over = () => { if (inside) context(); };
+  const move = (event: PointerEvent) => {
+    latestPointer = event;
+    if (!inputFrame) inputFrame = requestAnimationFrame(() => {
+      inputFrame = 0;
+      const latest = latestPointer;
+      latestPointer = undefined;
+      if (latest) processMove(latest);
+    });
+  };
+  const over = () => { if (inside && !inputFrame) context(); };
   const down = (event: PointerEvent) => {
+    if (latestPointer) {
+      cancelAnimationFrame(inputFrame);
+      inputFrame = 0;
+      const latest = latestPointer;
+      latestPointer = undefined;
+      processMove(latest);
+    }
     if (event.pointerType !== "mouse" || !inside) return;
     dismissSpeech();
     context();
     if (hovered && !blocked) {
+      clickCount++;
       excitedUntil = Date.now() + config.excitementDuration;
       chooseState(true);
       later("excitement", () => chooseState(), config.excitementDuration);
@@ -216,7 +239,12 @@ function mountCursor(root: HTMLDivElement) {
     context();
     if (allowed()) playback.resume(desired);
   };
-  const leave = () => { inside = false; dragging = false; hide(); };
+  const leave = () => {
+    cancelAnimationFrame(inputFrame);
+    inputFrame = 0;
+    latestPointer = undefined;
+    inside = false; dragging = false; hide();
+  };
   const out = (event: PointerEvent) => { if (!event.relatedTarget) leave(); };
   const key = () => { keyboard = true; hide(); };
   const focus = () => { if (inside) context(); };

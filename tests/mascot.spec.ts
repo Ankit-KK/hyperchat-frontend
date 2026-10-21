@@ -66,7 +66,7 @@ test("decoded states swap without a blank frame or two visible mascots; clicks s
   await expect(root(page)).toHaveAttribute("data-state", "excited");
   await expect(currentVideo(page)).toHaveAttribute("src", "/mascot/mascot-6.webm");
   await expect(page.locator(".stream-alert")).toHaveClass(/visible/);
-  await expect(root(page)).toHaveAttribute("data-state", "curious");
+  await expect(root(page)).not.toHaveAttribute("data-state", "excited");
   await page.mouse.move(600, 480);
   await page.mouse.move(600, 280);
   await expect(root(page)).toHaveAttribute("data-state", "lookingUp");
@@ -273,9 +273,56 @@ test("revisited states reuse loaded video elements and hovering after reload sho
   await page.mouse.move(600, 350);
   await expect(root(page)).toHaveAttribute("data-state", "idle");
   await button.hover();
+  await expect(root(page)).toHaveAttribute("data-state", "tilting");
+  await page.mouse.move(600, 350);
+  await expect(root(page)).toHaveAttribute("data-state", "idle");
+  await button.hover();
   await expect(root(page)).toHaveAttribute("data-state", "curious");
   const loads = await page.evaluate(() => (window as unknown as { mascotLoads: string[] }).mascotLoads);
   expect(loads.filter((src) => src.endsWith("mascot-1.webm"))).toHaveLength(1);
   expect(loads.filter((src) => src.endsWith("mascot-5.webm"))).toHaveLength(1);
   await expect(currentVideo(page)).toHaveCount(1);
+});
+
+
+test("additional original clips play for movement, alternate hover and alternate clicks", async ({ page }) => {
+  await start(page, 600, 300);
+  await page.mouse.move(600, 450);
+  await expect(root(page)).toHaveAttribute("data-state", "moving");
+  await expect(currentVideo(page)).toHaveAttribute("src", "/mascot/mascot-2.webm");
+  await page.mouse.move(700, 450);
+  await expect(root(page)).toHaveAttribute("data-state", "leaning");
+  await expect(currentVideo(page)).toHaveAttribute("src", "/mascot/mascot-9.webm");
+  const link = page.getByRole("navigation").getByText("For creators");
+  // Prevent navigation only in this fixture to exercise two clicks on one control.
+  await link.evaluate((el) => el.addEventListener("click", (event) => event.preventDefault()));
+  await link.hover();
+  await expect(root(page)).toHaveAttribute("data-state", "curious");
+  await link.click();
+  await expect(root(page)).toHaveAttribute("data-state", "excited");
+  await expect(root(page)).toHaveAttribute("data-state", "curious");
+  await page.mouse.move(600, 350);
+  await expect(root(page)).toHaveAttribute("data-state", "idle");
+  await link.hover();
+  await expect(root(page)).toHaveAttribute("data-state", "tilting");
+  await expect(currentVideo(page)).toHaveAttribute("src", "/mascot/mascot-8.webm");
+  await link.click();
+  await expect(root(page)).toHaveAttribute("data-state", "celebrating");
+  await expect(currentVideo(page)).toHaveAttribute("src", "/mascot/mascot-7.webm");
+  expect(await page.locator(".mascot-video").evaluateAll((videos) => videos.filter((v) => !(v as HTMLVideoElement).paused).length)).toBe(1);
+});
+
+test("pointer bursts are processed once per frame and the buddy catches up promptly", async ({ page }) => {
+  await start(page, 500, 350);
+  const calls = await page.evaluate(async () => {
+    const original = document.elementFromPoint.bind(document);
+    let count = 0;
+    document.elementFromPoint = (x, y) => { count++; return original(x, y); };
+    for (let i = 0; i < 100; i++) window.dispatchEvent(new PointerEvent("pointermove", { pointerType: "mouse", clientX: 601 + i, clientY: 350 }));
+    await new Promise(requestAnimationFrame);
+    document.elementFromPoint = original;
+    return count;
+  });
+  expect(calls).toBe(1);
+  await expect.poll(async () => Math.abs((await page.locator(".mascot-character").boundingBox())!.x - 714), { timeout: 500, intervals: [50] }).toBeLessThan(5);
 });

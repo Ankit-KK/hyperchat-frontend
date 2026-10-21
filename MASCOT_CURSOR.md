@@ -14,17 +14,17 @@ The cursor always mutes it. Existing repository assets contained no mascot video
 | Supplied file | Observed motion / format | Cursor use |
 | --- | --- | --- |
 | `mascot-1.webm` | Neutral stance, gentle head movement; VP9 alpha | Idle |
-| `mascot-2.webm` | Body bob and arm movement; VP9 alpha | Not shipped |
+| `mascot-2.webm` | Body bob and arm movement; VP9 alpha | Movement |
 | `mascot-3.webm` | Eyes looking upward; VP9 alpha | Upward pointer movement |
 | `mascot-4.mp4` | Side glance; H.264 with opaque white background | Not shipped; unsuitable for a transparent cursor |
 | `mascot-5.webm` | Curious sideways/downward glance; VP9 alpha | Hover / movement |
 | `mascot-6.webm` | Animated wave and hop; VP9 alpha | Click response |
-| `mascot-7.webm` | Bouncing and raised arms; VP9 alpha | Not shipped |
-| `mascot-8.webm` | Exaggerated head tilt; VP9 alpha | Not shipped |
-| `mascot-9.webm` | Gentle sideways lean; VP9 alpha | Not shipped |
+| `mascot-7.webm` | Bouncing and raised arms; VP9 alpha | Alternate click |
+| `mascot-8.webm` | Exaggerated head tilt; VP9 alpha | Alternate hover |
+| `mascot-9.webm` | Gentle sideways lean; VP9 alpha | Horizontal movement |
 
-The four selected files in `public/mascot/` are byte-for-byte copies of the uploads
-(15,211,329 bytes combined). They are not transcoded or replaced with images.
+The eight transparent files in `public/mascot/` are byte-for-byte copies of the uploads
+(29,625,619 bytes combined). They are not transcoded or replaced with images.
 The original transparent margins are framed with CSS, preserving proportions;
 the character itself appears approximately 120–140 CSS pixels wide.
 
@@ -36,14 +36,16 @@ the character itself appears approximately 120–140 CSS pixels wide.
   Data-saving mode also opts out.
 - Native cursor remains until a valid pointer event and a decoded, transparent
   frame. A small copper hotspot follows the exact pointer; the video follows with
-  a short eased lag. One animation frame loop runs only while position is changing.
-- States are debounced by 240ms. Idle resumes after 750ms without movement;
+  a short 28ms easing time constant. One animation frame loop runs only while position is changing.
+- States are debounced by 160ms. Idle resumes after 750ms without movement;
   click excitement lasts 2.4 seconds. Event delegation handles existing controls
   without changing their event handlers.
 - Only the initial idle clip loads on activation. Other clips load on demand.
-  Four lazy video elements (one per state) retain loaded clips for reuse. The
+  Eight lazy video elements (one per state) retain loaded clips for reuse. The
   current decoded frame stays visible while the next is prepared; an atomic visibility swap prevents blank frames and double mascots.
-  Only the visible video plays after handoff. A failed next clip keeps the current
+  Only the visible video plays after handoff. Previously validated clips skip repeated
+  alpha readbacks and resume from their retained decoded frames. Pointer movement
+  is coalesced to one update per animation frame. A failed next clip keeps the current
   one; initial playback/alpha failure leaves the native cursor available. Returning
   from a suspended state resumes the valid clip even if the requested state failed.
 - Ambient speech appears for 5.2 seconds with a 20-second cooldown. Explicit

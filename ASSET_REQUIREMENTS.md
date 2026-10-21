@@ -30,7 +30,7 @@ For a consistent future ElevenLabs voice asset, use an authorized built-in/licen
 
 ## Mascot cursor videos
 
-Four original owner-supplied transparent WebMs are used unchanged from `public/mascot/`: `mascot-1.webm` (idle), `mascot-5.webm` (curious), `mascot-6.webm` (excited) and `mascot-3.webm` (looking up). All nine supplied videos were inspected. The opaque MP4 and unused alternate motions are not shipped. Videos load only on eligible desktop pointer interaction, always muted; no images replace them. See [MASCOT_CURSOR.md](MASCOT_CURSOR.md) for the complete inventory, loading policy and original-file size limitations.
+Eight original owner-supplied transparent WebMs are used unchanged from `public/mascot/`: `mascot-1.webm` (idle), `mascot-5.webm` (curious), `mascot-6.webm` (excited) and `mascot-3.webm` (looking up). All nine supplied videos were inspected. The remaining transparent clips add movement (`mascot-2.webm`), an alternate click (`mascot-7.webm`), an alternate hover (`mascot-8.webm`) and horizontal movement (`mascot-9.webm`). The opaque MP4 is not shipped. Videos load only on eligible desktop pointer interaction, always muted; no images replace them. See [MASCOT_CURSOR.md](MASCOT_CURSOR.md) for the complete inventory, loading policy and original-file size limitations.
 
 ## Official brand artwork
 
