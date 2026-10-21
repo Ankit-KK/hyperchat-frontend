@@ -27,6 +27,7 @@ function mountCursor(root: HTMLDivElement) {
   let available = true;
   let visible = false;
   let blocked = false;
+  let editing = false;
   let hovered: Element | null = null;
   let spokenHover: Element | null = null;
   let moved = false;
@@ -165,9 +166,12 @@ function mountCursor(root: HTMLDivElement) {
   };
   const context = () => {
     const element = document.elementFromPoint(pointer.x, pointer.y);
-    blocked = !!element?.closest(editable)
+    const field = element?.closest(editable);
+    editing = !!field?.closest("[data-mascot-hover]");
+    root.dataset.editing = String(editing);
+    blocked = (!!field && !editing)
       || !!document.querySelector("dialog[open], [aria-modal='true']");
-    const candidate = element?.closest(clickable) ?? null;
+    const candidate = element?.closest(`${clickable}, [data-mascot-hover]`) ?? null;
     const next = candidate?.matches(":disabled, [aria-disabled='true']") ? null : candidate;
     if (hovered !== next) {
       hovered = next;
@@ -224,7 +228,12 @@ function mountCursor(root: HTMLDivElement) {
     if (event.pointerType !== "mouse" || !inside) return;
     dismissSpeech();
     context();
-    if (hovered && !blocked) {
+    if (editing && !blocked) {
+      // Keep the companion while the native I-beam handles caret/selection.
+      dismissSpeech();
+      return;
+    }
+    if (hovered?.matches(clickable) && !blocked) {
       clickCount++;
       excitedUntil = Date.now() + config.excitementDuration;
       chooseState(true);
@@ -246,7 +255,15 @@ function mountCursor(root: HTMLDivElement) {
     inside = false; dragging = false; hide();
   };
   const out = (event: PointerEvent) => { if (!event.relatedTarget) leave(); };
-  const key = () => { keyboard = true; hide(); };
+  const key = (event: KeyboardEvent) => {
+    const field = document.activeElement;
+    if (event.key !== "Tab" && event.key !== "Escape" && field?.matches(editable) && field.closest("[data-mascot-hover]")) {
+      dismissSpeech();
+      return;
+    }
+    keyboard = true;
+    hide();
+  };
   const focus = () => { if (inside) context(); };
   const scroll = () => { if (inside) { dismissSpeech(); context(); } };
   const resize = () => {

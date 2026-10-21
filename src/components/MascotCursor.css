@@ -74,3 +74,12 @@
     display: none;
   }
 }
+
+/* The buddy stays beside opted-in fields; the native I-beam remains precise. */
+html.has-mascot-cursor [data-mascot-hover] textarea,
+html.has-mascot-cursor textarea[data-mascot-hover] {
+  cursor: text !important;
+}
+.mascot-cursor[data-editing="true"] .mascot-hotspot {
+  visibility: hidden;
+}

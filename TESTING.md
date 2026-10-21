@@ -1,5 +1,12 @@
 # HyperChat V2 verification
 
+## Hero message field and alert hover — 21 October 2026
+
+- Production build and all **13 Chromium mascot scenarios passed**.
+- The hero message field retains the buddy during hover, typing and text selection, while preserving the native I-beam. Keyboard navigation and unrelated editable controls retain their existing behavior.
+- The viewer ticket and broadcast frame opt into hover bubbles, including the platform card and visible alert. A new regression test exercises field editing, selection, preview hover and the completed alert.
+- No backend or demo business logic changed. Hosted deployment and non-Chromium browsers remain unverified.
+
 ## Buddy responsiveness and additional clips — 21 October 2026
 
 - Production build and all **12 Chromium mascot scenarios passed**. A synthetic burst of 100 pointer events produces one hit-test update in the next frame; the character settles within 5px of the target within the 500ms test budget.

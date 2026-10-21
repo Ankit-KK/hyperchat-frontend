@@ -54,7 +54,10 @@ the character itself appears approximately 120–140 CSS pixels wide.
   storage is blocked, the fallback remembers it for the current page lifetime.
   Hover speech waits 350ms, movement speech waits for a pause, and consecutive
   duplicate messages are avoided. Bubbles are clamped inside the viewport.
-- Hovering editable controls, typing, selection drags, keyboard use, modal dialogs, loss of
+- The hero message field and broadcast preview opt into hover bubbles with
+  `data-mascot-hover`. The buddy stays visible while editing that message, with
+  the native I-beam and selection preserved; typing dismisses speech.
+- Other editable controls, selection drags outside that field, keyboard navigation, modal dialogs, loss of
   window focus and document hiding suspend the companion. Scroll dismisses speech
   and rechecks the element under the pointer. Existing hash navigation and history
   events are handled without introducing a router.

@@ -75,7 +75,7 @@ export default function ProductHero() {
             className={`theatre-scene ${running ? "is-playing" : ""}`}
             data-stage={step}
           >
-            <div className="broadcast-frame">
+            <div className="broadcast-frame" data-mascot-hover>
               <div className="broadcast-chrome">
                 <span>
                   <i />
@@ -93,7 +93,7 @@ export default function ProductHero() {
                 step={step}
               />
             </div>
-            <div className="viewer-ticket">
+            <div className="viewer-ticket" data-mascot-hover>
               <div className="ticket-top">
                 <span className="viewer-avatar">A</span>
                 <div>
@@ -107,6 +107,7 @@ export default function ProductHero() {
               </label>
               <textarea
                 id="example-message"
+                data-mascot-hover
                 aria-label="Your example message"
                 className="message-input"
                 aria-describedby="message-hint"

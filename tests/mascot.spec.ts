@@ -115,8 +115,8 @@ test("typing, selection, keyboard and dialogs keep native interaction", async ({
   await start(page);
   const input = page.getByRole("textbox", { name: "Your example message" });
   await input.hover();
-  await expect(root(page)).toHaveAttribute("data-active", "false");
-  await expect(page.locator("html")).not.toHaveClass(/has-mascot-cursor/);
+  await expect(root(page)).toHaveAttribute("data-active", "true");
+  await expect(input).toHaveCSS("cursor", "text");
   await input.fill("My own message stays editable.");
   await input.selectText();
   expect(await input.evaluate((el: HTMLTextAreaElement) => el.selectionEnd - el.selectionStart)).toBe(30);
@@ -325,4 +325,27 @@ test("pointer bursts are processed once per frame and the buddy catches up promp
   });
   expect(calls).toBe(1);
   await expect.poll(async () => Math.abs((await page.locator(".mascot-character").boundingBox())!.x - 714), { timeout: 500, intervals: [50] }).toBeLessThan(5);
+});
+
+
+test("message field keeps the buddy while editing and preview surfaces show hover bubbles", async ({ page }) => {
+  await start(page);
+  const input = page.getByRole("textbox", { name: "Your example message" });
+  const bubble = page.locator(".mascot-bubble");
+  await input.hover();
+  await expect(bubble).toHaveAttribute("data-open", "true");
+  await input.click();
+  await input.pressSequentially(" Hi!");
+  await expect(root(page)).toHaveAttribute("data-active", "true");
+  await expect(input).toHaveCSS("cursor", "text");
+  await input.selectText();
+  await expect(root(page)).toHaveAttribute("data-active", "true");
+  expect(await input.evaluate((el: HTMLTextAreaElement) => el.selectionEnd - el.selectionStart)).toBeGreaterThan(0);
+  await page.locator(".platform-card").hover();
+  await expect(bubble).toHaveAttribute("data-open", "true");
+  await page.getByRole("button", { name: "Try an interaction", exact: true }).click();
+  await expect(page.locator(".stream-alert")).toHaveClass(/visible/);
+  await page.locator(".stream-alert").hover();
+  await expect(root(page)).toHaveAttribute("data-active", "true");
+  await expect(bubble).toHaveAttribute("data-open", "true");
 });
