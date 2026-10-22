@@ -111,12 +111,12 @@ export default function LiquidSculptureHero() {
 
   return <div className="closing-sculpture" data-renderer={ready ? "webgl" : "image"}>
     <div className="liquid-sculpture-stage" ref={stage}>
-      <img ref={image} src="/sculpture/hyperchat-hc.webp" width="1000" height="480" loading="lazy" decoding="async"
-        alt="HyperChat HC monogram in brushed copper, with its signature speech-bubble tail." />
+      <img ref={image} src="/sculpture/hyperchat-wordmark.webp" width="1000" height="220" loading="lazy" decoding="async"
+        alt="HYPERCHAT — an interactive wordmark in stone." />
     </div>
     <div className="liquid-sculpture-caption">
       <span>{staticMode ? "A SMALL CONNECTION. A LASTING IMPRESSION." : "MOVE OR TOUCH TO MAKE A CONNECTION."}</span>
-      {ready && <button type="button" onClick={stir}>Bring HC to life <ArrowUpRight size={12} aria-hidden="true" /></button>}
+      {ready && <button type="button" onClick={stir}>Bring HyperChat to life <ArrowUpRight size={12} aria-hidden="true" /></button>}
     </div>
   </div>;
 }

@@ -45,3 +45,7 @@ The display font is selected by the single `src` line in `src/font-config.css`; 
 ## Closing HC monogram
 
 `public/sculpture/hyperchat-hc.webp` is a copper adaptation of the owner's supplied HC logo, created with the available image-generation tool. It preserves the joined letters and speech-bubble tail, with shallow extrusion and restrained metallic shading. The transparent 1000×480 optimized image is used by both the liquid particle effect and its static fallback. It replaces the rejected ring sculpture. No external artwork is requested at runtime. See [LIQUID_SCULPTURE.md](LIQUID_SCULPTURE.md) for provenance and verification limits.
+
+## Active closing wordmark
+
+The closing interaction now uses `public/sculpture/hyperchat-wordmark.webp`: full-width HYPERCHAT typography in stone #8C847B, rendered from the bundled SIL-licensed Inter font at weight 900. This transparent 1000×220 local asset replaces the copper HC sculpture in the page and retains the same liquid-particle interaction. The copper adaptation is retained as an unused asset. See `scripts/render-hyperchat-wordmark.mjs` for reproducible typography rendering.

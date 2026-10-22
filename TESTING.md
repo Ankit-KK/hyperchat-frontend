@@ -133,3 +133,10 @@ Verified desktop software WebGL interaction, offscreen pause, context loss and
 preference teardown; desktop/tablet/mobile static fallback, overflow, CTA and
 accessibility checks passed. Inspected desktop active and fallback screenshots.
 Physical GPU devices and hosted deployment were not tested in this change.
+
+## Full-wordmark liquid effect — 22 October 2026
+
+Replaced the active HC image with the stone HYPERCHAT wordmark and a wide stage.
+Build passed; liquid-sculpture suite passed 7 cases with 2 intentional GPU skips.
+Desktop WebGL interaction and cleanup, plus desktop/tablet/mobile fallback,
+accessibility, overflow and CTA checks passed. Inspected the desktop layout.

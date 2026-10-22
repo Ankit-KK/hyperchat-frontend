@@ -62,7 +62,7 @@ test("real GPU effect loads on view, reacts, pauses offscreen and releases resou
   expect(Number(await canvas.getAttribute("data-particles"))).toBeLessThan(40000);
   await page.addStyleTag({ content: ".mascot-cursor { display:none!important }" });
   const before = await canvas.screenshot();
-  await page.getByRole("button", { name: "Bring HC to life" }).focus();
+  await page.getByRole("button", { name: "Bring HyperChat to life" }).focus();
   await page.keyboard.press("Enter");
   await page.waitForTimeout(350);
   const after = await canvas.screenshot();

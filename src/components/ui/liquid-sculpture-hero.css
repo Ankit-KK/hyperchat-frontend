@@ -1,5 +1,5 @@
-.closing-sculpture { max-width: 1000px; margin: 26px auto 0; }
-.liquid-sculpture-stage { position: relative; width: 100%; aspect-ratio: 1000 / 480; touch-action: pan-y; }
+.closing-sculpture { max-width: none; margin: 26px auto 0; }
+.liquid-sculpture-stage { position: relative; width: 100%; aspect-ratio: 1000 / 220; touch-action: pan-y; }
 .liquid-sculpture-stage img, .liquid-sculpture-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .liquid-sculpture-stage img { object-fit: contain; }
 .liquid-sculpture-stage canvas { opacity: 0; }
