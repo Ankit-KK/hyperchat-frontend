@@ -123,3 +123,13 @@ Current build: entry JavaScript approximately 389 KB (130 KB gzip), CSS 38 KB (9
 - Real payments, accounts, applications, identity verification, OBS/provider connections and production voice generation are outside this landing-page preview.
 - Safari, Firefox, physical iOS/Android, screen readers and the hosted deployment remain unverified.
 - ElevenLabs is not exposed in this Codex session. The image uses the available image-generation tool; voice examples use local device voices with a readable fallback. See ASSET_REQUIREMENTS.md for a future consistent voice-asset brief.
+
+## HC artwork replacement — 22 October 2026
+
+Replaced the closing rings with the owner's HC silhouette adapted into copper.
+`npm run build` passed. `npx playwright test tests/liquid-sculpture.spec.ts`
+passed 7 cases; 2 duplicate mobile/tablet GPU cases intentionally skipped.
+Verified desktop software WebGL interaction, offscreen pause, context loss and
+preference teardown; desktop/tablet/mobile static fallback, overflow, CTA and
+accessibility checks passed. Inspected desktop active and fallback screenshots.
+Physical GPU devices and hosted deployment were not tested in this change.

@@ -1,14 +1,13 @@
 # Liquid sculpture finale
 
-The closing “Make it mean more” section uses a local sand/copper connection
-sculpture with a pointer-reactive WebGL2 flow and particle effect. The existing
+The closing “Make it mean more” section uses a local copper HC monogram with a pointer-reactive WebGL2 flow and particle effect. The existing
 heading, CTA and footer remain in place. There is no extra hero, navigation bar,
 external font/image request or backend functionality.
 
 ## Implementation
 
 - `src/components/ui/liquid-sculpture-hero.tsx`: viewport-gated engine import,
-  image fallback, pointer/touch handling, keyboard “Stir the sculpture” control,
+  image fallback, pointer/touch handling, keyboard “Bring HC to life” control,
   resize/visibility/preference handling and resource cleanup.
 - `src/components/ui/liquid-sculpture-hero.css`: closing-section presentation.
 - `src/lib/liquid-sculpture-engine.ts`: adapted from the supplied Sculpture Hero
@@ -17,9 +16,10 @@ external font/image request or backend functionality.
   density 0.55; pixel ratio is capped at 1.5 (1 on lower-power devices). Ambient
   animation is disabled. Simulation pauses offscreen/when the document is hidden
   and stops after settling. Previously supplied stock artwork is not used.
-- `public/sculpture/hyperchat-connection.webp`: original procedural illustration
-  of interlocking forms, rendered with directional shading in the approved
-  palette. Self-hosted, 1000×480, approximately 40 KB; no colorful gradients.
+- `public/sculpture/hyperchat-hc.webp`: copper adaptation of the owner's supplied
+  HC logo, preserving the joined letters and speech-bubble tail. Created with
+  the authorized image-generation tool, then optimized as a transparent,
+  self-hosted 1000×480 WebP. No neon colors or external image requests.
 
 The engine is a separate dynamic bundle, loaded only when the sculpture enters
 view. Reduced-motion and data-saving preferences use the static artwork without
@@ -33,18 +33,13 @@ Effect strength, radius, density and return speed are centralized in the
 component's `options` object. Keep ambient animation disabled unless measured
 performance justifies changing it. The image must remain local and canvas-readable.
 
-The original geometry source is `scripts/generate-connection-sculpture.py`.
-To regenerate the WebP, run from the repository root:
-
-```sh
-python3 scripts/generate-connection-sculpture.py
-node scripts/render-connection-sculpture.mjs
-```
-
-The asset-only rendering helper requires system Chromium at `/usr/bin/chromium`,
-Python/Pillow and the existing development dependencies, and temporarily uses
-port 5183. It removes its generated intermediate SVG after exporting the WebP.
-These tools are not required for application builds or Vercel deployment.
+The copper artwork was generated from the owner's HC logo at
+`https://pub-3968c5ed4c4c448d85e9dc68e6552634.r2.dev/hc-logo.png`.
+Direction: preserve the HC silhouette and speech tail; near-front view, shallow
+extrusion, brushed copper, restrained directional lighting, transparent background,
+no neon, rings or additional objects. The optimized WebP is the deployment asset;
+no generation service is needed at build time. The obsolete ring artwork and its
+generation scripts have been removed.
 
 ## Verification limits
 
