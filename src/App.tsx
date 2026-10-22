@@ -11,6 +11,8 @@ import Navigation from "./components/Navigation";
 import ProductHero from "./components/ProductHero";
 import InteractionStory from "./components/InteractionStory";
 import CreatorFeatures from "./components/CreatorFeatures";
+import ScrollMorphHero from "./components/ui/scroll-morph-hero";
+import { showcaseCreators } from "./data/showcase-creators";
 import MascotCursor from "./components/MascotCursor";
 import { useExperienceMotion } from "./hooks/useExperienceMotion";
 
@@ -65,6 +67,7 @@ export default function App() {
         <ProductHero />
         <InteractionStory />
         <CreatorFeatures />
+        <ScrollMorphHero creators={showcaseCreators} />
         <section
           className="onboarding section-shell light"
           id="onboarding"

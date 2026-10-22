@@ -1,4 +1,17 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+/* shadcn utilities share HyperChat's existing palette and typography. */
+@theme inline {
+  --font-sans: "Inter Variable", sans-serif;
+  --font-mono: ui-monospace, monospace;
+  --color-background: var(--charcoal);
+  --color-foreground: var(--ivory);
+  --color-primary: var(--copper);
+  --color-primary-foreground: var(--charcoal);
+  --color-border: var(--stone);
+  --color-ring: var(--copper);
+}
+
 :root {
   font-family: "Inter Variable", sans-serif;
   color: #f3ede2;

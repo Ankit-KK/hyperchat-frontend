@@ -10,7 +10,7 @@ test("responsive platform hero, complete navigation and scroll experience", asyn
     "Their voice.",
   );
   await page.evaluate(() => document.fonts.ready);
-  await expect(page.locator("main > section")).toHaveCount(6);
+  await expect(page.locator("main > section")).toHaveCount(7);
   await expect(page.locator("canvas")).toHaveCount(0);
   await expect(page.locator(".hero-content")).toContainText(
     "The interaction platform for live creators.",

@@ -1,5 +1,14 @@
 # HyperChat V2 verification
 
+## Creator scroll-morph showcase — 22 October 2026
+
+- Added 20 explicitly fictional creator cards after the creator toolkit. The supplied scatter/line/circle/arch concept is adapted to native page scrolling, existing Lenis, the neutral/copper palette and locally rendered placeholder boxes.
+- Frozen-lockfile installation and TypeScript/Vite production build passed. Framer Motion is emitted separately (153 KB / 51 KB gzip); entry JavaScript is 426 KB / 142 KB gzip. No new image requests, credentials or backend services.
+- Six new showcase cases passed across desktop 1440×1000, tablet 820×1180 and mobile 390×844: forward/reverse morph, final-card reachability, click flip, scroll exit, keyboard grid/flips, reduced-motion layout, no horizontal overflow and zero serious/critical axe findings.
+- Full regression run: 61 passed, 26 intentional desktop-only mascot skips, and three failures from the old six-section count. Updated that assertion to seven sections; all three affected navigation/scroll cases then passed. No other assertions were weakened or removed.
+- Rendered circle/arc screenshots reviewed at all three sizes; desktop list alignment verified in development/StrictMode with no page errors. Emulated touch taps open the list and flip/unflip a card. Physical devices, Safari/Firefox and the hosted deployment remain unverified.
+- Added shadcn-compatible aliases, `components.json`, shared `cn`, and the `src/components/ui` folder. See [CREATOR_SHOWCASE.md](CREATOR_SHOWCASE.md) for integration details and editing placeholder profiles. Existing fonts, mascot and demo logic were preserved.
+
 ## Hero message field and alert hover — 21 October 2026
 
 - Production build and all **13 Chromium mascot scenarios passed**.
