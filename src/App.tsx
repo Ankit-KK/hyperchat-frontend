@@ -11,6 +11,7 @@ import Navigation from "./components/Navigation";
 import ProductHero from "./components/ProductHero";
 import InteractionStory from "./components/InteractionStory";
 import CreatorFeatures from "./components/CreatorFeatures";
+import LiquidSculptureHero from "./components/ui/liquid-sculpture-hero";
 import ScrollMorphHero from "./components/ui/scroll-morph-hero";
 import { showcaseCreators } from "./data/showcase-creators";
 import MascotCursor from "./components/MascotCursor";
@@ -170,7 +171,7 @@ export default function App() {
           </div>
         </section>
         <section
-          className="closing section-shell light"
+          className="closing closing-liquid section-shell light"
           id="next"
           aria-labelledby="closing-title"
         >
@@ -178,6 +179,7 @@ export default function App() {
             <span>05 / MORE THAN A MESSAGE</span>
             <span>MADE FOR THE MOMENTS BETWEEN</span>
           </div>
+          <LiquidSculptureHero />
           <div className="closing-content" data-reveal>
             <span className="eyebrow">LET YOUR AUDIENCE BE PART OF IT.</span>
             <h2 id="closing-title">

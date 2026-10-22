@@ -1,5 +1,13 @@
 # HyperChat V2 verification
 
+## Liquid sculpture finale — 22 October 2026
+
+- Production build passed. Original local 1000×480 sand/copper artwork is approximately 38 KB; the viewport-loaded simulation bundle is 23.5 KB (8.1 KB gzip). No additional application dependencies or external imagery.
+- All seven sculpture checks passed: actual Chromium software-WebGL2 rendering and changed pixels after interaction, offscreen pause, reduced-motion teardown/reactivation, context-loss recovery, plus static fallback/accessibility/CTA checks across desktop, tablet and mobile. Two duplicate GPU cases are intentionally skipped on tablet/mobile projects.
+- Combined sculpture/landing run returned 14 passes, two intentional skips and two skip-link focus failures. The keyboard test sent Tab before React's first focus target was mounted. Added an explicit attachment wait while preserving the focus assertion; all three desktop/tablet/mobile keyboard cases then passed. Responsive navigation and existing creator-panel checks also passed.
+- Desktop active-effect and responsive fallback screenshots were reviewed. Reduced-motion and unsupported-WebGL users retain the same sculpture and working CTA. Physical GPU performance, Safari/Firefox and the hosted deployment remain unverified.
+- See [LIQUID_SCULPTURE.md](LIQUID_SCULPTURE.md) for source attribution, lifecycle/performance settings and original asset regeneration.
+
 ## Creator scroll-morph showcase — 22 October 2026
 
 - Added 20 explicitly fictional creator cards after the creator toolkit. The supplied scatter/line/circle/arch concept is adapted to native page scrolling, existing Lenis, the neutral/copper palette and locally rendered placeholder boxes.

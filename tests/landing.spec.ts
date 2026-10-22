@@ -117,6 +117,8 @@ test("keyboard navigation, reduced motion and demo without WebGL", async ({
     } as typeof original;
   });
   await page.goto("/");
+  // Wait for React to mount the first focus target before sending keyboard input.
+  await expect(page.getByText("Skip to content")).toBeAttached();
   await page.keyboard.press("Tab");
   await expect(page.getByText("Skip to content")).toBeFocused();
   await page.keyboard.press("Enter");

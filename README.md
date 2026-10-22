@@ -35,6 +35,8 @@ Run `npm run dev` to see the change immediately. All headings and editorial disp
 
 ## Experience
 
+- Interactive liquid sculpture in the closing section, with a local original visual, reduced-motion fallback and lazy WebGL loading. See [LIQUID_SCULPTURE.md](LIQUID_SCULPTURE.md).
+
 - Scroll-morph creator showcase with 20 dummy profiles, card flips and an accessible list. Edit `src/data/showcase-creators.ts`; see [CREATOR_SHOWCASE.md](CREATOR_SHOWCASE.md) for component and shadcn structure details.
 
 - Optional animated mascot cursor on supported desktop pointers, using the supplied videos. See [MASCOT_CURSOR.md](MASCOT_CURSOR.md) for states, speech timing, accessibility behavior and asset inventory.
