@@ -190,9 +190,6 @@ export default function App() {
             </a>
             <p>Explore the preview. See what a small interaction can become.</p>
           </div>
-          <div className="closing-word" aria-hidden="true">
-            HYPERCHAT
-          </div>
         </section>
       </main>
       <footer className="footer">

@@ -1441,15 +1441,6 @@ main,
   color: #655d53;
   margin-top: 20px;
 }
-.closing-word {
-  font-size: 14.5vw;
-  line-height: 0.9;
-  letter-spacing: -0.075em;
-  font-weight: 700;
-  text-align: center;
-  margin: 10px -2vw -1.5vw;
-  color: #8c847b;
-}
 .footer {
   background: var(--ivory);
   color: #655d53;
@@ -2344,10 +2335,6 @@ main,
   }
   .closing {
     padding-bottom: 0;
-  }
-  .closing-word {
-    font-size: 14.5vw;
-    margin: 10px -2vw -1vw;
   }
   .footer {
     padding: 22px 6vw;
