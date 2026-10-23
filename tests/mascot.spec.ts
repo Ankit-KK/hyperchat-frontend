@@ -150,8 +150,8 @@ test("scroll, resize, hash navigation and departure preserve positioning and pau
   let point = await page.locator(".mascot-hotspot").boundingBox();
   expect(point!.x + 3).toBeCloseTo(600, 0);
   expect(point!.y + 3).toBeCloseTo(350, 0);
-  await page.getByRole("navigation").getByText("For creators").click();
-  await expect(page).toHaveURL(/#creators/);
+  await page.getByRole("navigation", { name: "Main navigation" }).getByText("For creators").click();
+  await expect(page).toHaveURL(/\/creators/);
   await expect(page.locator("html")).not.toHaveClass(/lenis-scrolling/);
   await page.mouse.move(900, 600);
   await page.setViewportSize({ width: 1024, height: 768 });
@@ -293,7 +293,7 @@ test("additional original clips play for movement, alternate hover and alternate
   await page.mouse.move(700, 450);
   await expect(root(page)).toHaveAttribute("data-state", "leaning");
   await expect(currentVideo(page)).toHaveAttribute("src", "/mascot/mascot-9.webm");
-  const link = page.getByRole("navigation").getByText("For creators");
+  const link = page.getByRole("navigation", { name: "Main navigation" }).getByText("For creators");
   // Prevent navigation only in this fixture to exercise two clicks on one control.
   await link.evaluate((el) => el.addEventListener("click", (event) => event.preventDefault()));
   await link.hover();

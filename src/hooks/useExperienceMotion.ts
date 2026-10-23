@@ -41,29 +41,31 @@ export function useExperienceMotion(root: RefObject<HTMLDivElement | null>) {
             scrub: true,
           },
         });
-        gsap.to(".theatre-scene", {
-          rotationY: 0,
-          rotationX: 0,
-          y: -12,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".hero",
-            start: "top top",
-            end: "bottom top",
-            scrub: 1,
-          },
-        });
-        gsap.to(".scene-word", {
-          yPercent: -30,
-          opacity: 0.45,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".hero",
-            start: "top top",
-            end: "bottom top",
-            scrub: 1,
-          },
-        });
+        if (root.current?.querySelector(".hero")) {
+          gsap.to(".theatre-scene", {
+            rotationY: 0,
+            rotationX: 0,
+            y: -12,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".hero",
+              start: "top top",
+              end: "bottom top",
+              scrub: 1,
+            },
+          });
+          gsap.to(".scene-word", {
+            yPercent: -30,
+            opacity: 0.45,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".hero",
+              start: "top top",
+              end: "bottom top",
+              scrub: 1,
+            },
+          });
+        }
       }, root);
       return () => {
         context.revert();

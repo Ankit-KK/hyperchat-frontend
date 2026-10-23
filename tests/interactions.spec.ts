@@ -89,7 +89,7 @@ test("moderation queue supports independent decisions, undo and reset", async ({
   page,
 }, info) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
+  await page.goto("/features");
   await page.getByRole("tab", { name: "05 Community moderation" }).click();
   const ari = page.getByRole("article", {
     name: "Example interaction from Ari",
@@ -119,7 +119,7 @@ test("interaction history filters records and exports selected fictional data", 
   page,
 }, info) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
+  await page.goto("/features");
   await page.getByRole("tab", { name: "04 Interaction history" }).click();
   const search = page.getByRole("searchbox", {
     name: "Filter example interactions",
@@ -192,7 +192,7 @@ test("soundboard plays only on request, stops and closes audio on tab change", a
           }
         ).audioEvents,
     );
-  await page.goto("/");
+  await page.goto("/features");
   await page.getByRole("tab", { name: "03 Soundboard" }).click();
   expect(await events()).toEqual({ starts: 0, closes: 0 });
   await page.getByRole("button", { name: "Play Warm bell" }).click();
@@ -226,7 +226,7 @@ test("unavailable audio gives feedback and leaves the toolkit usable", async ({
   await page.addInitScript(() =>
     Object.defineProperty(window, "AudioContext", { value: undefined }),
   );
-  await page.goto("/");
+  await page.goto("/features");
   await page.getByRole("tab", { name: "03 Soundboard" }).click();
   await page.getByRole("button", { name: "Play Warm bell" }).click();
   await expect(page.locator(".sound-status")).toContainText(
@@ -246,7 +246,7 @@ test("overlay sizing and OBS source toggles change their previews", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
+  await page.goto("/features");
   await page.getByRole("tab", { name: "02 On-stream alerts" }).click();
   const initial = await page.locator(".sample-alert").boundingBox();
   await page.getByRole("button", { name: "125%", exact: true }).click();

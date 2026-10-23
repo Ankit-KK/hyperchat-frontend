@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 const links = [
-  { href: "#interaction", text: "The interaction" },
-  { href: "#creators", text: "For creators" },
-  { href: "#control", text: "Your control" },
+  { href: "/features", text: "Features" },
+  { href: "/creators", text: "For creators" },
+  { href: "/company", text: "Company & support" },
 ];
 export default function Navigation() {
   const [expanded, setExpanded] = useState(false);
@@ -20,7 +20,7 @@ export default function Navigation() {
   }, [expanded]);
   return (
     <header className="header">
-      <a href="#main" className="brand" title="HyperChat home">
+      <a href="/" className="brand" title="HyperChat home">
         hyperchat<span>V2</span>
       </a>
       <nav
@@ -32,6 +32,11 @@ export default function Navigation() {
           <a
             href={link.href}
             key={link.href}
+            aria-current={
+              window.location.pathname.replace(/\/$/, "") === link.href
+                ? "page"
+                : undefined
+            }
             onClick={() => setExpanded(false)}
           >
             {link.text}
@@ -40,7 +45,7 @@ export default function Navigation() {
       </nav>
       <a
         className="header-cta"
-        href="#onboarding"
+        href="/creators#onboarding"
         onClick={() => setExpanded(false)}
       >
         Creator access <ArrowUpRight size={15} />

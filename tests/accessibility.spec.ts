@@ -5,7 +5,7 @@ test("hero and interactive creator panels have no serious accessibility violatio
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
+  await page.goto("/features");
   for (const tab of [
     null,
     "04 Interaction history",

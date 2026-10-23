@@ -79,3 +79,16 @@ See [TESTING.md](TESTING.md) for measured results, [PRODUCT_AUDIT.md](PRODUCT_AU
 The live HyperChat site was verified for product facts only; its design/assets were not copied. The supplied logo URL is now accessible, but its gradient artwork does not fit the latest direction; navigation retains the existing typographic wordmark. No unapproved recolored variant was created. ElevenLabs is not exposed here. The previous studio image is no longer displayed; the home section uses an original interface diagram. Voice previews currently use local device voices, pending a separate audio-section fix. Production AI voice, provider readiness and exact KAIRO fidelity are not claimed.
 
 Playwright verifies the production build at desktop 1440×1000, tablet 820×1180 and mobile 390×844. It uses system Chromium when present; set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to override, or install Playwright Chromium on other machines. Results/screenshots are written to ignored `test-results/`. Real-device Safari/Firefox and hosted-deployment checks remain separate follow-up work.
+
+## Public pages
+
+- `/`: focused landing page with interactive demo, short feature overview, creator showcase and closing CTA.
+- `/features`: interaction journey, detailed toolkit previews and moderation controls.
+- `/creators`: planned V2 onboarding, OBS preparation and creator FAQs.
+- `/company`: company introduction and email support.
+
+Pages use normal links and browser document navigation, with a shared React shell
+and page components in `src/pages/`. Direct-entry rewrites for the three content
+pages are configured in `vercel.json`. The brand link returns home; footer links
+point to the existing published privacy, terms and refunds policies on
+`www.hyperchat.space`. No legal policies or backend workflows were recreated.

@@ -140,3 +140,14 @@ Replaced the active HC image with the stone HYPERCHAT wordmark and a wide stage.
 Build passed; liquid-sculpture suite passed 7 cases with 2 intentional GPU skips.
 Desktop WebGL interaction and cleanup, plus desktop/tablet/mobile fallback,
 accessibility, overflow and CTA checks passed. Inspected the desktop layout.
+
+## Multi-page public site — 23 October 2026
+
+Homepage reduced to four sections. Features, creator onboarding/FAQ, and company/support
+moved to dedicated paths. Production build passed. The 66-case content suite had
+61 passes and 2 intentional duplicate GPU skips; 3 mobile menu assertions initially
+looked inside a closed menu. After opening the menu before asserting active links,
+all 3 affected cases passed. Two targeted mascot navigation/playback cases also passed.
+Checks cover direct entry/reload, browser history, navigation, mobile overflow,
+accessibility, interaction previews, speech fallbacks, creator animation and liquid effect.
+Vercel direct-entry rewrites are configured; hosted deployment was not verified.
