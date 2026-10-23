@@ -3,7 +3,7 @@ export default function CompanyPage() {
   return (
     <>
       <PageIntro
-        eyebrow="COMPANY & SUPPORT"
+        eyebrow="COMPANY"
         title="Built around human connection."
         copy="HyperChat is a product of Streamheart Private Limited. We help live creators bring their audiences into the conversation."
       />
@@ -31,13 +31,10 @@ export default function CompanyPage() {
           <article>
             <h3>Need help?</h3>
             <p>
-              Tell us what happened, which browser you use, and any error
-              message you saw. Please do not send passwords or private source
-              links.
+              Find help with OBS alerts, audio, voice messages, and moderation,
+              or contact the team.
             </p>
-            <a href="mailto:ankit@hyperchat.space?subject=HyperChat%20support">
-              ankit@hyperchat.space
-            </a>
+            <a href="/support">Visit Support</a>
           </article>
           <article>
             <h3>Company</h3>

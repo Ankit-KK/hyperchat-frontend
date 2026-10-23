@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import FeaturesPage from "./pages/FeaturesPage";
 import CreatorsPage from "./pages/CreatorsPage";
 import CompanyPage from "./pages/CompanyPage";
+import SupportPage from "./pages/SupportPage";
 import PageIntro from "./pages/PageIntro";
 
 export default function App() {
@@ -16,7 +17,8 @@ export default function App() {
     "/": "Your stream. Your community.",
     "/features": "Features",
     "/creators": "For creators",
-    "/company": "Company & support",
+    "/company": "Company",
+    "/support": "Support",
   };
   useEffect(() => {
     document.title = `HyperChat — ${titles[path] ?? "Page not found"}`;
@@ -28,6 +30,8 @@ export default function App() {
       <FeaturesPage />
     ) : path === "/creators" ? (
       <CreatorsPage />
+    ) : path === "/support" ? (
+      <SupportPage />
     ) : path === "/company" ? (
       <CompanyPage />
     ) : (
@@ -85,7 +89,8 @@ export default function App() {
         <nav className="footer-links" aria-label="Footer navigation">
           <a href="/features">Features</a>
           <a href="/creators">For creators</a>
-          <a href="/company">Company & support</a>
+          <a href="/company">Company</a>
+          <a href="/support">Support</a>
           <a href="https://www.hyperchat.space/privacy-policy">Privacy</a>
           <a href="https://www.hyperchat.space/terms-and-conditions">Terms</a>
           <a href="https://www.hyperchat.space/cancellation-refunds">Refunds</a>

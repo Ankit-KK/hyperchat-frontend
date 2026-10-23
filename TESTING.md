@@ -162,3 +162,11 @@ Build passed. Homepage/page navigation, accessibility, creator showcase and liqu
 checks passed across desktop/tablet/mobile (28 cases; 2 duplicate GPU skips).
 One tablet navigation case hit a temporary 404 during a concurrent rebuild;
 it passed when rerun against the completed build.
+
+## Dedicated support page — 23 October 2026
+
+Production build passed. All 18 landing/page checks and 3 support interaction
+checks passed across desktop, tablet and mobile. Verified direct entry/reload,
+active navigation, accessibility, keyboard FAQ expansion, topic anchors, contact
+mailto destination, and unchanged homepage section count. Inspected the mobile
+Support screenshot. Email delivery and the hosted Vercel deployment were not tested.

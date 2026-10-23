@@ -53,6 +53,7 @@ for (const [path, title] of [
   ["/features", "More ways to join the moment."],
   ["/creators", "Your next chapter starts here."],
   ["/company", "Built around human connection."],
+  ["/support", "Keep the moment going."],
 ]) {
   test(`direct entry, reload, accessibility and links on ${path}`, async ({
     page,

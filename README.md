@@ -85,10 +85,11 @@ Playwright verifies the production build at desktop 1440×1000, tablet 820×1180
 - `/`: original landing experience with interactive demo, interaction story, toolkit previews, creator showcase, onboarding summary, controls and closing CTA.
 - `/features`: interaction journey, detailed toolkit previews and moderation controls.
 - `/creators`: planned V2 onboarding, OBS preparation and creator FAQs.
-- `/company`: company introduction and email support.
+- `/company`: company introduction and partnership contact.
+- `/support`: OBS/audio troubleshooting, TTS and recorded-voice guidance, moderation FAQs and email support.
 
 Pages use normal links and browser document navigation, with a shared React shell
-and page components in `src/pages/`. Direct-entry rewrites for the three content
+and page components in `src/pages/`. Direct-entry rewrites for the content
 pages are configured in `vercel.json`. The brand link returns home; footer links
 point to the existing published privacy, terms and refunds policies on
 `www.hyperchat.space`. No legal policies or backend workflows were recreated.

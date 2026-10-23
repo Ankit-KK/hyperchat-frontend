@@ -3,7 +3,8 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 const links = [
   { href: "/features", text: "Features" },
   { href: "/creators", text: "For creators" },
-  { href: "/company", text: "Company & support" },
+  { href: "/company", text: "Company" },
+  { href: "/support", text: "Support" },
 ];
 export default function Navigation() {
   const [expanded, setExpanded] = useState(false);
