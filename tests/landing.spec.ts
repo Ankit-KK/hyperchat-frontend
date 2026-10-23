@@ -1,18 +1,24 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-test("short homepage links to dedicated pages and preserves browser navigation", async ({
+test("original homepage sections link to dedicated pages and preserves browser navigation", async ({
   page,
 }, info) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await expect(page.locator("main > section")).toHaveCount(4);
+  await expect(page.locator("main > section")).toHaveCount(7);
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "Their voice.",
   );
-  await expect(page.locator("#onboarding, #control, #creators")).toHaveCount(0);
+  await expect(page.locator("#onboarding, #control, #creators")).toHaveCount(3);
+  await expect(
+    page.locator(".page-faq, .company-content, .home-overview"),
+  ).toHaveCount(0);
+  await expect(
+    page.getByRole("tab", { name: "01 Viewer interactions" }),
+  ).toBeAttached();
   await page
     .getByRole("button", { name: "Try an interaction", exact: true })
     .click();
@@ -55,13 +61,15 @@ for (const [path, title] of [
     await page.goto(path);
     await page.reload();
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(title);
-    if (info.project.name === "mobile") await page.getByRole("button", { name: "Open navigation" }).click();
+    if (info.project.name === "mobile")
+      await page.getByRole("button", { name: "Open navigation" }).click();
     await expect(
       page
         .getByRole("navigation", { name: "Main navigation" })
         .locator('[aria-current="page"]'),
     ).toHaveAttribute("href", path);
-    if (info.project.name === "mobile") await page.getByRole("button", { name: "Close navigation" }).click();
+    if (info.project.name === "mobile")
+      await page.getByRole("button", { name: "Close navigation" }).click();
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,

@@ -58,7 +58,7 @@ export default function ProductHero() {
                   : "Try an interaction"}
               <Play size={14} fill="currentColor" />
             </button>
-            <a href="/features" className="text-link">
+            <a href="#creators" className="text-link">
               Explore the tools <ArrowUpRight size={15} />
             </a>
           </div>
@@ -170,7 +170,7 @@ export default function ProductHero() {
         </div>
       </div>
       <div className="hero-bottom eyebrow">
-        <a href="#overview">
+        <a href="#how-it-works">
           <ArrowDown size={15} /> MADE FOR THE MOMENTS BETWEEN
         </a>
         <span>YOU KEEP STREAMING. WE BRING THE INTERACTION.</span>

@@ -82,7 +82,7 @@ Playwright verifies the production build at desktop 1440×1000, tablet 820×1180
 
 ## Public pages
 
-- `/`: focused landing page with interactive demo, short feature overview, creator showcase and closing CTA.
+- `/`: original landing experience with interactive demo, interaction story, toolkit previews, creator showcase, onboarding summary, controls and closing CTA.
 - `/features`: interaction journey, detailed toolkit previews and moderation controls.
 - `/creators`: planned V2 onboarding, OBS preparation and creator FAQs.
 - `/company`: company introduction and email support.

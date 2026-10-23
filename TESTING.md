@@ -151,3 +151,14 @@ all 3 affected cases passed. Two targeted mascot navigation/playback cases also 
 Checks cover direct entry/reload, browser history, navigation, mobile overflow,
 accessibility, interaction previews, speech fallbacks, creator animation and liquid effect.
 Vercel direct-entry rewrites are configured; hosted deployment was not verified.
+
+## Homepage scope correction — 23 October 2026
+
+Restored the original seven homepage sections and hero anchor links. The added
+FAQ, company and support content stays on dedicated pages. Onboarding and control
+sections now use shared components to avoid divergent page copies. Homepage tests
+assert the restored sections and the absence of FAQ/company content on home.
+Build passed. Homepage/page navigation, accessibility, creator showcase and liquid
+checks passed across desktop/tablet/mobile (28 cases; 2 duplicate GPU skips).
+One tablet navigation case hit a temporary 404 during a concurrent rebuild;
+it passed when rerun against the completed build.
