@@ -93,3 +93,6 @@ and page components in `src/pages/`. Direct-entry rewrites for the content
 pages are configured in `vercel.json`. The brand link returns home; footer links
 point to the existing published privacy, terms and refunds policies on
 `www.hyperchat.space`. No legal policies or backend workflows were recreated.
+
+The shared footer adapts the supplied pushpin/torn-paper component in HyperChat's
+neutral palette. See [FOOTER.md](FOOTER.md) for interactions, provenance and editing.

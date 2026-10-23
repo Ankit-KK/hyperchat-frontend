@@ -170,3 +170,12 @@ checks passed across desktop, tablet and mobile. Verified direct entry/reload,
 active navigation, accessibility, keyboard FAQ expansion, topic anchors, contact
 mailto destination, and unchanged homepage section count. Inspected the mobile
 Support screenshot. Email delivery and the hosted Vercel deployment were not tested.
+
+## HyperChat pushpin footer — 23 October 2026
+
+Production build passed. After fixing a brand accessible-label mismatch, all 27
+footer and landing-page tests passed on desktop/tablet/mobile. Verified link
+visibility, company attribution, viewport overflow, accessibility, keyboard pin
+activation, tear animation and reduced-motion changes, clipboard success/refusal,
+back-to-top and existing page navigation. Desktop and mobile screenshots inspected.
+No hosted deployment or actual email delivery was verified.

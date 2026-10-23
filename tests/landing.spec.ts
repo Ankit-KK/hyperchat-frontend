@@ -92,7 +92,7 @@ for (const [path, title] of [
     await page.screenshot({
       path: `test-results/page-${path.slice(1)}-${info.project.name}.png`,
     });
-    await page.getByRole("link", { name: "hyperchat V2" }).click();
+    await page.locator(".header .brand").click();
     await expect(page).toHaveURL(/\/$/);
   });
 }

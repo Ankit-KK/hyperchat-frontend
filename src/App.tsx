@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { ArrowUp } from "lucide-react";
+import PushpinTearFooter from "./components/ui/pushpin-tear-footer";
 import Navigation from "./components/Navigation";
 import MascotCursor from "./components/MascotCursor";
 import { useExperienceMotion } from "./hooks/useExperienceMotion";
@@ -81,25 +81,7 @@ export default function App() {
       <main id="main" tabIndex={-1}>
         {page}
       </main>
-      <footer className="footer">
-        <div className="footer-company">
-          <span>© {new Date().getFullYear()} HyperChat</span>
-          <p>HyperChat is a product of Streamheart Private Limited.</p>
-        </div>
-        <nav className="footer-links" aria-label="Footer navigation">
-          <a href="/features">Features</a>
-          <a href="/creators">For creators</a>
-          <a href="/company">Company</a>
-          <a href="/support">Support</a>
-          <a href="https://www.hyperchat.space/privacy-policy">Privacy</a>
-          <a href="https://www.hyperchat.space/terms-and-conditions">Terms</a>
-          <a href="https://www.hyperchat.space/cancellation-refunds">Refunds</a>
-          <a href="mailto:ankit@hyperchat.space">ankit@hyperchat.space</a>
-        </nav>
-        <a href="#main">
-          Back to top <ArrowUp size={15} />
-        </a>
-      </footer>
+      <PushpinTearFooter />
     </div>
   );
 }
