@@ -58,7 +58,7 @@ export function SupportPreview() {
         role="group"
         aria-label="Example interaction type"
       >
-        {["Message", "Voice"].map((type) => (
+        {["Message", "Text-to-speech"].map((type) => (
           <button
             key={type}
             aria-pressed={kind === type}
@@ -68,7 +68,7 @@ export function SupportPreview() {
           </button>
         ))}
       </div>
-      {kind === "Voice" ? (
+      {kind === "Text-to-speech" ? (
         <VoicePreview />
       ) : (
         <div className="support-message">

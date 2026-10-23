@@ -236,7 +236,7 @@ test("unavailable audio gives feedback and leaves the toolkit usable", async ({
     page.getByRole("button", { name: "Play Warm bell" }),
   ).toBeEnabled();
   await page.getByRole("tab", { name: "01 Viewer interactions" }).click();
-  await page.getByRole("button", { name: "Voice", exact: true }).click();
+  await page.getByRole("button", { name: "Text-to-speech", exact: true }).click();
   await expect(page.getByRole("tabpanel")).toContainText(
     "device-generated voice",
   );

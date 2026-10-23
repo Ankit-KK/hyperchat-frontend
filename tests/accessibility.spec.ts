@@ -14,7 +14,7 @@ test("hero and interactive creator panels have no serious accessibility violatio
   ]) {
     if (tab) await page.getByRole("tab", { name: tab }).click();
     if (tab === "01 Viewer interactions")
-      await page.getByRole("button", { name: "Voice", exact: true }).click();
+      await page.getByRole("button", { name: "Text-to-speech", exact: true }).click();
     const results = await new AxeBuilder({ page }).analyze();
     expect(
       results.violations.filter((violation) =>

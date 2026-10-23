@@ -65,7 +65,7 @@ test("device voice loads, only speaks on request, selects a local voice and clea
   await page.emulateMedia({ reducedMotion: "reduce" });
   await installSpeechMock(page);
   await page.goto("/");
-  await page.getByRole("button", { name: "Voice", exact: true }).click();
+  await page.getByRole("button", { name: "Text-to-speech", exact: true }).click();
   const play = page.getByRole("button", {
     name: "Play voice preview",
     exact: true,
@@ -122,7 +122,7 @@ test("device voice loads, only speaks on request, selects a local voice and clea
       () => (window as unknown as SpeechTestWindow).speechHarness.cancels,
     ),
   ).toBe(2);
-  await page.getByRole("button", { name: "Voice", exact: true }).click();
+  await page.getByRole("button", { name: "Text-to-speech", exact: true }).click();
   await play.click();
   await page.getByRole("tab", { name: "02 On-stream alerts" }).click();
   expect(
@@ -138,7 +138,7 @@ test("remote-only voices are never used and the readable interaction remains ava
   await page.emulateMedia({ reducedMotion: "reduce" });
   await installSpeechMock(page, [voices[0]]);
   await page.goto("/");
-  await page.getByRole("button", { name: "Voice", exact: true }).click();
+  await page.getByRole("button", { name: "Text-to-speech", exact: true }).click();
   await expect(
     page.getByRole("button", { name: "Play voice preview", exact: true }),
   ).toBeDisabled();
@@ -165,7 +165,7 @@ test("device speech failure reports feedback and allows a new preview", async ({
   await page.emulateMedia({ reducedMotion: "reduce" });
   await installSpeechMock(page, voices);
   await page.goto("/");
-  await page.getByRole("button", { name: "Voice", exact: true }).click();
+  await page.getByRole("button", { name: "Text-to-speech", exact: true }).click();
   await page
     .getByRole("button", { name: "Play voice preview", exact: true })
     .click();
@@ -194,7 +194,7 @@ test("a browser without speech synthesis keeps its message preview usable", asyn
     Reflect.deleteProperty(window, "SpeechSynthesisUtterance");
   });
   await page.goto("/");
-  await page.getByRole("button", { name: "Voice", exact: true }).click();
+  await page.getByRole("button", { name: "Text-to-speech", exact: true }).click();
   await expect(
     page.getByRole("button", { name: "Play voice preview", exact: true }),
   ).toBeDisabled();

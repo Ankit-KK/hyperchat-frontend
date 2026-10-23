@@ -12,53 +12,53 @@ const features = [
   {
     id: "interactions",
     name: "Viewer interactions",
-    heading: "Give every interaction a voice.",
-    copy: "Text, voice, sound, images, GIFs, and video. Let your audience join in through the interactions you choose to enable.",
+    heading: "Let viewers join in their own way.",
+    copy: "A typed message, text read aloud with AI text-to-speech, or a recording in the viewer’s own voice. Enable the interaction types that fit your community, including sounds, images, GIFs, and video.",
     detail:
-      "Try a device-generated voice example. Available interaction types depend on creator settings.",
+      "Try Message or Text-to-speech in the preview. The speech demo uses a device-generated voice; recorded voice messages use the viewer’s own recording.",
     label: "01 / PARTICIPATION",
   },
   {
     id: "alerts",
     name: "On-stream alerts",
     heading: "Bring the moment on screen.",
-    copy: "Make audience interactions part of your broadcast with visual alerts and audio events.",
-    detail: "Overlay appearance and scale can be configured for your stream.",
+    copy: "Turn audience messages and media into on-stream alerts. Adjust their appearance to fit your layout and keep the interaction part of the broadcast.",
+    detail: "Try the overlay sizes in this preview to see how an alert fits the broadcast area.",
     label: "02 / ALERTS",
   },
   {
     id: "soundboard",
     name: "Soundboard",
     heading: "An inside joke. On cue.",
-    copy: "Give your community another way to join in through soundboard interactions.",
+    copy: "Give viewers sounds they can use to react with your community—from a familiar cue to an inside joke everyone recognizes.",
     detail:
-      "Custom Soundboard requires creator eligibility and acceptance of the current terms.",
+      "Play the example tones here. Custom Soundboard access depends on creator eligibility and acceptance of the current terms.",
     label: "03 / SOUND",
   },
   {
     id: "reporting",
     name: "Interaction history",
     heading: "Keep track of the conversation.",
-    copy: "Find an interaction, revisit its context, and export your records. The details are there when you need them.",
+    copy: "Search for a viewer or interaction, check its status, and export records when you need a closer look after the stream.",
     detail:
-      "Explore fictional records here. Creator reporting is part of the documented V2 toolkit.",
+      "Try filtering the fictional records and downloading an example CSV. This preview does not access creator data.",
     label: "04 / INSIGHT",
   },
   {
     id: "moderation",
     name: "Community moderation",
     heading: "Your stream. Your boundaries.",
-    copy: "Review interactions, hide messages, and manage viewer restrictions with your moderation team.",
-    detail: "Choose manual review or automatic approval in creator settings.",
+    copy: "Decide what reaches your audience. Review incoming interactions with your moderation team, approve messages, or hide content that does not belong on your stream.",
+    detail: "Creator settings support manual review or automatic approval. Try Approve, Hide, and Undo in the example queue.",
     label: "05 / CONTROL",
   },
   {
     id: "obs",
     name: "OBS connection",
     heading: "Part of your existing setup.",
-    copy: "Connect HyperChat browser sources to OBS to bring audience alerts and audio into your broadcast.",
+    copy: "Add HyperChat browser sources to your OBS scene to bring in alerts and audio while you keep streaming on your existing platform.",
     detail:
-      "You stream on your existing platform. HyperChat adds the interactions.",
+      "Toggle alerts and audio in this illustration. Your actual source links come from your creator setup.",
     label: "06 / BROADCAST",
   },
 ];
@@ -93,9 +93,9 @@ export default function CreatorFeatures() {
           Built for <em>creators.</em>
         </h2>
         <p>
-          The tools around the broadcast.
+          Choose how viewers participate.
           <br />
-          The connection at the heart of it.
+          Shape what appears on stream, and stay in control as it happens.
         </p>
       </div>
       <div className="features-layout">
@@ -146,8 +146,8 @@ export default function CreatorFeatures() {
         </div>
       </div>
       <p className="capability-note">
-        A preview of documented V2 capabilities. Availability depends on creator
-        access, configuration, and rollout.
+        Explore local examples of the creator tools. Feature availability depends on
+        creator access, settings, and rollout.
       </p>
     </section>
   );
