@@ -193,8 +193,11 @@ export default function App() {
         </section>
       </main>
       <footer className="footer">
-        <span>© {new Date().getFullYear()} HyperChat</span>
-        <span>CREATOR TOOLS. HUMAN CONNECTION.</span>
+        <div className="footer-company">
+          <span>© {new Date().getFullYear()} HyperChat</span>
+          <p>HyperChat is a product of Streamheart Private Limited.</p>
+        </div>
+        <a href="mailto:ankit@hyperchat.space">ankit@hyperchat.space</a>
         <a href="#main">
           Back to top <ArrowUp size={15} />
         </a>

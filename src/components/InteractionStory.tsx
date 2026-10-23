@@ -1,16 +1,16 @@
 import { ArrowUpRight } from "lucide-react";
 const steps = [
   [
-    "An audience with a voice.",
-    "A message that lands. A voice you recognize. The sound your community knows by heart.",
+    "Choose how to join in.",
+    "On your creator page, viewers can send text, turn typed words into speech, or record a message in their own voice.",
   ],
   [
-    "A moment on your terms.",
-    "Your creator settings and moderation choices shape what reaches the broadcast.",
+    "You set the boundaries.",
+    "Your interaction preferences and moderation settings decide what can reach the stream. Review messages before they appear when approval is enabled.",
   ],
   [
-    "Something everyone shares.",
-    "Approved interactions become alerts and audio in your existing stream setup.",
+    "Bring it into the stream.",
+    "Eligible interactions join the queue and play through your OBS browser source as alerts and audio. Timing depends on your queue and moderation settings.",
   ],
 ];
 export default function InteractionStory() {
@@ -21,19 +21,19 @@ export default function InteractionStory() {
       aria-labelledby="story-title"
     >
       <div className="section-label">
-        <span>01 / FROM AUDIENCE TO EXPERIENCE</span>
+        <span>01 / HOW IT WORKS</span>
         <span>YOUR PLATFORM. A CLOSER COMMUNITY.</span>
       </div>
       <div className="section-heading" data-reveal>
         <h2 id="story-title">
-          A small interaction.
+          From their voice.
           <br />
-          <em>A different energy.</em>
+          <em>To your stream.</em>
         </h2>
         <p>
-          You bring the broadcast.
+          One creator page. Your existing stream.
           <br />
-          Give your audience a way to be part of it.
+          Give your audience a way to join the moment, with you in control.
         </p>
       </div>
       <ol className="story-steps">

@@ -1452,8 +1452,13 @@ main,
   gap: 20px;
   font-size: 9px;
 }
-.footer > span:nth-child(2) {
-  letter-spacing: 0.1em;
+.footer-company {
+  display: grid;
+  gap: 8px;
+  line-height: 1.6;
+}
+.footer-company p {
+  margin: 0;
 }
 .footer > a {
   display: flex;
@@ -2342,12 +2347,11 @@ main,
     font-size: 8px;
     gap: 17px;
   }
-  .footer > span:nth-child(2) {
-    order: 3;
+  .footer-company {
     width: 100%;
-    font-size: 7px;
+    font-size: 10px;
   }
-  .footer > a {
+  .footer > a:last-child {
     margin-left: auto;
   }
 }
