@@ -18,19 +18,19 @@ import MascotCursor from "./components/MascotCursor";
 import { useExperienceMotion } from "./hooks/useExperienceMotion";
 
 const onboarding = [
-  ["Apply", "Tell HyperChat about you and your channel."],
-  ["Manual review", "The team reviews your creator application."],
+  ["Introduce your channel", "Share your channel and the kind of live content you create when applications open."],
+  ["A human review", "The HyperChat team reviews your application before inviting you to the next step."],
   [
     "Account setup",
-    "Approved creators receive an invitation to set up their account.",
+    "If approved, follow your invitation to create your account and begin setup.",
   ],
   [
     "Didit verification",
-    "Complete identity verification as part of the planned V2 process.",
+    "Complete the identity check through Didit as part of the planned V2 onboarding process.",
   ],
   [
     "Activation",
-    "Creator access is activated after approval and verification.",
+    "After approval and verification, activate creator access and prepare your stream.",
   ],
 ];
 
@@ -75,7 +75,7 @@ export default function App() {
           aria-labelledby="onboarding-title"
         >
           <div className="section-label">
-            <span>03 / YOUR NEXT CHAPTER</span>
+            <span>03 / CREATOR ONBOARDING</span>
             <span>THOUGHTFUL FROM THE START</span>
           </div>
           <div className="section-heading" data-reveal>
@@ -86,7 +86,7 @@ export default function App() {
             </h2>
             <div>
               <p>
-                Creator access begins with an application and a human review.
+                A clear path from introducing your channel to setting up your first interaction. Here is the planned V2 onboarding journey.
               </p>
               <span className="note-tag">PLANNED V2 ONBOARDING</span>
             </div>
@@ -103,14 +103,17 @@ export default function App() {
           <div className="setup-note">
             <span className="eyebrow">AFTER ACTIVATION</span>
             <p>
-              Set your interaction preferences, choose your moderation settings,
-              and connect your OBS browser sources. Then bring HyperChat into
-              your broadcast.
+              Choose the interaction types viewers can use, set your moderation
+              preferences, and add your HyperChat browser sources to OBS.
+              Check your alerts and audio before going live.
             </p>
-            <span className="availability">
+            <div className="availability">
               V2 verification and activation are still being completed. This
               preview does not accept applications.
-            </span>
+              <a className="onboarding-contact" href="mailto:ankit@hyperchat.space?subject=HyperChat%20creator%20onboarding">
+                Ask about creator onboarding <ArrowUpRight size={14} aria-hidden="true" />
+              </a>
+            </div>
           </div>
         </section>
         <section

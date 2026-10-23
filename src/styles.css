@@ -1374,6 +1374,17 @@ main,
   border-left: 1px solid #cfc2b0;
   padding-left: 22px;
 }
+.onboarding-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 6px 0;
+  color: var(--charcoal);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.onboarding-contact svg { flex-shrink: 0; }
 .control {
   background: var(--charcoal);
 }
