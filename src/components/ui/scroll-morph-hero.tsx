@@ -81,11 +81,11 @@ function CreatorCard({ creator, index, total, phase, size, progress, mouse, grid
             <span className="showcase-card-name">{creator.name}</span>
           </span>
           <span className="showcase-card-face showcase-card-back">
-            <span>IN THE SPOTLIGHT</span>{" "}<strong>{creator.category}</strong>{" "}<span>DEMO CREATOR</span>
+            <span>STREAM CATEGORY</span>{" "}<strong>{creator.category}</strong>{" "}<span>DEMO PROFILE</span>
           </span>
         </motion.span>
       </button>
-      {grid && <p className="showcase-grid-caption">{creator.name}<span>{creator.category}</span></p>}
+      {grid && <p className="showcase-grid-caption">{creator.name}<span>{creator.category}</span><span className="showcase-grid-moment">{creator.moment}</span></p>}
     </motion.div>
   );
 }
@@ -136,7 +136,7 @@ export default function ScrollMorphHero({ creators, className }: { creators: Sho
           mouse.set(((event.clientX - rect.left) / rect.width * 2 - 1) * 24);
         }} onPointerLeave={() => mouse.set(0)}>
         <header className="showcase-topline">
-          <span>THE CREATOR SHOWCASE</span><span>{creators.length} VOICES. ENDLESS POSSIBILITIES.</span>
+          <span>THE CREATOR SHOWCASE</span><span>DIFFERENT STREAMS. SHARED MOMENTS.</span>
         </header>
         <div className="showcase-controls">
           <span className="showcase-demo-label">DEMO PROFILES · NOT REAL CREATORS</span>
@@ -147,12 +147,12 @@ export default function ScrollMorphHero({ creators, className }: { creators: Sho
         <motion.div className="showcase-intro" style={grid ? undefined : { opacity: titleOpacity }}>
           <span className="showcase-eyebrow">DIFFERENT WORLDS. SHARED MOMENTS.</span>
           <h2 id="showcase-title">Every creator.<br /><em>A world of their own.</em></h2>
-          <p>Meet the many sides of live.</p>
+          <p>Different formats. The same chance to be part of the stream.</p>
         </motion.div>
         {!grid && <motion.div className="showcase-arc-copy" style={{ opacity: arcOpacity }} aria-hidden="true">
           <span className="showcase-eyebrow">A PLACE FOR EVERY KIND OF LIVE.</span>
-          <p>Find your people.<br /><em>Make your moment.</em></p>
-          <span>Gaming, music, art, conversation. Your community belongs here.</span>
+          <p>Your kind of live.<br /><em>Their way to join in.</em></p>
+          <span>A clutch finish. A final song. A conversation worth joining. Give viewers a way to respond in the moment.</span>
         </motion.div>}
         <div className="showcase-cards">
           {creators.map((creator, index) => <CreatorCard key={creator.id} creator={creator} index={index}

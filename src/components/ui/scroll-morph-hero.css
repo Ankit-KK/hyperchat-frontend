@@ -8,7 +8,7 @@
 .showcase-eyebrow { font-size: 9px; letter-spacing: .12em; display: block; margin-bottom: 18px; }
 .showcase-intro h2 { font-size: clamp(28px, 3.5vw, 48px); line-height: 1.05; letter-spacing: -.035em; }
 .showcase-intro h2 em, .showcase-arc-copy em { color: #706050; font-style: normal; }
-.showcase-intro p { margin-top: 18px; font-size: 12px; }
+.showcase-intro p { margin-top: 18px; font-size: 12px; line-height: 1.6; }
 .showcase-arc-copy { position: absolute; top: 23%; left: 15%; right: 15%; text-align: center; pointer-events: none; }
 .showcase-arc-copy > p { font-family: "HyperChat Display", Georgia, serif; font-size: clamp(32px, 4.6vw, 64px); line-height: 1.05; letter-spacing: -.035em; }
 .showcase-arc-copy > span:last-child { display: block; max-width: 380px; margin: 22px auto 0; font-size: 13px; line-height: 1.6; }
@@ -42,6 +42,7 @@
 .showcase-card-grid .showcase-card-back strong { font-size: 15px; }
 .showcase-grid-caption { margin-top: 10px; font-size: 12px; line-height: 1.7; }
 .showcase-grid-caption span { display: block; color: #625b53; font-size: 11px; }
+.showcase-grid-caption .showcase-grid-moment { margin-top: 6px; color: var(--charcoal); line-height: 1.5; }
 @media (max-width: 600px) {
   .showcase-stage { top: 68px; height: calc(100svh - 68px); }
   .showcase-list .showcase-stage { top: auto; height: auto; }
