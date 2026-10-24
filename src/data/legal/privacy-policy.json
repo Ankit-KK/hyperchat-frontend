@@ -15,7 +15,7 @@
         },
         {
           "kind": "paragraph",
-          "text": "Substantive changes take effect after 14 days’ notice. The previous version is available below. This notice does not certify that all DPDP provisions are already in force."
+          "text": "Substantive changes take effect after 14 days’ notice. The previous version is available below."
         },
         {
           "kind": "paragraph",
@@ -99,7 +99,7 @@
         },
         {
           "kind": "paragraph",
-          "text": "Required retention: When Rule 8(3) of the DPDP Rules 2025 is operative and applicable, personal data, associated traffic data and other logs of processing must be retained for at least one year from the date of the relevant processing for the Seventh Schedule purposes. This requirement is not limited to transaction metadata or security logs. Rule 6(1)(e) also requires the specified security logs and personal data to be retained for one year unless another law requires otherwise. The planned 30/90-day limits therefore cannot be unconditional erasure promises. Required archived copies must be access-restricted and excluded from unrelated reuse; that archive design remains part of the pending implementation."
+          "text": "Required retention: Where applicable law requires it, we preserve personal data, related traffic records and processing logs for at least one year from the relevant processing. This can include interaction content, not just transaction IDs. Planned removal from routine playback or creator history does not mean that legally required copies have been erased. Required archives must be restricted to their permitted purposes; that archive design remains part of the pending implementation."
         },
         {
           "kind": "paragraph",
@@ -111,7 +111,7 @@
         },
         {
           "kind": "paragraph",
-          "text": "If HyperChat falls within a class and purpose in the Third Schedule, Rule 8(1)–(2) also requires the applicable inactivity-based erasure process and at least 48 hours' advance notice before that period completes. We do not apply that Schedule's three-year period indiscriminately to every account or use it to bypass Rule 8(3). The operative provisions and any later amendments govern the final implementation."
+          "text": "When an applicable inactivity-based deletion requirement covers an account, we provide the required advance notice and explain how the user can respond. An inactivity period does not authorize indefinite retention or override other applicable preservation or deletion duties."
         }
       ]
     },
@@ -125,11 +125,11 @@
         },
         {
           "kind": "paragraph",
-          "text": "When Rule 7 is operative and applicable, on becoming aware of a personal data breach we notify affected individuals without delay, through their registered account or contact channel, in clear language. The notice explains the breach's nature, extent and timing, likely consequences, mitigation, protective steps and business contact information for questions."
+          "text": "If a personal data breach occurs, we notify affected individuals without delay where required by applicable law, using their registered account or contact channel. We explain what happened, the likely consequences, what we are doing, steps they can take, and how to contact us."
         },
         {
           "kind": "paragraph",
-          "text": "We also notify the Board without delay with the initial description, timing, location and likely impact. Within 72 hours of awareness, or a longer period the Board allows on a written request, we provide the required detailed update: circumstances and reasons, mitigation, any findings about the person responsible, remedial measures and a report of notices to affected individuals. The 72-hour update is not permission to delay the initial notices. Other applicable incident reporting duties and shorter deadlines remain separate."
+          "text": "We notify the competent data-protection authority without delay where required and provide the required detailed follow-up within 72 hours of awareness, unless an extension is granted. This follow-up period does not delay the initial notification. Other applicable reporting duties and shorter deadlines also apply."
         }
       ]
     },
@@ -143,7 +143,7 @@
         },
         {
           "kind": "paragraph",
-          "text": "Creators complete verification through Didit. Our creator operating policy requires renewed KYC each Indian financial year, from 1 April to 31 March. This annual policy is a company requirement, not a DPDP statutory re-KYC interval. Applicable financial or verification requirements may impose separate obligations."
+          "text": "Creators complete verification through Didit. Our creator policy requires renewed KYC each Indian financial year, from 1 April to 31 March. This is a HyperChat account requirement. Separate financial or verification obligations may also apply."
         },
         {
           "kind": "paragraph",
@@ -171,11 +171,11 @@
         },
         {
           "kind": "paragraph",
-          "text": "Use Contact Support (/support#contact-support) or email ankit@hyperchat.space, identifying the account or interaction and the request. This is also the contact route for consent withdrawal and nomination requests. Use your account email or username, an interaction reference if relevant, and the request type; do not send passwords, OTPs or fresh KYC documents. We verify identity and authority proportionately, without collecting unnecessary identity documents. Our service target is acknowledgement within 48 hours and resolution within 30 days, subject to any shorter applicable legal period. We explain delays, a lawful refusal or retained records and the available escalation route. These are service targets, not guaranteed statutory deadlines. When Rule 14(3) is operative, the published grievance-response period must be reasonable and cannot exceed 90 days; that cap is not a universal extension of every rights-request deadline. We retain the shorter 30-day service target rather than automatically taking 90 days."
+          "text": "For consent withdrawal, access, correction, erasure, nomination or a privacy complaint, email ankit@hyperchat.space or use the Contact Support link above. Include your account email or username, the request type and an interaction reference if relevant. Do not send passwords, OTPs or fresh KYC documents. We verify identity and authority proportionately. Our service target is to acknowledge requests within 48 hours and resolve them within 30 days, subject to any shorter legal requirement. We explain delays, lawful refusals, retained records and available escalation. Where the statutory grievance-response cap applies, our published response period will not exceed 90 days; the shorter 30-day service target remains our aim."
         },
         {
           "kind": "paragraph",
-          "text": "First use our grievance process. If unresolved, you can approach the Data Protection Board of India or other competent authority through the legally available process, after exhausting any required internal grievance opportunity. No waiver of rights is required to obtain support. Observe applicable Data Principal duties, including truthful required identity information and avoiding impersonation or false grievances."
+          "text": "Please first contact us so we can investigate your grievance. If it remains unresolved, you may complain to the competent data-protection authority through the legally available process after completing any required internal grievance steps. This does not waive your statutory rights. Please provide truthful information and do not impersonate someone else or submit false complaints."
         }
       ]
     },
@@ -189,17 +189,17 @@
         },
         {
           "kind": "paragraph",
-          "text": "Material changes receive an accurate revision date and any additional notice or fresh consent required by law. A new notice does not retrospectively authorize a new purpose. Required notices and consent requests must support English or an Eighth Schedule language as applicable. For notices, language requests and privacy questions, contact ankit@hyperchat.space."
+          "text": "Material changes receive an accurate revision date and any additional notice or fresh consent required by law. A new notice does not retrospectively authorize a new purpose. We provide required notices and consent choices in clear language, with language access as required by law. For notices, language requests and privacy questions, contact ankit@hyperchat.space."
         }
       ]
     },
     {
       "id": "section-9",
-      "title": "9. Operation and commencement",
+      "title": "9. Policy updates",
       "blocks": [
         {
           "kind": "paragraph",
-          "text": "The revised notice is published on 24 October 2026, with substantive policy changes effective 7 November 2026. It does not state that all Rules have already commenced. DPDP Rules 2025 Rule 1 provides immediate commencement for Rules 1, 2 and 17–21; one year after Gazette publication for Rule 4; and eighteen months after publication for Rules 3, 5–16, 22 and 23. Applicability of the Act's provisions, any separate notifications and later amendments govern when each obligation applies. Required point-of-collection notices must be understandable independently, itemize data and purposes, and explain the particular communication links for withdrawal, rights and Board complaints. This general page alone is not the consent mechanism."
+          "text": "These revised policies were published on 24 October 2026, with substantive changes effective 7 November 2026. We publish an updated date and provide additional notice or obtain fresh consent where required when our purposes or practices change. The rules that apply depend on the law in force at the relevant time. This policy does not replace clear notices and choices at the point where your information is collected."
         }
       ]
     }

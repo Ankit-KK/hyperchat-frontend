@@ -207,3 +207,10 @@ Privacy explicitly discloses that retention automation is not deployed. Producti
 build and all 12 legal page checks passed on desktop/tablet/mobile, covering
 navigation, archives, corrected settlement/KYC text, retention caveat and accessibility.
 No backend retention changes or hosted deployment verification were performed.
+
+## Public legal wording cleanup — 24 October 2026
+
+Removed rule-number commentary, legislative commencement explanations and DPDP
+name references from public policy copy. Kept substantive rights, applicable
+retention duties, breach notifications, honest automation status and notice dates.
+Detailed rule analysis remains in legal-drafts/DPDP_RULES_REVIEW.md.

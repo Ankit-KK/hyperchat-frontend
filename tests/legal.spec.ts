@@ -6,7 +6,7 @@ const pages = [
     path: "/privacy-policy",
     title: "Privacy Policy",
     sections: 10,
-    last: "9. Operation and commencement",
+    last: "9. Policy updates",
   },
   {
     path: "/terms-and-conditions",
@@ -88,5 +88,7 @@ test("revised policies remove conflicting clauses and disclose pending retention
   await expect(article).toContainText("they are not yet deployed");
   await expect(article).toContainText("at least one year");
   await expect(article).toContainText("72 hours");
+  await expect(article).not.toContainText("Rule 8");
+  await expect(article).not.toContainText("DPDP");
   await expect(article).toContainText("does not store KYC identity documents");
 });
