@@ -114,6 +114,6 @@ test("keyboard access and toolkit tabs work on dedicated features page", async (
   ).toBeFocused();
   await page.keyboard.press("End");
   await expect(
-    page.getByRole("tab", { name: "06 OBS connection" }),
+    page.getByRole("tab", { name: "07 OBS connection" }),
   ).toBeFocused();
 });

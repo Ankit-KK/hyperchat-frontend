@@ -1,0 +1,28 @@
+import { test, expect } from '@playwright/test';
+const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=', 'base64');
+const gif = Buffer.from('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', 'base64');
+test('media tab previews image and GIF locally and clears on switching', async ({ page }) => {
+  await page.goto('/features');
+  await page.getByRole('tab', { name: 'Media — Image / GIF' }).click();
+  const panel=page.getByRole('tabpanel');
+  await expect(panel.getByRole('button', {name:'Show preview'})).toBeDisabled();
+  await panel.locator('input[type=file]').setInputFiles({name:'example.png',mimeType:'image/png',buffer:png});
+  await panel.getByRole('button',{name:'Show preview'}).click();
+  await expect(panel.getByRole('img')).toBeVisible();
+  await expect.poll(()=>panel.getByRole('img').evaluate((img:HTMLImageElement)=>img.naturalWidth)).toBe(1);
+  await panel.getByRole('button',{name:'GIF',exact:true}).click();
+  await expect(panel.getByRole('img')).toHaveCount(0);
+  await panel.locator('input[type=file]').setInputFiles({name:'example.gif',mimeType:'image/gif',buffer:gif});
+  await expect(panel.getByRole('img')).toHaveCount(0);
+  await panel.getByRole('button',{name:'Show preview'}).click();
+  await expect(panel.getByRole('img')).toBeVisible();
+  await panel.getByRole('button',{name:'Hide preview'}).click();
+  await expect(panel.getByRole('img')).toHaveCount(0);
+  await panel.getByRole('button',{name:'Clear media'}).click();
+  await expect(panel.getByRole('button',{name:'Show preview'})).toBeDisabled();
+  await panel.locator('input[type=file]').setInputFiles({name:'wrong.txt',mimeType:'text/plain',buffer:Buffer.from('no')});
+  await expect(panel.getByRole('status')).toContainText('Choose a GIF smaller');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
+  await page.getByRole('tab',{name:'Soundboard'}).click();
+  await expect(panel.getByRole('heading',{name:'Your soundboard'})).toBeVisible();
+});

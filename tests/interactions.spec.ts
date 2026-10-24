@@ -90,7 +90,7 @@ test("moderation queue supports independent decisions, undo and reset", async ({
 }, info) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/features");
-  await page.getByRole("tab", { name: "05 Community moderation" }).click();
+  await page.getByRole("tab", { name: "06 Community moderation" }).click();
   const ari = page.getByRole("article", {
     name: "Example interaction from Ari",
   });
@@ -120,7 +120,7 @@ test("interaction history filters records and exports selected fictional data", 
 }, info) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/features");
-  await page.getByRole("tab", { name: "04 Interaction history" }).click();
+  await page.getByRole("tab", { name: "05 Interaction history" }).click();
   const search = page.getByRole("searchbox", {
     name: "Filter example interactions",
   });
@@ -209,7 +209,7 @@ test("soundboard plays only on request, stops and closes audio on tab change", a
   await expect(page.locator(".sound-status")).toContainText(
     "Playing Double tap",
   );
-  await page.getByRole("tab", { name: "04 Interaction history" }).click();
+  await page.getByRole("tab", { name: "05 Interaction history" }).click();
   await expect.poll(events).toEqual({ starts: 4, closes: 2 });
   await page.getByRole("tab", { name: "03 Soundboard" }).click();
   await page.getByRole("button", { name: "Play Soft chime" }).click();
@@ -256,7 +256,7 @@ test("overlay sizing and OBS source toggles change their previews", async ({
   expect(
     (await page.locator(".sample-alert").boundingBox())!.width,
   ).toBeCloseTo(initial!.width * 1.25, 0);
-  await page.getByRole("tab", { name: "06 OBS connection" }).click();
+  await page.getByRole("tab", { name: "07 OBS connection" }).click();
   await page.getByRole("checkbox", { name: "HyperChat alerts" }).uncheck();
   await expect(page.locator(".mini-overlay")).not.toBeVisible();
   await page.getByRole("checkbox", { name: "HyperChat audio" }).uncheck();

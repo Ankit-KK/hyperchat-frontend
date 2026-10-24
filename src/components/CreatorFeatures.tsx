@@ -8,6 +8,7 @@ import {
   ModerationPreview,
   ObsPreview,
 } from "./CreatorPreviews";
+import MediaPreview from "./MediaPreview";
 const features = [
   {
     id: "interactions",
@@ -36,13 +37,19 @@ const features = [
     label: "03 / SOUND",
   },
   {
+    id: "media", name: "Media — Image / GIF", heading: "Some moments need a picture.",
+    copy: "Let viewers share images and GIFs as part of an interaction, where enabled. Your creator settings and moderation determine what appears on stream.",
+    detail: "Choose a file from your device and show it in the example broadcast area. This local demo never uploads or submits your media.",
+    label: "04 / MEDIA",
+  },
+  {
     id: "reporting",
     name: "Interaction history",
     heading: "Keep track of the conversation.",
     copy: "Search for a viewer or interaction, check its status, and export records when you need a closer look after the stream.",
     detail:
       "Try filtering the fictional records and downloading an example CSV. This preview does not access creator data.",
-    label: "04 / INSIGHT",
+    label: "05 / INSIGHT",
   },
   {
     id: "moderation",
@@ -50,7 +57,7 @@ const features = [
     heading: "Your stream. Your boundaries.",
     copy: "Decide what reaches your audience. Review incoming interactions with your moderation team, approve messages, or hide content that does not belong on your stream.",
     detail: "Creator settings support manual review or automatic approval. Try Approve, Hide, and Undo in the example queue.",
-    label: "05 / CONTROL",
+    label: "06 / CONTROL",
   },
   {
     id: "obs",
@@ -59,7 +66,7 @@ const features = [
     copy: "Add HyperChat browser sources to your OBS scene to bring in alerts and audio while you keep streaming on your existing platform.",
     detail:
       "Toggle alerts and audio in this illustration. Your actual source links come from your creator setup.",
-    label: "06 / BROADCAST",
+    label: "07 / BROADCAST",
   },
 ];
 export default function CreatorFeatures() {
@@ -133,9 +140,10 @@ export default function CreatorFeatures() {
             {active === 0 && <SupportPreview />}
             {active === 1 && <AlertPreview />}
             {active === 2 && <SoundboardPreview />}
-            {active === 3 && <HistoryPreview />}
-            {active === 4 && <ModerationPreview />}
-            {active === 5 && <ObsPreview />}
+            {active === 3 && <MediaPreview />}
+            {active === 4 && <HistoryPreview />}
+            {active === 5 && <ModerationPreview />}
+            {active === 6 && <ObsPreview />}
           </div>
           <div className="feature-description">
             <span className="eyebrow">{feature.label}</span>

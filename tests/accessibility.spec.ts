@@ -8,8 +8,8 @@ test("hero and interactive creator panels have no serious accessibility violatio
   await page.goto("/features");
   for (const tab of [
     null,
-    "04 Interaction history",
-    "05 Community moderation",
+    "05 Interaction history",
+    "06 Community moderation",
     "01 Viewer interactions",
   ]) {
     if (tab) await page.getByRole("tab", { name: tab }).click();
