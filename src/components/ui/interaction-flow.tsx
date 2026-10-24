@@ -31,7 +31,7 @@ export default function InteractionFlow() {
   const reset = () => { clear(); setStep(0); };
   return <div className="interaction-flow" aria-label="Viewer to live stream demo">
     <div className="integration-demo">
-      <Plate className="hyperchat-relay sequential-relay" theme="light" fig="HYPERCHAT / OBS" name="The interaction journey" hint="A local, interactive example" readout={step === 0 ? "Ready" : step === 1 ? "Message in flight" : step < 4 ? "Playing the example" : "Complete"} fit={[{x:0,y:0,z:0,w:314,d:74,h:8}, SEND, ...devices]} aspect={2.5} label="Four connected devices: Viewer, HyperChat creator review, OBS browser source, and live audience.">
+      <Plate credit={false} className="hyperchat-relay sequential-relay" theme="light" fig="HYPERCHAT / OBS" name="The interaction journey" hint="A local, interactive example" readout={step === 0 ? "Ready" : step === 1 ? "Message in flight" : step < 4 ? "Playing the example" : "Complete"} fit={[{x:0,y:0,z:0,w:314,d:74,h:8}, SEND, ...devices]} aspect={2.5} label="Four connected devices: Viewer, HyperChat creator review, OBS browser source, and live audience.">
         <Box x={0} y={0} z={0} w={314} d={74} h={8} r={7}/>
         {cables.map((d,i)=><path key={i} d={d} className={`relay-cable ${step >= i+2 ? "is-delivered" : ""}`} />)}
         {devices.map((device,i) => { const active = step > i; return <g key={device.label} data-active={active} className="relay-device">

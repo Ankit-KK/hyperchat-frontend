@@ -18,7 +18,7 @@ isometric button. Both call the same handler.
 
 No backend or OBS connection is created. Creator moderation and queue behavior
 are explained in supporting copy. react-isokit licensing and third-party notices
-remain in the package and its visible credit is retained.
+remain in the package and are distributed in /third-party-notices.txt. The optional visible promotional credit is disabled with credit={false}.
 
 Validation: production build and desktop/tablet/mobile Playwright checks cover
 single diagram, four boxes, send, sequential status updates, delivery, replay,
