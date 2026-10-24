@@ -274,6 +274,8 @@ export default function PushpinTearFooter() {
   const mounted = useRef(false);
   const started = useRef(false);
   const current = useRef(makeTear(23));
+  const visibleYs = useRef(current.current.ys);
+  const [pinRevision, setPinRevision] = useState(0);
   const seed = useRef(23);
   const [busy, setBusy] = useState(false);
   const [copyStatus, setCopyStatus] = useState("");
@@ -281,6 +283,8 @@ export default function PushpinTearFooter() {
   const id = useId().replace(/:/g, "");
 
   const draw = useCallback((tear: Tear, ys: number[], progress: number) => {
+    visibleYs.current = ys;
+    art.current?.style.setProperty("--pin-y", `${ys[Math.floor(ys.length / 2)] * 100}%`);
     sheet.current?.setAttribute("d", sheetD(ys, WIDTH, HEIGHT, tear.rim));
     rim.current?.setAttribute("d", sheetD(ys, WIDTH, HEIGHT));
     tear.flaps.forEach((flap, index) => {
@@ -303,7 +307,7 @@ export default function PushpinTearFooter() {
   const animate = useCallback(
     (next: Tear, intro: boolean) => {
       cancelAnimationFrame(raf.current);
-      const from = current.current.ys;
+      const from = visibleYs.current;
       current.current = next;
       if (reduced.current || document.hidden) {
         settle();
@@ -313,7 +317,7 @@ export default function PushpinTearFooter() {
       const begin = performance.now();
       const frame = (now: number) => {
         if (!mounted.current) return;
-        const progress = Math.min(1, (now - begin) / 1300);
+        const progress = Math.min(1, Math.max(0, now - begin - (intro ? 0 : 150)) / 850);
         draw(
           next,
           intro ? introYs(next, progress) : morphYs(from, next, progress),
@@ -364,9 +368,9 @@ export default function PushpinTearFooter() {
   }, [animate, settle]);
 
   const repin = () => {
-    if (busy) return;
     started.current = true;
     seed.current++;
+    setPinRevision(value => value + 1);
     animate(makeTear(seed.current), false);
   };
   const copy = async () => {
@@ -485,48 +489,21 @@ export default function PushpinTearFooter() {
           type="button"
           onClick={repin}
           aria-label="Re-pin: tear a new edge"
-          aria-disabled={busy}
           title="Re-pin the paper"
         >
-          <svg viewBox="0 0 100 200" aria-hidden="true">
-            <path d="M48 110h4l-1 77-1 5-1-5z" fill="#8C847B" />
-            <ellipse
-              cx="50"
-              cy="191"
-              rx="5"
-              ry="2"
-              fill="#221F1C"
-              opacity=".25"
-            />
-            <path d="M28 103v7a22 7 0 0 0 44 0v-7z" fill="#221F1C" />
-            <ellipse cx="50" cy="103" rx="22" ry="7" fill="#B8702F" />
-            <path
-              d="M41 38c2 16 5 26 3 36s-13 19-14 29h40c-2-10-13-19-14-29s1-20 3-36z"
-              fill="#B8702F"
-            />
-            <path
-              d="M54 40c-1 17-3 25-1 35s11 20 12 27h5c-2-10-13-19-14-29s1-20 3-36z"
-              fill="#221F1C"
-              opacity=".25"
-            />
-            <path d="M16 22v14a34 13 0 0 0 68 0V22z" fill="#B8702F" />
-            <ellipse
-              cx="50"
-              cy="22"
-              rx="34"
-              ry="13"
-              fill="#B8702F"
-              stroke="#D7CBB9"
-              strokeWidth="1.5"
-            />
-            <ellipse
-              cx="38"
-              cy="18"
-              rx="13"
-              ry="4"
-              fill="#F3EDE2"
-              opacity=".5"
-            />
+          <svg key={pinRevision} viewBox="0 0 100 140" aria-hidden="true">
+            <ellipse cx="50" cy="133" rx="9" ry="3" fill="#221F1C" opacity=".22" />
+            <path d="M47 96h6l-2 36-1 4-1-4z" fill="#8C847B" />
+            <path d="M49 98h2v33h-1z" fill="#F3EDE2" />
+            <path d="M23 85v9c0 12 54 12 54 0v-9z" fill="#704323" />
+            <ellipse cx="50" cy="85" rx="27" ry="10" fill="#B8702F" />
+            <path d="M38 39c2 13 6 23 3 31-3 6-12 10-14 16 10 9 36 9 46 0-2-6-11-10-14-16-3-8 1-18 3-31z" fill="#B8702F" />
+            <path d="M54 42c-1 12-3 22 0 30 3 6 11 11 13 16l6-2c-2-6-11-10-14-16-3-8 1-18 3-31z" fill="#704323" />
+            <path d="M12 24v15c0 20 76 20 76 0V24z" fill="#B8702F" />
+            <path d="M66 27v23c12-2 22-6 22-11V24z" fill="#704323" />
+            <ellipse cx="50" cy="24" rx="38" ry="15" fill="#B8702F" stroke="#D7CBB9" strokeWidth="1.2" />
+            <path d="M21 22c8-9 31-12 46-5" fill="none" stroke="#D7CBB9" strokeWidth="3" strokeLinecap="round" />
+            <path d="M20 38v5M43 52l2 13" stroke="#D7CBB9" strokeOpacity=".6" strokeWidth="2" strokeLinecap="round" />
           </svg>
         </button>
         <span className="tear-footer-pin-hint">

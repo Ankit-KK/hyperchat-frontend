@@ -19,14 +19,16 @@
 .tear-footer :focus-visible { outline: 2px solid var(--copper); outline-offset: 5px; }
 .tear-footer-art { position: relative; height: clamp(190px, 20vw, 260px); overflow: hidden; }
 .tear-footer-art > svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-.tear-footer-pin { position: absolute; left: 50%; top: 28%; transform: translateX(-50%) rotate(8deg); width: 62px; height: 124px; background: none; border: 0; padding: 0; color: var(--copper); touch-action: manipulation; }
-.tear-footer-pin svg { width: 100%; height: 100%; filter: drop-shadow(-5px 4px 3px #221f1c33); transition: transform .25s ease; }
-.tear-footer-pin:hover svg { transform: translateY(-4px); }
-.tear-footer-art[data-animating="true"] .tear-footer-pin svg { animation: footer-repin .6s ease both; }
+.tear-footer-pin { position: absolute; left: 50%; top: calc(var(--pin-y, 43%) - 94px); transform: translateX(-50%) rotate(-12deg); transform-origin: 50% 96%; width: 76px; height: 100px; z-index: 1; background: none; border: 0; padding: 0; color: var(--copper); touch-action: manipulation; }
+.tear-footer-pin svg { width: 100%; height: 100%; filter: drop-shadow(-5px 4px 3px #221f1c33); transition: transform .2s ease; transform-origin: 50% 96%; }
+.tear-footer-pin:hover svg { transform: translateY(-9px) rotate(5deg); }
+.tear-footer-art[data-animating="true"] .tear-footer-pin svg { animation: footer-repin 1s ease both; }
 .tear-footer-pin-hint { position: absolute; bottom: 5px; left: 10%; right: 10%; text-align: center; font-size: 8px; letter-spacing: .12em; color: #655d53; pointer-events: none; }
 .tear-footer-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 18px; padding: 30px 6.5vw; font-size: 10px; line-height: 1.7; color: #655d53; }
 .tear-footer-bottom > span:nth-child(2) { letter-spacing: .1em; }
-@keyframes footer-repin { 0% { transform: translateY(-18px) rotate(-8deg); } 70% { transform: translateY(2px); } 100% { transform: none; } }
+@keyframes footer-repin { 0% { transform: none; } 15%, 32% { transform: translateY(-18px) rotate(9deg); } 65% { transform: translateY(3px) rotate(-3deg); } 82% { transform: translateY(-2px); } 100% { transform: none; } }
+.tear-footer-pin:active svg { transform: translateY(2px) scale(.96); }
+.tear-footer-pin:focus-visible { border-radius: 16px; }
 @media (max-width: 900px) { .tear-footer-grid { grid-template-columns: repeat(3, 1fr); } .tear-footer-contact { grid-column: 1 / -1; } .tear-footer-company { max-width: none; } }
 @media (max-width: 480px) { .tear-footer-content { padding: 32px 6vw 20px; } .tear-footer-grid { gap: 30px 16px; } .tear-footer-grid li a { font-size: 12px; } .tear-footer-grid nav h3 { font-size: 9px; } .tear-footer-brand { font-size: 25px; } .tear-footer-bottom { padding: 26px 6vw; } .tear-footer-bottom > span:nth-child(2) { order: 3; width: 100%; } }
 @media (prefers-reduced-motion: reduce) { .tear-footer-pin svg { animation: none!important; transition: none; } }

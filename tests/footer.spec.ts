@@ -106,3 +106,19 @@ test("animated tear settles and respects a motion preference change", async ({
   await page.waitForTimeout(250);
   await expect(path).toHaveAttribute("d", settled!);
 });
+
+test('repeated pin activation restarts the tear without ignoring input', async ({ page }) => {
+  await page.goto('/company');
+  const art = page.locator('.tear-footer-art');
+  await art.scrollIntoViewIfNeeded();
+  await expect(art).toHaveAttribute('data-animating', 'false');
+  const pin = page.getByRole('button', { name: 'Re-pin: tear a new edge' });
+  await pin.click();
+  await expect(art).toHaveAttribute('data-animating', 'true');
+  // The SVG is replaced to restart its feedback animation for each activation.
+  const first = await pin.locator('svg').elementHandle();
+  await pin.dispatchEvent('click');
+  expect(await first!.evaluate(el => el.isConnected)).toBe(false);
+  await expect(art).toHaveAttribute('data-animating', 'false');
+  await expect(pin).not.toHaveAttribute('aria-disabled', 'true');
+});

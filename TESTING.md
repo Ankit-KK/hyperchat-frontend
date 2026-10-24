@@ -179,3 +179,12 @@ visibility, company attribution, viewport overflow, accessibility, keyboard pin
 activation, tear animation and reduced-motion changes, clipboard success/refusal,
 back-to-top and existing page navigation. Desktop and mobile screenshots inspected.
 No hosted deployment or actual email delivery was verified.
+
+## Footer pin refinement — 24 October 2026
+
+Shortened and reshaped the copper pin, anchored its needle to the changing ridge,
+and synchronized lift/press feedback with a faster tear. Repeated activations now
+restart from the sampled visible ridge instead of being ignored. Build passed;
+9 existing footer checks plus 3 repeated-activation cases passed across desktop,
+tablet and mobile viewports. Inspected the desktop render. Physical touch devices
+and live deployment were not verified.
