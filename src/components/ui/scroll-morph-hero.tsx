@@ -18,7 +18,7 @@ const clamp = (n: number) => Math.min(1, Math.max(0, n));
 
 function position(index: number, total: number, size: Size, phase: AnimationPhase, progress: number, mouse: number) {
   const mobile = size.width < 600;
-  const cardWidth = mobile ? 42 : 70;
+  const cardWidth = mobile ? 50 : 84;
   const radius = Math.min(size.width * 0.34, size.height * 0.31, 290);
   if (phase === "scatter" && progress < 0.03) return {
     x: Math.sin(index * 17.3) * size.width * 0.4,
@@ -33,7 +33,7 @@ function position(index: number, total: number, size: Size, phase: AnimationPhas
   const shuffle = clamp((progress - 0.35) / 0.65);
   const angle = (index / total) * Math.PI * 2 - Math.PI / 2;
   // A shallow arch sweeps every card through the viewport, including the last.
-  const spacing = mobile ? 67 : 106;
+  const spacing = mobile ? 80 : 128;
   const arcX = index * spacing - shuffle * (total - 1) * spacing + size.width * 0.2;
   const arcY = size.height * 0.18 + (arcX * arcX) / (size.width * 3.5);
   return {
