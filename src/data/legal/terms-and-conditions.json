@@ -1,0 +1,423 @@
+{
+  "slug": "terms-and-conditions",
+  "title": "Terms and Conditions",
+  "source": "https://www.hyperchat.space/terms-and-conditions",
+  "sections": [
+    {
+      "id": "company-information",
+      "title": "Company information",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Legal Entity: STREAMHEART PRIVATE LIMITED"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Brand Name: HyperChat"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Contact Email: ankit@hyperchat.space"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Contact Phone: +91 9211460100"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Last updated on 07-05-2025 21:17:40"
+        },
+        {
+          "kind": "paragraph",
+          "text": "These Terms and Conditions (\"Terms\") constitute a legally binding agreement between STREAMHEART PRIVATE LIMITED (\"we\", \"us\", \"our\") and the user (\"you\", \"your\"), governing your access to and use of the HyperChat website and platform (collectively, the \"Services\")."
+        },
+        {
+          "kind": "paragraph",
+          "text": "By accessing or using HyperChat, you acknowledge that you have read, understood, and agreed to these Terms, including our Privacy Policy. We may update these Terms at any time without prior notice and recommend reviewing them periodically."
+        }
+      ]
+    },
+    {
+      "id": "section-1",
+      "title": "1. Use of Services",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "You agree to provide accurate and complete information when interacting with or accessing the Services."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Your usage of HyperChat is solely at your discretion and responsibility. You must independently ensure that the Services meet your intended purpose."
+        },
+        {
+          "kind": "paragraph",
+          "text": "You agree not to:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "misuse, copy, or alter the platform",
+            "attempt unauthorized access, scraping, reverse engineering, or disruption",
+            "use HyperChat for any unlawful or prohibited purpose"
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "All communication, interaction, and engagement facilitated through HyperChat remain the responsibility of the users engaging in such communication."
+        }
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "2. Intellectual Property",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "All content, branding, design elements, platform features, proprietary systems, and associated materials are owned by STREAMHEART PRIVATE LIMITED. No part of the Service grants you ownership or rights to use our IP beyond permitted normal platform usage."
+        }
+      ]
+    },
+    {
+      "id": "section-3",
+      "title": "3. No Warranty",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "We do not warrant that the Services will be uninterrupted, error-free, or free from vulnerabilities."
+        },
+        {
+          "kind": "paragraph",
+          "text": "We make no guarantees regarding outcomes from usage, engagement levels, visibility, audience growth, or interaction success."
+        },
+        {
+          "kind": "paragraph",
+          "text": "The Service is provided on an \"as-is\" and \"as-available\" basis."
+        }
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "4. Third-Party Content",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "HyperChat may contain links or references to third-party platforms. We do not endorse or assume responsibility for any third-party resources, content, or policies."
+        }
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "5. Limitation of Liability",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "To the fullest extent permitted under applicable law:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "We shall not be liable for any direct, indirect, incidental, consequential, special, or exemplary damages arising from your use or inability to use the Services.",
+            "We are not responsible for user-generated content, audience behavior, communication between creators and audiences, or any form of interactive exchange between users."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-6",
+      "title": "6. Platform Access and Security",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "You are responsible for maintaining confidentiality of any access credentials."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Any action performed under your access point is considered initiated by you."
+        },
+        {
+          "kind": "paragraph",
+          "text": "You agree to promptly notify us in case of suspected unauthorized access or account misuse."
+        }
+      ]
+    },
+    {
+      "id": "section-7",
+      "title": "7. Service Availability and Modifications",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "We reserve the right to modify, limit, suspend, or discontinue any part of the Service at our discretion and without notice. We are not liable for any disruption or impact arising from such changes."
+        }
+      ]
+    },
+    {
+      "id": "section-8",
+      "title": "8. Force Majeure",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Neither party shall be liable for failure or delay in performance due to circumstances beyond reasonable control, including but not limited to natural disasters, system failures, network outages, or technical incidents."
+        }
+      ]
+    },
+    {
+      "id": "section-9",
+      "title": "9. Governing Law",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "These Terms shall be governed by the laws of India."
+        }
+      ]
+    },
+    {
+      "id": "section-10",
+      "title": "10. Dispute Resolution",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Any disputes arising out of or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts in Vasundhara, Uttar Pradesh."
+        }
+      ]
+    },
+    {
+      "id": "section-11",
+      "title": "11. Contact",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "For any concerns or communication regarding these Terms, please reach out using the contact details provided above."
+        }
+      ]
+    },
+    {
+      "id": "section-12",
+      "title": "Section 12 — Platform Data Usage & Derived Works Restriction",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Effective Date: 25-03-2026 | Version 1.0"
+        },
+        {
+          "kind": "heading",
+          "text": "12.1 Purpose and Scope"
+        },
+        {
+          "kind": "paragraph",
+          "text": "This Section governs the access, storage, processing, and use of all data generated, transmitted, or made available through the HyperChat platform (\"Platform Data\"). It applies to all registered users, content creators, third-party developers, and any entity that interacts with the Platform directly or through its real-time event streams."
+        },
+        {
+          "kind": "heading",
+          "text": "12.2 Definitions"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "\"Platform Data\" means any data generated, routed, or stored by the HyperChat platform, including but not limited to Donation Data, Alert Payloads, Overlay Configuration Data, and Leaderboard Data as defined below.",
+            "\"Donation Data\" means all transaction records, donor identities, donation amounts, timestamps, currency details, payment references, and associated metadata processed through the Platform's payment and donation infrastructure.",
+            "\"Alert Payloads\" means the structured data packets delivered via real-time event streams that trigger on-screen alerts, sound cues, or visual effects during a live stream session.",
+            "\"Overlay Configuration Data\" means any settings, schemas, style configurations, layout parameters, widget definitions, or display preferences stored by or for a creator to control the appearance of stream overlays rendered through the Platform.",
+            "\"Leaderboard Data\" means aggregated and ranked records of donor activity, HyperPoints balances, contribution histories, and any scoring or ranking data maintained by the Platform on behalf of creators or their audiences.",
+            "\"Derived Work\" means any software application, tool, script, browser extension, OBS plugin, overlay widget, dashboard, data feed, or automated system that is built using, powered by, or dependent on Platform Data in any form.",
+            "\"Competing Service\" means any platform, product, or service that offers functionality substantially similar to HyperChat, including but not limited to streaming donation management, real-time alert overlays, viewer engagement tools, or creator monetisation systems."
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "12.3 Ownership of Platform Data"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "All Platform Data is and shall remain the exclusive intellectual property and proprietary information of STREAMHEART PRIVATE LIMITED, regardless of which user account generated or received such data.",
+            "Creators and donors are granted a limited, non-exclusive, non-transferable licence to view and use their own Platform Data solely within the normal operation of the HyperChat platform. No ownership interest in Platform Data is transferred to any user by virtue of their interaction with the Platform.",
+            "The structure, schema, encoding format, and delivery mechanism of all Platform Data constitutes proprietary system design owned by STREAMHEART PRIVATE LIMITED."
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "12.4 Prohibited Uses of Platform Data"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Users expressly agree that they shall NOT, without prior written authorisation from STREAMHEART PRIVATE LIMITED:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Use Donation Data, Alert Payloads, Overlay Configuration Data, or Leaderboard Data to build, operate, or distribute any Derived Work, whether for personal, commercial, or open-source purposes.",
+            "Intercept, capture, store, or replay Alert Payloads from the Platform's real-time event streams for use outside the Platform's own overlay rendering system.",
+            "Create custom OBS overlays, browser-source widgets, or streaming tools that consume or depend upon Platform Data obtained from HyperChat's platform systems or real-time event streams.",
+            "Feed Platform Data into any third-party analytics tool, dashboard, or data warehouse without express written permission.",
+            "Reverse engineer the schema, structure, or encoding of Alert Payloads, Overlay Configuration Data, or any other Platform Data format.",
+            "Use Platform Data to develop, train, or enhance a Competing Service or to assist any third party in doing so.",
+            "Distribute, sublicense, sell, or otherwise transfer access to Platform Data to any third party."
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "12.5 Authorised Use and Permission Process"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Users who wish to build Derived Works using Platform Data must submit a written request to STREAMHEART PRIVATE LIMITED at ankit@hyperchat.space, describing in detail the intended use, data types required, and the technical architecture of the proposed Derived Work.",
+            "STREAMHEART PRIVATE LIMITED reserves the sole and absolute discretion to approve, conditionally approve, or reject any such request without obligation to provide reasons.",
+            "Where permission is granted, it shall be subject to a separate written Data Usage Agreement that may include usage restrictions, attribution requirements, revenue sharing obligations, and audit rights.",
+            "Approval for one type of Derived Work or data usage does not constitute blanket approval for other uses."
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "12.6 Creator-Specific Obligations"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Creators registered on the Platform additionally agree that:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "They shall not instruct, permit, or facilitate third-party developers to access their Donation Data, Alert Payloads, or Overlay Configuration Data via unofficial means (including manual credential sharing or unauthorised data proxying) for the purpose of building Derived Works.",
+            "Any Derived Work commissioned or used by a Creator that relies on Platform Data requires the same prior written authorisation from STREAMHEART PRIVATE LIMITED as if the Creator had built it directly.",
+            "Creators are jointly responsible for ensuring that any third party they engage to build streaming tools does not violate this Section."
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "12.7 Consequences of Violation"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Any violation of this Section may result in one or more of the following actions at STREAMHEART PRIVATE LIMITED's sole discretion:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Immediate suspension or permanent termination of the offending user's account(s).",
+            "Disabling of real-time event stream access and platform system access.",
+            "Legal action for breach of contract, misappropriation of trade secrets, or infringement of intellectual property rights under applicable Indian law.",
+            "Seeking injunctive relief and/or damages, including recovery of profits derived from unauthorised use of Platform Data.",
+            "Reporting of violations to relevant authorities where data protection laws are implicated."
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "12.7.1 Liquidated Damages for Continuing Violations"
+        },
+        {
+          "kind": "paragraph",
+          "text": "The parties acknowledge that a breach of Section 12.4 would cause harm that is difficult to quantify precisely. Accordingly, the following liquidated damages apply and are agreed to represent a genuine pre-estimate of loss, not a penalty:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Where a user continues to operate a Derived Work or otherwise use Platform Data in violation of this Section after receiving written notice of breach from STREAMHEART PRIVATE LIMITED, the user shall be liable to pay liquidated damages of ₹25,000 (Rupees Twenty-Five Thousand) per day for each day the violation continues from the date of such notice.",
+            "Where the violation is found to be wilful, deliberate, or commercial in nature (i.e. the user derived financial benefit from the violation), the per-day rate shall increase to ₹50,000 (Rupees Fifty Thousand) per day at STREAMHEART PRIVATE LIMITED's sole discretion.",
+            "Liquidated damages shall accrue daily and become immediately due and payable upon demand. STREAMHEART PRIVATE LIMITED reserves the right to pursue recovery through civil proceedings before courts of competent jurisdiction in India.",
+            "Payment of liquidated damages does not release the offending user from the obligation to cease the violation, nor does it grant any licence to continue the prohibited use.",
+            "The above liquidated damages are in addition to, and not in lieu of, any other remedies available to STREAMHEART PRIVATE LIMITED under these Terms or applicable law, including injunctive relief and recovery of actual damages where they exceed the liquidated amount."
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "12.8 Relationship to Existing Terms"
+        },
+        {
+          "kind": "paragraph",
+          "text": "This Section supplements and does not replace the existing provisions of these Terms and Conditions. In particular:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Section 1 (Prohibited Conduct) continues to prohibit unauthorised access, scraping, and reverse engineering. This Section adds specificity regarding Platform Data as a distinct protected category.",
+            "Section 2 (Intellectual Property) continues to vest all platform IP in STREAMHEART PRIVATE LIMITED. This Section extends that protection explicitly to Platform Data formats, schemas, and derived outputs.",
+            "In the event of any conflict between this Section and any other provision of these Terms, this Section shall prevail with respect to matters concerning Platform Data."
+          ]
+        },
+        {
+          "kind": "heading",
+          "text": "12.9 Amendments and Updates"
+        },
+        {
+          "kind": "paragraph",
+          "text": "STREAMHEART PRIVATE LIMITED reserves the right to amend this Section at any time. Users will be notified of material changes via email or in-platform notification at least 14 days before the changes take effect. Continued use of the Platform after the effective date of any amendment constitutes acceptance of the revised terms."
+        }
+      ]
+    },
+    {
+      "id": "section-13",
+      "title": "Section 13 — Platform Usage and Payouts",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Effective Date: 07-05-2025 21:17:40"
+        },
+        {
+          "kind": "heading",
+          "text": "13.1 Platform Usage During the Month"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Streamers who use HyperChat for receiving donations, tips, or other monetization during a calendar month are expected to continue using HyperChat for such transactions throughout that month."
+        },
+        {
+          "kind": "heading",
+          "text": "13.2 Switching to Another Platform Without Notice"
+        },
+        {
+          "kind": "paragraph",
+          "text": "If a streamer begins using another donation, tipping, monetization, or similar streaming platform during the same calendar month after having already used HyperChat, without informing HyperChat in advance, HyperChat reserves the right to withhold the streamer’s payout for that month."
+        },
+        {
+          "kind": "heading",
+          "text": "13.3 No Compensation"
+        },
+        {
+          "kind": "paragraph",
+          "text": "If a payout is withheld under this clause, the streamer will not be entitled to any additional compensation, reimbursement, damages, or other payment from HyperChat arising from the withholding."
+        },
+        {
+          "kind": "heading",
+          "text": "13.4 Notice Requirement"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Streamers must inform HyperChat before switching to or using another applicable platform during a calendar month in which they have already used HyperChat. Failure to provide such notice may result in the withholding of the applicable monthly payout."
+        },
+        {
+          "kind": "heading",
+          "text": "13.5 Payout Eligibility"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Using HyperChat at any point during a calendar month does not automatically guarantee payout for that month. Payout eligibility remains subject to compliance with these Terms and Conditions and HyperChat’s platform usage requirements."
+        },
+        {
+          "kind": "heading",
+          "text": "13.6 Applicable Period"
+        },
+        {
+          "kind": "paragraph",
+          "text": "This provision applies where a streamer begins using another applicable platform during the same calendar month in which they have already used HyperChat."
+        },
+        {
+          "kind": "heading",
+          "text": "13.7 HyperChat's Discretion"
+        },
+        {
+          "kind": "paragraph",
+          "text": "HyperChat reserves the right to determine whether a streamer has switched to or begun using another applicable platform without the required notice and whether the payout withholding provision applies."
+        },
+        {
+          "kind": "paragraph",
+          "text": "🎉 HyperChat"
+        },
+        {
+          "kind": "paragraph",
+          "text": "A digital engagement platform that enhances presence and communication between creators and their audiences."
+        }
+      ]
+    }
+  ]
+}

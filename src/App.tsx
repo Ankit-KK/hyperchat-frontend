@@ -9,6 +9,7 @@ import FeaturesPage from "./pages/FeaturesPage";
 import CreatorsPage from "./pages/CreatorsPage";
 import CompanyPage from "./pages/CompanyPage";
 import SupportPage from "./pages/SupportPage";
+import LegalPage, { policies } from "./pages/LegalPage";
 import PageIntro from "./pages/PageIntro";
 
 export default function App() {
@@ -21,7 +22,7 @@ export default function App() {
     "/support": "Support",
   };
   useEffect(() => {
-    document.title = `HyperChat — ${titles[path] ?? "Page not found"}`;
+    document.title = `HyperChat — ${titles[path] ?? policies[path]?.title ?? "Page not found"}`;
   }, [path]);
   const page =
     path === "/" ? (
@@ -34,6 +35,8 @@ export default function App() {
       <SupportPage />
     ) : path === "/company" ? (
       <CompanyPage />
+    ) : policies[path] ? (
+      <LegalPage policy={policies[path]} />
     ) : (
       <>
         <PageIntro

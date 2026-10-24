@@ -1,0 +1,19 @@
+.legal-layout { display: grid; grid-template-columns: minmax(190px, 260px) minmax(0, 780px); gap: 6vw; align-items: start; }
+.legal-index { position: sticky; top: 120px; max-height: calc(100svh - 150px); overflow-y: auto; padding: 4px 8px 12px 0; }
+.legal-index nav + nav { margin-top: 32px; }
+.legal-index nav:first-child { display: grid; gap: 14px; }
+.legal-index h2 { font-family: inherit; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 18px; }
+.legal-index ol { list-style: none; padding: 0; display: grid; gap: 12px; }
+.legal-index a { font-size: 12px; line-height: 1.7; display: inline-block; }
+.legal-index a[aria-current="page"] { font-weight: 650; text-decoration: underline; text-underline-offset: 4px; }
+.legal-document { min-width: 0; overflow-wrap: anywhere; }
+.legal-document section { scroll-margin-top: 115px; padding: 0 0 36px; margin-bottom: 36px; border-bottom: 1px solid var(--sand); }
+.legal-document h2 { font-size: clamp(26px, 3vw, 38px); line-height: 1.25; margin-bottom: 24px; }
+.legal-document h3 { font-family: inherit; font-weight: 600; font-size: 17px; line-height: 1.5; margin: 30px 0 16px; }
+.legal-document p, .legal-document li { font-size: 14px; line-height: 1.9; }
+.legal-document p { margin: 16px 0; }
+.legal-document ul { list-style: disc; padding-left: 24px; margin: 16px 0; }
+.legal-document li + li { margin-top: 8px; }
+.legal-layout a:hover, .legal-document a { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 800px) { .legal-layout { grid-template-columns: 1fr; gap: 40px; } .legal-index { position: static; max-height: none; overflow: visible; } }
+@media print { .header, .tear-footer, .legal-index, .mascot-cursor, .grain, .atmosphere, .reading-progress, .skip-link { display: none!important; } .page-intro, .legal-layout { padding: 20px 0; background: white!important; color: black!important; } .legal-layout { display: block; } .page-intro h1 { font-size: 30pt; } .page-intro p { color: black; } .legal-document section { break-inside: auto; } .legal-document h2, .legal-document h3 { break-after: avoid; } }

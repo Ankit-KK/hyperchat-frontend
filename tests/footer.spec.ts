@@ -16,9 +16,9 @@ test("footer keeps all links and company details readable on every viewport", as
     "/creators",
     "/company",
     "/support",
-    "https://www.hyperchat.space/privacy-policy",
-    "https://www.hyperchat.space/terms-and-conditions",
-    "https://www.hyperchat.space/cancellation-refunds",
+    "/privacy-policy",
+    "/terms-and-conditions",
+    "/cancellation-refunds",
   ]) {
     await expect(footer.locator(`a[href="${href}"]`).first()).toBeVisible();
   }

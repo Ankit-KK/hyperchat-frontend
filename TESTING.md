@@ -188,3 +188,13 @@ restart from the sampled visible ridge instead of being ignored. Build passed;
 9 existing footer checks plus 3 repeated-activation cases passed across desktop,
 tablet and mobile viewports. Inspected the desktop render. Physical touch devices
 and live deployment were not verified.
+
+## Local legal pages — 24 October 2026
+
+Production build passed. All 24 legal/footer checks passed across desktop, tablet,
+and mobile: direct entry/reload, policy titles, complete section counts, section
+anchors, policy navigation, local footer links, email normalization, published dates,
+Terms amendments, overflow and accessibility. Inspected mobile policy rendering.
+Whitespace-normalized source comparison confirmed all three published policy bodies
+were retained. Legal substance and existing conflicts are documented in LEGAL_REVIEW.md;
+this was a migration, not a substantive policy revision. Hosted deployment unverified.

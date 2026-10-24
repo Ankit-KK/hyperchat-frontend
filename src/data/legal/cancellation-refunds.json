@@ -1,0 +1,255 @@
+{
+  "slug": "cancellation-refunds",
+  "title": "Refund & Cancellation Policy",
+  "source": "https://www.hyperchat.space/cancellation-refunds",
+  "sections": [
+    {
+      "id": "company-information",
+      "title": "Company information",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Legal Entity: STREAMHEART PRIVATE LIMITED"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Brand Name: HyperChat"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Registered Office: G-478, G BLOCK, GOVINDPURAM PARK, BLOCK 1, Govindpuram, Ghaziabad, India"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Contact Email: ankit@hyperchat.space"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Contact Phone: +91 9211460100"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Last Updated: 07-05-2025"
+        }
+      ]
+    },
+    {
+      "id": "section-1",
+      "title": "1. General Policy",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "HyperChat provides audience engagement software tools for interactive communication between creators and their viewers. Since our platform services are primarily digital and access-based, refunds are handled only under specific and valid circumstances as outlined below."
+        }
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "2. Service Access Issues",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Users may request a refund only in cases where:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "The user was unable to access the platform due to a verified technical issue caused by HyperChat.",
+            "There was a proven malfunction or disruption of service on our systems that prevented usage."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "Refunds will NOT be granted for:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Issues arising due to user-side internet, device, browser, or third-party service failures.",
+            "Cases where the user has already used or accessed the service features.",
+            "Personal dissatisfaction or subjective preference-based reasons."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-3",
+      "title": "3. No Refund for Completed Usage",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Once a service session, feature access, or usage interaction has taken place, the refund request becomes ineligible, as digital services consumed cannot be reversed."
+        },
+        {
+          "kind": "paragraph",
+          "text": "HyperChat does not provide refunds for:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Completed audience engagement interactions",
+            "Access to features already utilized",
+            "Time-based platform usage"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "4. Processing of Approved Refunds",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "If a refund is approved:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Refund will be processed through the same channel from which the transaction was initiated.",
+            "Processing times may vary depending on intermediary services such as service providers and banks.",
+            "Refund processing time may take 7–14 business days."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "5. No Guarantees or Warranties of Suitability",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Users acknowledge that:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "HyperChat does not guarantee outcomes, engagement levels, audience responses, or creator visibility.",
+            "The platform provides functionality — actual audience behavior or engagement is not controlled by us.",
+            "Refunds cannot be requested on the basis of community interaction levels, audience attention, or subjective participation metrics."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-6",
+      "title": "6. Eligibility Verification",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "HyperChat may require:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "service logs,",
+            "account activity records,",
+            "technical support history,",
+            "timestamp data"
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "to verify the legitimacy of a refund request."
+        }
+      ]
+    },
+    {
+      "id": "section-7",
+      "title": "7. Abuse of Refund Policy",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "In case of:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "repeated refund claims,",
+            "fraudulent requests,",
+            "misuse or manipulation of the platform, or",
+            "violation of Terms & Conditions"
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "HyperChat reserves the right to deny refunds and may restrict platform access."
+        }
+      ]
+    },
+    {
+      "id": "section-8",
+      "title": "8. No Financial Responsibilities",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "HyperChat:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "does not handle or store financial data,",
+            "does not process monetary interactions between creators and audiences,",
+            "does not function as a financial intermediary, payment handler, or settlement facilitator."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "Users understand that HyperChat is strictly an engagement software service."
+        }
+      ]
+    },
+    {
+      "id": "section-9",
+      "title": "9. How to Request a Refund",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Refund requests must be submitted via:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "📩 Email: ankit@hyperchat.space",
+            "📞 Phone: +91 9211460100"
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "You must include:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Registered name",
+            "Contact details",
+            "Account ID",
+            "Explanation of the issue",
+            "Screenshots or log references (if applicable)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-10",
+      "title": "10. Final Decision Authority",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "STREAMHEART PRIVATE LIMITED reserves the right to:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "evaluate each request individually,",
+            "determine eligibility at its sole discretion,",
+            "approve or deny refund requests."
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "All decisions made by HyperChat regarding refunds are final."
+        }
+      ]
+    }
+  ]
+}

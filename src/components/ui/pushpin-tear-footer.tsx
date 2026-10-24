@@ -255,9 +255,9 @@ const groups = [
   {
     title: "Policies",
     links: [
-      ["Privacy", "https://www.hyperchat.space/privacy-policy"],
-      ["Terms", "https://www.hyperchat.space/terms-and-conditions"],
-      ["Refunds", "https://www.hyperchat.space/cancellation-refunds"],
+      ["Privacy", "/privacy-policy"],
+      ["Terms", "/terms-and-conditions"],
+      ["Refunds", "/cancellation-refunds"],
     ],
   },
 ];

@@ -17,7 +17,7 @@ runs when the tear enters view. Frames stop when it settles, leaves view, or the
 document becomes hidden. Reduced-motion users get immediate shape changes.
 Observers, frames and the clipboard feedback timer are cleaned up on unmount.
 Copy email reports success only after clipboard confirmation; failure leaves the
-mailto link usable. Policies continue linking to the existing published site.
+mailto link usable. Policies link to the local pages migrated from the published site.
 
 Edit the `groups` array for footer links and `EMAIL` for the footer contact address.
 The footer is mounted once in the shared App shell, across all public pages.

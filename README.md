@@ -91,8 +91,13 @@ Playwright verifies the production build at desktop 1440×1000, tablet 820×1180
 Pages use normal links and browser document navigation, with a shared React shell
 and page components in `src/pages/`. Direct-entry rewrites for the content
 pages are configured in `vercel.json`. The brand link returns home; footer links
-point to the existing published privacy, terms and refunds policies on
-`www.hyperchat.space`. No legal policies or backend workflows were recreated.
+point to local Privacy, Terms and Refunds pages migrated from the published site.
+No backend workflows were added.
 
 The shared footer adapts the supplied pushpin/torn-paper component in HyperChat's
 neutral palette. See [FOOTER.md](FOOTER.md) for interactions, provenance and editing.
+
+Local policy pages: `/privacy-policy`, `/terms-and-conditions`, and
+`/cancellation-refunds`. They preserve published policy wording and dates, with
+contact email standardized to `ankit@hyperchat.space`. See [LEGAL_REVIEW.md](LEGAL_REVIEW.md)
+for source provenance and existing clauses that require an owner decision.

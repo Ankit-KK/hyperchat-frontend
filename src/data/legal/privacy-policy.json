@@ -1,0 +1,238 @@
+{
+  "slug": "privacy-policy",
+  "title": "Privacy Policy",
+  "source": "https://www.hyperchat.space/privacy-policy",
+  "sections": [
+    {
+      "id": "company-information",
+      "title": "Company information",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Legal Entity: STREAMHEART PRIVATE LIMITED"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Brand Name: HyperChat"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Contact Email: ankit@hyperchat.space"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Contact Phone: +91 9211460100"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Last updated on 07-05-2025 21:17:40"
+        }
+      ]
+    },
+    {
+      "id": "section-1",
+      "title": "1. Introduction",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "This Privacy Policy explains how STREAMHEART PRIVATE LIMITED (\"HyperChat\", \"we\", \"us\", or \"our\") collects, uses, and protects information when you access or interact with our website and Services."
+        },
+        {
+          "kind": "paragraph",
+          "text": "By using HyperChat, you consent to the practices described in this Privacy Policy."
+        }
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "2. Information We Collect",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "We may collect the following types of information that you voluntarily provide:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Name",
+            "Contact details (email, phone if provided)",
+            "Account access information (username or user ID)",
+            "User feedback or communications sent to us",
+            "Platform interaction data (engagement metrics, preference selections, usage statistics)"
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "We do not collect or store:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "❌ financial information",
+            "❌ transactional details",
+            "❌ payment instrument data",
+            "❌ bank/card numbers"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-3",
+      "title": "3. How We Use Your Information",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "We use collected information to:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Operate and maintain the HyperChat platform",
+            "Improve communication and engagement features",
+            "Provide support and respond to inquiries",
+            "Personalize user experience",
+            "Analyze platform use to improve performance",
+            "Enhance security and prevent misuse"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "4. Information Sharing",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "We do not sell personal information to third parties."
+        },
+        {
+          "kind": "paragraph",
+          "text": "We may share user data only in the following limited circumstances:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "With your consent",
+            "With service providers strictly for platform-related functionality (e.g., hosting, analytics, communication infrastructure)",
+            "To comply with lawful government or legal requirements",
+            "To protect the safety and integrity of the Service"
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "All third-party service providers are bound by confidentiality and security obligations."
+        }
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "5. Data Security",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "We employ industry-standard security measures to protect your information, including safeguards against:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Unauthorized access",
+            "Alteration",
+            "Disclosure",
+            "Misuse or accidental loss"
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "However, no online transmission or digital storage system is completely secure, and we cannot guarantee absolute protection."
+        }
+      ]
+    },
+    {
+      "id": "section-6",
+      "title": "6. Your Rights",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Depending on applicable laws, you may:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Request access to your personal data",
+            "Request corrections of inaccurate information",
+            "Request deletion of your stored data",
+            "Request limitation of data processing",
+            "Withdraw previously granted consent"
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "To exercise your rights, contact us using the details provided below."
+        }
+      ]
+    },
+    {
+      "id": "section-7",
+      "title": "7. Cookies and Usage Information",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "We may use browser cookies and passive usage tracking to:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Understand user interaction patterns",
+            "Improve website performance",
+            "Enhance user experience"
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "You may disable cookies in your browser settings, though certain platform functionality may be affected."
+        }
+      ]
+    },
+    {
+      "id": "section-8",
+      "title": "8. Children's Privacy",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "HyperChat is not intended for children under the age of 13 (or applicable local age of digital consent). We do not knowingly collect personal data from children without valid consent where required."
+        }
+      ]
+    },
+    {
+      "id": "section-9",
+      "title": "9. Changes to This Policy",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "We may revise or update this Privacy Policy periodically to reflect service updates, legal requirements, or technology improvements."
+        },
+        {
+          "kind": "paragraph",
+          "text": "The updated Policy will be posted on this page with a revised \"Last Updated\" timestamp."
+        }
+      ]
+    },
+    {
+      "id": "section-10",
+      "title": "10. Contact Us",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "For questions, requests, or concerns regarding this Privacy Policy, please contact us:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Email: ankit@hyperchat.space",
+            "Phone: +91 9211460100"
+          ]
+        }
+      ]
+    }
+  ]
+}
