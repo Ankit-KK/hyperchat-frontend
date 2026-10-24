@@ -55,3 +55,11 @@ The closing interaction now uses `public/sculpture/hyperchat-wordmark.webp`: ful
 Source: owner-supplied `HyperChat_Creators_Profiles.zip` (rows.json, profile images). 156 records were inspected. Internal/test slugs `ashu` and `aka` were excluded; duplicate Latifa entries were consolidated under `latifa`. The remaining 153 creators are listed, with 152 local optimized WebPs under `public/creators/` totaling 957,974 bytes. Images are sized to at most 320×320 without upscaling. The supplied LEENA image was matched by name despite its missing logo_file field; DogeshGamer uses an initials fallback. Original images are not generated or replaced with invented portraits. Creator portraits retain their original colors, as requested by the owner.
 
 The owner identified captain_vaani, Chiaa (`chiaa_gaming`) and Latifa as brand ambassadors. They appear first and are explicitly labeled. Other records are labeled HyperChat creator without invented genres, testimonials, audience figures or endorsements. Creator page URLs come from the supplied metadata and open in a new tab from the list. No external image hotlinks are used.
+
+## ElevenLabs Grants acknowledgement
+
+An official local ElevenLabs Grants badge is needed to replace the interim text
+in Partners.tsx. Use the owner-supplied horizontal white logo on the charcoal
+surface, approximately 230 px rendered width (provide at least 460 px wide for
+high-density displays). Preserve the original aspect ratio and official artwork;
+no image generation is needed. The old site's CDN URL currently returns 403.

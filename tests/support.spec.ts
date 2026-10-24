@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test('support topics, keyboard FAQs and email contact work without changing home content', async ({ page }, info) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  await expect(page.locator('main > section')).toHaveCount(7);
+  await expect(page.locator('main > section')).toHaveCount(8);
   await expect(page.locator('#contact-support')).toHaveCount(0);
   if (info.project.name === 'mobile') await page.getByRole('button', { name: 'Open navigation' }).click();
   await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Support', exact: true }).click();

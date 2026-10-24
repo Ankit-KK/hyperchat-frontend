@@ -1,3 +1,4 @@
+import Partners from "../components/Partners";
 import InteractionStory from "../components/InteractionStory";
 import CreatorFeatures from "../components/CreatorFeatures";
 import CreatorOnboarding from "../components/CreatorOnboarding";
@@ -16,6 +17,7 @@ export default function HomePage() {
       <ScrollMorphHero creators={showcaseCreators} />
       <CreatorOnboarding compact />
       <CreatorControl home />
+      <Partners />
       <section
         className="closing closing-liquid section-shell light"
         id="next"

@@ -1,3 +1,4 @@
+import Partners from "../components/Partners";
 import PageIntro from "./PageIntro";
 export default function CompanyPage() {
   return (
@@ -45,6 +46,7 @@ export default function CompanyPage() {
           </article>
         </div>
       </section>
+      <Partners />
     </>
   );
 }
