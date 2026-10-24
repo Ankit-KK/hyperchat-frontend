@@ -15,7 +15,7 @@ const cables = devices.slice(0,-1).map((device,i) => {
   return path(curve([device.x+52,37,10], [device.x+65,37,10], [next.x-10,37,10], [next.x,37,10],24));
 });
 const messages = ["Ready for a sample interaction.", "A viewer sends a sample message.", "HyperChat processes the sample interaction.", "The sample alert arrives in OBS.", "A shared moment. Demo complete."];
-const SEND = { x: 10, y: 66, z: 8, w: 52, d: 22, h: 6 };
+const SEND = { x: 38, y: 94, z: 8, w: 52, d: 22, h: 6 };
 const HOP = 760;
 const parcelAt = (i: number): Vec3 => [devices[i].x + 18, devices[i].y + 10, devices[i].z + devices[i].h + 3];
 export default function InteractionFlow() {
