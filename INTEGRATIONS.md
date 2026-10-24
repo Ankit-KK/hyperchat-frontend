@@ -1,19 +1,26 @@
-# OBS interaction journey
+# HyperChat relay illustration
 
-The Features page contains `#integrations`, adapted from the owner-supplied
-WebhookRelay component. `src/components/ui/webhook-relay.tsx` uses react-isokit
-Box and Plate primitives for a sequential Viewer → HyperChat review → OBS → Live
-illustration, replacing the original API/CRM/Slack fan-out and retry simulation.
-Package licensing and third-party notices remain in react-isokit; its visible
-credit is retained. No supplied stock images, theme colors or sound effects are used.
+The Features page contains `#integrations`. Its illustration now preserves the
+owner-supplied WebhookRelay's geometry and animation sequence: outbox and envelope,
+three staggered flights, relay arms, lamps, acknowledgement, tray refill, and an
+animated retry signal/dial every third send. The prior sequential replacement
+was removed in response to the owner's fidelity feedback.
 
-Controls send a local sample, approve it, hide it, or reset. Approval advances
-through two short timers; resetting and unmounting cancel pending timers.
-Manual moderation is illustrative, not a claim that every interaction requires
-approval. No backend, OBS connection, message submission, or payment is involved.
-The mobile layout has two-column readable step descriptions below the diagram.
-Reduced motion disables cable travel and lamp transitions. There is no autoplay
-or perpetual animation loop.
+The supplied component uses react-isokit primitives, including Flight, Signal,
+Press, Ripple, Cursor, Glow and Callout. The supplied keyframes are retained with
+scoped selectors added because the pasted CSS omitted those bindings. Package
+licensing and third-party notices remain in react-isokit; its visible credit is
+retained. HyperChat labels replace API/CRM/Slack with Text/Voice/Sound. Colors are
+ivory, charcoal, sand, stone and copper. Sound calls are removed, and Press sound
+is disabled. Reduced motion uses the package's reduced-motion behavior and scoped
+CSS overrides. The original once-visible guided demo is retained.
 
-Validation: production TypeScript/Vite build; Playwright desktop, tablet and mobile
-exercise send, approval, completion, hiding, reset, and horizontal overflow.
+The animation is conceptual, not a literal integration routing diagram or a live
+connection. Supporting copy separately explains viewer, moderation, OBS and live
+broadcast. Every third send simulates a retry; it does not report backend health.
+All pending timers and playback resources are released on unmount or a new send.
+
+Validation: production TypeScript/Vite build; Playwright desktop, tablet and
+mobile cover repeated sends, mechanical state, third-send retry completion and
+horizontal overflow. Desktop screenshot inspected. Physical-device animation
+performance has not been measured.
