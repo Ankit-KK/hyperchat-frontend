@@ -48,6 +48,7 @@ function CreatorCard({ creator, index, total, phase, size, progress, mouse, grid
   size: Size; progress: MotionValue<number>; mouse: MotionValue<number>; grid: boolean;
 }) {
   const [flipped, setFlipped] = useState(false);
+  const [imageFailed, setImageFailed] = useState(false);
   const [hovered, setHovered] = useState(false);
   const x = useSpring(0, { stiffness: 120, damping: 25 });
   const y = useSpring(0, { stiffness: 120, damping: 25 });
@@ -76,16 +77,16 @@ function CreatorCard({ creator, index, total, phase, size, progress, mouse, grid
         <motion.span className="showcase-card-inner"
           animate={{ rotateY: back ? 180 : 0 }} transition={{ duration: grid ? 0 : 0.45 }}>
           <span className="showcase-card-face showcase-card-front">
-            <span className="showcase-card-index">HC / {creator.initials}</span>{" "}
-            <span className="showcase-card-mark">{creator.initials}</span>{" "}
+            {creator.image && !imageFailed ? <img className="showcase-portrait" src={creator.image} alt="" loading="lazy" decoding="async" width="320" height="320" onError={() => setImageFailed(true)} /> : <span className="showcase-card-mark">{creator.initials}</span>}
+            <span className="showcase-card-index">{creator.ambassador ? "AMBASSADOR" : "HYPERCHAT"}</span>{" "}
             <span className="showcase-card-name">{creator.name}</span>
           </span>
           <span className="showcase-card-face showcase-card-back">
-            <span>STREAM CATEGORY</span>{" "}<strong>{creator.category}</strong>{" "}<span>DEMO PROFILE</span>
+            <span>HYPERCHAT COMMUNITY</span>{" "}<strong>{creator.name}</strong>{" "}<span>{creator.category}</span>
           </span>
         </motion.span>
       </button>
-      {grid && <p className="showcase-grid-caption">{creator.name}<span>{creator.category}</span><span className="showcase-grid-moment">{creator.moment}</span></p>}
+      {grid && <div className="showcase-grid-caption"><a href={creator.url} target="_blank" rel="noopener noreferrer">{creator.name} <ArrowUpRight size={12} aria-hidden="true" /><span className="sr-only"> — open creator page in new tab</span></a><span className={creator.ambassador ? "showcase-ambassador" : undefined}>{creator.category}</span></div>}
     </motion.div>
   );
 }
@@ -97,6 +98,10 @@ export default function ScrollMorphHero({ creators, className }: { creators: Sho
   const reduced = useReducedMotion();
   const [list, setList] = useState(false);
   const grid = !!reduced || list;
+  const [query, setQuery] = useState("");
+  const [limit, setLimit] = useState(24);
+  const matching = creators.filter(creator => `${creator.name} ${creator.id}`.toLowerCase().includes(query.trim().toLowerCase()));
+  const visibleCreators = grid ? matching.slice(0, limit) : creators.slice(0, 20);
   const [phase, setPhase] = useState<AnimationPhase>("scatter");
   const [size, setSize] = useState<Size>({ width: 1200, height: 800 });
   const { scrollYProgress } = useScroll({ target: section, offset: ["start start", "end end"] });
@@ -139,7 +144,7 @@ export default function ScrollMorphHero({ creators, className }: { creators: Sho
           <span>THE CREATOR SHOWCASE</span><span>DIFFERENT STREAMS. SHARED MOMENTS.</span>
         </header>
         <div className="showcase-controls">
-          <span className="showcase-demo-label">DEMO PROFILES · NOT REAL CREATORS</span>
+          <span className="showcase-demo-label">{creators.length} CREATORS · THREE BRAND AMBASSADORS</span>
           {!reduced && <button type="button" onClick={openList} aria-pressed={list}>
             {list ? "View scroll experience" : "View creator list"}<ArrowUpRight size={13} aria-hidden="true" />
           </button>}
@@ -154,10 +159,12 @@ export default function ScrollMorphHero({ creators, className }: { creators: Sho
           <p>Your kind of live.<br /><em>Their way to join in.</em></p>
           <span>A clutch finish. A final song. A conversation worth joining. Give viewers a way to respond in the moment.</span>
         </motion.div>}
+        {grid && <div className="showcase-directory-controls"><label htmlFor="creator-search">Find a creator</label><input id="creator-search" type="search" value={query} placeholder="Search names or handles" onChange={event => { setQuery(event.target.value); setLimit(24); }} /><p role="status">{matching.length} {matching.length === 1 ? "creator" : "creators"}{matching.length === 0 ? " found. Try another name." : ` · showing ${Math.min(limit, matching.length)}`}</p></div>}
         <div className="showcase-cards">
-          {creators.map((creator, index) => <CreatorCard key={creator.id} creator={creator} index={index}
-            total={creators.length} phase={phase} size={size} progress={scrollYProgress} mouse={smoothMouse} grid={grid} />)}
+          {visibleCreators.map((creator, index) => <CreatorCard key={creator.id} creator={creator} index={index}
+            total={visibleCreators.length} phase={phase} size={size} progress={scrollYProgress} mouse={smoothMouse} grid={grid} />)}
         </div>
+        {grid && matching.length > limit && <button className="showcase-load-more" type="button" onClick={() => setLimit(value => value + 24)}>Show more creators <ArrowUpRight size={14} aria-hidden="true" /></button>}
         {!grid && <div className="showcase-bottom"><span>SCROLL TO EXPLORE ↓</span><span>HOVER OR TAP A CARD TO FLIP</span></div>}
         {!grid && <div className="showcase-progress" aria-hidden="true"><motion.div style={{ width: progressWidth }} /></div>}
       </div>

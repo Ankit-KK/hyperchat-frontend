@@ -51,3 +51,15 @@ AI-themed copy, remote image list, virtual scroll trap and per-frame React state
 updates are replaced to fit this creator showcase. Framer Motion is emitted as a
 separate production chunk. No mascot, backend or existing interaction logic is
 changed.
+
+## Real profiles — 24 October 2026
+
+The active data is now 153 owner-supplied creators, with the three specified brand
+ambassadors first. The animated scene renders 20 cards. List mode and reduced-motion
+mode render 24 initially, with search across all records and Show more in batches
+of 24. This bounds animation/image work and avoids adding 153 cards to the default
+homepage flow. Grid captions link to the supplied creator pages; cards retain
+pointer/touch/keyboard flipping. Portraits are local lazy-loaded WebPs with an
+initials fallback on missing/failed images. See ASSET_REQUIREMENTS.md for provenance,
+exclusions, alias mappings and optimization totals. Historical dummy-profile notes
+above are superseded by this update.

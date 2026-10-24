@@ -231,3 +231,12 @@ Creator Terms section 6.1; aligned Refund policy and working copies. Production
 build and all 18 legal-page cases passed on desktop/tablet/mobile, including
 rule visibility, audience scope and shared-policy consistency. This changes
 policy copy only; no settlement backend or live deployment was verified.
+
+## Owner-supplied creators — 24 October 2026
+
+Build passed. All 9 creator-showcase cases passed across desktop/tablet/mobile:
+scroll morph/reverse/release, keyboard flips, reduced-motion accessibility, ambassador
+labels, search/empty results, portrait loading, initials fallback and load-more.
+All supplied URLs were checked for the expected hyperchat.space host and local image
+references verified. Desktop arc screenshot inspected. No live creator-page availability
+or deployed Vercel build was verified. Build emits a non-fatal main-chunk size advisory.

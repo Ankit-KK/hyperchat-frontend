@@ -66,3 +66,21 @@
   .showcase-list .showcase-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
   .showcase-list .showcase-intro h2 { font-size: 36px; }
 }
+/* Owner-supplied portraits and a bounded, searchable real-creator directory. */
+.showcase-card-front { position: absolute; padding: 0; }
+.showcase-portrait { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
+.showcase-card-front .showcase-card-index { position: relative; align-self: flex-start; margin: 5px; padding: 3px; background: var(--charcoal); color: var(--ivory); }
+.showcase-card-front .showcase-card-name { position: relative; display: block; margin-top: auto; padding: 5px; background: var(--ivory); color: var(--charcoal); overflow-wrap: anywhere; }
+.showcase-card-front .showcase-card-mark { margin: auto; padding: 8px; }
+.showcase-card-back strong { overflow-wrap: anywhere; }
+.showcase-card-grid .showcase-card-front { padding: 0; }
+.showcase-card-grid .showcase-card-index { margin: 8px; padding: 5px; font-size: 8px; }
+.showcase-card-grid .showcase-card-name { padding: 9px; font-size: 11px; line-height: 1.4; }
+.showcase-grid-caption a { display: inline; overflow-wrap: anywhere; text-decoration: underline; text-underline-offset: 3px; }
+.showcase-grid-caption svg { display: inline; vertical-align: middle; }
+.showcase-grid-caption .showcase-ambassador { color: var(--charcoal); margin-top: 5px; font-weight: 600; }
+.showcase-directory-controls { max-width: 1000px; margin: 0 auto 32px; }
+.showcase-directory-controls label { display: block; font-size: 12px; margin-bottom: 10px; }
+.showcase-directory-controls input { width: min(100%, 420px); background: var(--ivory); color: var(--charcoal); border: 1px solid var(--stone); border-radius: 0; padding: 13px; font-size: 14px; }
+.showcase-directory-controls p { font-size: 12px; margin-top: 12px; }
+.showcase-load-more { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 40px auto 0; padding: 14px 22px; background: var(--charcoal); color: var(--ivory); border: 0; font-size: 12px; }

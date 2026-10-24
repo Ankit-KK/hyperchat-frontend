@@ -49,7 +49,7 @@ test("creator list provides keyboard flips and an accessible reduced-motion layo
   await page.getByRole("button", { name: "View creator list" }).click();
   const section = page.locator("#creator-showcase");
   await expect(section).toHaveAttribute("data-phase", "grid");
-  const card = section.getByRole("button", { name: /Creator 01/ });
+  const card = section.getByRole("button", { name: /captain_vaani/ });
   await card.focus();
   await page.keyboard.press("Enter");
   await expect(card).toHaveAttribute("aria-pressed", "true");
@@ -58,9 +58,33 @@ test("creator list provides keyboard flips and an accessible reduced-motion layo
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.reload();
   await expect(section).toHaveAttribute("data-phase", "grid");
-  await expect(section.locator(".showcase-card")).toHaveCount(20);
+  await expect(section.locator(".showcase-card")).toHaveCount(24);
   await expect(page.getByRole("button", { name: "View creator list" })).toHaveCount(0);
   const results = await new AxeBuilder({ page }).include("#creator-showcase").analyze();
   expect(results.violations.filter((v) => ["serious", "critical"].includes(v.impact ?? ""))).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
+});
+
+test('real creator directory shows ambassadors, searchable profiles and local portraits', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  const section = page.locator('#creator-showcase');
+  await section.scrollIntoViewIfNeeded();
+  await expect(section).not.toContainText('DEMO PROFILE');
+  await expect(section.locator('.showcase-ambassador')).toHaveCount(3);
+  for (const name of ['captain_vaani','Chiaa','Latifa']) await expect(section.getByRole('link', { name: new RegExp(name) })).toHaveCount(1);
+  const search = page.getByRole('searchbox', { name: 'Find a creator' });
+  await search.fill('chiaa');
+  await expect(section.locator('.showcase-card')).toHaveCount(1);
+  await expect(section.getByRole('link', { name: /Chiaa/ })).toHaveAttribute('href', 'https://hyperchat.space/chiaa_gaming');
+  const image = section.locator('.showcase-portrait');
+  await image.scrollIntoViewIfNeeded();
+  await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+  await search.fill('dogesh');
+  await expect(section.locator('.showcase-card-mark')).toContainText('D');
+  await search.fill('no-such-creator-xyz');
+  await expect(section.getByRole('status')).toContainText('0 creators found');
+  await search.fill('');
+  await section.getByRole('button', { name: 'Show more creators' }).click();
+  await expect(section.locator('.showcase-card')).toHaveCount(48);
 });
