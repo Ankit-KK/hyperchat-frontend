@@ -1,3 +1,4 @@
+import WebhookRelay from "../components/ui/webhook-relay";
 import CreatorControl from "../components/CreatorControl";
 import CreatorFeatures from "../components/CreatorFeatures";
 import InteractionStory from "../components/InteractionStory";
@@ -12,6 +13,7 @@ export default function FeaturesPage() {
       />
       <InteractionStory />
       <CreatorFeatures />
+      <WebhookRelay />
       <CreatorControl />
     </>
   );
