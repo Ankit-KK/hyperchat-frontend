@@ -86,31 +86,49 @@ or voice reuse is authorized simply by using the service.
 
 ## 4. Retention and deletion
 
-We do not keep interaction content indefinitely. The following periods are the
-normal **maximums**, subject to earlier erasure where the purpose ends, valid
-withdrawal or erasure requires it, and applicable lawful preservation requirements.
+We do not keep interaction content indefinitely for routine service use. We distinguish
+**active availability** from **restricted retention required by law**. A request for
+closure, withdrawal or erasure ends ordinary use where applicable, but does not
+require us to destroy a record that law requires us to preserve.
 
-| Data | Normal maximum retention |
+| Category | Proposed routine-service limit |
 |---|---|
-| Uploaded/recorded audio, images, GIFs, videos and generated speech files | 30 days after upload or generation. |
-| Interaction text, display name and routine queue/delivery/moderation history | 90 days after submission. |
-| Account/profile and access permissions | While the account serves an active purpose; erase within 30 days of closure, except justified records below. Review dormant accounts annually. |
-| KYC completion status | Current Indian financial year, then renewed verification. Erase superseded status within 90 days after renewal, or within 30 days of account closure, unless necessary for a documented legal obligation. |
-| Routine support/grievance correspondence | 12 months after the matter closes; longer only for a documented dispute or legal requirement. |
-| Necessary security/access logs | 12 months after creation, subject to applicable mandatory periods and minimization. Do not copy full interaction content or KYC documents into these logs. |
-| Transaction IDs, amounts and creator payout/accounting records | Eight financial years following the financial year of the record, where needed for company accounting requirements; longer only under an applicable legal duty or documented hold. |
-| Deleted data remaining solely in isolated backups | Expire within 90 days of production deletion; prohibit routine use and reapply deletion before restored data returns to service. |
+| Voice recordings, uploaded media and generated speech | Remove from routine playback, creator access and public delivery after 30 days. |
+| Interaction text, display names and routine history | Remove from routine creator history after 90 days. |
+| Account/profile and permissions | End ordinary use and remove active access within 30 days of closure; review dormant accounts annually. |
+| KYC completion status | Current financial year; remove superseded status from active use within 90 days of renewal, or within 30 days of closure. No KYC documents are stored by HyperChat. |
+| Support/grievance correspondence | Normally retain for 12 months after closure of the matter, subject to applicable required retention. |
 
-Financial records are separated from voice/media content. A financial retention
-requirement is not permission to keep the entire interaction or recording for the
-same period. Legally required security records must likewise be minimized and
-separated from routine content.
+**Required retention:** When Rule 8(3) of the supplied DPDP Rules 2025 is operative
+and applicable, personal data, associated traffic data and other logs of processing
+must be retained for at least **one year from the date of the relevant processing**
+for the Seventh Schedule purposes. This requirement is not limited to transaction
+metadata or security logs. Rule 6(1)(e) also requires the specified security logs
+and personal data to be retained for one year unless another law requires otherwise.
+Consequently, the 30/90-day active-use limits above do **not** promise complete
+erasure of covered data within those periods. Required copies are access-restricted
+and excluded from routine history, playback, marketing and unrelated reuse.
 
-For a complaint, fraud investigation, court order or other lawful hold, we preserve
-only necessary data, restrict access and review the hold at least every 90 days.
-We erase the preserved data when the reason ends and no other valid basis remains.
-Applicable mandatory periods prevail; we explain lawful retention in response to
-an erasure request. These schedules also require appropriate processor instructions.
+After the required period we erase covered data and logs unless further retention
+is required by another applicable law or Government notification. We preserve
+necessary transaction IDs, amounts and payout/accounting records for eight financial
+years following the record's financial year where company accounting law requires
+it, or a longer applicable legal period. A financial record requirement alone does
+not justify preserving all media for that same accounting period; the separate
+one-year processing-data requirement must still be assessed.
+
+A documented legal hold is limited to its valid scope and reviewed at least every
+90 days. We explain required preservation in response to erasure requests and
+instruct relevant processors consistently. Backups cannot be used as a substitute
+for a required retention archive. Deleted records remaining in isolated backups
+expire within the proposed 90-day backup cycle only where lawful; a statutory
+final-erasure deadline takes precedence, and restoration must reapply deletions.
+
+If HyperChat falls within a class and purpose in the Third Schedule, Rule 8(1)–(2)
+also requires the applicable inactivity-based erasure process and at least 48 hours'
+advance notice before that period completes. We do not apply that Schedule's
+three-year period indiscriminately to every account or use it to bypass Rule 8(3).
+The operative provisions and any later amendments govern the final implementation.
 
 ## 5. Security and breaches
 
@@ -119,10 +137,19 @@ safeguards from processors. These include access restrictions, protection of dat
 in transit and storage, monitoring, recovery and incident response appropriate to
 the risk. We do not guarantee that any system is completely risk-free.
 
-For a personal data breach, we assess and contain the incident and provide affected
-individuals and the competent authority the notices required by applicable law,
-with the prescribed contents and deadlines. We do not use a policy disclaimer to
-exclude our security or reporting obligations.
+When Rule 7 is operative and applicable, on becoming aware of a personal data breach
+we notify affected individuals **without delay**, through their registered account
+or contact channel, in clear language. The notice explains the breach's nature,
+extent and timing, likely consequences, mitigation, protective steps and business
+contact information for questions.
+
+We also notify the Board **without delay** with the initial description, timing,
+location and likely impact. Within **72 hours of awareness**, or a longer period
+the Board allows on a written request, we provide the required detailed update:
+circumstances and reasons, mitigation, any findings about the person responsible,
+remedial measures and a report of notices to affected individuals. The 72-hour
+update is not permission to delay the initial notices. Other applicable incident
+reporting duties and shorter deadlines remain separate.
 
 ## 6. Adults only and verification
 
@@ -149,16 +176,21 @@ Subject to the Act's scope, conditions and applicable exemptions, you may reques
 - Correction, completion and updating of inaccurate or incomplete personal data.
 - Erasure, subject to lawful retention and applicable requirements.
 - Withdrawal of consent and redressal of grievances.
-- Nomination in the legally prescribed manner of another person to exercise
+- Nomination in the legally prescribed manner of one or more individuals to exercise
   relevant rights following your death or incapacity.
 
-Email **ankit@hyperchat.space**, identifying the account or interaction and the
-request. We verify identity and authority proportionately, without collecting
+Use [our privacy/support contact](https://hyperchat-frontend.vercel.app/support#contact-support)
+or [email ankit@hyperchat.space](mailto:ankit@hyperchat.space), identifying the account
+or interaction and the request. This is also the contact route for consent withdrawal
+and nomination requests. Use your account email or username, an interaction reference
+if relevant, and the request type; do not send passwords, OTPs or fresh KYC documents. We verify identity and authority proportionately, without collecting
 unnecessary identity documents. Our proposed service target is acknowledgement
 within 48 hours and resolution within 30 days, subject to any shorter applicable
 legal period. We explain delays, a lawful refusal or retained records and the
-available escalation route. These are service targets, not a description of
-statutory DPDP response deadlines.
+available escalation route. These are our proposed service targets. When Rule 14(3) is operative, the published
+grievance-response period must be reasonable and cannot exceed **90 days**; that
+cap is not a universal extension of every rights-request deadline. We retain the
+shorter 30-day service target rather than automatically taking 90 days.
 
 First use our grievance process. If unresolved, you can approach the Data Protection
 Board of India or other competent authority through the legally available process,
@@ -178,3 +210,14 @@ fresh consent required by law. A new notice does not retrospectively authorize a
 new purpose. Required notices and consent requests must support English or an
 Eighth Schedule language as applicable. For notices, language requests and privacy
 questions, contact ankit@hyperchat.space.
+
+## 9. Operation and commencement
+
+This is a proposed notice, not a statement that all Rules have already commenced.
+The supplied Rules' Rule 1 provides immediate commencement for Rules 1, 2 and
+17–21; one year after Gazette publication for Rule 4; and eighteen months after
+publication for Rules 3, 5–16, 22 and 23. Applicability of the Act's provisions,
+any separate notifications and later amendments must be confirmed before adoption.
+Required point-of-collection notices must be understandable independently, itemize
+data and purposes, and explain the particular communication links for withdrawal,
+rights and Board complaints. This general page alone is not the consent mechanism.

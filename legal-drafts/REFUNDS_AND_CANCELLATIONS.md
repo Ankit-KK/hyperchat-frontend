@@ -82,8 +82,10 @@ deadlines. Payment-provider and bank crediting can affect when the refund appear
 we give available references and investigate delays rather than guarantee an instant credit.
 The estimate must be operationally confirmed before this draft takes effect.
 
-We retain only the transaction and accounting records needed for the applicable
-period, separately from short-lived interaction/media content. See the Privacy Policy.
+Routine interaction/media access and required archival retention are different.
+The Privacy Policy explains the applicable processing-data/log minimum, financial
+record obligations, restricted access and erasure. A refund or account deletion
+request does not override legally required preservation, nor permit unrelated reuse.
 
 ## 7. Creator adjustments and complaints
 

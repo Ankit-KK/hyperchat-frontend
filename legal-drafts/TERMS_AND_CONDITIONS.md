@@ -66,9 +66,12 @@ advertising, AI training, voice cloning or commercial reuse.
 
 Personal data is not declared our exclusive property. Your statutory data rights
 remain. The Privacy Policy controls purposes, sharing, withdrawal and retention.
-We do not keep interactions indefinitely: normal media retention is 30 days and
-routine text/history retention is 90 days, subject to earlier legally required
-erasure and documented lawful exceptions. Financial records follow a separate schedule.
+We limit routine media availability to 30 days and text/history availability to
+90 days. These are active-use limits, not unconditional complete-erasure promises.
+The Privacy Policy explains restricted retention, including the one-year processing-
+data/log minimum when DPDP Rules 8(3) and 6(1)(e) are operative and applicable,
+and separately required financial records. Such retention does not authorize
+routine reuse after the relevant service purpose or consent ends.
 
 Do not disclose non-public credentials or other users' private event streams.
 Permitted OBS browser sources and integrations can use data necessary for their

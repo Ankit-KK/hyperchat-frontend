@@ -21,22 +21,22 @@ REFUNDS_AND_CANCELLATIONS.md and RETENTION_IMPLEMENTATION.md.
 - Annual creator re-KYC is a company policy, not a DPDP requirement. A current
   financial-year status does not determine Didit's independent legal retention.
 
-## Proposed retention change
+## Supplied final Rules review and retention correction
 
-The owner requested replacement of indefinite interaction storage. Draft maximums:
-media/voice 30 days; interaction text/history 90 days; closure erasure within 30 days;
-security logs 12 months; support records 12 months after closure; isolated backup
-expiry within 90 days of deletion. KYC completion status is kept for the current
-financial year and replaced on renewed verification, with superseded status erased
-within 90 days. Financial records are separate: proposed eight following financial
-years where necessary for company accounting, subject to accountant/legal verification.
-Earlier purpose cessation, valid rights requests and legal duties can change these
-periods. Justified holds are documented and reviewed every 90 days.
+The owner supplied the English DPDP Rules PDF. See DPDP_RULES_REVIEW.md for source
+hash, printed-page citations, phased commencement and a rule-by-rule review.
+The earlier 30/90-day complete-erasure proposal is superseded: these are now
+**routine availability limits**. Rule 8(3) requires covered personal data/traffic
+and processing logs to be preserved for at least one year once operative and
+applicable; Rule 6(1)(e) also requires the specified logs and personal data for
+one year unless another law requires otherwise. Restricted preservation applies
+even where routine history, media access or the account is removed. It is not
+limited to large entities under the Third Schedule or to transaction metadata.
 
-RETENTION_IMPLEMENTATION.md specifies the deletion jobs and acceptance checks.
-These are proposed standards, not existing system capabilities. Do not publish
-these promises while the backend still keeps interactions forever. Backend changes
-require separate access and testing; they were not made in this frontend repository.
+RETENTION_IMPLEMENTATION.md now separates active use, statutory archives and final
+erasure, and prevents the 90-day backup cycle from extending a legal deadline.
+Financial records have their own proposed statutory schedule, subject to review.
+No backend jobs or provider retention settings were changed.
 
 ## Required before adoption
 
@@ -57,7 +57,7 @@ require separate access and testing; they were not made in this frontend reposit
   applicable shorter legal requirements.
 - Check company/tax/payment retention, including Companies Act section 128 books
   and vouchers, with an accountant; the eight-year period is not a DPDP-wide rule.
-- Verify the current Act/Rules and commencement before legal approval; adopt a real
+- Verify Act commencement, Gazette publication date and any amendments to the supplied Rules before legal approval; adopt a real
   effective date and deliver required notice. Existing Terms contain a 14-day
   material-change notice commitment. Keep version history.
 
@@ -72,9 +72,12 @@ The following were retried, including MeitY with additional network permission:
 
 All attempts were blocked with HTTP 403 at the CONNECT network tunnel. This is an
 access limitation, not evidence that the sites or laws are unavailable generally.
-We did not verify final/amended DPDP Rules, operative commencement notifications,
-phased deadlines or the Board complaint procedure. The drafts must not be described
-as certified current-law compliance. Verify official Gazette copies before adoption.
+This access limitation remains, but the subsequently supplied PDF now permits
+review of the final Rules text as provided. Its Rule 1 specifies relative commencement:
+immediate Rules 1, 2, 17–21; Rule 4 after one year; Rules 3, 5–16, 22, 23 after eighteen
+months from Gazette publication. Separate Act commencement, independently confirmed
+publication date, later amendments and the live Board channel remain unverified.
+Do not describe these drafts as certified current-law compliance.
 
 Reference framework for review: DPDP Act 2023, particularly notice/consent and
 specified legitimate uses, general fiduciary duties, children under 18, access,
@@ -82,3 +85,12 @@ correction/erasure, grievances, nomination and applicable transfer restrictions.
 Check applicable final Rules, transitional IT Act/SPDI provisions, CERT-In directions,
 consumer/e-commerce rules and payment/financial duties in the actual operating model.
 No broad GDPR-style “legitimate interests” basis was imported.
+
+## Confirmed changes from supplied PDF
+
+Rule 7: immediate-without-delay individual and initial Board notices, plus a 72-hour
+detailed Board update (extension only if Board allows on written request). Rule 14:
+published reasonable grievance response period <=90 days; proposed company target
+remains 30 days, acknowledgment 48 hours. Rule 9: prominent responsible-person
+business contact, also included in rights replies. Rule 3: independent notices and
+particular withdrawal/rights/Board links; public policy alone is not sufficient.
