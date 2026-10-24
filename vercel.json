@@ -34,6 +34,10 @@
     {
       "source": "/viewer-terms",
       "destination": "/index.html"
+    },
+    {
+      "source": "/demo-signup",
+      "destination": "/index.html"
     }
   ]
 }

@@ -7,6 +7,7 @@ import PageLoadBoundary from "./components/PageLoadBoundary";
 
 import PageIntro from "./pages/PageIntro";
 
+const DemoSignupPage = lazy(() => import("./pages/DemoSignupPage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
 const FeaturesPage = lazy(() => import("./pages/FeaturesPage"));
 const CreatorsPage = lazy(() => import("./pages/CreatorsPage"));
@@ -28,12 +29,13 @@ export default function App() {
     "/creators": "For creators",
     "/company": "Company",
     "/support": "Support",
+    "/demo-signup": "Signup preview",
   };
   useEffect(() => {
     document.title = `HyperChat — ${titles[path] ?? legalTitles[path] ?? "Page not found"}`;
   }, [path]);
   const page =
-    path === "/" ? (
+    path === "/demo-signup" ? (<DemoSignupPage />) : path === "/" ? (
       <HomePage />
     ) : path === "/features" ? (
       <FeaturesPage />
