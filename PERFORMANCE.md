@@ -47,3 +47,25 @@ no page errors or horizontal overflow occurred. HTTP checks also confirmed the
 uploaded BRIGZARD JPEG. Chromium access used TLS-verified curl responses fulfilled
 into browser requests due to this environment's certificate setup. This verifies
 published content/rendering rather than an end-user CDN timing benchmark.
+
+## Touch-first scroll pass
+
+A tester reported phone scrolling lag. Inspection found the continuous Lenis
+GSAP ticker, scrubbed hero transforms, fixed full-screen grain, and viewport-gated
+WebGL wordmark were still enabled on touch-first browsers. These are plausible
+sources of overhead; no physical-device trace from the tester was available.
+
+Touch-first devices now use native browser scrolling. Lenis and the associated
+GSAP reveal/scrub/progress setup are restricted to fine pointers with hover and
+no reduced-motion preference. The grain layer is hidden on coarse/no-hover
+inputs, and the background wordmark uses ordinary page positioning. The closing
+wordmark keeps its image fallback on touch-first devices, without loading its
+liquid engine. The device capability query is observed and cleaned up, so input
+changes can restore desktop behavior. Creator showcase and functional demos
+remain available. Desktop motion is retained.
+
+A dedicated touch-emulated phone check verifies no Lenis class, hidden grain,
+no liquid engine request, static closing art, native anchor navigation and no
+horizontal overflow. This removes known work but does not establish a measured
+frame-rate improvement on the tester's particular phone; a physical retest is
+still needed.

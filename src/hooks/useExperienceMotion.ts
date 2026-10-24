@@ -10,9 +10,9 @@ export function useExperienceMotion(root: RefObject<HTMLDivElement | null>) {
     let disposed = false;
     const media = gsap.matchMedia();
     document.fonts.ready.then(() => {
-      if (!disposed) ScrollTrigger.refresh();
+      if (!disposed && matchMedia("(hover: hover) and (pointer: fine)").matches) ScrollTrigger.refresh();
     });
-    media.add("(prefers-reduced-motion: no-preference)", () => {
+    media.add("(prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine)", () => {
       const lenis = new Lenis({
         duration: 1.05,
         anchors: false,

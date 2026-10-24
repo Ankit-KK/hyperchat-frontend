@@ -25,6 +25,7 @@ export default function LiquidSculptureHero() {
     const root = stage.current!;
     const img = image.current!;
     const motion = matchMedia("(prefers-reduced-motion: reduce)");
+    const touchFirst = matchMedia("(hover: none), (pointer: coarse)");
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
     let disposed = false;
     let intersecting = false;
@@ -49,7 +50,7 @@ export default function LiquidSculptureHero() {
     };
     const sync = async () => {
       if (disposed) return;
-      if (motion.matches || connection?.saveData) {
+      if (motion.matches || touchFirst.matches || connection?.saveData) {
         destroy();
         setStaticMode(true);
         return;
@@ -90,12 +91,14 @@ export default function LiquidSculptureHero() {
     events.forEach((event) => root.addEventListener(event, pointer, { passive: true }));
     const change = () => { void sync(); };
     motion.addEventListener("change", change);
+    touchFirst.addEventListener("change", change);
     document.addEventListener("visibilitychange", change);
     void sync();
     return () => {
       disposed = true;
       observer.disconnect(); sizing.disconnect();
       motion.removeEventListener("change", change);
+      touchFirst.removeEventListener("change", change);
       document.removeEventListener("visibilitychange", change);
       events.forEach((event) => root.removeEventListener(event, pointer));
       destroy();
