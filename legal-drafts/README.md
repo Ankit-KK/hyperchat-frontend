@@ -1,108 +1,84 @@
-# HyperChat legal revision — review drafts
+# Revised HyperChat policy drafts
 
-Prepared 24 October 2026 for STREAMHEART PRIVATE LIMITED. These are proposed
-replacements, not effective policies or a certification of DPDP compliance.
-They have not been wired into the website. Resolve every bracketed instruction
-and complete the operating checks below before adopting them.
+Prepared/revised 24 October 2026. These are proposed policies, **not yet effective**,
+not a compliance certification, and not connected to the live website policy routes.
+No backend/database, Didit account or payment integration was modified.
 
-## Documents
+Documents: PRIVACY_POLICY.md, TERMS_AND_CONDITIONS.md,
+REFUNDS_AND_CANCELLATIONS.md and RETENTION_IMPLEMENTATION.md.
 
-- PRIVACY_POLICY.md: proposed DPDP-oriented privacy notice.
-- TERMS_AND_CONDITIONS.md: proposed terms with balanced platform/data rights.
-- REFUNDS_AND_CANCELLATIONS.md: proposed refund and cancellation policy.
+## Confirmed facts used
 
-## Owner-confirmed facts — 24 October 2026
+- Streamheart settles creator funds using a payment aggregator/gateway; the owner
+  describes the provider as an RBI aggregator. Its identity/authorization was not
+  independently checked. Do not claim Streamheart has an RBI license.
+- HyperChat stores transaction IDs, amounts and creator payout records, not payer
+  details as payment records. Submitted display names/messages remain personal data.
+- Adults 18+ only.
+- Didit performs KYC and tells HyperChat whether KYC is complete. HyperChat does not
+  store KYC documents or biometric records. Minimal completion status is still
+  personal data; “we store no KYC data at all” would be misleading.
+- Annual creator re-KYC is a company policy, not a DPDP requirement. A current
+  financial-year status does not determine Didit's independent legal retention.
 
-- Streamheart settles creator funds.
-- HyperChat stores transaction IDs, amounts and payout records, not payer details.
-- The service is 18+.
-- Creator KYC details go to Didit.
-- Current interaction retention is indefinite (“forever”). This draft proposes
-  replacing blanket indefinite retention; the actual system must change before
-  publishing a purpose-based deletion promise.
-- Desired KYC policy: retain records for a financial year and require renewed KYC.
-  This is an owner-selected operating policy, not a DPDP statutory interval.
-  Mandatory financial/KYC/AML or accounting obligations, if applicable, take precedence.
+## Proposed retention change
 
-## Remaining facts and implementation decisions
+The owner requested replacement of indefinite interaction storage. Draft maximums:
+media/voice 30 days; interaction text/history 90 days; closure erasure within 30 days;
+security logs 12 months; support records 12 months after closure; isolated backup
+expiry within 90 days of deletion. KYC completion status is kept for the current
+financial year and replaced on renewed verification, with superseded status erased
+within 90 days. Financial records are separate: proposed eight following financial
+years where necessary for company accounting, subject to accountant/legal verification.
+Earlier purpose cessation, valid rights requests and legal duties can change these
+periods. Justified holds are documented and reviewed every 90 days.
 
-1. Name the payment provider, merchant/collection role, settlement frequency,
-   creator bank/tax fields, ledger contents, holds/appeals and refund responsibility.
-2. Confirm exact KYC fields and whether HyperChat stores raw identity documents,
-   face images or biometric templates, or only results/references. Verify Didit's
-   storage locations, subprocessors, retention and deletion obligations.
-3. Inventory actual hosting/storage, real-time delivery, speech generation,
-   analytics, support and moderation providers and their purposes. Confirm model
-   training/independent use and cross-border recipients.
-4. Approve and implement purpose-based retention, erasure and backup expiry.
-   A “forever” interaction archive cannot be represented as automatic DPDP compliance.
-   Financial records may need longer retention than routine voice/media data;
-   deleting KYC on financial-year end may also conflict with applicable law.
-5. Confirm financial-year boundaries and re-KYC timing and communicate these before
-   onboarding; implement viewer age assurance in addition to creator KYC.
-6. Name the grievance/privacy responsible person and verify contact, registered
-   office and phone. Confirm acknowledgement and response workflows.
-7. Verify the operative Act/Rules and payment, consumer and financial obligations
-   before approval. Do not publish bracketed language or claim full legal compliance.
+RETENTION_IMPLEMENTATION.md specifies the deletion jobs and acceptance checks.
+These are proposed standards, not existing system capabilities. Do not publish
+these promises while the backend still keeps interactions forever. Backend changes
+require separate access and testing; they were not made in this frontend repository.
 
-## Changes proposed from the existing policies
+## Required before adoption
 
-- Replace “using the website means consent” with specific notices and valid consent
-  where required; explain specified lawful grounds without inventing a broad
-  GDPR-style “legitimate interests” ground for India.
-- Replace the existing under-13 wording with the DPDP under-18 baseline, subject
-  to verified lawful exemptions, and an operationally supported age policy.
-- Add consent withdrawal, access information, correction/completion/updating,
-  erasure, grievance redressal and nomination; distinguish these from marketing
-  preferences and avoid identity-document collection by default.
-- Remove the absolute “we never collect transactional data” denial. Insert the
-  actual payment data and role after confirmation.
-- Remove exclusive ownership of personal data, the blanket custom-overlay ban,
-  automatic daily damages and payout withholding for using another platform.
-- Preserve valid IP and security protections without overriding statutory rights.
-- Make refund limitations subject to mandatory Indian consumer law; distinguish
-  HyperChat fees from viewer-to-creator transfers and payment-provider processing.
+- Verify gateway identity, actual collection/settlement role, creator agreement,
+  settlement timing/holds, data flows, fee breakdown and refund capability.
+- Confirm Didit contracts/notice, what the integration receives, provider retention,
+  deletion and locations; verify documents/biometric payloads never enter logs.
+- Inventory actual voice/hosting/storage/moderation/analytics providers, locations,
+  processor contracts and any independent training/profiling use.
+- Implement and test the retention handoff, viewer/creator age controls, notice and
+  consent choices, withdrawal, rights/nomination and grievance processing, security,
+  breach reporting and required notice/language access.
+- Confirm the registered office and the named privacy/grievance responsible person.
+  ankit@hyperchat.space is the operational contact; no statutory DPO appointment
+  or Significant Data Fiduciary designation is assumed.
+- Confirm the proposed 48-hour acknowledgement/30-day resolution service targets
+  and 7–14-business-day post-approval refund estimate are achievable and satisfy
+  applicable shorter legal requirements.
+- Check company/tax/payment retention, including Companies Act section 128 books
+  and vouchers, with an accountant; the eight-year period is not a DPDP-wide rule.
+- Verify the current Act/Rules and commencement before legal approval; adopt a real
+  effective date and deliver required notice. Existing Terms contain a 14-day
+  material-change notice commitment. Keep version history.
 
-## Legal source verification still required
+## Official-source recheck — 24 October 2026
 
-Reference framework: Digital Personal Data Protection Act, 2023 (Act 22 of 2023),
-particularly sections 3–9, 11–16 and 17 where applicable. Relevant subjects include
-notices, consent, specified legitimate uses, fiduciary duties, children, rights,
-nomination, duties and cross-border restrictions. Section 10 obligations apply
-only if designated a Significant Data Fiduciary; do not assume designation.
+The following were retried, including MeitY with additional network permission:
+- https://www.meity.gov.in/data-protection-framework
+- https://www.meity.gov.in/offerings/notices
+- https://www.indiacode.nic.in/bitstream/123456789/20064/1/a2023-22.pdf
+- https://egazette.gov.in/
+- https://www.pib.gov.in/
 
-Official verification targets:
-- India Code Act: https://www.indiacode.nic.in/bitstream/123456789/20064/1/a2023-22.pdf
-- MeitY data-protection framework: https://www.meity.gov.in/data-protection-framework
-- Gazette notifications: https://egazette.gov.in/
+All attempts were blocked with HTTP 403 at the CONNECT network tunnel. This is an
+access limitation, not evidence that the sites or laws are unavailable generally.
+We did not verify final/amended DPDP Rules, operative commencement notifications,
+phased deadlines or the Board complaint procedure. The drafts must not be described
+as certified current-law compliance. Verify official Gazette copies before adoption.
 
-Government pages returned HTTP 403 in this environment, including a second
-attempt with additional network permission. The operative commencement
-notifications, final/amended Rules, phased deadlines and Board complaint procedure
-were therefore NOT verified. Do not assert that all provisions are already in
-force or adopt draft-rule numbers/deadlines from this packet. Obtain and record
-current Gazette versions and check applicable transitional IT Act/SPDI obligations,
-CERT-In directions and consumer/e-commerce/payment requirements before approval.
-These drafts express proposed substantive standards rather than a verified account
-of which obligations have commenced on the preparation date.
-
-## Implementation required before the notice is accurate
-
-A written policy alone does not implement the Act. Map data and processors; configure
-purpose-specific notices and consent records; provide a withdrawal path as easy as
-consent; implement age controls; document processor contracts, security, access
-controls, breach response, retention/deletion and backup expiry. Set up rights and
-grievance handling, verify identity proportionately, route processor requests,
-record outcomes, and support nomination. Check applicable Rules for notice content,
-accessibility/language, response times and breach reporting triggers/deadlines.
-
-Confirm whether optional analytics/marketing, recording permissions, publishing
-viewer messages, external moderation integrations and AI text-to-speech require
-separate choices. Collect consent at the actual collection/action point, not only
-in this footer notice. Do not preselect optional consent or make unrelated consent
-a condition of service. Test withdrawal and deletion across vendors.
-
-Approve substantive policy changes separately, choose an effective date, and give
-any notice required by existing contracts and law. Existing Terms section 12.9
-mentions at least 14 days' notice for material changes; evaluate that commitment
-before changing the terms. Preserve the old version for audit and dispute handling.
+Reference framework for review: DPDP Act 2023, particularly notice/consent and
+specified legitimate uses, general fiduciary duties, children under 18, access,
+correction/erasure, grievances, nomination and applicable transfer restrictions.
+Check applicable final Rules, transitional IT Act/SPDI provisions, CERT-In directions,
+consumer/e-commerce rules and payment/financial duties in the actual operating model.
+No broad GDPR-style “legitimate interests” basis was imported.

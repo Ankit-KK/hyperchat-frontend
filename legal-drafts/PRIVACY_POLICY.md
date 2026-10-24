@@ -1,207 +1,180 @@
 # HyperChat Privacy Policy
 
-**Review draft — not yet effective.** Effective date: [insert after approval].
+**Revised review draft, 24 October 2026 — not yet effective.** Adopt an effective
+date only after completing the publication checks in README.md.
 
 HyperChat is a product of **STREAMHEART PRIVATE LIMITED** (“HyperChat”, “we”, “us”).
-Registered office: G-478, G BLOCK, GOVINDPURAM PARK, BLOCK 1, Govindpuram,
-Ghaziabad, India [confirm current registered address].
-Privacy and grievance email: **ankit@hyperchat.space**.
-Grievance contact: [confirm responsible person's name/designation].
+Our registered office is G-478, G BLOCK, GOVINDPURAM PARK, BLOCK 1, Govindpuram,
+Ghaziabad, India. Our privacy and grievance contact is **ankit@hyperchat.space**.
 
-This notice explains the personal data we process for our website, creator tools,
-audience interactions and support. A creator may separately decide how to use
-information in their broadcast or community. We identify our own purposes here;
-where we process data solely on a creator's documented instructions, the applicable
-creator arrangement and notice also govern that activity. Merely calling a creator
-a Data Fiduciary does not remove our responsibilities for purposes we determine.
+This notice explains our processing of personal data for creator accounts,
+audience interactions, payments, settlements and support. A creator may separately
+process information in their broadcast or community. We remain responsible for
+purposes we determine, even when other providers help deliver the service.
 
-## 1. Data and purposes
+## 1. Personal data and purposes
 
-[Complete the following inventory and remove any category not actually processed.
-The final notice must itemize actual data and uses; “may collect anything” is not enough.]
+- **Creator accounts:** contact and channel details, account identifiers and
+  permissions needed to review onboarding, operate accounts and secure access.
+- **Audience interactions:** submitted display names, text, voice recordings,
+  images or other supported media, creator destination and delivery/moderation
+  records, to validate, review, queue and deliver the interaction and provide
+  a limited interaction history. Do not submit another person's private data or
+  recording without appropriate authority.
+- **Text-to-speech:** submitted text and voice/language choices needed to generate
+  the requested audio. Recorded voice messages instead use the viewer's own audio.
+  Providers and any additional uses must be disclosed at the relevant feature.
+  Acceptance of this notice is not permission for unrelated voice cloning or training.
+- **KYC:** identity information is submitted to **Didit** for verification.
+  HyperChat receives the KYC completion status linked to the creator account.
+  HyperChat does **not** store KYC identity documents, face images or biometric
+  records. Didit's own collection and retention are explained through its notice
+  and the verification flow; our deletion schedule does not by itself delete Didit records.
+- **Payments and settlements:** payments use a payment aggregator/gateway.
+  Streamheart settles creator funds and stores transaction IDs, amounts and payout
+  records for reconciliation, refunds, settlement and required accounting.
+  HyperChat does not store payer details as payment records. A separately submitted
+  viewer display name or message can still identify a person. Payment providers
+  process payment information under their applicable notices.
+- **Security and service operation:** necessary authentication/session information,
+  access and security logs and troubleshooting records, to operate the service,
+  protect accounts and investigate failures or misuse.
+- **Support:** information you provide in requests and relevant account/service
+  records, to respond, investigate and resolve grievances.
 
-- **Accounts and creator onboarding:** name, email, channel/profile details,
-  account identifiers, role/permissions and authentication records, to create and
-  secure accounts, review applications and operate creator access. [Confirm fields.]
-- **Interactions and media:** the message, chosen display name, creator destination,
-  interaction settings, and any voice recording, image, GIF or video you choose to
-  submit, to validate, moderate, queue and deliver that interaction. Voice recordings
-  can identify a person. Do not submit another person's private data or recording
-  without authority.
-- **Text-to-speech:** typed text and selected voice/language settings, to generate
-  requested audio using [confirmed provider]. A recorded voice message is your
-  recording, not text-to-speech. [State whether content is retained by the provider
-  or used for training; obtain any additional permissions actually required.]
-- **Identity verification:** creator KYC details are submitted to **Didit** for identity
-  verification. [Specify the fields/documents sent and whether HyperChat receives
-  raw documents, images or biometric information, or only a result/reference.]
-  Our proposed creator process requires renewed KYC each financial year. This is
-  a company access policy, not a statement that the DPDP Act requires annual KYC.
-  Notice and verification choices must identify Didit's role and processing.
-- **Transaction and settlement records:** transaction IDs, amounts and creator payout
-  records, to reconcile interactions, arrange creator settlements, investigate
-  payment issues and meet applicable accounting and legal requirements. Streamheart
-  settles creator funds. We do not store payer details as payment records. A viewer's
-  separately submitted display name or message can still be personal data.
-  [Confirm the payment provider, any creator bank/tax details, and exactly what
-  “payout records” include. Do not imply that these records are not financial data.]
-- **Security and usage:** [actual IP address, browser/device details, timestamps,
-  access/security logs and necessary session records], to operate the site, protect
-  accounts, troubleshoot delivery and investigate misuse.
-- **Support and grievances:** contact details, issue descriptions, correspondence
-  and relevant records, to answer requests and resolve complaints.
-- **Optional analytics or marketing:** [actual data, tools, purposes and choices,
-  or state that these activities are not used if verified].
+We identify required data at collection and explain the feature consequences of
+not providing it. Optional analytics, marketing, external moderation or other
+additional processing must have its own accurate notice and choice where required.
+This policy does not authorize unspecified future purposes.
 
-Some information is necessary for the feature you request. The collection notice
-will explain which fields are required and what cannot work without them.
+## 2. Notice, consent and withdrawal
 
-## 2. Grounds for processing and your choices
+Where consent is required, we provide a clear notice identifying the personal data
+and specified purpose and seek free, specific, informed, unconditional and
+unambiguous consent through affirmative action. Merely browsing or accepting
+Terms does not mean consent to all processing. Optional purposes are separate.
 
-Where consent is required, we give a clear notice of the personal data and specified
-purpose and ask for a free, specific, informed, unconditional and unambiguous
-indication through affirmative action. Optional purposes are presented separately.
-Browsing the site or accepting Terms is not blanket consent to every use of data.
+We may use other grounds expressly permitted by applicable Indian law when their
+conditions are met, including specified legitimate uses or binding legal duties.
+We do not claim a general right to process anything for “business interests”.
 
-We may also process data for specified legitimate uses permitted by applicable
-Indian law, such as a purpose for which you voluntarily provide data without
-indicating that you do not consent, where the statutory conditions are met, or
-for a binding legal obligation. This is not an unlimited “business interests” basis.
-We will not use a voluntary submission to infer permission for unrelated marketing.
+You can withdraw consent by emailing **ankit@hyperchat.space** and through any
+consent control offered for the feature. Withdrawal must be as easy as giving
+consent. We stop the consent-based processing and instruct relevant processors to
+stop within applicable periods, unless continued processing is required or
+otherwise authorized by law. Withdrawal does not undo lawful processing already
+completed. We explain when a requested feature cannot continue without that data.
 
-You can withdraw consent through [actual account/consent control] or by contacting
-ankit@hyperchat.space. Withdrawal must be as easy as giving consent. We stop the
-consent-based processing and cause relevant processors to stop within the required
-period, unless processing is required or authorized by law. Withdrawal does not
-undo lawful processing already completed; a feature dependent on the withdrawn
-consent may no longer be available. We explain those consequences when relevant.
+## 3. Broadcast visibility and sharing
 
-## 3. What becomes visible to creators and audiences
+An interaction may be received by a creator and their authorized moderators. If
+selected for broadcast, its intended display name, text, media or audio may appear
+in a live stream, replay or clip. The submission notice must explain this before
+sending. Payer details are not made public merely because an interaction is broadcast.
 
-An interaction you choose to send may be received by the creator and their authorized
-moderators. If accepted for broadcast, its display name, message, media or audio
-may appear in a live stream, recording, clip or replay. [Confirm exact visible fields
-and the notice shown before submission.] Never expose payer details or private
-account information merely because an interaction is broadcast.
+Independent copies made by creators, streaming platforms or viewers may remain
+outside our control. We act on data we control and assist with relevant requests;
+we cannot guarantee retrieval of every public copy. Your statutory rights remain.
 
-A creator, platform or viewer may make a separate copy. We can act on data under
-our control and assist with requests to relevant recipients, but cannot promise
-that every independent public copy will be retrievable or erased. This does not
-limit your statutory rights against us or other responsible parties.
+We use service providers for the relevant hosting, storage, delivery, verification,
+voice, support and payment functions. We disclose data only for identified purposes,
+valid choices or lawful requirements, with appropriate contracts and safeguards.
+When external moderation is enabled, the integration notice explains the data and
+recipients involved. Provider names and any independent purposes must be identified
+at the relevant collection or integration point. No unrelated marketing, AI training
+or voice reuse is authorized simply by using the service.
 
-## 4. Recipients and service providers
+## 4. Retention and deletion
 
-We disclose data only for identified service purposes, valid choices or lawful
-requirements, using appropriate safeguards and contracts. Recipients include:
-[confirmed providers/categories for hosting/storage, real-time delivery,
-authentication, email/support, identity verification, AI speech, moderation
-integrations and payments, with their data and purposes].
+We do not keep interaction content indefinitely. The following periods are the
+normal **maximums**, subject to earlier erasure where the purpose ends, valid
+withdrawal or erasure requires it, and applicable lawful preservation requirements.
 
-When a creator enables an external moderation integration, such as Telegram or
-Discord, explain which interaction data is routed there and who can access it
-before enabling it. A provider acting for its own purposes must be identified as
-such; it must not be described as our processor for all activities by assumption.
+| Data | Normal maximum retention |
+|---|---|
+| Uploaded/recorded audio, images, GIFs, videos and generated speech files | 30 days after upload or generation. |
+| Interaction text, display name and routine queue/delivery/moderation history | 90 days after submission. |
+| Account/profile and access permissions | While the account serves an active purpose; erase within 30 days of closure, except justified records below. Review dormant accounts annually. |
+| KYC completion status | Current Indian financial year, then renewed verification. Erase superseded status within 90 days after renewal, or within 30 days of account closure, unless necessary for a documented legal obligation. |
+| Routine support/grievance correspondence | 12 months after the matter closes; longer only for a documented dispute or legal requirement. |
+| Necessary security/access logs | 12 months after creation, subject to applicable mandatory periods and minimization. Do not copy full interaction content or KYC documents into these logs. |
+| Transaction IDs, amounts and creator payout/accounting records | Eight financial years following the financial year of the record, where needed for company accounting requirements; longer only under an applicable legal duty or documented hold. |
+| Deleted data remaining solely in isolated backups | Expire within 90 days of production deletion; prohibit routine use and reapply deletion before restored data returns to service. |
 
-[Confirm any sale, advertising, profiling or training use. Insert a verified statement;
-do not promise “we never sell data” without checking all recipients and contracts.]
-We may disclose information where lawfully required by authorities or courts, and
-for other legally permitted purposes within the applicable conditions.
+Financial records are separated from voice/media content. A financial retention
+requirement is not permission to keep the entire interaction or recording for the
+same period. Legally required security records must likewise be minimized and
+separated from routine content.
 
-## 5. Storage location and transfers
+For a complaint, fraud investigation, court order or other lawful hold, we preserve
+only necessary data, restrict access and review the hold at least every 90 days.
+We erase the preserved data when the reason ends and no other valid basis remains.
+Applicable mandatory periods prevail; we explain lawful retention in response to
+an erasure request. These schedules also require appropriate processor instructions.
 
-[Identify actual processing locations, provider categories and relevant safeguards.]
-Processing outside India will be subject to applicable Indian restrictions,
-Government notifications and any stricter applicable sectoral requirements.
-We do not promise India-only storage unless the infrastructure and contracts support it.
+## 5. Security and breaches
 
-## 6. Retention and deletion
+We apply reasonable technical and organizational safeguards and require appropriate
+safeguards from processors. These include access restrictions, protection of data
+in transit and storage, monitoring, recovery and incident response appropriate to
+the risk. We do not guarantee that any system is completely risk-free.
 
-We retain data only for its specified purpose or a lawful retention requirement,
-and cause processors to erase data where required. We delete or anonymize it when
-the purpose is no longer served or consent is withdrawn, subject to lawful exceptions
-and applicable Rules. Access to records preserved for a legal dispute, security
-investigation or statutory obligation is restricted to that purpose.
+For a personal data breach, we assess and contain the incident and provide affected
+individuals and the competent authority the notices required by applicable law,
+with the prescribed contents and deadlines. We do not use a policy disclaimer to
+exclude our security or reporting obligations.
 
-Before publication, complete this schedule:
+## 6. Adults only and verification
 
-| Category | Retention trigger and period | Required exception / backup expiry |
-|---|---|---|
-| Account/profile and authentication data | [confirm] | [confirm] |
-| Interaction text, voice recordings and uploaded media | For delivery, moderation and a justified creator-history purpose while needed; erase when the relevant purpose ends or valid withdrawal/erasure requires it. [Approve finite review/deletion intervals and backup expiry.] | Preserve only necessary records for a specified lawful obligation or dispute; separate these from routine media. |
-| Identity verification status/documents, if received | Proposed operational period: the financial year for which verification is used, followed by renewed KYC. [Confirm financial-year boundaries, timing, exact retained fields and Didit retention.] | Applicable KYC/AML/accounting duties, if any, may require longer preservation. Annual re-verification is not authority to delete records that law requires. |
-| Transaction IDs, amounts, payout, refund and accounting records | [Determine applicable statutory records and retention periods for the actual settlement role.] | Legal holds and restricted archival access; separate this schedule from routine interactions and KYC re-verification. |
-| Security/access logs | [confirm applicable mandatory period] | [confirm] |
-| Support/grievance records | [confirm] | [confirm] |
+HyperChat is available only to individuals aged **18 or older**. Do not create an
+account or submit an interaction if you are under 18. Creator KYC does not establish
+viewer age; age controls must cover the relevant service users.
 
-## 7. Security and personal data breaches
+Creators complete verification through Didit. Our proposed operating policy requires
+renewed KYC each Indian financial year, from 1 April to 31 March. This annual policy
+is a company requirement, **not a DPDP statutory re-KYC interval**. Applicable
+financial or verification requirements may impose separate obligations.
 
-We implement appropriate technical and organizational safeguards, including
-[verified access controls, encryption, logging, backup and incident-response measures].
-We require processors to apply appropriate safeguards. No system is completely
-risk-free; that does not exclude our legal responsibilities.
+If we learn that a child's data was collected contrary to this policy or law,
+we restrict further processing, investigate and erase it unless lawful preservation
+is required. Report concerns to ankit@hyperchat.space. We respect legal agency and
+follow any applicable requirements for persons represented by lawful guardians.
 
-If a personal data breach occurs, we assess, contain and respond to it and notify
-affected individuals and the competent authority as required by applicable law,
-using the prescribed contents, channels and time limits. [Verify the operative
-Rules and notification procedure before approval; configure the actual incident plan.]
+## 7. Your rights and grievances
 
-## 8. Children and persons represented by lawful guardians
+Subject to the Act's scope, conditions and applicable exemptions, you may request:
 
-For DPDP purposes a child is ordinarily a person under **18**, subject to applicable
-lawful exemptions. Do not use the old “under 13” threshold as the DPDP baseline.
+- A summary of personal data and processing activities, and prescribed information
+  about Data Fiduciaries and processors with whom data was shared.
+- Correction, completion and updating of inaccurate or incomplete personal data.
+- Erasure, subject to lawful retention and applicable requirements.
+- Withdrawal of consent and redressal of grievances.
+- Nomination in the legally prescribed manner of another person to exercise
+  relevant rights following your death or incapacity.
 
-HyperChat is available only to people aged **18 or older**. Do not create an account
-or submit an interaction if you are under 18. [Implement proportionate age assurance
-for viewers as well as creators; creator KYC alone does not establish viewer age.]
+Email **ankit@hyperchat.space**, identifying the account or interaction and the
+request. We verify identity and authority proportionately, without collecting
+unnecessary identity documents. Our proposed service target is acknowledgement
+within 48 hours and resolution within 30 days, subject to any shorter applicable
+legal period. We explain delays, a lawful refusal or retained records and the
+available escalation route. These are service targets, not a description of
+statutory DPDP response deadlines.
 
-If we learn that we hold a child's personal data contrary to this policy or applicable
-law, we restrict further processing, investigate and erase it unless lawful preservation
-is required. Parents or guardians can report a concern to ankit@hyperchat.space.
-[Implement this workflow and assess any separate legal requirement before publication.]
-We do not use the adult-only statement as a substitute for reasonable age controls.
+First use our grievance process. If unresolved, you can approach the Data Protection
+Board of India or other competent authority through the legally available process,
+after exhausting any required internal grievance opportunity. No waiver of rights
+is required to obtain support. Observe applicable Data Principal duties, including
+truthful required identity information and avoiding impersonation or false grievances.
 
-Where consent of a lawful guardian of a person with disability is legally required,
-we follow the applicable requirements and verification process. Disability alone
-must not be treated as a reason to deny a person's legal agency.
+## 8. International processing and updates
 
-## 9. Your data-protection rights
+Provider processing outside India is subject to applicable Government restrictions,
+sectoral requirements and appropriate arrangements. We do not promise India-only
+processing. Relevant locations and providers must be disclosed accurately through
+our collection notices and provider information.
 
-Subject to the Act's scope, applicable conditions and exemptions, you can request:
-
-- A summary of personal data being processed and processing activities, and
-  information about other Data Fiduciaries and processors with whom it was shared,
-  including the prescribed identities and data descriptions, as applicable.
-- Correction of inaccurate or misleading data; completion and updating of data.
-- Erasure of data no longer needed, subject to legally permitted retention.
-- Redressal of grievances about our processing and the exercise of your rights.
-- Nomination, in the legally prescribed manner, of another individual to exercise
-  relevant rights in the event of your death or incapacity.
-
-Contact ankit@hyperchat.space or use [actual rights-request control]. We verify
-identity and authority proportionately and respond within applicable periods.
-We do not require unnecessary identity-document uploads. We explain any legally
-permitted refusal or retention and the available grievance route.
-
-You should provide authentic information for required identity checks, avoid
-impersonation and false grievances, and observe the duties applicable to Data Principals.
-Those duties do not waive our obligations or authorize blanket rejection of requests.
-
-## 10. Grievances and escalation
-
-Send privacy questions, rights requests and complaints to **ankit@hyperchat.space**,
-addressed to [confirmed grievance contact/designation]. Include enough information
-to identify the issue; never send passwords or private OBS access tokens.
-
-We acknowledge and resolve grievances within applicable legal periods. First use
-our grievance process. If the issue remains unresolved, you may approach the
-Data Protection Board of India or another competent authority through the process
-available under applicable law, after exhausting the required grievance opportunity.
-[Verify current commencement and official complaint channel; do not invent a Board URL.]
-
-## 11. Notice updates and language
-
-We publish material changes with an accurate revision/effective date and provide
-any additional notice or fresh consent required for a changed purpose. We do not
-retrospectively treat a new notice as consent to a new use. Consent requests and
-required notices will be accessible in English or an Eighth Schedule language
-in accordance with applicable law. [Implement the available language-choice process.]
+Material changes receive an accurate revision date and any additional notice or
+fresh consent required by law. A new notice does not retrospectively authorize a
+new purpose. Required notices and consent requests must support English or an
+Eighth Schedule language as applicable. For notices, language requests and privacy
+questions, contact ankit@hyperchat.space.
