@@ -9,7 +9,7 @@ export default defineConfig({
     rolldownOptions: {
       output: {
         codeSplitting: {
-          groups: [{ name: "motion", test: /node_modules\/(framer-motion|motion-dom|motion-utils)\// }],
+          groups: [{ name: "motion", includeDependenciesRecursively: false, test: /node_modules\/(framer-motion|motion-dom|motion-utils)\// }],
         },
       },
     },

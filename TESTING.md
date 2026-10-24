@@ -249,3 +249,25 @@ sets across reloads, fixed ambassador order, no duplicate cards, search, card fl
 scroll animation and reduced-motion accessibility. BRIGZARD replacement photo is
 visible in chat but unavailable as a local/downloadable attachment; image replacement
 is pending a usable file or direct URL. Existing portrait was not changed.
+
+## Route delivery and mobile polish — 24 October 2026
+
+Production build passed without the previous 500 kB chunk advisory. Entry JS is
+381.46 kB (129.44 kB gzip), down from 517.29 kB (166.82 gzip). Pages load on demand;
+Support no longer requests homepage, Framer Motion or legal-page bundles. See
+PERFORMANCE.md for comparable totals and measurement limits.
+
+Initial broad sweep: 110 passed, 2 GPU skips, 11 failures. Six showcase fixtures
+measured a page before lazy content mounted; readiness waits were corrected.
+Three new delivery assertions caught React being pulled into the motion chunk;
+recursive dependency grouping was disabled. Two fallback-CTA checks exposed stale
+Lenis coordinates after native scrolling; same-page anchor synchronization fixed it.
+After fixes: 52 targeted page/loading/mobile/showcase/liquid checks passed with 2
+intentional GPU skips; all 13 desktop mascot regressions passed. Narrow 320/360px,
+touch navigation, reduced motion, slow/failed chunks and return links are covered.
+Earlier audio, support, legal and accessibility regression cases passed in the sweep.
+
+Existing live Vercel build: all nine routes returned/rendered correct page headings
+with no page errors or horizontal overflow in mobile-sized Chromium. BRIGZARD photo
+returned HTTP 200 image/jpeg. New-build deployment status is recorded separately
+if verified after push. No physical-device or Safari/Firefox speed benchmark was run.

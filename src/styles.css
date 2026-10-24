@@ -2479,3 +2479,7 @@ main,
   .support-topics { display: grid; gap: 16px; }
   .support-contact .button { padding: 16px; font-size: 12px; }
 }
+.page-loading { min-height: 65svh; padding-top: 170px; color: var(--ivory); line-height: 1.8; }
+.page-loading h1 { font-size: clamp(32px, 5vw, 60px); margin-bottom: 20px; }
+.page-loading .button { margin-top: 24px; background: var(--ivory); color: var(--charcoal); }
+@media (max-width: 600px) { .page-loading { padding-top: 125px; } }

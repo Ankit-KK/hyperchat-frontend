@@ -2,6 +2,7 @@ import { test, expect, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 async function progress(page: Page, amount: number) {
+  await expect(page.locator("#creator-showcase")).toBeAttached();
   await page.evaluate((value) => {
     const section = document.querySelector<HTMLElement>("#creator-showcase")!;
     window.scrollTo({ top: section.offsetTop + (section.offsetHeight - innerHeight) * value, behavior: "instant" });

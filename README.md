@@ -104,3 +104,7 @@ for source provenance and existing clauses that require an owner decision.
 
 Terms are audience-specific: `/terms-and-conditions` is **Creator Terms**;
 `/viewer-terms` is **Viewer Interaction Terms**. Privacy and Refunds are shared.
+
+Page components are loaded on demand with a shared loading/error boundary and
+motion setup after content mount. See [PERFORMANCE.md](PERFORMANCE.md) for bundle
+measurements, mobile checks and live-site verification limits.

@@ -31,7 +31,8 @@ function linkedText(text: string): ReactNode {
     ),
   );
 }
-export default function LegalPage({ policy }: { policy: Policy }) {
+export default function LegalPage({ path }: { path: string }) {
+  const policy = policies[path];
   return (
     <>
       <PageIntro

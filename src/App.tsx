@@ -1,16 +1,24 @@
-import { useEffect, useRef } from "react";
+import { lazy, Suspense, useEffect, useRef } from "react";
 import PushpinTearFooter from "./components/ui/pushpin-tear-footer";
 import Navigation from "./components/Navigation";
 import MascotCursor from "./components/MascotCursor";
-import { useExperienceMotion } from "./hooks/useExperienceMotion";
+import PageExperience from "./components/PageExperience";
+import PageLoadBoundary from "./components/PageLoadBoundary";
 
-import HomePage from "./pages/HomePage";
-import FeaturesPage from "./pages/FeaturesPage";
-import CreatorsPage from "./pages/CreatorsPage";
-import CompanyPage from "./pages/CompanyPage";
-import SupportPage from "./pages/SupportPage";
-import LegalPage, { policies } from "./pages/LegalPage";
 import PageIntro from "./pages/PageIntro";
+
+const HomePage = lazy(() => import("./pages/HomePage"));
+const FeaturesPage = lazy(() => import("./pages/FeaturesPage"));
+const CreatorsPage = lazy(() => import("./pages/CreatorsPage"));
+const CompanyPage = lazy(() => import("./pages/CompanyPage"));
+const SupportPage = lazy(() => import("./pages/SupportPage"));
+const LegalPage = lazy(() => import("./pages/LegalPage"));
+const legalTitles: Record<string, string> = {
+  "/privacy-policy": "Privacy Policy",
+  "/terms-and-conditions": "Creator Terms",
+  "/viewer-terms": "Viewer Interaction Terms",
+  "/cancellation-refunds": "Refund & Cancellation Policy",
+};
 
 export default function App() {
   const path = window.location.pathname.replace(/\/+$/, "") || "/";
@@ -22,7 +30,7 @@ export default function App() {
     "/support": "Support",
   };
   useEffect(() => {
-    document.title = `HyperChat — ${titles[path] ?? policies[path]?.title ?? "Page not found"}`;
+    document.title = `HyperChat — ${titles[path] ?? legalTitles[path] ?? "Page not found"}`;
   }, [path]);
   const page =
     path === "/" ? (
@@ -35,8 +43,8 @@ export default function App() {
       <SupportPage />
     ) : path === "/company" ? (
       <CompanyPage />
-    ) : policies[path] ? (
-      <LegalPage policy={policies[path]} />
+    ) : legalTitles[path] ? (
+      <LegalPage path={path} />
     ) : (
       <>
         <PageIntro
@@ -51,7 +59,6 @@ export default function App() {
     );
 
   const root = useRef<HTMLDivElement>(null);
-  useExperienceMotion(root);
   return (
     <div ref={root} className="site-root">
       <MascotCursor />
@@ -82,7 +89,11 @@ export default function App() {
       <div className="grain" aria-hidden="true" />
       <Navigation />
       <main id="main" tabIndex={-1}>
-        {page}
+        <PageLoadBoundary>
+          <Suspense fallback={<div className="page-loading section-shell" role="status">Loading page…</div>}>
+            <PageExperience root={root}>{page}</PageExperience>
+          </Suspense>
+        </PageLoadBoundary>
       </main>
       <PushpinTearFooter />
     </div>
