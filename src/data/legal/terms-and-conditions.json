@@ -122,8 +122,24 @@
           "text": "Provide the accurate information lawfully required to complete settlements. Refunds, chargebacks, documented fraud investigations or legal requirements may justify proportionate adjustments or holds under applicable terms and law. We provide available reasons, scope and a review route where permitted."
         },
         {
+          "kind": "heading",
+          "text": "6.1 Calendar-month platform usage and payout holds"
+        },
+        {
           "kind": "paragraph",
-          "text": "Using or switching to another platform alone is not a reason to confiscate or withhold earned creator funds. Closing an account does not automatically forfeit money lawfully owed. Disputes about an adjustment can be sent to ankit@hyperchat.space."
+          "text": "If a creator earns any amount through HyperChat during a calendar month and, during that same calendar month, begins using another donation, tipping, monetization or similar streaming platform without informing HyperChat in advance, HyperChat reserves the right to withhold that calendar month’s creator payout."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Creators must notify HyperChat in advance at ankit@hyperchat.space before making such a switch or beginning such use during a month in which they have earned through HyperChat. The rule concerns the same calendar month; it does not apply solely because a creator starts using another platform in a later month."
+        },
+        {
+          "kind": "paragraph",
+          "text": "HyperChat determines whether the conditions for this platform-rule hold are met, subject to applicable law. Using HyperChat during a month does not by itself guarantee release of that month’s payout where this rule applies. Contact ankit@hyperchat.space about a hold or to request review. This clause does not prescribe an automatic release date or convert a hold into an automatic permanent forfeiture."
+        },
+        {
+          "kind": "paragraph",
+          "text": "A hold under this rule does not by itself create an entitlement to additional compensation from HyperChat. Mandatory legal rights and remedies, including the right to challenge a hold, are not excluded. This rule applies to creators, not to viewers sending or paying for interactions."
         }
       ]
     },

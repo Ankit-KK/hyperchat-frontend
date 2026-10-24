@@ -109,4 +109,10 @@ test('viewer and creator terms have distinct audiences and remain easy to find',
   await expect(page).toHaveURL(/\/terms-and-conditions$/);
   await expect(article).toContainText('Creator verification is performed through Didit');
   await expect(article).toContainText('settlement schedule');
+  await expect(article.getByRole('heading', { name: '6.1 Calendar-month platform usage and payout holds', exact: true })).toHaveCount(1);
+  await expect(article).toContainText('without informing HyperChat in advance');
+  await expect(article).toContainText('withhold that calendar month’s creator payout');
+  await expect(article).toContainText('This rule applies to creators, not to viewers');
+  await page.getByRole('navigation', { name: 'Policy pages' }).getByRole('link', { name: 'Refund & Cancellation Policy', exact: true }).click();
+  await expect(article).toContainText('Creator Terms section 6.1');
 });

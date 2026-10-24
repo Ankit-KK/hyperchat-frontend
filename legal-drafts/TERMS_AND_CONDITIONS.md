@@ -1,6 +1,6 @@
 # Creator Terms
 
-Working text mirrored from the audience-specific public policy. Published 24 October 2026; substantive changes effective 7 November 2026.
+Working text mirrored from the public Creator Terms. Published 24 October 2026; substantive changes effective 7 November 2026.
 
 ## Who these terms apply to
 
@@ -54,7 +54,15 @@ Before activation of a paid arrangement, the applicable creator agreement or com
 
 Provide the accurate information lawfully required to complete settlements. Refunds, chargebacks, documented fraud investigations or legal requirements may justify proportionate adjustments or holds under applicable terms and law. We provide available reasons, scope and a review route where permitted.
 
-Using or switching to another platform alone is not a reason to confiscate or withhold earned creator funds. Closing an account does not automatically forfeit money lawfully owed. Disputes about an adjustment can be sent to ankit@hyperchat.space.
+### 6.1 Calendar-month platform usage and payout holds
+
+If a creator earns any amount through HyperChat during a calendar month and, during that same calendar month, begins using another donation, tipping, monetization or similar streaming platform without informing HyperChat in advance, HyperChat reserves the right to withhold that calendar month’s creator payout.
+
+Creators must notify HyperChat in advance at ankit@hyperchat.space before making such a switch or beginning such use during a month in which they have earned through HyperChat. The rule concerns the same calendar month; it does not apply solely because a creator starts using another platform in a later month.
+
+HyperChat determines whether the conditions for this platform-rule hold are met, subject to applicable law. Using HyperChat during a month does not by itself guarantee release of that month’s payout where this rule applies. Contact ankit@hyperchat.space about a hold or to request review. This clause does not prescribe an automatic release date or convert a hold into an automatic permanent forfeiture.
+
+A hold under this rule does not by itself create an entitlement to additional compensation from HyperChat. Mandatory legal rights and remedies, including the right to challenge a hold, are not excluded. This rule applies to creators, not to viewers sending or paying for interactions.
 
 ## 7. Acceptable use and third parties
 

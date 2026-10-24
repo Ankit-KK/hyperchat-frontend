@@ -73,3 +73,16 @@ of the relevant terms before use/payment; footer access alone is not evidence of
 transaction-specific notice or acceptance. No checkout/backend was changed here.
 The gateway's actual merchant/fee and settlement details still need an operational
 review; no missing commercial rate or settlement deadline was invented.
+
+## Owner-directed calendar-month payout rule restoration — 24 October 2026
+
+The owner explicitly directed reinstatement of the creator commercial rule. Creator
+Terms section 6.1 now permits holding that month's payout when the creator earns
+through HyperChat and begins using another monetization platform in that same
+calendar month without advance notice. Prior anti-withholding wording was removed
+and the Refund policy cross-reference aligned. The written advance-notice channel
+is ankit@hyperchat.space. No backend settlement automation was changed, and no
+claim of enforceability or permanent forfeiture is made. Mandatory rights and a
+review contact remain. The existing 7 November 2026 effective date is retained.
+Earlier draft recommendations to remove this commercial rule are superseded by
+this owner instruction; an Indian contract/payment-law review remains outstanding.

@@ -223,3 +223,11 @@ page titles/scope, creator KYC and settlement content, viewer payment and refund
 content, footer discovery, accessibility and unchanged shared policy routes.
 Checkout acceptance and backend enforcement are outside this frontend change;
 hosted deployment was not verified.
+
+## Creator calendar-month payout rule — 24 October 2026
+
+Restored owner-directed advance-notice/same-month earnings payout-hold rule in
+Creator Terms section 6.1; aligned Refund policy and working copies. Production
+build and all 18 legal-page cases passed on desktop/tablet/mobile, including
+rule visibility, audience scope and shared-policy consistency. This changes
+policy copy only; no settlement backend or live deployment was verified.
