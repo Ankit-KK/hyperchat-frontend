@@ -1,36 +1,25 @@
-# HyperChat relay illustration
+# HyperChat integration journey
 
-The Features page contains `#integrations`. Its illustration now preserves the
-owner-supplied WebhookRelay's geometry and animation sequence: outbox and envelope,
-three staggered flights, relay arms, lamps, acknowledgement, tray refill, and an
-animated retry signal/dial every third send. The prior sequential replacement
-was removed in response to the owner's fidelity feedback.
+The Features page's single four-box diagram retains the owner-approved layout:
+Viewer → HyperChat → OBS → Live, on an ivory isometric platform.
 
-The supplied component uses react-isokit primitives, including Flight, Signal,
-Press, Ripple, Cursor, Glow and Callout. The supplied keyframes are retained with
-scoped selectors added because the pasted CSS omitted those bindings. Package
-licensing and third-party notices remain in react-isokit; its visible credit is
-retained. HyperChat labels replace API/CRM/Slack with Text/Voice/Sound. Colors are
-ivory, charcoal, sand, stone and copper. Sound calls are removed, and Press sound
-is disabled. Reduced motion uses the package's reduced-motion behavior and scoped
-CSS overrides. The original once-visible guided demo is retained.
+`src/components/ui/interaction-flow.tsx` combines that design with the supplied
+relay's Press button, Flight animation and envelope geometry. Press SEND to move
+an envelope across three sequential hops; each box lights on arrival. The sample
+is automatically approved for this illustration, as disclosed in the copy.
+Replay restarts the journey; reset cancels timers and removes envelopes. Pending
+timers are cancelled on unmount. Each hop hides before its start and after arrival,
+so envelopes do not accumulate or appear simultaneously on different boxes.
 
-The animation is conceptual, not a literal integration routing diagram or a live
-connection. Supporting copy separately explains viewer, moderation, OBS and live
-broadcast. Every third send simulates a retry; it does not report backend health.
-All pending timers and playback resources are released on unmount or a new send.
+The separate three-channel relay has been removed. No retry/error simulation,
+autoplay or sound remains. Reduced motion suppresses envelope flights while
+retaining status updates. A normal HTML send/replay control complements the
+isometric button. Both call the same handler.
 
-Validation: production TypeScript/Vite build; Playwright desktop, tablet and
-mobile cover repeated sends, mechanical state, third-send retry completion and
-horizontal overflow. Desktop screenshot inspected. Physical-device animation
-performance has not been measured.
+No backend or OBS connection is created. Creator moderation and queue behavior
+are explained in supporting copy. react-isokit licensing and third-party notices
+remain in the package and its visible credit is retained.
 
-## Combined journey and relay
-
-The owner requested both designs together. `interaction-flow.tsx` restores the
-four-stage Viewer → HyperChat → OBS → Live diagram above the original relay.
-Its local sample pauses for manual approval, then advances to OBS and Live;
-hide/reset and unmount cancel pending timers. The original relay geometry and
-motion remain intact below a separate explanatory heading. Both use the same
-palette. Neither demo sends real interactions. The six viewport checks cover
-both the restored journey and original relay sequence.
+Validation: production build and desktop/tablet/mobile Playwright checks cover
+single diagram, four boxes, send, sequential status updates, delivery, replay,
+reset and horizontal overflow. Physical-device performance is unmeasured.
