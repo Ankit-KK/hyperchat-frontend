@@ -177,7 +177,7 @@ export const showcaseCreators: ShowcaseCreator[] = [
     "name": "BRIGZARD",
     "initials": "B",
     "category": "HyperChat creator",
-    "image": "/creators/brigzard.webp",
+    "image": "/creators/Brigzard.jpg",
     "url": "https://hyperchat.space/brigzard",
     "ambassador": false
   },
