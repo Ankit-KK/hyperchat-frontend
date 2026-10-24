@@ -63,3 +63,12 @@ pointer/touch/keyboard flipping. Portraits are local lazy-loaded WebPs with an
 initials fallback on missing/failed images. See ASSET_REQUIREMENTS.md for provenance,
 exclusions, alias mappings and optimization totals. Historical dummy-profile notes
 above are superseded by this update.
+
+## Color and fair featured selection — 24 October 2026
+
+Portraits now display in their original colors. Repeated HyperChat labels have
+been removed from individual cards; only the three ambassador badges remain.
+On each new page visit, a Fisher–Yates shuffle of all non-ambassadors selects the
+17 regular animated cards, following the three fixed ambassadors. Selection is
+stable during the visit and does not mutate the complete directory. Every regular
+creator has the same sampling opportunity; the full directory remains searchable.

@@ -240,3 +240,12 @@ labels, search/empty results, portrait loading, initials fallback and load-more.
 All supplied URLs were checked for the expected hyperchat.space host and local image
 references verified. Desktop arc screenshot inspected. No live creator-page availability
 or deployed Vercel build was verified. Build emits a non-fatal main-chunk size advisory.
+
+## Creator color/labels/shuffle — 24 October 2026
+
+Build passed. All 12 showcase checks passed across desktop/tablet/mobile, including
+original-color rendering, ambassador-only card badges, distinct randomized featured
+sets across reloads, fixed ambassador order, no duplicate cards, search, card flips,
+scroll animation and reduced-motion accessibility. BRIGZARD replacement photo is
+visible in chat but unavailable as a local/downloadable attachment; image replacement
+is pending a usable file or direct URL. Existing portrait was not changed.

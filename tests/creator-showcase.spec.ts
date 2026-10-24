@@ -88,3 +88,22 @@ test('real creator directory shows ambassadors, searchable profiles and local po
   await section.getByRole('button', { name: 'Show more creators' }).click();
   await expect(section.locator('.showcase-card')).toHaveCount(48);
 });
+
+test('each visit shuffles regular creators while keeping all three ambassadors first', async ({ page }) => {
+  await page.goto('/');
+  const cards = page.locator('#creator-showcase .showcase-card-position');
+  await expect(cards).toHaveCount(20);
+  const first = await cards.evaluateAll(nodes => nodes.map(node => node.getAttribute('data-creator-id')));
+  expect(first.slice(0, 3)).toEqual(['captain_vaani', 'chiaa_gaming', 'latifa']);
+  expect(new Set(first).size).toBe(20);
+  await page.getByRole('heading', { name: 'Every creator. A world of their own.' }).scrollIntoViewIfNeeded();
+  await expect(page.locator('#creator-showcase .showcase-card-index')).toHaveCount(3);
+  await expect(page.locator('#creator-showcase .showcase-portrait').first()).toHaveCSS('filter', 'none');
+  await page.reload();
+  await expect(cards).toHaveCount(20);
+  const next = await cards.evaluateAll(nodes => nodes.map(node => node.getAttribute('data-creator-id')));
+  expect(next.slice(0, 3)).toEqual(first.slice(0, 3));
+  expect(next.slice(3)).not.toEqual(first.slice(3));
+  await page.getByRole('button', { name: 'View creator list' }).click();
+  await expect(page.getByRole('searchbox', { name: 'Find a creator' })).toBeVisible();
+});

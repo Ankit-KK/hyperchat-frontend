@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   motion, useInView, useMotionValue, useMotionValueEvent, useReducedMotion,
   useScroll, useSpring, useTransform, type MotionValue,
 } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import type { ShowcaseCreator } from "@/data/showcase-creators";
+import { selectShowcaseCreators } from "@/lib/creator-selection";
 import { cn } from "@/lib/utils";
 import "./scroll-morph-hero.css";
 
@@ -67,7 +68,7 @@ function CreatorCard({ creator, index, total, phase, size, progress, mouse, grid
   }, [grid, index, total, size, phase, progress, mouse, x, y, rotate, scale]);
   const back = flipped || hovered;
   return (
-    <motion.div className={cn("showcase-card-position", grid && "showcase-card-grid")}
+    <motion.div data-creator-id={creator.id} className={cn("showcase-card-position", grid && "showcase-card-grid")}
       style={grid ? undefined : { x, y, rotate, scale }}>
       <button type="button" className="showcase-card" data-tone={index % 4}
         aria-pressed={flipped} tabIndex={grid ? 0 : -1}
@@ -78,15 +79,15 @@ function CreatorCard({ creator, index, total, phase, size, progress, mouse, grid
           animate={{ rotateY: back ? 180 : 0 }} transition={{ duration: grid ? 0 : 0.45 }}>
           <span className="showcase-card-face showcase-card-front">
             {creator.image && !imageFailed ? <img className="showcase-portrait" src={creator.image} alt="" loading="lazy" decoding="async" width="320" height="320" onError={() => setImageFailed(true)} /> : <span className="showcase-card-mark">{creator.initials}</span>}
-            <span className="showcase-card-index">{creator.ambassador ? "AMBASSADOR" : "HYPERCHAT"}</span>{" "}
+            {creator.ambassador && <span className="showcase-card-index">AMBASSADOR</span>}{" "}
             <span className="showcase-card-name">{creator.name}</span>
           </span>
           <span className="showcase-card-face showcase-card-back">
-            <span>HYPERCHAT COMMUNITY</span>{" "}<strong>{creator.name}</strong>{" "}<span>{creator.category}</span>
+            <span>CREATOR PROFILE</span>{" "}<strong>{creator.name}</strong>{" "}{creator.ambassador && <span>Brand ambassador</span>}
           </span>
         </motion.span>
       </button>
-      {grid && <div className="showcase-grid-caption"><a href={creator.url} target="_blank" rel="noopener noreferrer">{creator.name} <ArrowUpRight size={12} aria-hidden="true" /><span className="sr-only"> — open creator page in new tab</span></a><span className={creator.ambassador ? "showcase-ambassador" : undefined}>{creator.category}</span></div>}
+      {grid && <div className="showcase-grid-caption"><a href={creator.url} target="_blank" rel="noopener noreferrer">{creator.name} <ArrowUpRight size={12} aria-hidden="true" /><span className="sr-only"> — open creator page in new tab</span></a>{creator.ambassador && <span className="showcase-ambassador">Brand ambassador</span>}</div>}
     </motion.div>
   );
 }
@@ -101,7 +102,8 @@ export default function ScrollMorphHero({ creators, className }: { creators: Sho
   const [query, setQuery] = useState("");
   const [limit, setLimit] = useState(24);
   const matching = creators.filter(creator => `${creator.name} ${creator.id}`.toLowerCase().includes(query.trim().toLowerCase()));
-  const visibleCreators = grid ? matching.slice(0, limit) : creators.slice(0, 20);
+  const featured = useMemo(() => selectShowcaseCreators(creators), [creators]);
+  const visibleCreators = grid ? matching.slice(0, limit) : featured;
   const [phase, setPhase] = useState<AnimationPhase>("scatter");
   const [size, setSize] = useState<Size>({ width: 1200, height: 800 });
   const { scrollYProgress } = useScroll({ target: section, offset: ["start start", "end end"] });
