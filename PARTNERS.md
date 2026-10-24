@@ -1,6 +1,6 @@
 # Partners and grant support
 
-The shared Partners component appears on Home (before the closing section) and
+The shared Partners component appears on Home (after How it works, before the Creator’s Toolkit) and
 Company. It identifies ClipWave as a partner and ElevenLabs Startup Grants as
 support, without implying either is a payment provider or a live integration.
 The copy and destination links were checked against the existing public

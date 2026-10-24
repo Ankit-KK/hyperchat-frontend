@@ -13,11 +13,11 @@ export default function HomePage() {
     <>
       <ProductHero />
       <InteractionStory />
+      <Partners />
       <CreatorFeatures />
       <ScrollMorphHero creators={showcaseCreators} />
       <CreatorOnboarding compact />
       <CreatorControl home />
-      <Partners />
       <section
         className="closing closing-liquid section-shell light"
         id="next"
