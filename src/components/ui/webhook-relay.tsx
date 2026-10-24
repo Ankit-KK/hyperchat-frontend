@@ -17,6 +17,7 @@ import {
 import { Callout } from "react-isokit/drafting";
 import "react-isokit/styles.css";
 import "./webhook-relay.css";
+import InteractionFlow from "./interaction-flow";
 
 type Hook = {
   id: "api" | "crm" | "slack";
@@ -528,6 +529,8 @@ function RelayAnimation() {
 export default function WebhookRelay() {
   return <section id="integrations" className="section-shell light integration-section" aria-labelledby="integration-title">
     <div className="integration-heading"><span className="eyebrow">CONNECTED TO YOUR STREAM</span><h2 id="integration-title">From their message.<br/>To your live moment.</h2><p>Bring HyperChat into OBS with a browser source. Your audience interacts, you choose what goes through, and the alert becomes part of your broadcast.</p></div>
+    <InteractionFlow />
+    <div className="relay-detail-heading"><span className="eyebrow">A CLOSER LOOK AT THE INTERACTIONS</span><h3>Small messages. Moving parts.</h3><p>Explore the original relay animation below: text, voice, and sound channels brought to life.</p></div>
     <div className="integration-demo"><RelayAnimation /></div>
     <ol className="integration-steps">{[
       ["VIEWER", "Their interaction", "Viewers send text, TTS, their own recorded voice, or sounds where enabled."],

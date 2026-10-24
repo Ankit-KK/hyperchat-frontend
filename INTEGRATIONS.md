@@ -24,3 +24,13 @@ Validation: production TypeScript/Vite build; Playwright desktop, tablet and
 mobile cover repeated sends, mechanical state, third-send retry completion and
 horizontal overflow. Desktop screenshot inspected. Physical-device animation
 performance has not been measured.
+
+## Combined journey and relay
+
+The owner requested both designs together. `interaction-flow.tsx` restores the
+four-stage Viewer → HyperChat → OBS → Live diagram above the original relay.
+Its local sample pauses for manual approval, then advances to OBS and Live;
+hide/reset and unmount cancel pending timers. The original relay geometry and
+motion remain intact below a separate explanatory heading. Both use the same
+palette. Neither demo sends real interactions. The six viewport checks cover
+both the restored journey and original relay sequence.

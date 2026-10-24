@@ -90,3 +90,4 @@
 .fig-webhook-relay .outbox{font-size:5px}.fig-webhook-relay .hook{font-size:5px}.fig-webhook-relay .key{font-size:6px}.fig-webhook-relay .ack-label{font-size:4px}
 .fig-webhook-relay .ik-label{fill:#221f1c}
 @media(prefers-reduced-motion:reduce){.fig-webhook-relay *{animation-duration:1ms!important;transition-duration:0ms!important}}
+.interaction-flow>.integration-demo{max-width:none}.interaction-flow .sequential-relay{min-height:270px}.relay-detail-heading{max-width:600px;margin:64px 0 28px}.relay-detail-heading h3{font-size:clamp(28px,3vw,42px);margin:16px 0}.relay-detail-heading p{font-size:14px;line-height:1.8}@media(max-width:760px){.interaction-flow .sequential-relay{min-height:210px}.relay-detail-heading{margin-top:45px}}
