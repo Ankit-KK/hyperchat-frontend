@@ -1,3 +1,9 @@
+> Publication update, 24 October 2026: the owner approved use of revised policies.
+> The website now contains edited public versions in `src/data/legal/`, with
+> substantive changes effective 7 November 2026 and linked previous versions.
+> These working drafts remain source/review documents. Public wording explicitly
+> identifies pending retention automation; no backend deletion was deployed.
+
 # Revised HyperChat policy drafts
 
 Prepared/revised 24 October 2026. These are proposed policies, **not yet effective**,

@@ -5,20 +5,20 @@ const pages = [
   {
     path: "/privacy-policy",
     title: "Privacy Policy",
-    sections: 11,
-    last: "10. Contact Us",
+    sections: 10,
+    last: "9. Operation and commencement",
   },
   {
     path: "/terms-and-conditions",
     title: "Terms and Conditions",
-    sections: 14,
-    last: "Section 13 — Platform Usage and Payouts",
+    sections: 11,
+    last: "10. Grievances, disputes and changes",
   },
   {
     path: "/cancellation-refunds",
     title: "Refund & Cancellation Policy",
-    sections: 11,
-    last: "10. Final Decision Authority",
+    sections: 8,
+    last: "7. Creator adjustments and complaints",
   },
 ];
 for (const policy of pages) {
@@ -37,7 +37,7 @@ for (const policy of pages) {
       policy.sections,
     );
     await expect(article).toContainText("STREAMHEART PRIVATE LIMITED");
-    await expect(article).toContainText("07-05-2025");
+    await expect(article).toContainText("7 November 2026");
     await expect(article).not.toContainText("ankit@hyperchat.site");
     await expect(article).not.toContainText("ankit.hyperchat@gmail.com");
     await expect(
@@ -72,36 +72,21 @@ for (const policy of pages) {
   });
 }
 
-test("footer opens local legal pages and terms retain all published amendments", async ({
-  page,
-}) => {
+test("revised policies remove conflicting clauses and disclose pending retention controls", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await expect(page.locator("main > section")).toHaveCount(7);
-  await page
-    .getByRole("contentinfo")
-    .getByRole("link", { name: "Terms", exact: true })
-    .click();
-  await expect(page).toHaveURL(/\/terms-and-conditions$/);
+  await page.getByRole("contentinfo").getByRole("link", { name: "Terms", exact: true }).click();
   const article = page.getByRole("article");
-  await expect(article).toContainText(
-    "Effective Date: 25-03-2026 | Version 1.0",
-  );
-  await expect(
-    article.getByRole("heading", {
-      name: "12.7.1 Liquidated Damages for Continuing Violations",
-      exact: true,
-    }),
-  ).toHaveCount(1);
-  await expect(
-    article.getByRole("heading", {
-      name: "13.7 HyperChat's Discretion",
-      exact: true,
-    }),
-  ).toHaveCount(1);
-  await page
-    .getByRole("navigation", { name: "Policy pages" })
-    .getByRole("link", { name: "Privacy Policy", exact: true })
-    .click();
-  await expect(page).toHaveURL(/\/privacy-policy$/);
+  await expect(article).toContainText("Streamheart settles creator funds");
+  await expect(article).not.toContainText("₹25,000");
+  await expect(article).not.toContainText("13.2 Switching");
+  const archive = page.getByRole("link", { name: "Read the previous policy (text)" });
+  const response = await page.request.get((await archive.getAttribute("href"))!);
+  expect(response.ok()).toBe(true);
+  expect(await response.text()).toContain("13.2 Switching");
+  await page.getByRole("navigation", { name: "Policy pages" }).getByRole("link", { name: "Privacy Policy", exact: true }).click();
+  await expect(article).toContainText("they are not yet deployed");
+  await expect(article).toContainText("at least one year");
+  await expect(article).toContainText("72 hours");
+  await expect(article).toContainText("does not store KYC identity documents");
 });

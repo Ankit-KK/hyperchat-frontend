@@ -9,6 +9,7 @@ type Block = { kind: string; text?: string; items?: string[] };
 type Policy = {
   slug: string;
   title: string;
+  previousVersion?: string;
   sections: { id: string; title: string; blocks: Block[] }[];
 };
 export const policies: Record<string, Policy> = {
@@ -60,6 +61,7 @@ export default function LegalPage({ policy }: { policy: Policy }) {
           </nav>
         </aside>
         <article className="legal-document" aria-label={policy.title}>
+          {policy.previousVersion && <p className="legal-version-notice">Revised policies published 24 October 2026; substantive changes effective 7 November 2026. <a href={policy.previousVersion}>Read the previous policy (text)</a>. <a href="/support#contact-support">Contact Support</a>.</p>}
           {policy.sections.map((section) => (
             <section
               key={section.id}

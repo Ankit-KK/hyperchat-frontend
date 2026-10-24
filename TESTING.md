@@ -198,3 +198,12 @@ Terms amendments, overflow and accessibility. Inspected mobile policy rendering.
 Whitespace-normalized source comparison confirmed all three published policy bodies
 were retained. Legal substance and existing conflicts are documented in LEGAL_REVIEW.md;
 this was a migration, not a substantive policy revision. Hosted deployment unverified.
+
+## Revised public policies — 24 October 2026
+
+Owner authorized replacing the policy pages. Revised text is published with a
+7 November 2026 substantive effective date and linked previous-version text files.
+Privacy explicitly discloses that retention automation is not deployed. Production
+build and all 12 legal page checks passed on desktop/tablet/mobile, covering
+navigation, archives, corrected settlement/KYC text, retention caveat and accessibility.
+No backend retention changes or hosted deployment verification were performed.

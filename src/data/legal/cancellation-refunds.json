@@ -1,253 +1,127 @@
 {
   "slug": "cancellation-refunds",
   "title": "Refund & Cancellation Policy",
-  "source": "https://www.hyperchat.space/cancellation-refunds",
+  "published": "24 October 2026",
+  "effective": "7 November 2026",
+  "previousVersion": "/legal-archive/2026-10-24/cancellation-refunds.txt",
   "sections": [
     {
-      "id": "company-information",
-      "title": "Company information",
+      "id": "policy-information",
+      "title": "Policy information",
       "blocks": [
         {
           "kind": "paragraph",
-          "text": "Legal Entity: STREAMHEART PRIVATE LIMITED"
+          "text": "Published: 24 October 2026. Effective: 7 November 2026."
         },
         {
           "kind": "paragraph",
-          "text": "Brand Name: HyperChat"
+          "text": "Substantive changes take effect after 14 days’ notice. The previous version is available below. This notice does not certify that all DPDP provisions are already in force."
         },
         {
           "kind": "paragraph",
-          "text": "Registered Office: G-478, G BLOCK, GOVINDPURAM PARK, BLOCK 1, Govindpuram, Ghaziabad, India"
-        },
-        {
-          "kind": "paragraph",
-          "text": "Contact Email: ankit@hyperchat.space"
-        },
-        {
-          "kind": "paragraph",
-          "text": "Contact Phone: +91 9211460100"
-        },
-        {
-          "kind": "paragraph",
-          "text": "Last Updated: 07-05-2025"
+          "text": "HyperChat is a product of STREAMHEART PRIVATE LIMITED. For refund or cancellation requests, contact ankit@hyperchat.space."
         }
       ]
     },
     {
       "id": "section-1",
-      "title": "1. General Policy",
+      "title": "1. Scope and payment roles",
       "blocks": [
         {
           "kind": "paragraph",
-          "text": "HyperChat provides audience engagement software tools for interactive communication between creators and their viewers. Since our platform services are primarily digital and access-based, refunds are handled only under specific and valid circumstances as outlined below."
+          "text": "This policy applies to HyperChat digital services supplied by Streamheart. Payments use a payment aggregator/gateway, and Streamheart settles creator funds. We keep transaction IDs, amounts and payout records, but not payer details as payment records. Provider processing does not eliminate our responsibilities for our service."
+        },
+        {
+          "kind": "paragraph",
+          "text": "The purchase flow must identify the supplier, requested service, total price and any HyperChat fee, creator amount, processing fee or tax, with cancellation/refund conditions before confirmation. The applicable payment provider is identified there. This policy does not declare all charges non-refundable merely because they are digital. Mandatory Indian consumer and other statutory rights take precedence."
         }
       ]
     },
     {
       "id": "section-2",
-      "title": "2. Service Access Issues",
+      "title": "2. How to request help",
       "blocks": [
         {
           "kind": "paragraph",
-          "text": "Users may request a refund only in cases where:"
-        },
-        {
-          "kind": "list",
-          "items": [
-            "The user was unable to access the platform due to a verified technical issue caused by HyperChat.",
-            "There was a proven malfunction or disruption of service on our systems that prevented usage."
-          ]
+          "text": "Email ankit@hyperchat.space with your account/contact email, creator or service concerned, approximate date/time, transaction reference if available, what happened and the remedy requested. Screenshots or error text may help. Do not send passwords, OTPs, full payment-card details, bank credentials or private OBS source URLs."
         },
         {
           "kind": "paragraph",
-          "text": "Refunds will NOT be granted for:"
-        },
-        {
-          "kind": "list",
-          "items": [
-            "Issues arising due to user-side internet, device, browser, or third-party service failures.",
-            "Cases where the user has already used or accessed the service features.",
-            "Personal dissatisfaction or subjective preference-based reasons."
-          ]
+          "text": "We verify requests proportionately using necessary information. Our service target is acknowledgement within 48 hours and a reasoned resolution within 30 days, subject to shorter legal requirements. Request data follows the Privacy Policy; a refund request does not justify unnecessary identity-document collection."
         }
       ]
     },
     {
       "id": "section-3",
-      "title": "3. No Refund for Completed Usage",
+      "title": "3. Refund eligibility",
       "blocks": [
         {
           "kind": "paragraph",
-          "text": "Once a service session, feature access, or usage interaction has taken place, the refund request becomes ineligible, as digital services consumed cannot be reversed."
+          "text": "We investigate duplicate or incorrect charges, unauthorized transactions, verified technical failures, undelivered purchased services and other cases required by law. An appropriate remedy may be correction, agreed re-performance, a partial refund or a full refund according to the facts and applicable rights. Report unauthorized charges to the payment provider promptly as well."
         },
         {
           "kind": "paragraph",
-          "text": "HyperChat does not provide refunds for:"
-        },
-        {
-          "kind": "list",
-          "items": [
-            "Completed audience engagement interactions",
-            "Access to features already utilized",
-            "Time-based platform usage"
-          ]
+          "text": "Submitting an interaction, opening a feature or beginning a session does not by itself prove full delivery or defeat a valid refund claim. Where a purchased interaction is rejected, expires or cannot be delivered, we assess whether the promised service was supplied and refund any amount legally due. Service fees cannot be retained for an unsupplied service merely by labeling them non-refundable. The actual charged-service and moderation rules must be disclosed before payment."
         }
       ]
     },
     {
       "id": "section-4",
-      "title": "4. Processing of Approved Refunds",
+      "title": "4. Completed interactions and creator responses",
       "blocks": [
         {
           "kind": "paragraph",
-          "text": "If a refund is approved:"
+          "text": "A correctly described and fully delivered digital service does not ordinarily create a refund entitlement solely because a viewer changes their mind or dislikes a creator's response, subject to mandatory rights. We do not guarantee audience engagement, attention or creator endorsement. These limitations do not excuse misrepresentation, deficient service or unlawful charges."
         },
         {
-          "kind": "list",
-          "items": [
-            "Refund will be processed through the same channel from which the transaction was initiated.",
-            "Processing times may vary depending on intermediary services such as service providers and banks.",
-            "Refund processing time may take 7–14 business days."
-          ]
+          "kind": "paragraph",
+          "text": "Queue delays and moderation can affect appearance time. If there is a material delivery failure, contact us for investigation rather than assume submission equals delivery."
         }
       ]
     },
     {
       "id": "section-5",
-      "title": "5. No Guarantees or Warranties of Suitability",
+      "title": "5. Cancellation",
       "blocks": [
         {
           "kind": "paragraph",
-          "text": "Users acknowledge that:"
+          "text": "Contact support promptly to cancel an interaction that has not yet been delivered. We check whether delivery can still be stopped and what remedy is due. Already broadcast content may not be retrievable, but valid refund and privacy rights remain."
         },
         {
-          "kind": "list",
-          "items": [
-            "HyperChat does not guarantee outcomes, engagement levels, audience responses, or creator visibility.",
-            "The platform provides functionality — actual audience behavior or engagement is not controlled by us.",
-            "Refunds cannot be requested on the basis of community interaction levels, audience attention, or subjective participation metrics."
-          ]
+          "kind": "paragraph",
+          "text": "If a recurring service is offered, its renewal amount, interval, cancellation method and effective cancellation timing must be disclosed before purchase. Cancellation stops future renewal according to those terms and applicable law; treatment of the current period depends on what was supplied and the applicable rights. No recurring charge is authorized by this policy alone."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Account closure, paid-service cancellation and withdrawal of data consent must be handled distinctly. We do not treat consent withdrawal as surrender of a lawful refund or permission for an unwanted future charge."
         }
       ]
     },
     {
       "id": "section-6",
-      "title": "6. Eligibility Verification",
+      "title": "6. Approved refunds",
       "blocks": [
         {
           "kind": "paragraph",
-          "text": "HyperChat may require:"
-        },
-        {
-          "kind": "list",
-          "items": [
-            "service logs,",
-            "account activity records,",
-            "technical support history,",
-            "timestamp data"
-          ]
+          "text": "We communicate the approved amount and relevant payment channel. Refunds are made to the original payment method where feasible and required. Our processing estimate is 7–14 business days after approval, subject to applicable mandatory deadlines. Payment-provider and bank crediting can affect when the refund appears; we give available references and investigate delays rather than guarantee an instant credit. If the provider supplies a different timeframe for a specific refund, we communicate it and comply with applicable mandatory deadlines."
         },
         {
           "kind": "paragraph",
-          "text": "to verify the legitimacy of a refund request."
+          "text": "Routine interaction/media access and required archival retention are different. The Privacy Policy explains the applicable processing-data/log minimum, financial record obligations, restricted access and erasure. A refund or account deletion request does not override legally required preservation, nor permit unrelated reuse."
         }
       ]
     },
     {
       "id": "section-7",
-      "title": "7. Abuse of Refund Policy",
+      "title": "7. Creator adjustments and complaints",
       "blocks": [
         {
           "kind": "paragraph",
-          "text": "In case of:"
-        },
-        {
-          "kind": "list",
-          "items": [
-            "repeated refund claims,",
-            "fraudulent requests,",
-            "misuse or manipulation of the platform, or",
-            "violation of Terms & Conditions"
-          ]
+          "text": "Refunds, chargebacks and documented lawful holds may require proportionate settlement adjustments under the creator agreement. Streamheart provides the reason and review route where permitted. Switching platforms alone is not a reason to confiscate or withhold earned creator funds."
         },
         {
           "kind": "paragraph",
-          "text": "HyperChat reserves the right to deny refunds and may restrict platform access."
-        }
-      ]
-    },
-    {
-      "id": "section-8",
-      "title": "8. No Financial Responsibilities",
-      "blocks": [
-        {
-          "kind": "paragraph",
-          "text": "HyperChat:"
-        },
-        {
-          "kind": "list",
-          "items": [
-            "does not handle or store financial data,",
-            "does not process monetary interactions between creators and audiences,",
-            "does not function as a financial intermediary, payment handler, or settlement facilitator."
-          ]
-        },
-        {
-          "kind": "paragraph",
-          "text": "Users understand that HyperChat is strictly an engagement software service."
-        }
-      ]
-    },
-    {
-      "id": "section-9",
-      "title": "9. How to Request a Refund",
-      "blocks": [
-        {
-          "kind": "paragraph",
-          "text": "Refund requests must be submitted via:"
-        },
-        {
-          "kind": "list",
-          "items": [
-            "📩 Email: ankit@hyperchat.space",
-            "📞 Phone: +91 9211460100"
-          ]
-        },
-        {
-          "kind": "paragraph",
-          "text": "You must include:"
-        },
-        {
-          "kind": "list",
-          "items": [
-            "Registered name",
-            "Contact details",
-            "Account ID",
-            "Explanation of the issue",
-            "Screenshots or log references (if applicable)"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "section-10",
-      "title": "10. Final Decision Authority",
-      "blocks": [
-        {
-          "kind": "paragraph",
-          "text": "STREAMHEART PRIVATE LIMITED reserves the right to:"
-        },
-        {
-          "kind": "list",
-          "items": [
-            "evaluate each request individually,",
-            "determine eligibility at its sole discretion,",
-            "approve or deny refund requests."
-          ]
-        },
-        {
-          "kind": "paragraph",
-          "text": "All decisions made by HyperChat regarding refunds are final."
+          "text": "Requests may be refused for a lawful, evidenced reason, with an explanation and review route. Repeated requests alone do not prove fraud. Our internal decision is not unchallengeably final: payment-provider disputes, consumer remedies, competent courts and regulators remain available under applicable law. Contact ankit@hyperchat.space to request review or raise a grievance."
         }
       ]
     }

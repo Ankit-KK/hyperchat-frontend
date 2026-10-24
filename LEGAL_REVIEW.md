@@ -1,3 +1,22 @@
+# Publication update — 24 October 2026
+
+The owner authorized using the revised policies. Website JSON now contains the
+revised Privacy, Terms and Refunds text, published 24 October 2026 with substantive
+changes effective 7 November 2026 to allow 14 days' notice. Prior policy versions
+are preserved in `public/legal-archive/2026-10-24/` and linked on each page.
+
+The published Privacy Policy expressly discloses current indefinite interaction
+storage and the absence of deployed automatic expiry/restricted archive jobs.
+30/90-day availability limits are described as planned, not operational promises.
+Backend enforcement, actual gateway/provider inventory, responsible-person details,
+Board complaint channel and any latest legal amendments still require operational
+and legal verification. Publication is not a DPDP compliance certification.
+
+The notes below describe the original migration and its then-unresolved conflicts;
+the old contradictions were replaced in the revised website text.
+
+---
+
 # Published policy migration and review items
 
 Source: the rendered public pages at `https://www.hyperchat.space/privacy-policy`,
