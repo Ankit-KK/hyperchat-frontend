@@ -101,3 +101,6 @@ Local policy pages: `/privacy-policy`, `/terms-and-conditions`, and
 `/cancellation-refunds`. They preserve published policy wording and dates, with
 contact email standardized to `ankit@hyperchat.space`. See [LEGAL_REVIEW.md](LEGAL_REVIEW.md)
 for source provenance and existing clauses that require an owner decision.
+
+Terms are audience-specific: `/terms-and-conditions` is **Creator Terms**;
+`/viewer-terms` is **Viewer Interaction Terms**. Privacy and Refunds are shared.

@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 const pages = [
+  {path: "/viewer-terms", title: "Viewer Interaction Terms", sections: 9, last: "8. Responsibility, complaints and changes"},
   {
     path: "/privacy-policy",
     title: "Privacy Policy",
@@ -10,9 +11,9 @@ const pages = [
   },
   {
     path: "/terms-and-conditions",
-    title: "Terms and Conditions",
+    title: "Creator Terms",
     sections: 11,
-    last: "10. Grievances, disputes and changes",
+    last: "10. Contact, disputes and changes",
   },
   {
     path: "/cancellation-refunds",
@@ -75,7 +76,7 @@ for (const policy of pages) {
 test("revised policies remove conflicting clauses and disclose pending retention controls", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await page.getByRole("contentinfo").getByRole("link", { name: "Terms", exact: true }).click();
+  await page.getByRole("contentinfo").getByRole("link", { name: "Creator Terms", exact: true }).click();
   const article = page.getByRole("article");
   await expect(article).toContainText("Streamheart settles creator funds");
   await expect(article).not.toContainText("₹25,000");
@@ -91,4 +92,21 @@ test("revised policies remove conflicting clauses and disclose pending retention
   await expect(article).not.toContainText("Rule 8");
   await expect(article).not.toContainText("DPDP");
   await expect(article).toContainText("does not store KYC identity documents");
+});
+
+test('viewer and creator terms have distinct audiences and remain easy to find', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  const footer = page.getByRole('contentinfo');
+  await footer.getByRole('link', { name: 'Viewer Terms', exact: true }).click();
+  await expect(page).toHaveURL(/\/viewer-terms$/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Viewer Interaction Terms');
+  const article = page.getByRole('article');
+  await expect(article).toContainText('authority to use the payment method');
+  await expect(article).toContainText('does not automatically make every charge non-refundable');
+  await expect(article).toContainText('Viewers are not required to complete creator KYC');
+  await page.getByRole('navigation', { name: 'Policy pages' }).getByRole('link', { name: 'Creator Terms', exact: true }).click();
+  await expect(page).toHaveURL(/\/terms-and-conditions$/);
+  await expect(article).toContainText('Creator verification is performed through Didit');
+  await expect(article).toContainText('settlement schedule');
 });

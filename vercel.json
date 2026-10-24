@@ -30,6 +30,10 @@
     {
       "source": "/cancellation-refunds",
       "destination": "/index.html"
+    },
+    {
+      "source": "/viewer-terms",
+      "destination": "/index.html"
     }
   ]
 }

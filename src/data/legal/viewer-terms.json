@@ -1,0 +1,151 @@
+{
+  "slug": "viewer-terms",
+  "title": "Viewer Interaction Terms",
+  "audience": "For viewers sending messages, recordings, media or paid interactions to a creator.",
+  "published": "24 October 2026",
+  "effective": "7 November 2026",
+  "sections": [
+    {
+      "id": "policy-information",
+      "title": "Who these terms apply to",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Published: 24 October 2026. Effective: 7 November 2026."
+        },
+        {
+          "kind": "paragraph",
+          "text": "These Viewer Interaction Terms are between STREAMHEART PRIVATE LIMITED, operator of HyperChat, and a viewer sending an interaction, including a paid interaction or creator-support amount offered through the service. They do not impose creator KYC, integration or settlement-management duties on viewers. Creators use the separate Creator Terms. The shared Privacy Policy and Refund & Cancellation Policy also apply. Contact ankit@hyperchat.space."
+        }
+      ]
+    },
+    {
+      "id": "section-1",
+      "title": "1. Who can send an interaction",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "You must be at least 18 and use accurate information when required. If paying, you must have authority to use the payment method. Do not use another person’s account or payment details without permission."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Public landing-page demos are fictional local previews: they do not charge you or deliver an interaction to a real creator. Real submissions and paid actions require the actual creator interaction flow. Acceptance of these Terms is not blanket data-processing consent."
+        }
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "2. What you are sending or paying for",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Check the selected creator, interaction type, message or recording, total amount, any service fee and applicable conditions before confirmation. The payment flow must identify the responsible supplier and payment provider. Do not proceed if the service or amount is unclear."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Text-to-speech reads typed words using a generated voice; a recorded voice message plays your own audio. Creator settings determine which options are available. A paid interaction or creator-support amount is not represented as a charitable donation, tax-deductible contribution, investment or ownership interest. No charitable tax receipt or particular personal response is promised."
+        },
+        {
+          "kind": "paragraph",
+          "text": "An interaction does not guarantee priority, a creator endorsement, an audience outcome or immediate display unless a specific service is expressly offered on those terms. Any promised service still carries applicable delivery and consumer obligations."
+        }
+      ]
+    },
+    {
+      "id": "section-3",
+      "title": "3. Payment and confirmation",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Payments use a payment aggregator/gateway. Streamheart settles creator funds and stores transaction IDs, amounts and payout records, not payer details as payment records. The provider processes payment information under its applicable notice. Display names and submitted content remain separate personal data."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Confirm the amount and provider result, keep the transaction reference and avoid repeating a payment merely because a page is slow. If payment appears debited but confirmation or delivery fails, contact ankit@hyperchat.space with the reference. Do not send OTPs, passwords or full card/bank credentials."
+        }
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "4. Moderation, queues and delivery",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Interactions may need creator/moderator approval and may wait behind other items. A successful payment or submission is not proof that the message has already appeared on stream. Broadcast availability and moderation affect delivery."
+        },
+        {
+          "kind": "paragraph",
+          "text": "The interaction flow must disclose the material rules for rejection, expiry and failed delivery before payment. If a purchased service is rejected, expires or cannot be supplied, we investigate the service actually promised and the remedy due. Moderation does not automatically make every charge non-refundable."
+        },
+        {
+          "kind": "paragraph",
+          "text": "You may request cancellation promptly before delivery, but already broadcast content may not be retrievable. Refunds and mandatory remedies remain governed by the shared Refund & Cancellation Policy and applicable law."
+        }
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "5. Your message, recording and broadcast visibility",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Send only content you have authority to submit and broadcast. Do not include unlawful threats, harassment, impersonation, private third-party information, malware or unauthorized recordings. Do not use the service to evade moderation or commit fraud."
+        },
+        {
+          "kind": "paragraph",
+          "text": "If selected for broadcast, your intended display name, text, recording or media may appear publicly on the creator’s stream, replay or clips. Avoid sharing information you do not want publicly disclosed. Private payment information is not made public simply because you interact."
+        },
+        {
+          "kind": "paragraph",
+          "text": "You retain rights you hold in your content and grant the limited permission needed to process, moderate and deliver the requested interaction, including the public exposure you authorize. These Terms do not grant blanket permission for unrelated advertising, voice cloning or model training. Independent public copies may be outside HyperChat’s control."
+        }
+      ]
+    },
+    {
+      "id": "section-6",
+      "title": "6. Refunds, mistakes and unauthorized payments",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "The Refund & Cancellation Policy covers duplicate/incorrect charges, unauthorized payments, failed services and other legally required remedies. A fully and correctly delivered service does not ordinarily become refundable solely because you dislike the creator’s response, subject to mandatory rights."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Email ankit@hyperchat.space with the reference, approximate date/time, creator and issue. We assess the facts and explain the decision and review route. A payment-provider dispute or statutory consumer remedy remains available; our internal decision does not remove it."
+        }
+      ]
+    },
+    {
+      "id": "section-7",
+      "title": "7. Privacy and your requests",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "The Privacy Policy explains collected data, Didit’s creator-only KYC role, sharing, current retention practices, planned changes and access/correction/erasure/withdrawal requests. Viewers are not required to complete creator KYC by these Terms. Any separate legally required verification must be explained when requested."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Email ankit@hyperchat.space to exercise your rights. Creator account closure, viewer cancellation, refund requests and personal-data erasure are distinct processes. Legally required preservation can continue without authorizing unrelated reuse; planned deletion automation is not represented as already deployed."
+        }
+      ]
+    },
+    {
+      "id": "section-8",
+      "title": "8. Responsibility, complaints and changes",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "We use reasonable care but do not promise uninterrupted service or a particular engagement result. No limitation removes mandatory consumer remedies, statutory privacy duties, fraud liability or other protections that law does not permit us to exclude."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Contact ankit@hyperchat.space. Our service target is acknowledgement within 48 hours and resolution within 30 days, subject to shorter applicable requirements. Indian law governs subject to mandatory protections, and competent courts, consumer commissions and regulators retain jurisdiction."
+        },
+        {
+          "kind": "paragraph",
+          "text": "Material changes receive at least 14 days’ advance notice unless urgent legal or security reasons require earlier action, subject to applicable obligations. Changes do not retrospectively create consent to a new personal-data purpose."
+        }
+      ]
+    }
+  ]
+}

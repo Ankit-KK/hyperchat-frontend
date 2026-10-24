@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import PageIntro from "./PageIntro";
 import privacy from "../data/legal/privacy-policy.json";
 import terms from "../data/legal/terms-and-conditions.json";
+import viewerTerms from "../data/legal/viewer-terms.json";
 import refunds from "../data/legal/cancellation-refunds.json";
 import "./legal.css";
 
@@ -10,11 +11,13 @@ type Policy = {
   slug: string;
   title: string;
   previousVersion?: string;
+  audience?: string;
   sections: { id: string; title: string; blocks: Block[] }[];
 };
 export const policies: Record<string, Policy> = {
   "/privacy-policy": privacy,
   "/terms-and-conditions": terms,
+  "/viewer-terms": viewerTerms,
   "/cancellation-refunds": refunds,
 };
 function linkedText(text: string): ReactNode {
@@ -34,7 +37,7 @@ export default function LegalPage({ policy }: { policy: Policy }) {
       <PageIntro
         eyebrow="LEGAL"
         title={policy.title}
-        copy="HyperChat · Streamheart Private Limited"
+        copy={policy.audience ?? "HyperChat · Streamheart Private Limited"}
       />
       <div className="section-shell light legal-layout">
         <aside className="legal-index">

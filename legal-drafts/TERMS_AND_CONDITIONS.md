@@ -1,145 +1,83 @@
-# HyperChat Terms and Conditions
+# Creator Terms
 
-**Revised review draft, 24 October 2026 — not yet effective.** Adopt an effective
-date only after completing the publication checks in README.md.
+Working text mirrored from the audience-specific public policy. Published 24 October 2026; substantive changes effective 7 November 2026.
 
-HyperChat is a product operated by **STREAMHEART PRIVATE LIMITED**. Contact us at
-**ankit@hyperchat.space**. These Terms govern the website, creator tools and audience
-interaction services, together with the Privacy Policy and Refund & Cancellation Policy.
+## Who these terms apply to
 
-## 1. Eligibility and acceptance
+Published: 24 October 2026. Effective: 7 November 2026.
 
-You must be at least **18 years old** to use HyperChat. Provide accurate account
-and onboarding information. Accepting these Terms does not replace any separate
-consent needed for personal data processing. Mandatory statutory rights prevail
-over a conflicting term. Additional creator or integration agreements apply only
-when properly disclosed and accepted.
+These Creator Terms are between STREAMHEART PRIVATE LIMITED, operator of HyperChat, and the creator using its creator tools, including anyone properly authorized to act for that creator. They govern onboarding, creator access, integrations and settlements. Viewers sending or paying for interactions use the separate Viewer Interaction Terms. The Privacy Policy and Refund & Cancellation Policy also apply to their respective subjects. Contact ankit@hyperchat.space.
 
-The public website's fictional demonstrations do not submit real interactions or
-applications. Available production features depend on creator access, settings and
-rollout. We describe the actual service before you use or purchase it.
+## 1. Creator eligibility and acceptance
 
-## 2. Accounts, verification and security
+You must be at least 18 and have authority to operate the channel and accept any obligations for the creator or business you represent. Give accurate onboarding information. Creator approval, feature availability and any additional agreement must be clearly communicated; public website previews do not activate an account.
 
-Keep credentials and private source links secure. Use the supported permissions
-for moderators instead of sharing passwords, and report suspected compromise promptly.
-Your responsibility for account security does not eliminate our own obligations.
+Acceptance of these Terms does not replace separate consent required for personal data processing or waive mandatory legal rights. Additional creator-specific fees and settlement arrangements apply only when disclosed and validly agreed.
 
-Creator identity verification is performed by **Didit**. HyperChat receives completion
-status and does not store KYC identity documents, face images or biometric records.
-Our proposed creator policy requires renewed KYC each Indian financial year,
-1 April–31 March, with renewal timing communicated in advance. This is a company
-policy, not a claim that DPDP requires annual KYC. The Privacy Policy explains status
-retention and the separate role of Didit. Applicable financial obligations remain.
+## 2. KYC and account security
 
-## 3. Interactions and moderation
+Creator verification is performed through Didit. HyperChat receives the completion status linked to the creator account and does not store KYC identity documents, face images or biometric records. Didit’s own handling is explained during verification.
 
-Creators select the enabled interaction types and moderation settings. Text-to-speech
-reads typed text with a generated voice; a recorded voice message uses the viewer's
-own recording. Queue conditions, moderation and the broadcast affect whether and
-when an interaction is displayed. We do not promise personal attention, increased
-engagement or a particular audience outcome.
+Our creator policy requires renewed verification each Indian financial year, 1 April–31 March, with timing communicated in advance. This is a HyperChat account requirement. Any separate applicable financial verification or record duties remain.
 
-Do not submit content you lack authority to use, including private information or
-another person's voice recording. A selected interaction may be public on a live
-stream, replay or clip as explained before submission. Moderation decisions do not
-remove applicable remedies for a purchased service that was not supplied.
+Protect credentials, private OBS source URLs and access tokens. Use authorized team permissions instead of shared passwords, review access when team members leave, and report suspected compromise to ankit@hyperchat.space. Your security duties do not remove ours.
 
-## 4. Acceptable use
+## 3. Creator settings and moderation
 
-Do not use the service for unlawful harassment, threats, impersonation, fraud,
-malware, unauthorized access, privacy violations, or disruption. Do not bypass
-moderation, manipulate queues or misuse payment/refund systems. Requests for
-additional integrations or authorized access can be sent to ankit@hyperchat.space.
+Choose which interaction types are enabled, how moderation operates and which authorized team members can review messages. Use moderation fairly and lawfully. You remain responsible for your own broadcast and content decisions; HyperChat remains responsible for its own service obligations.
 
-We may restrict content or access for documented safety, security, service or legal
-reasons. Action should be proportionate. Where feasible and lawful we give reasons
-and a review route; urgent protective action may occur first.
+Queues, review decisions, broadcast availability and enabled features affect when interactions appear. Do not promise viewers a guaranteed response, endorsement or display that you cannot supply. Clearly disclose any creator-specific interaction conditions before payment.
 
-## 5. Content, personal data and platform rights
+Cooperate with reasonable investigations of rejected, expired, charged-but-undelivered or disputed interactions. Moderation does not automatically defeat a viewer’s valid refund or consumer remedy.
 
-We own or license HyperChat's software, brand and original service materials.
-You retain rights you have in content you submit and grant only the permission
-needed to host, moderate, process and deliver the requested interaction, including
-broadcast exposure you authorize. This is not blanket permission for unrelated
-advertising, AI training, voice cloning or commercial reuse.
+## 4. OBS, integrations and platform access
 
-Personal data is not declared our exclusive property. Your statutory data rights
-remain. The Privacy Policy controls purposes, sharing, withdrawal and retention.
-We limit routine media availability to 30 days and text/history availability to
-90 days. These are active-use limits, not unconditional complete-erasure promises.
-The Privacy Policy explains restricted retention, including the one-year processing-
-data/log minimum when DPDP Rules 8(3) and 6(1)(e) are operative and applicable,
-and separately required financial records. Such retention does not authorize
-routine reuse after the relevant service purpose or consent ends.
+Use supported browser sources and authorized integrations for their documented purposes. Do not share private event streams, credentials or personal information with unauthorized developers or services. A third-party tool requires authority for the access and processing it performs.
 
-Do not disclose non-public credentials or other users' private event streams.
-Permitted OBS browser sources and integrations can use data necessary for their
-documented purpose. Genuine IP and security protections do not prohibit the normal
-service or waive statutory data rights. Additional access requires an agreed scope
-and safeguards. We do not impose automatic daily damages through these general Terms.
+HyperChat owns or licenses its software, branding and genuinely proprietary systems. Do not misuse non-public schemas or circumvent access controls. Requests for additional tools or data access can be sent to ankit@hyperchat.space, describing the purpose and data needed. Permission for one scope does not authorize other uses.
 
-## 6. Payment processing and creator settlements
+These protections do not assert ownership of all personal data or prohibit ordinary supported OBS use. Your own content rights and statutory rights remain. We do not impose automatic daily damages through these general Terms.
 
-Payments are processed through a payment aggregator/gateway. **Streamheart settles
-creator funds** and keeps transaction IDs, amounts and payout records. HyperChat
-does not store payer details as payment records. Payment processing and settlement
-are not described as a service with no financial responsibilities.
+## 5. Viewer content and privacy
 
-Before payment, the responsible supplier and service, total amount, applicable
-fees/taxes, cancellation conditions and refund rules must be clearly shown. The
-payment flow identifies the provider. Any gateway authorization is the provider's;
-these Terms do not claim that Streamheart itself holds RBI payment authorization.
+Handle viewer names, messages, recordings and other data only for the broadcast/community purposes properly disclosed to viewers and otherwise lawfully permitted. Do not reuse a viewer’s voice for cloning, unrelated marketing or AI training without valid authority.
 
-Creator settlement timing and applicable deductions must be set out in the creator
-agreement and records available to the creator. Lawful refunds, chargebacks, tax
-obligations or documented fraud/legal holds may require proportionate adjustments.
-We explain a hold and review route where permitted. We do not withhold earned
-settlements merely because a creator uses or switches to another platform.
+HyperChat’s Privacy Policy explains our own processing. Your independent use, exports or recordings may create separate responsibilities; do not claim HyperChat consent covers every use you make of the data. Restrict moderator and developer access and cooperate with lawful rights requests.
 
-Payment-provider terms do not remove Streamheart's obligations for its own service.
-The Refund & Cancellation Policy and mandatory law apply to refund requests.
+The Privacy Policy distinguishes current indefinite interaction storage from planned routine-availability limits and legally required retention. Automatic expiry and restricted archives are not yet deployed. Do not represent planned 30/90-day limits as current deletion guarantees.
 
-## 7. Providers and privacy
+## 6. Charges and creator settlements
 
-Third parties may operate streaming platforms, OBS, payments, verification,
-voice generation, hosting or moderation integrations. Relevant provider/data
-information must be disclosed accurately at collection or feature activation.
-We remain responsible for our duties and for processors acting on our behalf.
-An independent provider's notice does not excuse a contradictory HyperChat promise.
+Payments are processed through a payment aggregator/gateway. Streamheart settles creator funds and stores transaction IDs, amounts and payout records; it does not store payer details as payment records. This does not remove Streamheart’s financial responsibilities.
 
-## 8. Closure, cancellation and service changes
+Before activation of a paid arrangement, the applicable creator agreement or communicated settlement terms must identify service/platform fees, taxes, deductions, settlement schedule and any reconciliation requirements. This page does not invent a commission rate or settlement deadline. No undisclosed deduction is authorized merely by these Terms.
 
-Request account closure at ankit@hyperchat.space or through available account
-controls. Personal data is erased according to the Privacy Policy; necessary
-accounting or legally held records can remain with restricted use. Closure,
-withdrawal of consent and cancellation of a paid recurring service are distinct:
-we help identify and complete the requested actions rather than assume one means all.
+Provide the accurate information lawfully required to complete settlements. Refunds, chargebacks, documented fraud investigations or legal requirements may justify proportionate adjustments or holds under applicable terms and law. We provide available reasons, scope and a review route where permitted.
 
-We disclose any recurring service, renewal price, billing interval and cancellation
-method before purchase. We do not create a recurring obligation through these Terms
-alone. Access restriction does not automatically cancel an earned refund or settlement.
-Material service changes receive appropriate notice and legally required remedies.
+Using or switching to another platform alone is not a reason to confiscate or withhold earned creator funds. Closing an account does not automatically forfeit money lawfully owed. Disputes about an adjustment can be sent to ankit@hyperchat.space.
 
-## 9. Availability and responsibility
+## 7. Acceptable use and third parties
 
-We use reasonable care, but cannot promise uninterrupted or error-free service.
-Any service-level commitment must be expressly agreed; feature descriptions do not
-create an unstated uptime guarantee. Liability follows applicable law and any valid
-specific agreement. We do not exclude non-excludable consumer remedies, statutory
-privacy duties, fraud liability or other responsibilities law prevents us excluding.
+Do not use HyperChat for fraud, unlawful threats, harassment, impersonation, malware, privacy violations, unauthorized access or disruption. Do not manipulate queues or misuse payment/refund systems. Have appropriate rights in your submitted material and authorized tools.
 
-## 10. Grievances, disputes and changes
+Streaming, verification, payment, hosting, speech and moderation providers may impose their own applicable terms. We identify relevant data recipients through the Privacy Policy and feature notices. Third-party terms do not remove our duties for our own service or processors acting for us.
 
-Email **ankit@hyperchat.space** for account, service or refund concerns. Our proposed
-support target is acknowledgement within 48 hours and resolution within 30 days,
-subject to shorter applicable legal requirements. Privacy rights and their escalation
-route are described in the Privacy Policy. Internal review does not waive recourse
-to a competent court, consumer commission, payment dispute process or regulator.
+## 8. Restriction, cancellation and closure
 
-Indian law governs, subject to mandatory protections applicable to you. Competent
-forums retain their lawful jurisdiction; we do not remove statutory choices of forum.
-We give at least **14 days' advance notice** of material changes, unless urgent legal
-or security reasons require an earlier change, subject to applicable obligations.
-Changes do not retrospectively create data consent. We obtain fresh consent where
-required and record the effective date of the adopted version.
+We may restrict features or access for documented misuse, security risks or legal requirements. Measures should be proportionate, with notice, reasons and review where feasible and lawful. Urgent protective action may occur first.
+
+Request closure or assistance at ankit@hyperchat.space. Address pending interactions, disputes and lawful settlement obligations separately. Privacy requests, closure of access and cancellation of recurring services are distinct; we help identify the requested actions.
+
+Any recurring creator service must disclose renewal amount, interval and cancellation method before acceptance. These Terms alone do not authorize recurring charges.
+
+## 9. Service responsibility and remedies
+
+We use reasonable care but cannot promise uninterrupted service or a particular audience-growth result. Any service-level commitment must be expressly agreed. We remain responsible for obligations that applicable law does not allow us to exclude.
+
+Liability and remedies follow applicable law and valid specific agreements. No general disclaimer excludes non-excludable privacy or consumer duties, fraud liability or other mandatory protections. No automatic daily penalty or unilateral “final decision” clause removes a lawful dispute remedy.
+
+## 10. Contact, disputes and changes
+
+Contact ankit@hyperchat.space for creator, integration or settlement concerns. Our service target is acknowledgment within 48 hours and resolution within 30 days, subject to shorter applicable requirements. Privacy escalation is explained in the Privacy Policy.
+
+Indian law governs, subject to mandatory protections. Competent courts, consumer commissions and regulators retain their lawful jurisdiction. We give at least 14 days’ advance notice of material changes unless urgent legal or security reasons require earlier action, subject to applicable obligations. Changes do not retrospectively create personal-data consent.

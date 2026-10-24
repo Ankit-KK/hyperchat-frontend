@@ -214,3 +214,12 @@ Removed rule-number commentary, legislative commencement explanations and DPDP
 name references from public policy copy. Kept substantive rights, applicable
 retention duties, breach notifications, honest automation status and notice dates.
 Detailed rule analysis remains in legal-drafts/DPDP_RULES_REVIEW.md.
+
+## Creator/viewer terms separation — 24 October 2026
+
+Production build passed. 27 legal/footer cases plus 3 audience-specific navigation
+cases passed across desktop/tablet/mobile. Verified dedicated viewer route reload,
+page titles/scope, creator KYC and settlement content, viewer payment and refund
+content, footer discovery, accessibility and unchanged shared policy routes.
+Checkout acceptance and backend enforcement are outside this frontend change;
+hosted deployment was not verified.

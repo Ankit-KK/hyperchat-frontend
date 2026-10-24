@@ -56,3 +56,20 @@ published migration. Homepage interaction-first positioning was not changed.
 Edit content in `src/data/legal/*.json`. `LegalPage.tsx` renders headings, lists,
 email links and page/section navigation. Footer URLs and Vercel rewrites use the
 same three policy slugs as the old site. No authentication or backend is required.
+
+## Audience separation — 24 October 2026
+
+Following the owner's clarification, `/terms-and-conditions` is explicitly Creator
+Terms, with creator onboarding/KYC, team access, OBS/integrations and settlements.
+`/viewer-terms` separately covers viewer submissions/payments, moderation, visibility,
+failed/duplicate payments, cancellation/refunds and complaints. The pasted historical
+terms informed the creator scope; previous conflicting blanket personal-data ownership,
+automatic damages and platform-switch payout withholding were not reinstated.
+
+Both link to the shared Privacy and Refund policies. Their published substantive
+effective date remains 7 November 2026, consistent with the existing notice period.
+Any real onboarding and payment flow must display and record appropriate acceptance
+of the relevant terms before use/payment; footer access alone is not evidence of
+transaction-specific notice or acceptance. No checkout/backend was changed here.
+The gateway's actual merchant/fee and settlement details still need an operational
+review; no missing commercial rate or settlement deadline was invented.

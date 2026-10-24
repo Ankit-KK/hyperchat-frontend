@@ -256,7 +256,8 @@ const groups = [
     title: "Policies",
     links: [
       ["Privacy", "/privacy-policy"],
-      ["Terms", "/terms-and-conditions"],
+      ["Creator Terms", "/terms-and-conditions"],
+      ["Viewer Terms", "/viewer-terms"],
       ["Refunds", "/cancellation-refunds"],
     ],
   },
