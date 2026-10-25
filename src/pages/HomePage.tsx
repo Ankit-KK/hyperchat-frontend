@@ -14,7 +14,7 @@ export default function HomePage() {
       <ProductHero />
       <InteractionStory depth />
       <Partners compact />
-      <CreatorFeatures />
+      <CreatorFeatures depth />
       <ScrollMorphHero creators={showcaseCreators} />
       <CreatorOnboarding compact />
       <CreatorControl home />

@@ -9,6 +9,7 @@ import {
   ObsPreview,
 } from "./CreatorPreviews";
 import MediaPreview from "./MediaPreview";
+import "./ToolkitDepth.css";
 const features = [
   {
     id: "interactions",
@@ -69,7 +70,7 @@ const features = [
     label: "07 / BROADCAST",
   },
 ];
-export default function CreatorFeatures() {
+export default function CreatorFeatures({ depth = false }: { depth?: boolean }) {
   const [active, setActive] = useState(0);
   const feature = features[active];
   const keydown = (e: KeyboardEvent<HTMLButtonElement>, index: number) => {
@@ -87,7 +88,7 @@ export default function CreatorFeatures() {
   };
   return (
     <section
-      className="creators section-shell"
+      className={`creators section-shell ${depth ? "toolkit-depth" : ""}`}
       id="creators"
       aria-labelledby="creators-title"
     >
@@ -136,6 +137,7 @@ export default function CreatorFeatures() {
           tabIndex={0}
           className="feature-panel"
         >
+          {depth && <div className="toolkit-preview-bar" aria-hidden="true"><span><i /> TRY THE TOOLS</span><span>0{active + 1} / 07</span></div>}
           <div className="feature-visual" key={feature.id}>
             {active === 0 && <SupportPreview />}
             {active === 1 && <AlertPreview />}
