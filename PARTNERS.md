@@ -11,11 +11,13 @@ The exact ClipWave logo was downloaded from the existing site's asset
 Original brand colors are retained; authored surfaces use HyperChat neutrals.
 No gradients, animation loops or new dependencies were added.
 
-The old ElevenLabs Grants logo URL returned HTTP 403:
-https://eleven-public-cdn.elevenlabs.io/payloadcms/cy7rxce8uki-IIElevenLabsGrants%201.webp
-The supplied chat image has no downloadable attachment identifier in this turn.
-An ordinary text acknowledgement is used for now, rather than a broken image or
-invented logo. A locally supplied official badge can replace that text later.
+The owner supplied the official white badge URL on 25 October 2026. The badge
+links to the Startup Grants page and renders at up to 250px wide on charcoal.
+Downloads still returned HTTP 403, including outside the sandbox, so it uses the
+official ElevenLabs CDN directly. If loading fails, an accessible text
+acknowledgement replaces the image. A local official file is still preferable
+when available. Tests can verify the configured URL and error fallback, but the
+actual CDN image could not be visually verified from this environment.
 
 Build passed. Playwright verifies both pages, logo loading, destination links,
 relationship labels and horizontal overflow at desktop, tablet and mobile sizes.
