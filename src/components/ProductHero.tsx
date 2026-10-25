@@ -6,6 +6,7 @@ import {
   RotateCcw,
   Send,
 } from "lucide-react";
+import "./HeroDepth.css";
 import StreamStage from "./StreamStage";
 import { useDemoSequence } from "../hooks/useDemoSequence";
 import { useState } from "react";

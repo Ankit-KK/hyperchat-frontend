@@ -1,0 +1,33 @@
+/* Hero-only spatial composition. Solid planes; no extra rendering loop. */
+.hero{position:relative;isolation:isolate}
+.hero-content{position:relative;z-index:2}
+.hero-content h1{text-shadow:0 8px 28px #0002}
+.product-theatre{position:relative}
+.theatre-scene::before{content:"";position:absolute;pointer-events:none;inset:24px -16px 75px 48px;border:1px solid #8c847b55;background:#302b25;transform:translateZ(-38px) rotate(2deg);box-shadow:18px 28px 45px #0003}
+.theatre-scene::after{content:"";position:absolute;pointer-events:none;left:44px;right:5px;bottom:65px;height:1px;background:#b8702f70;transform:translateZ(-40px)}
+.hero .broadcast-frame{position:relative;border-color:#b2a18b60;background:#393229;box-shadow:1px 1px 0 #d7cbb950,6px 8px 0 #191715,7px 9px 0 #8c847b50,20px 32px 48px #0005;transform:translateZ(0)}
+.hero .broadcast-chrome{border-bottom:1px solid #8c847b40}
+.hero .platform-stage{background:#26221e;box-shadow:inset 0 1px 0 #0006}
+.hero .platform-card{transform:translateY(-5px) rotate(-1deg);box-shadow:1px 1px 0 #fff4,6px 8px 0 #b9ac98,7px 9px 0 #8c847b50,16px 23px 25px #0005}
+.hero .viewer-ticket{border-color:#d7cbb9;box-shadow:1px 1px 0 #fff6,3px 4px 0 #b9aa94,15px 24px 30px #0006;transform:translateZ(48px) rotate(-5deg)}
+.hero .viewer-ticket:focus-within{transform:translateZ(48px) rotate(0deg)}
+.hero .event-receipt{z-index:7;background:#221f1c;border:1px solid #8c847b55;padding:9px 12px;box-shadow:5px 8px 16px #0003}
+.hero .moment-route{position:relative;margin-top:22px}
+.hero .moment-route::before{content:"";position:absolute;top:0;left:0;bottom:0;width:2px;background:#b8702f70;pointer-events:none}
+@media(min-width:1000px){
+  .hero::before{content:"";position:absolute;pointer-events:none;z-index:-1;top:155px;right:0;bottom:80px;width:47%;background:#2b2722;border-left:1px solid #8c847b25;clip-path:polygon(10% 0,100% 0,100% 100%,0 100%)}
+  .hero-layout{gap:5vw;padding-top:80px;padding-bottom:75px}
+  .product-theatre{padding-right:12px}
+  .hero .theatre-caption{margin-bottom:30px}
+  .hero .viewer-ticket{left:-26px;bottom:3px}
+}
+@media(max-width:760px){
+  .theatre-scene::before{inset:14px -4px 80px 44px;transform:rotate(2deg);box-shadow:6px 10px 18px #0003}
+  .theatre-scene::after{display:none}
+  .hero .broadcast-frame{box-shadow:3px 4px 0 #191715,4px 5px 0 #8c847b40,8px 12px 18px #0004}
+  .hero .platform-card{transform:none;box-shadow:4px 5px 0 #b9ac98,7px 9px 12px #0004}
+  .hero .viewer-ticket{transform:rotate(-3deg);box-shadow:2px 3px 0 #b9aa94,7px 11px 16px #0004}
+  .hero .viewer-ticket:focus-within{transform:none}
+  .hero .event-receipt{padding:6px;max-width:46%;line-height:1.5;box-shadow:none}
+}
+@media(prefers-reduced-motion:reduce){.hero .viewer-ticket,.hero .viewer-ticket:focus-within{transform:none}}
