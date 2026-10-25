@@ -1,7 +1,7 @@
 # Hero composition pass
 
 Scope: homepage hero only. `src/components/HeroDepth.css`, imported by
-ProductHero, adds solid architectural backing planes, a raised broadcast frame,
+ProductHero, adds a backing plane directly behind the preview, a raised broadcast frame,
 layered interaction card and a foreground viewer ticket. Thin copper and stone
 edges and directional shadows establish depth without gradients or a new canvas.
 The existing desktop perspective and scroll motion remain in use; no pointer
@@ -16,3 +16,7 @@ Validation: production build; homepage navigation/demo checks at desktop,
 tablet and mobile; desktop and touch-phone screenshots inspected, with no
 horizontal overflow. Existing mobile interaction and native-scroll checks
 were also run. Physical phone frame-rate measurements remain unavailable.
+
+The large right-hand hero backdrop was removed after review because it obscured
+the oversized HYPERCHAT background wordmark. Depth stays local to the preview
+and message cards, leaving the surrounding hero background open.

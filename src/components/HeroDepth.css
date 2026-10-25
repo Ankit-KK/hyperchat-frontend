@@ -15,7 +15,6 @@
 .hero .moment-route{position:relative;margin-top:22px}
 .hero .moment-route::before{content:"";position:absolute;top:0;left:0;bottom:0;width:2px;background:#b8702f70;pointer-events:none}
 @media(min-width:1000px){
-  .hero::before{content:"";position:absolute;pointer-events:none;z-index:-1;top:155px;right:0;bottom:80px;width:47%;background:#2b2722;border-left:1px solid #8c847b25;clip-path:polygon(10% 0,100% 0,100% 100%,0 100%)}
   .hero-layout{gap:5vw;padding-top:80px;padding-bottom:75px}
   .product-theatre{padding-right:12px}
   .hero .theatre-caption{margin-bottom:30px}
