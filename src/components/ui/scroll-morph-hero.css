@@ -84,3 +84,36 @@
 .showcase-directory-controls input { width: min(100%, 420px); background: var(--ivory); color: var(--charcoal); border: 1px solid var(--stone); border-radius: 0; padding: 13px; font-size: 14px; }
 .showcase-directory-controls p { font-size: 12px; margin-top: 12px; }
 .showcase-load-more { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 40px auto 0; padding: 14px 22px; background: var(--charcoal); color: var(--ivory); border: 0; font-size: 12px; }
+
+/* A quiet display surface and portrait depth; motion geometry is unchanged. */
+.showcase-stage::before{content:"";position:absolute;inset:145px 3vw 64px;background:#ede5d8;border:1px solid #d7cbb9;z-index:-1;pointer-events:none;box-shadow:inset 0 1px 0 #fff5}
+.showcase-controls button{background:#f3ede2;border:1px solid #8c847b;padding:10px 14px;min-height:40px}
+.showcase-controls button:hover{background:#e6ddce}
+.showcase-controls button:focus-visible,.showcase-card:focus-visible,.showcase-grid-caption a:focus-visible,.showcase-load-more:focus-visible{outline:2px solid #946030;outline-offset:4px}
+.showcase-card-face{border-color:#8c847b80;border-radius:3px;box-shadow:2px 3px 0 #c5b8a3,5px 8px 12px #221f1c26}
+.showcase-card-front .showcase-card-name{border-top:1px solid #d7cbb9;padding:6px;line-height:1.4;font-size:7px}
+.showcase-card-front .showcase-card-index{background:#303126;border:1px solid #74765b;color:#f3ede2;font-size:6px;letter-spacing:.045em;margin:4px;padding:4px 3px;line-height:1.35}
+.showcase-card[data-ambassador=true] .showcase-card-face{border-color:#74765b}
+.showcase-card-back{background:#221f1c;border-top:3px solid #b8702f}
+.showcase-card[data-ambassador=true] .showcase-card-back{border-top-color:#74765b}
+.showcase-list .showcase-stage::before{display:none}
+.showcase-list .showcase-cards{gap:36px 28px}
+.showcase-list .showcase-intro{margin-bottom:36px}
+.showcase-directory-controls{max-width:1120px;border-top:1px solid #d7cbb9;border-bottom:1px solid #d7cbb9;padding:22px 0;margin-bottom:36px}
+.showcase-directory-controls input{background:#ebe3d6;border-color:#8c847b;box-shadow:inset 0 1px 2px #221f1c0a}
+.showcase-directory-controls input:focus-visible{outline:2px solid #946030;outline-offset:3px}
+.showcase-card-grid .showcase-card-front .showcase-card-index{font-size:8px;margin:8px;padding:5px 7px}
+.showcase-card-grid .showcase-card-front .showcase-card-name{font-size:11px;padding:10px}
+.showcase-grid-caption{padding-top:3px;line-height:1.8}
+.showcase-grid-caption .showcase-ambassador{display:inline-block;padding-left:8px;border-left:2px solid #74765b;font-size:10px;font-weight:500}
+@media(max-width:600px){
+ .showcase-stage::before{inset:135px 12px 54px}
+ .showcase-controls button{font-size:10px;padding:8px 10px}
+ .showcase-card-face{box-shadow:1px 2px 0 #c5b8a3,3px 5px 7px #221f1c20}
+ .showcase-card-front .showcase-card-name{font-size:4.5px;padding:3px}
+ .showcase-card-front .showcase-card-index{font-size:4px;padding:2px;margin:2px}
+ .showcase-card-grid .showcase-card-front .showcase-card-index{font-size:7px;margin:5px;padding:4px}
+ .showcase-card-grid .showcase-card-front .showcase-card-name{font-size:10px;padding:8px}
+ .showcase-list .showcase-cards{gap:28px 18px}
+ .showcase-directory-controls{padding:18px 0}
+}

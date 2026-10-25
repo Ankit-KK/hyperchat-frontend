@@ -72,3 +72,15 @@ On each new page visit, a Fisher–Yates shuffle of all non-ambassadors selects 
 17 regular animated cards, following the three fixed ambassadors. Selection is
 stable during the visit and does not mutate the complete directory. Every regular
 creator has the same sampling opportunity; the full directory remains searchable.
+
+## Card-depth refinement
+
+The scroll stage now has a static sand display plane, softly raised portrait
+edges and more distinct creator-name strips. Ambassador cards use olive borders
+and badges; the list spells out BRAND AMBASSADOR. Directory spacing, search
+surface and keyboard focus indicators were refined. Mobile uses smaller shadows.
+The card geometry, scroll choreography, creator data, original photo colors,
+shuffle selection and three fixed ambassadors are unchanged. No new animation
+loop or dependency was added. Production build and showcase regression tests
+cover scrolling, reverse navigation, reduced motion, directory search, portraits,
+and fixed ambassadors/shuffling at desktop, tablet and mobile sizes.

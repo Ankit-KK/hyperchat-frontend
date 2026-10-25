@@ -70,7 +70,7 @@ function CreatorCard({ creator, index, total, phase, size, progress, mouse, grid
   return (
     <motion.div data-creator-id={creator.id} className={cn("showcase-card-position", grid && "showcase-card-grid")}
       style={grid ? undefined : { x, y, rotate, scale }}>
-      <button type="button" className="showcase-card" data-tone={index % 4}
+      <button type="button" className="showcase-card" data-tone={index % 4} data-ambassador={creator.ambassador || undefined}
         aria-pressed={flipped} tabIndex={grid ? 0 : -1}
         onClick={() => setFlipped((value) => !value)}
         onPointerEnter={(event) => { if (event.pointerType === "mouse") setHovered(true); }}
@@ -79,7 +79,7 @@ function CreatorCard({ creator, index, total, phase, size, progress, mouse, grid
           animate={{ rotateY: back ? 180 : 0 }} transition={{ duration: grid ? 0 : 0.45 }}>
           <span className="showcase-card-face showcase-card-front">
             {creator.image && !imageFailed ? <img className="showcase-portrait" src={creator.image} alt="" loading="lazy" decoding="async" width="320" height="320" onError={() => setImageFailed(true)} /> : <span className="showcase-card-mark">{creator.initials}</span>}
-            {creator.ambassador && <span className="showcase-card-index">AMBASSADOR</span>}{" "}
+            {creator.ambassador && <span className="showcase-card-index">{grid ? "BRAND AMBASSADOR" : "AMBASSADOR"}</span>}{" "}
             <span className="showcase-card-name">{creator.name}</span>
           </span>
           <span className="showcase-card-face showcase-card-back">
