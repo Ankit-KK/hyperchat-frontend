@@ -23,3 +23,14 @@ Build passed. Playwright verifies both pages, logo loading, destination links,
 relationship labels and horizontal overflow at desktop, tablet and mobile sizes.
 The homepage now has eight sections; existing section-count assertions reflect
 this addition. No existing sections were removed.
+
+## Compact homepage band
+
+Home now passes `compact` to Partners: reduced heading size and spacing, smaller
+brand areas, fine dividers in place of boxed cards, and no extra promotional
+subheadings. Both relationship labels, descriptions and external links remain.
+Copper identifies the partner and muted olive identifies grant support. Mobile
+stacks the two acknowledgements. Company retains the original detailed layout.
+Build and six partner checks passed at desktop, tablet and mobile sizes; desktop
+and phone screenshots were visually inspected. The official CDN badge still
+falls back to text when its request is blocked.
