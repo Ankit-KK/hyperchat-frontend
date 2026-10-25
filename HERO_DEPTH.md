@@ -20,3 +20,12 @@ were also run. Physical phone frame-rate measurements remain unavailable.
 The large right-hand hero backdrop was removed after review because it obscured
 the oversized HYPERCHAT background wordmark. Depth stays local to the preview
 and message cards, leaving the surrounding hero background open.
+
+## Hero palette refinement
+
+The hero uses deep charcoal #171614 inside the broadcast preview and behind its
+frame, warm stone #39342E on the raised frame, and ivory on the foreground cards.
+Muted olive #74765B appears on secondary rims, audience avatars, and receipt
+feedback. Copper remains the action accent. Text stays ivory/sand or charcoal
+for contrast. The larger wordmark-obscuring backdrop remains removed. These
+styles are scoped to the hero and add no animation or rendering loop.

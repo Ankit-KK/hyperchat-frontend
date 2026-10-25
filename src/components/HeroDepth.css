@@ -1,13 +1,19 @@
 /* Hero-only spatial composition. Solid planes; no extra rendering loop. */
-.hero{position:relative;isolation:isolate}
+.hero{
+  --hero-depth:#171614;
+  --hero-raised:#39342e;
+  --hero-olive:#74765b;
+  --hero-olive-surface:#303126;
+  position:relative;isolation:isolate;
+}
 .hero-content{position:relative;z-index:2}
 .hero-content h1{text-shadow:0 8px 28px #0002}
 .product-theatre{position:relative}
-.theatre-scene::before{content:"";position:absolute;pointer-events:none;inset:24px -16px 75px 48px;border:1px solid #8c847b55;background:#302b25;transform:translateZ(-38px) rotate(2deg);box-shadow:18px 28px 45px #0003}
+.theatre-scene::before{content:"";position:absolute;pointer-events:none;inset:24px -16px 75px 48px;border:1px solid var(--hero-olive);background:var(--hero-depth);transform:translateZ(-38px) rotate(2deg);box-shadow:18px 28px 45px #0003}
 .theatre-scene::after{content:"";position:absolute;pointer-events:none;left:44px;right:5px;bottom:65px;height:1px;background:#b8702f70;transform:translateZ(-40px)}
-.hero .broadcast-frame{position:relative;border-color:#b2a18b60;background:#393229;box-shadow:1px 1px 0 #d7cbb950,6px 8px 0 #191715,7px 9px 0 #8c847b50,20px 32px 48px #0005;transform:translateZ(0)}
-.hero .broadcast-chrome{border-bottom:1px solid #8c847b40}
-.hero .platform-stage{background:#26221e;box-shadow:inset 0 1px 0 #0006}
+.hero .broadcast-frame{position:relative;border-color:#a99b87;background:var(--hero-raised);box-shadow:1px 1px 0 #d7cbb950,6px 8px 0 #191715,7px 9px 0 #8c847b50,20px 32px 48px #0005;transform:translateZ(0)}
+.hero .broadcast-chrome{border-top:1px solid #d7cbb94d;border-bottom:1px solid #171614;color:#d7cbb9}
+.hero .platform-stage.stream-stage{background:var(--hero-depth);box-shadow:inset 0 1px 0 #0006,inset 8px 10px 18px #0002}
 .hero .platform-card{transform:translateY(-5px) rotate(-1deg);box-shadow:1px 1px 0 #fff4,6px 8px 0 #b9ac98,7px 9px 0 #8c847b50,16px 23px 25px #0005}
 .hero .viewer-ticket{border-color:#d7cbb9;box-shadow:1px 1px 0 #fff6,3px 4px 0 #b9aa94,15px 24px 30px #0006;transform:translateZ(48px) rotate(-5deg)}
 .hero .viewer-ticket:focus-within{transform:translateZ(48px) rotate(0deg)}
@@ -30,3 +36,16 @@
   .hero .event-receipt{padding:6px;max-width:46%;line-height:1.5;box-shadow:none}
 }
 @media(prefers-reduced-motion:reduce){.hero .viewer-ticket,.hero .viewer-ticket:focus-within{transform:none}}
+
+/* Olive is a secondary material accent; copper continues to signal actions. */
+.hero .platform-people > span{background:var(--hero-olive-surface);border-color:var(--hero-olive);color:#f3ede2}
+.hero .platform-audience-line{background:#74765b80}
+.hero .platform-card{border-top:3px solid var(--hero-olive)}
+.hero .platform-control-dot{background:var(--hero-olive)}
+.hero .platform-stream > svg:first-child{color:#d7cbb9;border-color:var(--hero-olive);background:var(--hero-olive-surface)}
+.hero .viewer-ticket{border-top:3px solid #b8702f}
+.hero .viewer-avatar{background:#e3dfd0;border-color:var(--hero-olive);color:#221f1c}
+.hero .message-input{background:#eae4d8;box-shadow:inset 0 2px 3px #221f1c0d}
+.hero .event-receipt.received{border-color:var(--hero-olive);background:var(--hero-olive-surface);color:#f3ede2}
+.hero .event-receipt.received > span{border-color:var(--hero-olive);background:#d7cbb9;color:#221f1c}
+@media(max-width:760px){.hero .platform-stage.stream-stage{box-shadow:inset 0 1px 0 #0006}}
