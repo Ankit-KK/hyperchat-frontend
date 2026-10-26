@@ -1,3 +1,4 @@
+import PlatformMetrics from "../components/PlatformMetrics";
 import Partners from "../components/Partners";
 import InteractionStory from "../components/InteractionStory";
 import CreatorFeatures from "../components/CreatorFeatures";
@@ -13,6 +14,7 @@ export default function HomePage() {
     <>
       <ProductHero />
       <InteractionStory depth />
+      <PlatformMetrics />
       <Partners compact />
       <CreatorFeatures depth />
       <ScrollMorphHero creators={showcaseCreators} />
