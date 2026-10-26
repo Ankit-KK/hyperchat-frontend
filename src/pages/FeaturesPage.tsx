@@ -1,3 +1,4 @@
+import ConnectedModeration from "../components/ConnectedModeration";
 import WebhookRelay from "../components/ui/webhook-relay";
 import CreatorControl from "../components/CreatorControl";
 import CreatorFeatures from "../components/CreatorFeatures";
@@ -14,6 +15,7 @@ export default function FeaturesPage() {
       <InteractionStory />
       <CreatorFeatures />
       <WebhookRelay />
+      <ConnectedModeration />
       <CreatorControl />
     </>
   );
