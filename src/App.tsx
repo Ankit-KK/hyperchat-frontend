@@ -5,7 +5,7 @@ import MascotCursor from "./components/MascotCursor";
 import PageExperience from "./components/PageExperience";
 import PageLoadBoundary from "./components/PageLoadBoundary";
 
-import PageIntro from "./pages/PageIntro";
+const NotFoundPage = lazy(() => import("./components/ui/phosphor-crt-404"));
 
 const DemoSignupPage = lazy(() => import("./pages/DemoSignupPage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
@@ -48,16 +48,7 @@ export default function App() {
     ) : legalTitles[path] ? (
       <LegalPage path={path} />
     ) : (
-      <>
-        <PageIntro
-          eyebrow="404"
-          title="This page isn’t here."
-          copy="Find your way back to HyperChat."
-        />
-        <a className="button" href="/">
-          Back to home
-        </a>
-      </>
+      <NotFoundPage />
     );
 
   const root = useRef<HTMLDivElement>(null);
