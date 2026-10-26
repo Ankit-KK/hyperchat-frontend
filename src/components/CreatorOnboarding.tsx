@@ -1,4 +1,6 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, UserRound, MessagesSquare, UserPlus, ShieldCheck, Radio } from "lucide-react";
+import "./OnboardingDepth.css";
+const stepIcons = [UserRound, MessagesSquare, UserPlus, ShieldCheck, Radio];
 const onboarding = [
   [
     "Introduce your channel",
@@ -29,7 +31,7 @@ export default function CreatorOnboarding({
 }) {
   return (
     <section
-      className="onboarding section-shell light"
+      className={`onboarding section-shell light ${compact ? "onboarding-depth" : ""}`}
       id="onboarding"
       aria-labelledby="onboarding-title"
     >
@@ -55,13 +57,14 @@ export default function CreatorOnboarding({
         </div>
       </div>
       <ol className="onboarding-steps">
-        {onboarding.map(([title, copy], i) => (
+        {onboarding.map(([title, copy], i) => { const Icon = stepIcons[i]; return (
           <li key={title} data-reveal>
+            {compact && <Icon className="onboarding-step-icon" size={21} strokeWidth={1.35} aria-hidden="true" />}
             <span className="step-number">0{i + 1}</span>
             <h3>{title}</h3>
             <p>{copy}</p>
           </li>
-        ))}
+        ); })}
       </ol>
       <div className="setup-note">
         <span className="eyebrow">AFTER ACTIVATION</span>
