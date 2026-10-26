@@ -1,3 +1,4 @@
+import "./CreatorTermsOverview.css";
 import CreatorOnboarding from "../components/CreatorOnboarding";
 import PageIntro from "./PageIntro";
 export default function CreatorsPage() {
@@ -8,6 +9,16 @@ export default function CreatorsPage() {
         title="Your next chapter starts here."
         copy="Get to know the planned onboarding process, prepare your OBS setup, and find answers before you begin."
       />{" "}
+      <section className="creator-terms-overview section-shell light" aria-labelledby="creator-terms-title">
+        <div className="section-label"><span>THE PRACTICAL DETAILS</span><span>FEES & PAYOUTS</span></div>
+        <h2 id="creator-terms-title">Know where you stand.</h2>
+        <dl className="creator-terms-facts">
+          <div><dt>Platform fee</dt><dd>11<span>%</span></dd></div>
+          <div><dt>Payout schedule</dt><dd>Monthly</dd></div>
+          <div><dt>International payments</dt><dd>Accepted</dd></div>
+        </dl>
+        <p>For creator eligibility and settlement conditions, read our <a href="/terms-and-conditions">Creator Terms</a>. Questions? <a href="mailto:ankit@hyperchat.space?subject=Creator%20fees%20and%20payouts">Contact the team</a>.</p>
+      </section>
       <CreatorOnboarding />
       <section
         className="section-shell light page-faq"
