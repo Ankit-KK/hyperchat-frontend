@@ -9,3 +9,9 @@
 .metric:last-child dd{color:#d3a475}
 .metric-unit{font-size:.6em;letter-spacing:-.02em}
 @media(max-width:650px){.platform-metrics{padding-top:32px;padding-bottom:34px}.metrics-heading{align-items:flex-start;flex-direction:column;gap:12px;padding-bottom:22px}.metrics-list{grid-template-columns:1fr;gap:0;padding-top:0}.metric{padding:23px 0;gap:9px}.metric+.metric{border-top:1px solid #8c847b40}.metric:last-child{padding-bottom:0}.metric dd{font-size:56px}.metric dt{font-size:9px}}
+.metric-number,.metric-digits{display:inline-flex}
+.metric-digits{letter-spacing:0;align-items:baseline}
+.metric-digit{display:inline-block;height:1.15em;width:.56em;overflow:hidden;vertical-align:bottom}
+.metric-reel{display:flex;flex-direction:column}
+.metric-reel>span{display:block;flex:none;height:1.15em;line-height:1.15;text-align:center}
+@media(prefers-reduced-motion:reduce){.metric-reel{animation:none}}
