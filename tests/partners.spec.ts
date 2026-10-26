@@ -19,7 +19,7 @@ test('official dark badge URL falls back to readable text on failure', async ({p
   await page.goto('/company');
   const badge=page.getByRole('link',{name:'ElevenLabs Grants (opens in a new tab)',exact:true});
   await badge.scrollIntoViewIfNeeded();
-  await expect(badge).toContainText('ElevenLabsGrants');
+  await expect(badge).toContainText('ElevenLabs Grants');
   await expect(badge.getByRole('img')).toHaveCount(0);
   await expect(badge).toHaveAttribute('href','https://elevenlabs.io/startup-grants');
 });

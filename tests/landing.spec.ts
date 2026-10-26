@@ -8,7 +8,7 @@ test("original homepage sections link to dedicated pages and preserves browser n
   page.on("pageerror", (error) => errors.push(error.message));
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await expect(page.locator("main > section")).toHaveCount(8);
+  await expect(page.locator("main > section")).toHaveCount(9);
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "Their voice.",
   );

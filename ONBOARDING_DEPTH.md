@@ -1,16 +1,23 @@
-# Homepage onboarding depth
+# Homepage onboarding
 
-The compact homepage onboarding section now uses a sand background, raised ivory
-step cards, copper numbering and restrained olive verification accents. The final
-activation step uses charcoal to distinguish the destination. The after-activation
-instructions sit on a separate sand surface. Phones use stacked numbered rows.
+The compact homepage variant is an open five-step journey on ivory. Copper
+numbers, fine horizontal rules, and an olive activation accent establish order
+without cards, shadows, or boxed setup notes. Tablet layouts use numbered rows;
+phones place each description beneath its heading.
 
-Only the compact variant receives these styles and decorative icons; the Creators
-page retains its existing presentation and contact link. All five steps, planned
-V2 status, and preview availability copy remain unchanged. No application form,
-backend connection, new dependency or animation loop was added.
+The Creators page retains its existing presentation and contact link. All five
+steps, planned V2 status, and preview availability copy remain unchanged. No
+application form, backend connection, dependency, or animation loop was added.
 
-Validation: production build; screenshots at desktop (1440), tablet (820), and
-phone (390); all five steps present and no horizontal overflow. Scoped automated
-accessibility checks reported no violations at each size. The Creators page's
-onboarding contact link was checked at all three sizes.
+The shared footer uses two navigation columns on small screens with 44px link
+hit areas, clearer contact spacing, and a restrained copper accent. Company,
+legal, email, copy, back-to-top, and pin interactions remain available.
+
+Validation: production build; desktop 1440, tablet 820, and touch phone 390
+screenshots; scoped onboarding/footer accessibility audits and overflow checks.
+Regression checks cover footer interactions, homepage navigation, toolkit demos,
+and native touch scrolling. The ElevenLabs fallback text has a separating space
+so its visible text matches its accessible label when the remote badge fails.
+
+Physical-device frame rate remains unmeasured; browser touch emulation verifies
+native scrolling and the lightweight mobile wordmark fallback.

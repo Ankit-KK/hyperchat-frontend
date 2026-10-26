@@ -32,3 +32,11 @@
 @media (max-width: 900px) { .tear-footer-grid { grid-template-columns: repeat(3, 1fr); } .tear-footer-contact { grid-column: 1 / -1; } .tear-footer-company { max-width: none; } }
 @media (max-width: 480px) { .tear-footer-content { padding: 32px 6vw 20px; } .tear-footer-grid { gap: 30px 16px; } .tear-footer-grid li a { font-size: 12px; } .tear-footer-grid nav h3 { font-size: 9px; } .tear-footer-brand { font-size: 25px; } .tear-footer-bottom { padding: 26px 6vw; } .tear-footer-bottom > span:nth-child(2) { order: 3; width: 100%; } }
 @media (prefers-reduced-motion: reduce) { .tear-footer-pin svg { animation: none!important; transition: none; } }
+/* Spacious links and a quiet contact accent, without additional containers. */
+.tear-footer-contact h2{max-width:330px}
+.tear-footer-contact .eyebrow{display:flex;align-items:center;gap:12px}
+.tear-footer-contact .eyebrow::before{content:"";width:24px;height:2px;background:#b8702f;flex-shrink:0}
+.tear-footer-grid nav a{display:inline-flex;align-items:center;min-height:32px}
+.tear-footer-grid ul{gap:8px}
+.tear-footer-up{min-height:44px}
+@media(max-width:600px){.tear-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 22px;padding-top:30px}.tear-footer-grid nav h3{margin-bottom:12px}.tear-footer-grid nav a{min-height:44px}.tear-footer-grid ul{gap:2px}.tear-footer-top{padding-bottom:24px}.tear-footer-email{flex-wrap:wrap}.tear-footer-bottom{gap:12px}.tear-footer-bottom a{min-height:44px}}

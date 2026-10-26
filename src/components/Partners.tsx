@@ -16,7 +16,7 @@ export default function Partners({ compact = false }: { compact?: boolean }) {
       </article>
       <article className="partner-card">
         <span className="eyebrow">SUPPORTED BY</span>
-        <div className="partner-brand"><a className="grants-badge-link" href="https://elevenlabs.io/startup-grants" target="_blank" rel="noopener noreferrer" aria-label="ElevenLabs Grants (opens in a new tab)">{badgeFailed ? <span className="grants-wordmark">ElevenLabs<span>Grants</span></span> : <img className="grants-logo" src="https://eleven-public-cdn.elevenlabs.io/payloadcms/cy7rxce8uki-IIElevenLabsGrants%201.webp" alt="ElevenLabs Grants" loading="lazy" decoding="async" onError={() => setBadgeFailed(true)} />}</a></div>
+        <div className="partner-brand"><a className="grants-badge-link" href="https://elevenlabs.io/startup-grants" target="_blank" rel="noopener noreferrer" aria-label="ElevenLabs Grants (opens in a new tab)">{badgeFailed ? <span className="grants-wordmark">ElevenLabs<span> Grants</span></span> : <img className="grants-logo" src="https://eleven-public-cdn.elevenlabs.io/payloadcms/cy7rxce8uki-IIElevenLabsGrants%201.webp" alt="ElevenLabs Grants" loading="lazy" decoding="async" onError={() => setBadgeFailed(true)} />}</a></div>
         {!compact && <h3>Support for what’s next.</h3>}
         <p>HyperChat is supported by ElevenLabs Startup Grants.</p>
         <a href="https://elevenlabs.io/startup-grants" target="_blank" rel="noopener noreferrer">Explore ElevenLabs Grants <ArrowUpRight size={16} aria-hidden="true"/><span className="sr-only"> (opens in a new tab)</span></a>
