@@ -82,6 +82,9 @@ export default function PlatformMetrics({ values = metrics }: { values?: Platfor
           </div>
         ))}
       </dl>
+      <p className="metrics-recognition">
+        Built by Streamheart Private Limited, a <a href="/company#startup-recognition">DPIIT-recognised startup under Startup India</a>.
+      </p>
     </section>
   );
 }

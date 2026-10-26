@@ -19,7 +19,7 @@ export default function CompanyPage() {
           sounds, and on-stream interactions. Creators choose how those
           interactions become part of their broadcast.
         </p>
-        <aside className="company-recognition" aria-labelledby="recognition-title">
+        <aside id="startup-recognition" className="company-recognition" aria-labelledby="recognition-title">
           <span className="company-recognition-label">STARTUP INDIA</span>
           <div>
             <h3 id="recognition-title">DPIIT-recognised startup</h3>
