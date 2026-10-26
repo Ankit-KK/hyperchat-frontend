@@ -1,20 +1,29 @@
-# Streaming CRT 404
+# Supplied phosphor CRT 404
 
-`src/components/ui/phosphor-crt-404.tsx` is an original local implementation of the
-CRT concept. The supplied snippet contained only an import and demo wrapper, not
-the referenced component source. The screen uses streaming icons and neutral
-broadcast test bars, with three channels, a power toggle, and permanent Home and
-Support links. No audio, flicker, continuous animation, remote assets, or new
-package dependencies are introduced. Keyboard controls and a live status announce
-changes; the power-button transition respects reduced motion.
+`src/components/ui/phosphor-crt-404.tsx` now integrates the full component supplied
+by the owner, replacing the earlier cabinet-style recreation. The original
+bitmap font, extruded digits, phosphor-dot canvas mask, dithering, responsive
+scene layout, pyramid home link, parallax, hover lighting, trail, retuning static,
+and CRT power-collapse/boot effects are retained.
 
-Unknown paths in App load this component lazily. `scripts/build-404.mjs` copies the
-built app entry to `dist/404.html`, the static error document used by Vercel for
-unmatched paths. Existing explicit route rewrites stay intact. Absolute asset
-paths allow the error page to load at nested missing URLs. No catch-all 200 rewrite
-is added.
+HyperChat changes:
+- Copper/ivory phosphor over charcoal, with neutral lighting and no gradients.
+- Camera, microphone, broadcast, chat, and play bitmap sprites replace musical
+  notes and hearts. Streaming messages and HyperChat branding replace generic copy.
+- Existing site header/footer remain; controls are below the fixed header.
+- Keyboard/touch channel button and permanent Home/Support links complement the
+  original click-screen and hover-pyramid controls. The hidden powered-off pyramid
+  is removed from keyboard navigation.
+- Default audio is off; optional interaction audio closes on unmount.
+- Reduced-motion frames skip unchanged redraws and ignore pointer trails; phones
+  omit the expensive blurred bloom layer. Existing offscreen/hidden drawing guards
+  and observer/event cleanup are retained. Rapid retunes cannot restart mid-change.
 
-Build and browser tests verify nested missing routes, reload, channel cycling,
-power toggles, keyboard operation, accessibility, responsive overflow, home
-navigation, and the generated error document. Vite preview uses its own SPA
-fallback; production HTTP 404 status must be verified after Vercel deploys.
+No packages or external assets were added. The repository already supports React,
+TypeScript, Tailwind 4, the `@/` alias, and `src/components/ui`.
+
+`scripts/build-404.mjs` emits `dist/404.html` from the built entry for Vercel's
+static error handling. Tests cover unknown nested URLs, reload, reduced motion,
+keyboard channel cycling, power toggles/collapse, home links, canvas sizing,
+accessibility and overflow at desktop/tablet/phone sizes. Production HTTP status
+must still be verified after deployment; local Vite uses its SPA fallback.
