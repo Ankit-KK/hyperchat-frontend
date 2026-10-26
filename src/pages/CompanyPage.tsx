@@ -1,3 +1,4 @@
+import "./CompanyRecognition.css";
 import Partners from "../components/Partners";
 import PageIntro from "./PageIntro";
 export default function CompanyPage() {
@@ -18,6 +19,13 @@ export default function CompanyPage() {
           sounds, and on-stream interactions. Creators choose how those
           interactions become part of their broadcast.
         </p>
+        <aside className="company-recognition" aria-labelledby="recognition-title">
+          <span className="company-recognition-label">STARTUP INDIA</span>
+          <div>
+            <h3 id="recognition-title">DPIIT-recognised startup</h3>
+            <p>Streamheart Private Limited is recognised by the Department for Promotion of Industry and Internal Trade (DPIIT), Government of India, under the Startup India initiative.</p>
+          </div>
+        </aside>
         <div className="overview-grid">
           <article>
             <h3>Creator questions</h3>
