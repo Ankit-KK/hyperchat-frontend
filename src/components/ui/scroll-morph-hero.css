@@ -117,3 +117,13 @@
  .showcase-list .showcase-cards{gap:28px 18px}
  .showcase-directory-controls{padding:18px 0}
 }
+
+/* The display plane, card origin and title share a single usable stage area. */
+.showcase-stage{--showcase-area-top:145px;--showcase-area-bottom:64px;--showcase-area-side:3vw}
+.showcase-stage::before,.creator-showcase:not(.showcase-list) .showcase-cards{inset:var(--showcase-area-top) var(--showcase-area-side) var(--showcase-area-bottom)}
+.creator-showcase:not(.showcase-list) .showcase-intro{top:calc(50% + (var(--showcase-area-top) - var(--showcase-area-bottom)) / 2)}
+.showcase-list .showcase-cards{inset:auto}
+@media(max-width:600px){.showcase-stage{--showcase-area-top:135px;--showcase-area-bottom:54px;--showcase-area-side:12px}}
+
+.creator-showcase:not(.showcase-list) .showcase-intro h2{font-size:clamp(24px,3vw,38px)}
+@media(max-width:600px){.creator-showcase:not(.showcase-list) .showcase-intro h2{font-size:20px}.creator-showcase:not(.showcase-list) .showcase-intro>p{display:none}}

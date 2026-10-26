@@ -19,6 +19,17 @@ test("creator cards morph with page scrolling, reverse, and release to the next 
   await expect(section).toHaveAttribute("data-phase", "circle");
   await expect(section.locator(".showcase-card")).toHaveCount(20);
   await page.waitForTimeout(800);
+  const frame = await section.locator(".showcase-cards").boundingBox();
+  const bounds = await section.locator(".showcase-card-position").evaluateAll(cards => cards.map(card => { const r=card.getBoundingClientRect(); return {left:r.left,right:r.right,top:r.top,bottom:r.bottom}; }));
+  expect(frame).not.toBeNull();
+  for(const box of bounds) {
+    expect(box.left).toBeGreaterThanOrEqual(frame!.x - 1);
+    expect(box.right).toBeLessThanOrEqual(frame!.x + frame!.width + 1);
+    expect(box.top).toBeGreaterThanOrEqual(frame!.y - 1);
+    expect(box.bottom).toBeLessThanOrEqual(frame!.y + frame!.height + 1);
+  }
+  const centerY = (Math.min(...bounds.map(b=>b.top)) + Math.max(...bounds.map(b=>b.bottom))) / 2;
+  expect(Math.abs(centerY - (frame!.y + frame!.height / 2))).toBeLessThan(3);
   await page.screenshot({ path: `test-results/showcase-${info.project.name}-circle.png` });
   await progress(page, .6);
   await expect(section).toHaveAttribute("data-phase", "bottom-strip");

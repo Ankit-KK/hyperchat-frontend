@@ -12,14 +12,20 @@ import { cn } from "@/lib/utils";
 import "./scroll-morph-hero.css";
 
 export type AnimationPhase = "scatter" | "line" | "circle" | "bottom-strip";
-type Size = { width: number; height: number };
+type Size = { width: number; height: number; mobile?: boolean };
 const mix = (a: number, b: number, t: number) => a + (b - a) * t;
 const clamp = (n: number) => Math.min(1, Math.max(0, n));
 
+function circleRadius(size: Size) {
+  const mobile = size.mobile ?? size.width < 600;
+  const edgeSpace = Math.hypot(mobile ? 50 : 84, mobile ? 72 : 118) / 2 + 16;
+  return Math.max(20, Math.min(size.width * 0.34, size.height * 0.4, 290, Math.min(size.width, size.height) / 2 - edgeSpace));
+}
+
 function position(index: number, total: number, size: Size, phase: AnimationPhase, progress: number, mouse: number) {
-  const mobile = size.width < 600;
+  const mobile = size.mobile ?? size.width < 600;
   const cardWidth = mobile ? 50 : 84;
-  const radius = Math.min(size.width * 0.34, size.height * 0.31, 290);
+  const radius = circleRadius(size);
   if (phase === "scatter" && progress < 0.03) return {
     x: Math.sin(index * 17.3) * size.width * 0.4,
     y: Math.cos(index * 9.7) * size.height * 0.35,
@@ -95,6 +101,7 @@ function CreatorCard({ creator, index, total, phase, size, progress, mouse, grid
 export default function ScrollMorphHero({ creators, className }: { creators: ShowcaseCreator[]; className?: string }) {
   const section = useRef<HTMLElement>(null);
   const stage = useRef<HTMLDivElement>(null);
+  const cardArea = useRef<HTMLDivElement>(null);
   const inView = useInView(section, { amount: "some", once: true });
   const reduced = useReducedMotion();
   const [list, setList] = useState(false);
@@ -123,9 +130,9 @@ export default function ScrollMorphHero({ creators, className }: { creators: Sho
     return () => { clearTimeout(line); clearTimeout(circle); };
   }, [inView, grid, scrollYProgress]);
   useEffect(() => {
-    if (!stage.current) return;
-    const observer = new ResizeObserver(([entry]) => setSize({ width: entry.contentRect.width, height: entry.contentRect.height }));
-    observer.observe(stage.current);
+    if (!cardArea.current) return;
+    const observer = new ResizeObserver(([entry]) => setSize({ width: entry.contentRect.width, height: entry.contentRect.height, mobile: window.innerWidth <= 600 }));
+    observer.observe(cardArea.current);
     return () => observer.disconnect();
   }, []);
   const openList = () => {
@@ -151,7 +158,7 @@ export default function ScrollMorphHero({ creators, className }: { creators: Sho
             {list ? "View scroll experience" : "View creator list"}<ArrowUpRight size={13} aria-hidden="true" />
           </button>}
         </div>
-        <motion.div className="showcase-intro" style={grid ? undefined : { opacity: titleOpacity }}>
+        <motion.div className="showcase-intro" style={grid ? undefined : { opacity: titleOpacity, width: Math.max(100, (circleRadius(size) * 2 - (size.mobile ? 72 : 118)) * .84) }}>
           <span className="showcase-eyebrow">DIFFERENT WORLDS. SHARED MOMENTS.</span>
           <h2 id="showcase-title">Every creator.<br /><em>A world of their own.</em></h2>
           <p>Different formats. The same chance to be part of the stream.</p>
@@ -162,7 +169,7 @@ export default function ScrollMorphHero({ creators, className }: { creators: Sho
           <span>A clutch finish. A final song. A conversation worth joining. Give viewers a way to respond in the moment.</span>
         </motion.div>}
         {grid && <div className="showcase-directory-controls"><label htmlFor="creator-search">Find a creator</label><input id="creator-search" type="search" value={query} placeholder="Search names or handles" onChange={event => { setQuery(event.target.value); setLimit(24); }} /><p role="status">{matching.length} {matching.length === 1 ? "creator" : "creators"}{matching.length === 0 ? " found. Try another name." : ` · showing ${Math.min(limit, matching.length)}`}</p></div>}
-        <div className="showcase-cards">
+        <div className="showcase-cards" ref={cardArea}>
           {visibleCreators.map((creator, index) => <CreatorCard key={creator.id} creator={creator} index={index}
             total={visibleCreators.length} phase={phase} size={size} progress={scrollYProgress} mouse={smoothMouse} grid={grid} />)}
         </div>

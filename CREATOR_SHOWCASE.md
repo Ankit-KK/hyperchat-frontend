@@ -84,3 +84,13 @@ shuffle selection and three fixed ambassadors are unchanged. No new animation
 loop or dependency was added. Production build and showcase regression tests
 cover scrolling, reverse navigation, reduced motion, directory search, portraits,
 and fixed ambassadors/shuffling at desktop, tablet and mobile sizes.
+
+## Circle/frame alignment correction
+
+The backdrop and card area now share responsive inset variables. ResizeObserver
+measures that usable area instead of the full sticky stage, so the ring and title
+are centered inside the visible box, below the controls. Radius accounts for the
+rotated card diagonal plus padding. The title width follows the inner opening;
+small-screen circle mode omits its supporting sentence to prevent collisions.
+The directory retains its full description. Regression checks now assert all
+circle cards fit inside the display area and their vertical center matches it.
