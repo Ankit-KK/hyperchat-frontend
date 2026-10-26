@@ -1,8 +1,9 @@
-import { ShieldCheck, SlidersHorizontal, Users, Check } from "lucide-react";
+import { ShieldCheck, SlidersHorizontal, Users, Check, ArrowUpRight } from "lucide-react";
+import "./ControlEditorial.css";
 export default function CreatorControl({ home = false }: { home?: boolean }) {
   return (
     <section
-      className="control section-shell"
+      className={`control section-shell ${home ? "control-editorial" : ""}`}
       id="control"
       aria-labelledby="control-title"
     >
@@ -14,7 +15,7 @@ export default function CreatorControl({ home = false }: { home?: boolean }) {
       </div>
       <div className="control-grid">
         <div data-reveal>
-          <ShieldCheck className="control-icon" size={42} strokeWidth={1} />
+          {home ? <span className="control-kicker">YOU DECIDE WHAT GOES LIVE.</span> : <ShieldCheck className="control-icon" size={42} strokeWidth={1} />}
           <h2 id="control-title">
             Keep the energy.
             <br />
@@ -25,10 +26,11 @@ export default function CreatorControl({ home = false }: { home?: boolean }) {
             <br />
             Choose how interactions reach your stream.
           </p>
+          {home && <a className="control-explore" href="/features#control">Explore creator controls <ArrowUpRight size={16} aria-hidden="true" /></a>}
         </div>
         <div className="control-list">
           <article data-reveal>
-            <SlidersHorizontal size={22} />
+            {home ? <span className="control-number" aria-hidden="true">01</span> : <SlidersHorizontal size={22} />}
             <div>
               <h3>Review before the spotlight.</h3>
               <p>
@@ -38,7 +40,7 @@ export default function CreatorControl({ home = false }: { home?: boolean }) {
             </div>
           </article>
           <article data-reveal>
-            <Users size={22} />
+            {home ? <span className="control-number" aria-hidden="true">02</span> : <Users size={22} />}
             <div>
               <h3>Make room for your team.</h3>
               <p>
@@ -48,7 +50,7 @@ export default function CreatorControl({ home = false }: { home?: boolean }) {
             </div>
           </article>
           <article data-reveal>
-            <Check size={22} />
+            {home ? <span className="control-number" aria-hidden="true">03</span> : <Check size={22} />}
             <div>
               <h3>Keep access in your hands.</h3>
               <p>
