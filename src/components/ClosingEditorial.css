@@ -1,0 +1,14 @@
+/* An open finale, with the wordmark and invitation on distinct visual planes. */
+.closing-editorial{padding-top:52px;background:#f3ede2}
+.closing-editorial .closing-sculpture{margin:54px auto 0}
+.closing-editorial .liquid-sculpture-caption{justify-content:space-between;padding:20px 0 28px;gap:12px 24px;border-bottom:1px solid #8c847b55}
+.closing-editorial .closing-content{display:grid;grid-template-columns:1.35fr 1fr;gap:6vw;align-items:center;text-align:left;padding:62px 0 78px}
+.closing-editorial .closing-heading>.eyebrow{display:flex;align-items:center;gap:13px;color:#655d53;font-size:9px;letter-spacing:.12em}
+.closing-editorial .closing-heading>.eyebrow::before{content:"";width:26px;height:2px;background:#74765b;flex-shrink:0}
+.closing-editorial h2{font-size:clamp(56px,6.7vw,96px);line-height:1.03;letter-spacing:-.04em;margin:25px 0 0}
+.closing-editorial h2 em{display:block;color:#99602e}
+.closing-editorial .closing-invitation{max-width:320px;justify-self:end;padding-left:25px;border-left:1px solid #b8702f}
+.closing-editorial .closing-invitation p{font-size:clamp(20px,2vw,27px);font-family:"HyperChat Display",Georgia,serif;line-height:1.4;color:#39342e;max-width:270px;margin:0 0 26px}
+.closing-editorial .closing-invitation .button{gap:24px}
+.closing-preview-note{display:block;font-size:10px;line-height:1.7;color:#655d53;margin-top:16px}
+@media(max-width:750px){.closing-editorial{padding-top:36px}.closing-editorial .closing-sculpture{margin:34px auto 0}.closing-editorial .closing-content{grid-template-columns:1fr;gap:30px;padding:36px 0 48px}.closing-editorial h2{font-size:clamp(52px,10vw,72px);margin-top:20px}.closing-editorial .closing-invitation{justify-self:start;padding:0;border:0;max-width:none}.closing-editorial .closing-invitation p{font-family:inherit;font-size:13px;max-width:310px;margin:0 0 20px}.closing-editorial .liquid-sculpture-caption{padding:15px 0 20px}.closing-editorial .closing-heading>.eyebrow{font-size:8px}}

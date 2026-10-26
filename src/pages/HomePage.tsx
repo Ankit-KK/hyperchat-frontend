@@ -1,3 +1,4 @@
+import "../components/ClosingEditorial.css";
 import PlatformMetrics from "../components/PlatformMetrics";
 import Partners from "../components/Partners";
 import InteractionStory from "../components/InteractionStory";
@@ -21,7 +22,7 @@ export default function HomePage() {
       <CreatorOnboarding compact />
       <CreatorControl home />
       <section
-        className="closing closing-liquid section-shell light"
+        className="closing closing-liquid closing-editorial section-shell light"
         id="next"
         aria-labelledby="closing-title"
       >
@@ -31,14 +32,19 @@ export default function HomePage() {
         </div>
         <LiquidSculptureHero />
         <div className="closing-content" data-reveal>
+          <div className="closing-heading">
           <span className="eyebrow">LET YOUR AUDIENCE BE PART OF IT.</span>
           <h2 id="closing-title">
             Make it <em>mean more.</em>
           </h2>
+          </div>
+          <div className="closing-invitation">
+          <p>One message. One voice. A moment you share.</p>
           <a href="#interaction" className="button dark">
             Experience HyperChat <ArrowUpRight size={18} />
           </a>
-          <p>Explore the preview. See what a small interaction can become.</p>
+          <span className="closing-preview-note">Explore the interactive preview.</span>
+          </div>
         </div>
       </section>
     </>
