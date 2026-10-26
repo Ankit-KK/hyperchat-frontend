@@ -63,6 +63,9 @@ export default function ProductHero() {
               Explore the tools <ArrowUpRight size={15} />
             </a>
           </div>
+          <p className="hero-recognition">
+            Built by Streamheart Private Limited, a <a href="/company#startup-recognition">DPIIT-recognised startup under Startup India</a>.
+          </p>
         </div>
         <div
           className="product-theatre"
