@@ -19,7 +19,7 @@ test('slow homepage chunk has a loading state and initializes its anchors after 
   await expect(page.getByRole('status', { name: '', exact: true }).filter({ hasText: 'Loading page' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Built for creators.' })).toBeAttached();
   await expect.poll(() => page.locator('#creators').evaluate(el => Math.abs(el.getBoundingClientRect().top))).toBeLessThan(150);
-  await expect(page.locator('main > section')).toHaveCount(8);
+  await expect(page.locator('main > section')).toHaveCount(9);
 });
 
 test('failed page chunk offers a usable reload action', async ({ page }) => {
