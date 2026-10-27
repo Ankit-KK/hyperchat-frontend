@@ -1,0 +1,19 @@
+{
+  "siteUrl": "https://www.hyperchat.space",
+  "siteName": "HyperChat",
+  "image": "/social/hyperchat-og.png",
+  "imageAlt": "HyperChat — Your stream. Their voice. A shared moment. Live creator interactions through text, voice, sound and media.",
+  "pages": {
+    "/": { "title": "HyperChat — Live interactions for creators", "description": "Bring your audience into the stream with HyperChat. Explore text, text-to-speech, recorded voice, sounds and media, with creator-led moderation." },
+    "/features": { "title": "HyperChat Features — Voice, alerts & moderation", "description": "Explore HyperChat’s interactive previews: viewer messages, TTS, recorded voice, soundboard, images, GIFs, moderation and OBS alerts." },
+    "/creators": { "title": "HyperChat for Creators — Fees, payouts & onboarding", "description": "Explore HyperChat creator onboarding, an 11% platform fee, monthly payouts and international payments. Learn about the planned V2 application process." },
+    "/company": { "title": "About HyperChat — Streamheart Private Limited", "description": "Meet HyperChat, a live creator interaction platform by Streamheart Private Limited, a DPIIT-recognised startup. Discover our partners and support." },
+    "/support": { "title": "HyperChat Support — OBS, audio & interaction help", "description": "Find help with HyperChat OBS alerts, audio, text-to-speech, recorded voice messages and moderation. Contact the team at ankit@hyperchat.space." },
+    "/privacy-policy": { "title": "HyperChat Privacy Policy", "description": "Read how Streamheart Private Limited handles personal data for HyperChat, including creator verification, interactions, retention and privacy requests." },
+    "/terms-and-conditions": { "title": "HyperChat Creator Terms", "description": "Read the terms for HyperChat creators, including eligibility, onboarding, interaction moderation, platform rules, fees and settlement conditions." },
+    "/viewer-terms": { "title": "HyperChat Viewer Interaction Terms", "description": "Read the terms for viewers sending HyperChat interactions, including content responsibilities, creator moderation, payment and delivery conditions." },
+    "/cancellation-refunds": { "title": "HyperChat Refund & Cancellation Policy", "description": "Read HyperChat’s cancellation and refund policy for paid interactions, including delivery issues, moderation decisions and how to request help." },
+    "/demo-signup": { "title": "HyperChat — Signup preview", "description": "Explore the HyperChat signup design preview. This local demonstration does not create an account or submit an application.", "noindex": true }
+  },
+  "notFound": { "title": "HyperChat — Page not found", "description": "This HyperChat channel is off air. Return home to explore live creator interactions or visit Support for help.", "noindex": true }
+}

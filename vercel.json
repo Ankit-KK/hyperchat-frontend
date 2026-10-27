@@ -2,42 +2,48 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "rewrites": [
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
     {
-      "source": "/features",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/creators",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/company",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/support",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/privacy-policy",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/terms-and-conditions",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/cancellation-refunds",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/viewer-terms",
-      "destination": "/index.html"
+      "source": "/legal-archive/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     },
     {
       "source": "/demo-signup",
-      "destination": "/index.html"
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/feature-showcase",
+      "destination": "/features",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/company",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/support",
+      "permanent": true
+    },
+    {
+      "source": "/shipping",
+      "destination": "/support",
+      "permanent": true
     }
   ]
 }

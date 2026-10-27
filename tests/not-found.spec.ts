@@ -32,9 +32,11 @@ test('unknown nested route renders streaming 404 with keyboard channel and power
   expect(errors).toEqual([]);
 });
 
-test('build emits the complete static 404 entry with absolute assets',()=>{
+test('build emits a noindex 404 entry with absolute assets',()=>{
   const entry=readFileSync('dist/404.html','utf8');
-  expect(entry).toBe(readFileSync('dist/index.html','utf8'));
+  expect(entry).toContain('<title>HyperChat — Page not found</title>');
+  expect(entry).toContain('content="noindex, follow"');
+  expect(entry).not.toContain('rel="canonical"');
   expect(entry).toContain('src="/assets/');
 });
 

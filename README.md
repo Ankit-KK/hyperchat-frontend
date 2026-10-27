@@ -19,7 +19,7 @@ npm run preview
 npm test
 ```
 
-No backend, credentials, or environment variables are required. Vercel and Netlify configurations build to `dist/`. A push to the connected GitHub main branch can trigger Vercel deployment. The cloud onboarding interface does not expose a public localhost preview.
+No backend or credentials are required to run the preview. SEO launch settings are optional until the final domain is ready. Vercel and Netlify configurations build to `dist/`. A push to the connected GitHub main branch can trigger Vercel deployment. The cloud onboarding interface does not expose a public localhost preview.
 
 ## Change the display font in one line
 
@@ -89,8 +89,8 @@ Playwright verifies the production build at desktop 1440×1000, tablet 820×1180
 - `/support`: OBS/audio troubleshooting, TTS and recorded-voice guidance, moderation FAQs and email support.
 
 Pages use normal links and browser document navigation, with a shared React shell
-and page components in `src/pages/`. Direct-entry rewrites for the content
-pages are configured in `vercel.json`. The brand link returns home; footer links
+and page components in `src/pages/`. Builds emit page-specific HTML documents;
+Vercel clean URLs serve them directly, with legacy redirects in `vercel.json`. The brand link returns home; footer links
 point to local Privacy, Terms and Refunds pages migrated from the published site.
 No backend workflows were added.
 
@@ -108,3 +108,13 @@ Terms are audience-specific: `/terms-and-conditions` is **Creator Terms**;
 Page components are loaded on demand with a shared loading/error boundary and
 motion setup after content mount. See [PERFORMANCE.md](PERFORMANCE.md) for bundle
 measurements, mobile checks and live-site verification limits.
+
+## SEO and launch indexing
+
+See [SEO.md](SEO.md) for route metadata, local social artwork, sitemap, robots,
+structured data, and migration redirects. Run `npm run test:seo` to verify them.
+The default V2 preview is **noindex** while the old site remains live. At launch,
+set `VITE_SITE_URL` to the final HTTPS origin and `VITE_SEO_INDEXABLE=true` in
+Vercel production, then redeploy. Branch previews, demo signup, and missing pages
+remain excluded from indexing. Search Console verification/submission is a
+separate launch step requiring the site owner's account.

@@ -22,8 +22,8 @@ HyperChat changes:
 No packages or external assets were added. The repository already supports React,
 TypeScript, Tailwind 4, the `@/` alias, and `src/components/ui`.
 
-`scripts/build-404.mjs` emits `dist/404.html` from the built entry for Vercel's
-static error handling. Tests cover unknown nested URLs, reload, reduced motion,
+`scripts/build-seo.mjs` emits `dist/404.html` with noindex and error-specific
+metadata for Vercel's static error handling. Tests cover unknown nested URLs, reload, reduced motion,
 keyboard channel cycling, power toggles/collapse, home links, canvas sizing,
 accessibility and overflow at desktop/tablet/phone sizes. Production HTTP status
 must still be verified after deployment; local Vite uses its SPA fallback.

@@ -3,6 +3,7 @@ import PushpinTearFooter from "./components/ui/pushpin-tear-footer";
 import Navigation from "./components/Navigation";
 import MascotCursor from "./components/MascotCursor";
 import PageExperience from "./components/PageExperience";
+import { updatePageSeo } from "./lib/seo";
 import PageLoadBoundary from "./components/PageLoadBoundary";
 
 const NotFoundPage = lazy(() => import("./components/ui/phosphor-crt-404"));
@@ -23,17 +24,7 @@ const legalTitles: Record<string, string> = {
 
 export default function App() {
   const path = window.location.pathname.replace(/\/+$/, "") || "/";
-  const titles: Record<string, string> = {
-    "/": "Your stream. Your community.",
-    "/features": "Features",
-    "/creators": "For creators",
-    "/company": "Company",
-    "/support": "Support",
-    "/demo-signup": "Signup preview",
-  };
-  useEffect(() => {
-    document.title = `HyperChat — ${titles[path] ?? legalTitles[path] ?? "Page not found"}`;
-  }, [path]);
+  useEffect(() => { updatePageSeo(path); }, [path]);
   const page =
     path === "/demo-signup" ? (<DemoSignupPage />) : path === "/" ? (
       <HomePage />
