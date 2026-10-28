@@ -37,7 +37,7 @@ test("original homepage sections link to dedicated pages and preserves browser n
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "Their voice.",
   );
-  await page.getByRole("link", { name: "Creator access", exact: true }).click();
+  await page.getByRole("link", { name: "Creator onboarding", exact: true }).click();
   await expect(page).toHaveURL(/\/creators#onboarding$/);
   await expect(
     page.getByText("Didit verification", { exact: true }),

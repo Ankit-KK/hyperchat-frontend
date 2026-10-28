@@ -8,8 +8,14 @@
 .onboarding-depth .onboarding-steps p{font-size:12px;line-height:1.8;color:#655d53}
 .onboarding-depth .onboarding-steps li:last-child{border-top-color:#74765b}
 .onboarding-depth .onboarding-steps li:last-child .step-number{color:#606247}
-.onboarding-depth .setup-note{padding:26px 0 0;background:none;border:0;border-top:1px solid #cfc2b0;box-shadow:none;grid-template-columns:.65fr 1.6fr 1fr;gap:28px}
+.onboarding-depth .setup-note{padding:26px 0 0;background:none;border:0;border-top:1px solid #cfc2b0;box-shadow:none;grid-template-columns:.65fr 2.6fr;gap:28px}
 .onboarding-depth .setup-note>.eyebrow{color:#494b39;line-height:1.7}
 .onboarding-depth .setup-note p{line-height:1.8}.onboarding-depth .availability{color:#574f44}
 @media(max-width:1100px){.onboarding-depth .onboarding-steps{grid-template-columns:1fr;gap:0}.onboarding-depth .onboarding-steps li{display:grid;grid-template-columns:60px 1fr 1.5fr;gap:24px;padding:22px 0}.onboarding-depth .onboarding-steps h3{margin:4px 0}.onboarding-depth .onboarding-steps .step-number{font-size:34px;grid-row:auto}.onboarding-depth .setup-note{grid-template-columns:1fr 2fr}.onboarding-depth .availability{grid-column:2;border-left:0;padding-left:0}}
 @media(max-width:650px){.onboarding-depth{padding-top:38px;padding-bottom:42px}.onboarding-depth .onboarding-steps{margin:30px 0 24px}.onboarding-depth .onboarding-steps li{grid-template-columns:36px 1fr;gap:0 18px;padding:22px 0}.onboarding-depth .onboarding-steps .step-number{grid-row:span 2;font-size:29px;padding-top:2px}.onboarding-depth .onboarding-steps h3{margin:0 0 8px;font-size:14px}.onboarding-depth .setup-note{grid-template-columns:1fr;gap:14px;padding-top:24px}.onboarding-depth .availability{grid-column:auto;padding-top:16px;margin-top:2px}}
+
+/* Present availability and a useful next step before the planned journey. */
+.onboarding .onboarding-availability { margin-top: 22px; }
+.onboarding .onboarding-availability strong { display: block; font-size: 14px; color: var(--charcoal); }
+.onboarding .onboarding-availability p { margin: 8px 0 0; font-size: 14px; line-height: 1.7; color: #655d53; }
+.onboarding .onboarding-contact { display: flex; width: fit-content; min-height: 44px; font-size: 14px; line-height: 1.5; margin-top: 6px; }

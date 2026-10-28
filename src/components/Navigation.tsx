@@ -49,7 +49,7 @@ export default function Navigation() {
         href="/creators#onboarding"
         onClick={() => setExpanded(false)}
       >
-        Creator access <ArrowUpRight size={15} />
+        Creator onboarding <ArrowUpRight size={15} />
       </a>
       <button
         ref={toggle}

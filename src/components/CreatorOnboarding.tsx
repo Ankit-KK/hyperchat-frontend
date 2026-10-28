@@ -52,7 +52,16 @@ export default function CreatorOnboarding({
               ? "Creator access begins with an application and a human review."
               : "A clear path from introducing your channel to setting up your first interaction. Here is the planned V2 onboarding journey."}
           </p>
-          <span className="note-tag">PLANNED V2 ONBOARDING</span>
+          <div className="onboarding-availability">
+            <strong>V2 applications aren’t open yet.</strong>
+            <p>Verification and activation are still being completed. You can email us about creator onboarding in the meantime.</p>
+            <a
+              className="onboarding-contact"
+              href="mailto:ankit@hyperchat.space?subject=HyperChat%20creator%20onboarding"
+            >
+              Ask about creator onboarding <ArrowUpRight size={14} aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </div>
       <ol className="onboarding-steps">
@@ -71,19 +80,7 @@ export default function CreatorOnboarding({
           preferences, and add your HyperChat browser sources to OBS. Check your
           alerts and audio before going live.
         </p>
-        <div className="availability">
-          V2 verification and activation are still being completed. This preview
-          does not accept applications.
-          {!compact && (
-            <a
-              className="onboarding-contact"
-              href="mailto:ankit@hyperchat.space?subject=HyperChat%20creator%20onboarding"
-            >
-              Ask about creator onboarding{" "}
-              <ArrowUpRight size={14} aria-hidden="true" />
-            </a>
-          )}
-        </div>
+
       </div>
     </section>
   );
