@@ -1,0 +1,39 @@
+.mobile-message-play { display: none; }
+
+/* A readable editor and adjacent action replace the miniature ticket on phones. */
+@media (max-width: 600px) {
+  .hero .hero-actions { flex-wrap: wrap; gap: 8px 20px; }
+  .hero .hero-actions .button,
+  .hero .hero-actions .text-link { min-height: 44px; font-size: 12px; }
+  .hero .hero-actions .text-link { display: inline-flex; align-items: center; }
+  .hero .product-theatre .theatre-scene { padding: 0; transform: none; }
+  .hero .theatre-scene::before { inset: 14px -4px 20px 20px; }
+  .hero .viewer-ticket,
+  .hero .viewer-ticket:focus-within {
+    position: relative;
+    inset: auto;
+    width: calc(100% - 16px);
+    margin: 18px auto 0;
+    padding: 16px;
+    transform: none;
+  }
+  .hero .ticket-top strong { font-size: 13px; }
+  .hero .ticket-top div > span { font-size: 10px; }
+  .hero .message-label { font-size: 13px; margin-top: 16px; }
+  .hero .message-input { font-size: 16px; line-height: 1.5; padding: 10px; }
+  .hero .message-hint { font-size: 12px; gap: 12px; }
+  .hero .mobile-message-play {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 44px;
+    margin-top: 14px;
+    padding: 12px;
+    font-size: 13px;
+    white-space: normal;
+  }
+  .hero .event-receipt, .hero .moment-route { display: none; }
+  .hero .theatre-status { align-items: flex-start; margin-top: 18px; gap: 12px; font-size: 13px; line-height: 1.6; }
+  .hero .theatre-status p { flex: 1; max-width: none; padding-top: 10px; }
+  .hero .theatre-status .icon-text-button { min-width: 64px; min-height: 44px; font-size: 12px; flex-shrink: 0; }
+}

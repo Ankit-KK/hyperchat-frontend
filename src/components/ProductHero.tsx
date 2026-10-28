@@ -7,6 +7,7 @@ import {
   Send,
 } from "lucide-react";
 import "./HeroDepth.css";
+import "./HeroMobile.css";
 import StreamStage from "./StreamStage";
 import { useDemoSequence } from "../hooks/useDemoSequence";
 import { useState } from "react";
@@ -128,6 +129,15 @@ export default function ProductHero() {
                 <span>Try your own words</span>
                 <span>{message.length}/96</span>
               </div>
+              <button
+                className="mobile-message-play button dark"
+                onClick={play}
+                disabled={running || !message.trim()}
+                aria-describedby="hero-demo-status"
+              >
+                {running ? "Playing your message…" : step === 3 ? "Replay message" : "Play message"}
+                <Play size={14} fill="currentColor" aria-hidden="true" />
+              </button>
               <div className="ticket-foot">
                 <span>
                   {step > 0
@@ -147,7 +157,7 @@ export default function ProductHero() {
             </div>
           </div>
           <div className="theatre-status">
-            <p role="status">{statuses[step]}</p>
+            <p id="hero-demo-status" role="status">{statuses[step]}</p>
             <button
               onClick={reset}
               className="icon-text-button"
