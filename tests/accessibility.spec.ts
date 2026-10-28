@@ -1,3 +1,4 @@
+import { selectTool } from "./helpers/select-tool";
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
@@ -12,7 +13,7 @@ test("hero and interactive creator panels have no serious accessibility violatio
     "06 Community moderation",
     "01 Viewer interactions",
   ]) {
-    if (tab) await page.getByRole("tab", { name: tab }).click();
+    if (tab) await selectTool(page, tab);
     if (tab === "01 Viewer interactions")
       await page.getByRole("button", { name: "Text-to-speech", exact: true }).click();
     const results = await new AxeBuilder({ page }).analyze();

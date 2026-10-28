@@ -19,3 +19,18 @@
 .toolkit-depth .capability-note{border-top:0;margin-top:28px;padding-top:0;color:#c2b8a9}
 @media(max-width:1100px){.toolkit-depth .features-layout{grid-template-columns:1fr;gap:28px}.toolkit-depth .feature-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px}.toolkit-depth .feature-tabs button{font-size:13px;min-height:56px;padding:15px 12px;gap:12px}.toolkit-depth .feature-panel{display:block}}
 @media(max-width:650px){.toolkit-depth .feature-tabs{padding:5px}.toolkit-depth .feature-tabs button{font-size:11px;line-height:1.5;padding:12px 8px;gap:7px}.toolkit-depth .feature-tabs button>svg{width:12px;flex-shrink:0}.toolkit-depth .feature-tabs button>span{font-size:8px}.toolkit-preview-bar{padding:12px 20px}.toolkit-depth .feature-description{padding:22px 20px}.toolkit-depth .feature-description h3{font-size:29px}.toolkit-depth .feature-panel{box-shadow:3px 4px 0 #171614,4px 5px 0 #8c847b40}.toolkit-depth .feature-tabs button:focus-visible{outline-offset:0}}
+
+/* Keep the selected tool in view; expand the complete list on demand. */
+.feature-navigation { display: contents; }
+.feature-picker-toggle { display: none; }
+@media (max-width: 650px) {
+  .creators .features-layout { gap: 16px; }
+  .creators .feature-navigation { display: flex; align-items: flex-start; gap: 10px; min-width: 0; }
+  .creators .feature-navigation .feature-tabs { display: flex; flex-direction: column; flex: 1; min-width: 0; padding: 0; border: 0; background: transparent; box-shadow: none; gap: 0; }
+  .creators .feature-navigation .feature-tabs button { min-height: 48px; padding: 12px 10px; font-size: 13px; line-height: 1.5; gap: 8px; text-align: left; }
+  .creators .feature-navigation .feature-tabs button > span { font-size: 11px; }
+  .creators .feature-navigation[data-expanded="false"] .feature-tabs button:not([aria-selected="true"]) { display: none; }
+  .creators .feature-picker-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 48px; padding: 10px; flex-shrink: 0; background: transparent; border: 1px solid #8c847b; color: var(--ivory); font-size: 12px; }
+  .feature-picker-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .feature-picker-toggle:focus-visible { outline: 2px solid var(--copper); outline-offset: 3px; }
+}

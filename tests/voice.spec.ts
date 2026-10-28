@@ -1,3 +1,4 @@
+import { selectTool } from "./helpers/select-tool";
 import { test, expect, type Page } from "@playwright/test";
 
 type ExampleVoice = { name: string; lang: string; localService: boolean };
@@ -124,7 +125,7 @@ test("device voice loads, only speaks on request, selects a local voice and clea
   ).toBe(2);
   await page.getByRole("button", { name: "Text-to-speech", exact: true }).click();
   await play.click();
-  await page.getByRole("tab", { name: "02 On-stream alerts" }).click();
+  await selectTool(page, "02 On-stream alerts");
   expect(
     await page.evaluate(
       () => (window as unknown as SpeechTestWindow).speechHarness.cancels,

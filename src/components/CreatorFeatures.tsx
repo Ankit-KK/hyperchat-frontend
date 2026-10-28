@@ -1,5 +1,5 @@
-import { useState, type KeyboardEvent } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { useRef, useState, type KeyboardEvent } from "react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 import {
   SupportPreview,
   AlertPreview,
@@ -72,7 +72,14 @@ const features = [
 ];
 export default function CreatorFeatures({ depth = false }: { depth?: boolean }) {
   const [active, setActive] = useState(0);
+  const [expanded, setExpanded] = useState(false);
+  const picker = useRef<HTMLButtonElement>(null);
   const feature = features[active];
+  const select = (index: number) => {
+    setActive(index);
+    setExpanded(false);
+    if (window.matchMedia("(max-width: 650px)").matches) picker.current?.focus({ preventScroll: true });
+  };
   const keydown = (e: KeyboardEvent<HTMLButtonElement>, index: number) => {
     let next = index;
     if (e.key === "ArrowDown" || e.key === "ArrowRight")
@@ -84,7 +91,7 @@ export default function CreatorFeatures({ depth = false }: { depth?: boolean }) 
     else return;
     e.preventDefault();
     setActive(next);
-    document.getElementById(`feature-tab-${next}`)?.focus();
+    requestAnimationFrame(() => document.getElementById(`feature-tab-${next}`)?.focus({ preventScroll: true }));
   };
   return (
     <section
@@ -107,8 +114,16 @@ export default function CreatorFeatures({ depth = false }: { depth?: boolean }) 
         </p>
       </div>
       <div className="features-layout">
+        <div className="feature-navigation" data-expanded={expanded} onKeyDown={event => {
+          if (event.key === "Escape" && expanded) {
+            event.preventDefault();
+            setExpanded(false);
+            picker.current?.focus({ preventScroll: true });
+          }
+        }}>
         <div
           className="feature-tabs"
+          id="feature-options"
           role="tablist"
           aria-label="Creator capabilities"
           aria-orientation="vertical"
@@ -121,7 +136,7 @@ export default function CreatorFeatures({ depth = false }: { depth?: boolean }) 
               aria-controls="feature-panel"
               aria-selected={active === i}
               tabIndex={active === i ? 0 : -1}
-              onClick={() => setActive(i)}
+              onClick={() => select(i)}
               onKeyDown={(e) => keydown(e, i)}
             >
               <span>0{i + 1}</span>
@@ -129,6 +144,12 @@ export default function CreatorFeatures({ depth = false }: { depth?: boolean }) 
               <ArrowUpRight size={17} />
             </button>
           ))}
+        </div>
+        <button ref={picker} type="button" className="feature-picker-toggle"
+          aria-expanded={expanded} aria-controls="feature-options"
+          onClick={() => setExpanded(value => !value)}>
+          {expanded ? "Close tools" : "All tools"} <ChevronDown size={16} aria-hidden="true" />
+        </button>
         </div>
         <div
           role="tabpanel"

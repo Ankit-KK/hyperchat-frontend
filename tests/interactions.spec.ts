@@ -1,3 +1,4 @@
+import { selectTool } from "./helpers/select-tool";
 import { test, expect } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 
@@ -90,7 +91,7 @@ test("moderation queue supports independent decisions, undo and reset", async ({
 }, info) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/features");
-  await page.getByRole("tab", { name: "06 Community moderation" }).click();
+  await selectTool(page, "06 Community moderation");
   const ari = page.getByRole("article", {
     name: "Example interaction from Ari",
   });
@@ -120,7 +121,7 @@ test("interaction history filters records and exports selected fictional data", 
 }, info) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/features");
-  await page.getByRole("tab", { name: "05 Interaction history" }).click();
+  await selectTool(page, "05 Interaction history");
   const search = page.getByRole("searchbox", {
     name: "Filter example interactions",
   });
@@ -193,7 +194,7 @@ test("soundboard plays only on request, stops and closes audio on tab change", a
         ).audioEvents,
     );
   await page.goto("/features");
-  await page.getByRole("tab", { name: "03 Soundboard" }).click();
+  await selectTool(page, "03 Soundboard");
   expect(await events()).toEqual({ starts: 0, closes: 0 });
   await page.getByRole("button", { name: "Play Warm bell" }).click();
   await expect(page.locator(".sound-status")).toContainText(
@@ -209,9 +210,9 @@ test("soundboard plays only on request, stops and closes audio on tab change", a
   await expect(page.locator(".sound-status")).toContainText(
     "Playing Double tap",
   );
-  await page.getByRole("tab", { name: "05 Interaction history" }).click();
+  await selectTool(page, "05 Interaction history");
   await expect.poll(events).toEqual({ starts: 4, closes: 2 });
-  await page.getByRole("tab", { name: "03 Soundboard" }).click();
+  await selectTool(page, "03 Soundboard");
   await page.getByRole("button", { name: "Play Soft chime" }).click();
   await expect(page.locator(".sound-status")).toContainText(
     "Soft chime finished",
@@ -227,7 +228,7 @@ test("unavailable audio gives feedback and leaves the toolkit usable", async ({
     Object.defineProperty(window, "AudioContext", { value: undefined }),
   );
   await page.goto("/features");
-  await page.getByRole("tab", { name: "03 Soundboard" }).click();
+  await selectTool(page, "03 Soundboard");
   await page.getByRole("button", { name: "Play Warm bell" }).click();
   await expect(page.locator(".sound-status")).toContainText(
     "Audio is unavailable in this browser",
@@ -235,7 +236,7 @@ test("unavailable audio gives feedback and leaves the toolkit usable", async ({
   await expect(
     page.getByRole("button", { name: "Play Warm bell" }),
   ).toBeEnabled();
-  await page.getByRole("tab", { name: "01 Viewer interactions" }).click();
+  await selectTool(page, "01 Viewer interactions");
   await page.getByRole("button", { name: "Text-to-speech", exact: true }).click();
   await expect(page.getByRole("tabpanel")).toContainText(
     "device-generated voice",
@@ -247,7 +248,7 @@ test("overlay sizing and OBS source toggles change their previews", async ({
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/features");
-  await page.getByRole("tab", { name: "02 On-stream alerts" }).click();
+  await selectTool(page, "02 On-stream alerts");
   const initial = await page.locator(".sample-alert").boundingBox();
   await page.getByRole("button", { name: "125%", exact: true }).click();
   await expect(
@@ -256,7 +257,7 @@ test("overlay sizing and OBS source toggles change their previews", async ({
   expect(
     (await page.locator(".sample-alert").boundingBox())!.width,
   ).toBeCloseTo(initial!.width * 1.25, 0);
-  await page.getByRole("tab", { name: "07 OBS connection" }).click();
+  await selectTool(page, "07 OBS connection");
   await page.getByRole("checkbox", { name: "HyperChat alerts" }).uncheck();
   await expect(page.locator(".mini-overlay")).not.toBeVisible();
   await page.getByRole("checkbox", { name: "HyperChat audio" }).uncheck();
