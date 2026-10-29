@@ -127,3 +127,42 @@
 
 .creator-showcase:not(.showcase-list) .showcase-intro h2{font-size:clamp(24px,3vw,38px)}
 @media(max-width:600px){.creator-showcase:not(.showcase-list) .showcase-intro h2{font-size:20px}.creator-showcase:not(.showcase-list) .showcase-intro>p{display:none}}
+
+.showcase-selected-creator { display: none; }
+@media (max-width: 600px) {
+  .creator-showcase:not(.showcase-list) { height: 240svh; }
+  .creator-showcase:not(.showcase-list) .showcase-stage { --showcase-area-top: 230px; --showcase-area-bottom: 175px; }
+  .creator-showcase:not(.showcase-list) .showcase-intro { top: 142px; width: calc(100% - 40px); transform: translateX(-50%); }
+  .creator-showcase:not(.showcase-list) .showcase-intro h2 { font-size: 28px; line-height: 1.1; }
+  .creator-showcase:not(.showcase-list) .showcase-intro .showcase-eyebrow { display: none; }
+  .creator-showcase:not(.showcase-list) .showcase-arc-copy { top: 142px; left: 20px; right: 20px; }
+  .creator-showcase:not(.showcase-list) .showcase-arc-copy > p { font-size: 28px; line-height: 1.1; }
+  .creator-showcase:not(.showcase-list) .showcase-arc-copy > span { display: none; }
+  .creator-showcase:not(.showcase-list) .showcase-cards { overflow: clip; }
+  .creator-showcase:not(.showcase-list) .showcase-card-name,
+  .creator-showcase:not(.showcase-list) .showcase-card-index { visibility: hidden; }
+  .creator-showcase:not(.showcase-list) .showcase-card[aria-pressed="true"] .showcase-card-front { border: 2px solid #946030; }
+  .showcase-selected-creator { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 6px 14px; align-items: center; position: absolute; left: 6vw; right: 6vw; bottom: 55px; min-height: 100px; border-top: 1px solid #c7b8a3; padding-top: 12px; }
+  .showcase-selected-creator strong { display: block; font-size: 16px; line-height: 1.4; overflow-wrap: anywhere; }
+  .showcase-selected-creator div > span { display: block; font-size: 12px; line-height: 1.5; color: #625b53; margin-top: 4px; }
+  .showcase-selected-creator a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 13px; text-decoration: underline; text-underline-offset: 4px; }
+  .showcase-selected-creator a:focus-visible { outline: 2px solid #946030; outline-offset: 4px; }
+  .showcase-selected-creator p { grid-column: 1 / -1; font-size: 12px; line-height: 1.5; color: #625b53; }
+  .creator-showcase:not(.showcase-list) .showcase-bottom { font-size: 10px; bottom: 20px; }
+  .creator-showcase:not(.showcase-list) .showcase-bottom span:last-child { display: none; }
+  .showcase-controls button { min-height: 44px; font-size: 11px; }
+  .showcase-card-grid .showcase-card-front .showcase-card-name { font-size: 12px; }
+  .showcase-card-grid .showcase-card-back strong { font-size: 14px; }
+  .showcase-card-grid .showcase-card-front .showcase-card-index { font-size: 10px; }
+  .showcase-grid-caption a { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; }
+  .showcase-directory-controls input { font-size: 16px; }
+}
+@media (max-width: 600px) and (max-height: 740px) {
+  .creator-showcase:not(.showcase-list) .showcase-topline { display: none; }
+  .creator-showcase:not(.showcase-list) .showcase-controls { top: 16px; }
+  .creator-showcase:not(.showcase-list) .showcase-stage { --showcase-area-top: 150px; --showcase-area-bottom: 145px; }
+  .creator-showcase:not(.showcase-list) .showcase-intro,
+  .creator-showcase:not(.showcase-list) .showcase-arc-copy { top: 76px; }
+  .creator-showcase:not(.showcase-list) .showcase-selected-creator { bottom: 35px; min-height: 95px; }
+  .creator-showcase:not(.showcase-list) .showcase-bottom { bottom: 10px; }
+}

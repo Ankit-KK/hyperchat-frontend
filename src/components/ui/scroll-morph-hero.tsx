@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import {
-  motion, useInView, useMotionValue, useMotionValueEvent, useReducedMotion,
+  motion, useInView, useMotionValue, useMotionValueEvent,
   useScroll, useSpring, useTransform, type MotionValue,
 } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
@@ -12,6 +12,14 @@ import { cn } from "@/lib/utils";
 import "./scroll-morph-hero.css";
 
 export type AnimationPhase = "scatter" | "line" | "circle" | "bottom-strip";
+const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
+function subscribeMotionPreference(update: () => void) {
+  const preference = window.matchMedia(reducedMotionQuery);
+  preference.addEventListener("change", update);
+  return () => preference.removeEventListener("change", update);
+}
+const readMotionPreference = () => window.matchMedia(reducedMotionQuery).matches;
+
 type Size = { width: number; height: number; mobile?: boolean };
 const mix = (a: number, b: number, t: number) => a + (b - a) * t;
 const clamp = (n: number) => Math.min(1, Math.max(0, n));
@@ -50,9 +58,9 @@ function position(index: number, total: number, size: Size, phase: AnimationPhas
   };
 }
 
-function CreatorCard({ creator, index, total, phase, size, progress, mouse, grid }: {
+function CreatorCard({ creator, index, total, phase, size, progress, mouse, grid, selected, onSelect }: {
   creator: ShowcaseCreator; index: number; total: number; phase: AnimationPhase;
-  size: Size; progress: MotionValue<number>; mouse: MotionValue<number>; grid: boolean;
+  size: Size; progress: MotionValue<number>; mouse: MotionValue<number>; grid: boolean; selected: boolean; onSelect: () => void;
 }) {
   const [flipped, setFlipped] = useState(false);
   const [imageFailed, setImageFailed] = useState(false);
@@ -72,16 +80,18 @@ function CreatorCard({ creator, index, total, phase, size, progress, mouse, grid
     const stopMouse = mouse.on("change", update);
     return () => { stopProgress(); stopMouse(); };
   }, [grid, index, total, size, phase, progress, mouse, x, y, rotate, scale]);
-  const back = flipped || hovered;
+  const portraitSelection = size.mobile && !grid;
+  const back = !portraitSelection && (flipped || hovered);
   return (
     <motion.div data-creator-id={creator.id} className={cn("showcase-card-position", grid && "showcase-card-grid")}
       style={grid ? undefined : { x, y, rotate, scale }}>
       <button type="button" className="showcase-card" data-tone={index % 4} data-ambassador={creator.ambassador || undefined}
-        aria-pressed={flipped} tabIndex={grid ? 0 : -1}
-        onClick={() => setFlipped((value) => !value)}
+        aria-label={portraitSelection ? creator.name + (creator.ambassador ? " — Brand ambassador" : "") : undefined}
+        aria-pressed={portraitSelection ? selected : flipped} tabIndex={grid ? 0 : -1}
+        onClick={() => { if (!grid) onSelect(); if (!portraitSelection) setFlipped((value) => !value); }}
         onPointerEnter={(event) => { if (event.pointerType === "mouse") setHovered(true); }}
         onPointerLeave={() => setHovered(false)}>
-        <motion.span className="showcase-card-inner"
+        <motion.span className="showcase-card-inner" aria-hidden={portraitSelection || undefined}
           animate={{ rotateY: back ? 180 : 0 }} transition={{ duration: grid ? 0 : 0.45 }}>
           <span className="showcase-card-face showcase-card-front">
             {creator.image && !imageFailed ? <img className="showcase-portrait" src={creator.image} alt="" loading="lazy" decoding="async" width="320" height="320" onError={() => setImageFailed(true)} /> : <span className="showcase-card-mark">{creator.initials}</span>}
@@ -103,13 +113,15 @@ export default function ScrollMorphHero({ creators, className }: { creators: Sho
   const stage = useRef<HTMLDivElement>(null);
   const cardArea = useRef<HTMLDivElement>(null);
   const inView = useInView(section, { amount: "some", once: true });
-  const reduced = useReducedMotion();
+  const reduced = useSyncExternalStore(subscribeMotionPreference, readMotionPreference, () => false);
   const [list, setList] = useState(false);
   const grid = !!reduced || list;
   const [query, setQuery] = useState("");
   const [limit, setLimit] = useState(24);
   const matching = creators.filter(creator => `${creator.name} ${creator.id}`.toLowerCase().includes(query.trim().toLowerCase()));
   const featured = useMemo(() => selectShowcaseCreators(creators), [creators]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const selectedCreator = featured[selectedIndex] ?? featured[0];
   const visibleCreators = grid ? matching.slice(0, limit) : featured;
   const [phase, setPhase] = useState<AnimationPhase>("scatter");
   const [size, setSize] = useState<Size>({ width: 1200, height: 800 });
@@ -158,7 +170,7 @@ export default function ScrollMorphHero({ creators, className }: { creators: Sho
             {list ? "View scroll experience" : "View creator list"}<ArrowUpRight size={13} aria-hidden="true" />
           </button>}
         </div>
-        <motion.div className="showcase-intro" style={grid ? undefined : { opacity: titleOpacity, width: Math.max(100, (circleRadius(size) * 2 - (size.mobile ? 72 : 118)) * .84) }}>
+        <motion.div className="showcase-intro" style={grid ? undefined : { opacity: titleOpacity, width: size.mobile ? undefined : Math.max(100, (circleRadius(size) * 2 - (size.mobile ? 72 : 118)) * .84) }}>
           <span className="showcase-eyebrow">DIFFERENT WORLDS. SHARED MOMENTS.</span>
           <h2 id="showcase-title">Every creator.<br /><em>A world of their own.</em></h2>
           <p>Different formats. The same chance to be part of the stream.</p>
@@ -171,8 +183,20 @@ export default function ScrollMorphHero({ creators, className }: { creators: Sho
         {grid && <div className="showcase-directory-controls"><label htmlFor="creator-search">Find a creator</label><input id="creator-search" type="search" value={query} placeholder="Search names or handles" onChange={event => { setQuery(event.target.value); setLimit(24); }} /><p role="status">{matching.length} {matching.length === 1 ? "creator" : "creators"}{matching.length === 0 ? " found. Try another name." : ` · showing ${Math.min(limit, matching.length)}`}</p></div>}
         <div className="showcase-cards" ref={cardArea}>
           {visibleCreators.map((creator, index) => <CreatorCard key={creator.id} creator={creator} index={index}
-            total={visibleCreators.length} phase={phase} size={size} progress={scrollYProgress} mouse={smoothMouse} grid={grid} />)}
+            total={visibleCreators.length} phase={phase} size={size} progress={scrollYProgress} mouse={smoothMouse} grid={grid}
+            selected={selectedCreator?.id === creator.id} onSelect={() => setSelectedIndex(index)} />)}
         </div>
+        {!grid && selectedCreator && <div className="showcase-selected-creator">
+          <div aria-live="polite" aria-atomic="true">
+            <strong>{selectedCreator.name}</strong>
+            <span>{selectedCreator.ambassador ? "Brand ambassador" : "HyperChat creator"}</span>
+          </div>
+          <a href={selectedCreator.url} target="_blank" rel="noopener noreferrer">
+            View profile <ArrowUpRight size={14} aria-hidden="true" />
+            <span className="sr-only"> — {selectedCreator.name}, opens in a new tab</span>
+          </a>
+          <p>Tap a portrait to choose a creator.</p>
+        </div>}
         {grid && matching.length > limit && <button className="showcase-load-more" type="button" onClick={() => setLimit(value => value + 24)}>Show more creators <ArrowUpRight size={14} aria-hidden="true" /></button>}
         {!grid && <div className="showcase-bottom"><span>SCROLL TO EXPLORE ↓</span><span>HOVER OR TAP A CARD TO FLIP</span></div>}
         {!grid && <div className="showcase-progress" aria-hidden="true"><motion.div style={{ width: progressWidth }} /></div>}
