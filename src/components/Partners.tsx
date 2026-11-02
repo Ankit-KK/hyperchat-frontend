@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
+import "./Partners.css";
 
 export default function Partners({ compact = false }: { compact?: boolean }) {
   const [badgeFailed, setBadgeFailed] = useState(false);
@@ -13,6 +14,12 @@ export default function Partners({ compact = false }: { compact?: boolean }) {
         {!compact && <h3>Keep the moment going.</h3>}
         <p>ClipWave helps creators automatically generate stream clips, maintain public clip pages, and send clip notifications to Discord.</p>
         <a href="https://platform.clipwave.site/" target="_blank" rel="noopener noreferrer">Visit ClipWave <ArrowUpRight size={16} aria-hidden="true"/><span className="sr-only"> (opens in a new tab)</span></a>
+      </article>
+      <article className="partner-card" data-reveal>
+        <span className="eyebrow">OUR PARTNER</span>
+        <div className="partner-brand"><img className="soraivy-logo" src="/partners/soraivy.webp" alt="Soraivy" width="760" height="298" loading="lazy" decoding="async" /></div>
+        {!compact && <h3>Meet Soraivy.</h3>}
+        <a href="https://soraivy.com/" target="_blank" rel="noopener noreferrer">Visit Soraivy <ArrowUpRight size={16} aria-hidden="true"/><span className="sr-only"> (opens in a new tab)</span></a>
       </article>
       <article className="partner-card" data-reveal>
         <span className="eyebrow">SUPPORTED BY</span>

@@ -1,0 +1,16 @@
+/* Three acknowledgements share the existing partner row. */
+.partners-section .partners-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.partners-section .partner-card { min-width: 0; }
+.partners-section .partner-brand .soraivy-logo { width: 250px; max-width: 100%; height: auto; }
+.partners-section .partner-brand .grants-wordmark { font-size: clamp(20px, 2.1vw, 28px); }
+.partners-compact .partner-card + .partner-card { padding-left: 24px; padding-right: 24px; }
+.partners-compact .partner-card:last-child { padding-right: 0; }
+.partners-section.partners-compact .partner-brand .soraivy-logo { width: 220px; max-height: 76px; }
+@media (max-width: 900px) {
+  .partners-section .partners-grid { grid-template-columns: 1fr; }
+  .partners-compact .partner-card,
+  .partners-compact .partner-card + .partner-card { padding: 22px 0; border: 0; }
+  .partners-compact .partner-card + .partner-card { border-top: 1px solid #8c847b66; }
+  .partners-section.partners-compact .partner-brand .soraivy-logo { width: 200px; max-height: 76px; }
+  .partners-section .partner-brand .grants-wordmark { font-size: 26px; }
+}

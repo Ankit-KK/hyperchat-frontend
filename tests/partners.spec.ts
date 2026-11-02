@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
-test('partner and grant acknowledgements use local ClipWave assets and verified links', async ({page})=>{
+test('partner and grant acknowledgements use supplied assets and expected links', async ({page}, info)=>{
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   for(const path of ['/','/company']) {
     await page.goto(path);
     const section=page.locator('#partners');
@@ -8,6 +9,16 @@ test('partner and grant acknowledgements use local ClipWave assets and verified 
     const logo=section.getByRole('img',{name:'ClipWave'});
     await expect.poll(()=>logo.evaluate((img:HTMLImageElement)=>img.naturalWidth)).toBe(851);
     await expect(section.getByRole('link',{name:/Visit ClipWave/})).toHaveAttribute('href','https://platform.clipwave.site/');
+    await expect(section.locator('.partner-card')).toHaveCount(3);
+    const soraivy = section.getByRole('img', { name: 'Soraivy', exact: true });
+    await soraivy.scrollIntoViewIfNeeded();
+    await expect.poll(() => soraivy.evaluate((img:HTMLImageElement) => img.naturalWidth)).toBe(760);
+    await expect(soraivy).toHaveAttribute('src', '/partners/soraivy.webp');
+    expect((await soraivy.boundingBox())!.width).toBeGreaterThanOrEqual(180);
+    const partnerLink = section.getByRole('link', { name: /Visit Soraivy/ });
+    await expect(partnerLink).toHaveAttribute('href', 'https://soraivy.com/');
+    await expect(partnerLink).toHaveAttribute('rel', 'noopener noreferrer');
+    await section.screenshot({path: `test-results/partners-${path === '/' ? 'home' : 'company'}-${info.project.name}.png`});
     await expect(section.getByRole('link',{name:/Explore ElevenLabs Grants/})).toHaveAttribute('href','https://elevenlabs.io/startup-grants');
     await expect(section).toContainText('SUPPORTED BY');
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
