@@ -19,6 +19,7 @@ export default function Partners({ compact = false }: { compact?: boolean }) {
         <span className="eyebrow">OUR PARTNER</span>
         <div className="partner-brand"><img className="soraivy-logo" src="/partners/soraivy.webp" alt="Soraivy" width="760" height="298" loading="lazy" decoding="async" /></div>
         {!compact && <h3>Meet Soraivy.</h3>}
+        <p>Soraivy is a creator-first video platform built in India, designed to help small and emerging creators grow faster and earn more.</p>
         <a href="https://soraivy.com/" target="_blank" rel="noopener noreferrer">Visit Soraivy <ArrowUpRight size={16} aria-hidden="true"/><span className="sr-only"> (opens in a new tab)</span></a>
       </article>
       <article className="partner-card" data-reveal>
