@@ -32,7 +32,7 @@ for (const policy of pages) {
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
       policy.title,
     );
-    await expect(page).toHaveTitle(`HyperChat — ${policy.title}`);
+    await expect(page).toHaveTitle(`HyperChat ${policy.title}`);
     const article = page.getByRole("article", { name: policy.title });
     await expect(article.locator(":scope > section")).toHaveCount(
       policy.sections,
@@ -44,6 +44,22 @@ for (const policy of pages) {
     await expect(
       article.locator('a[href="mailto:ankit@hyperchat.space"]').first(),
     ).toBeVisible();
+    const contentsToggle = page.getByRole("button", { name: "On this page", exact: true });
+    if ((page.viewportSize()?.width ?? 1440) <= 1000) {
+      await expect(contentsToggle).toHaveAttribute("aria-expanded", "false");
+      await expect(page.locator("#legal-contents-list")).toBeHidden();
+      const documentBox = await article.boundingBox();
+      expect(documentBox!.width).toBeGreaterThan(page.viewportSize()!.width * 0.8);
+      await contentsToggle.focus();
+      await page.keyboard.press("Enter");
+      await expect(contentsToggle).toHaveAttribute("aria-expanded", "true");
+      await page.keyboard.press("Space");
+      await expect(page.locator("#legal-contents-list")).toBeHidden();
+      await contentsToggle.click();
+    } else {
+      await expect(contentsToggle).toBeHidden();
+      await expect(page.locator("#legal-contents-list")).toBeVisible();
+    }
     await page
       .getByRole("navigation", { name: "On this page" })
       .getByRole("link", { name: policy.last, exact: true })

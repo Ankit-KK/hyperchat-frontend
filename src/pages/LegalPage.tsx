@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import PageIntro from "./PageIntro";
 import privacy from "../data/legal/privacy-policy.json";
 import terms from "../data/legal/terms-and-conditions.json";
@@ -33,6 +33,8 @@ function linkedText(text: string): ReactNode {
 }
 export default function LegalPage({ path }: { path: string }) {
   const policy = policies[path];
+  const [contentsOpen, setContentsOpen] = useState(false);
+  useEffect(() => setContentsOpen(false), [path]);
   return (
     <>
       <PageIntro
@@ -53,9 +55,19 @@ export default function LegalPage({ path }: { path: string }) {
               </a>
             ))}
           </nav>
-          <nav aria-label="On this page">
+          <nav aria-label="On this page" className="legal-contents">
             <h2>On this page</h2>
-            <ol>
+            <button
+              className="legal-contents-toggle"
+              type="button"
+              aria-expanded={contentsOpen}
+              aria-controls="legal-contents-list"
+              onClick={() => setContentsOpen(open => !open)}
+            >
+              On this page
+              <span aria-hidden="true">{contentsOpen ? "−" : "+"}</span>
+            </button>
+            <ol id="legal-contents-list" data-expanded={contentsOpen}>
               {policy.sections.map((section) => (
                 <li key={section.id}>
                   <a href={`#${section.id}`}>{section.title}</a>
