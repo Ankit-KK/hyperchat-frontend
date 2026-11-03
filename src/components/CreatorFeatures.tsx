@@ -70,7 +70,7 @@ const features = [
     label: "07 / BROADCAST",
   },
 ];
-export default function CreatorFeatures({ depth = false }: { depth?: boolean }) {
+export default function CreatorFeatures({ depth = false, introduction }: { depth?: boolean; introduction?: string }) {
   const [active, setActive] = useState(0);
   const [expanded, setExpanded] = useState(false);
   const picker = useRef<HTMLButtonElement>(null);
@@ -107,11 +107,11 @@ export default function CreatorFeatures({ depth = false }: { depth?: boolean }) 
         <h2 id="creators-title">
           Built for <em>creators.</em>
         </h2>
-        <p>
+        {introduction ? <p>{introduction}</p> : <p>
           Choose how viewers participate.
           <br />
           Shape what appears on stream, and stay in control as it happens.
-        </p>
+        </p>}
       </div>
       <div className="features-layout">
         <div className="feature-navigation" data-expanded={expanded} onKeyDown={event => {

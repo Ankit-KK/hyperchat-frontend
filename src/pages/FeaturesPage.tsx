@@ -12,8 +12,8 @@ export default function FeaturesPage() {
         title="More ways to join the moment."
         copy="Explore audience interactions, on-stream alerts, and the controls that keep your broadcast yours."
       />
-      <InteractionStory />
-      <CreatorFeatures />
+      <InteractionStory overview />
+      <CreatorFeatures introduction="Pick a tool and try its local preview. Start with a message, then explore sound, media, and more." />
       <WebhookRelay />
       <ConnectedModeration />
       <CreatorControl />

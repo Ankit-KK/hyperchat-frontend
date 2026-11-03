@@ -14,6 +14,11 @@ const steps = [
     "Eligible interactions join the queue and play through your OBS browser source as alerts and audio. Timing depends on your queue and moderation settings.",
   ],
 ];
+const overviewSteps = [
+  ["Your audience joins in.", "Viewers choose an interaction on your creator page."],
+  ["Your rules apply.", "Your settings decide which interactions can go live."],
+  ["The stream responds.", "Eligible interactions play through your existing OBS setup."],
+];
 function StepIllustration({ step }: { step: number }) {
   return <div className={`story-visual story-visual-${step}`} aria-hidden="true">
     {step === 0 ? <div className="story-message-card"><span className="story-mini-label">FROM YOUR AUDIENCE</span><div className="story-mini-person"><span>A</span><strong>Ari <small>Example viewer</small></strong></div><div className="story-mini-message">This made my evening.<br/>Keep creating!</div><div className="story-mini-formats"><MessageCircle size={15}/><Mic size={15}/><Image size={15}/><AudioLines size={15}/></div></div>
@@ -21,7 +26,7 @@ function StepIllustration({ step }: { step: number }) {
     : <div className="story-broadcast"><div className="story-broadcast-chrome"><i/><i/><i/><span>YOUR EXISTING STREAM</span></div><div className="story-broadcast-stage"><span className="story-stage-label">A MOMENT TOGETHER</span><div className="story-mini-alert"><MessageCircle size={18}/><span><strong>Ari joined the moment</strong><small>This made my evening.</small></span></div><AudioLines className="story-wave" size={25}/></div></div>}
   </div>;
 }
-export default function InteractionStory({ depth = false }: { depth?: boolean }) {
+export default function InteractionStory({ depth = false, overview = false }: { depth?: boolean; overview?: boolean }) {
   return (
     <section
       className={`interaction-story section-shell light ${depth ? "story-depth" : ""}`}
@@ -38,14 +43,14 @@ export default function InteractionStory({ depth = false }: { depth?: boolean })
           <br />
           <em>To your stream.</em>
         </h2>
-        <p>
+        {overview ? <p>A quick look at how it fits together. Try the formats and controls below.</p> : <p>
           One creator page. Your existing stream.
           <br />
           Give your audience a way to join the moment, with you in control.
-        </p>
+        </p>}
       </div>
       <ol className="story-steps">
-        {steps.map(([title, copy], i) => (
+        {(overview ? overviewSteps : steps).map(([title, copy], i) => (
           <li key={title} data-reveal>
             <span className="story-index">
               0{i + 1}

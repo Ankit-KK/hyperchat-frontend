@@ -32,7 +32,7 @@ export default function ConnectedModeration() {
     <div className="section-label"><span>MODERATION, WHERE YOU ARE</span><span>THREE VIEWS. ONE QUEUE.</span></div>
     <div className="moderation-heading">
       <h2 id="connected-moderation-title">One decision.<br/><em>Everywhere in sync.</em></h2>
-      <p>Review an interaction from your dashboard, Telegram, or Discord. Try a decision below: every view follows the same queue, and an approved message reaches the stream preview once.</p>
+      <p>Approve or reject the sample from any view. Watch the dashboard, Telegram, and Discord previews update together.</p>
     </div>
     <div className="moderation-demo-toolbar"><span>INTERACTIVE CONCEPT · SAMPLE #HC-1042</span><button onClick={reset} type="button"><RotateCcw size={14} aria-hidden="true"/> Reset demo</button></div>
     <div className="moderation-channels">

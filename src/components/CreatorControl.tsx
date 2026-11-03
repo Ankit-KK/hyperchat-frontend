@@ -16,16 +16,16 @@ export default function CreatorControl({ home = false }: { home?: boolean }) {
       <div className="control-grid">
         <div data-reveal>
           {home ? <span className="control-kicker">YOU DECIDE WHAT GOES LIVE.</span> : <ShieldCheck className="control-icon" size={42} strokeWidth={1} />}
-          <h2 id="control-title">
+          {home ? <h2 id="control-title">
             Keep the energy.
             <br />
             <em>Set the boundaries.</em>
-          </h2>
-          <p>
+          </h2> : <h2 id="control-title">Your team.<br /><em>Your safeguards.</em></h2>}
+          {home ? <p>
             Your community has its own rhythm.
             <br />
             Choose how interactions reach your stream.
-          </p>
+          </p> : <p>Set review preferences, moderator permissions, and connection access for your creator account.</p>}
           {home && <a className="control-explore" href="/features#control">Explore creator controls <ArrowUpRight size={16} aria-hidden="true" /></a>}
         </div>
         <div className="control-list">
