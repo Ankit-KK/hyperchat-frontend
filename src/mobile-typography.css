@@ -1,0 +1,32 @@
+/* Reading copy only: preserve display type, demo miniatures, and desktop scale. */
+@media (max-width: 700px) {
+  .hero .hero-content > p,
+  .section-shell .section-heading > p,
+  .section-shell .section-heading > div > p,
+  .section-shell.interaction-story .story-steps p,
+  .partners-section .partner-card p,
+  .creators .feature-panel .feature-description > p,
+  .section-shell.onboarding .onboarding-steps p,
+  .section-shell.onboarding .setup-note p,
+  .onboarding .onboarding-availability p,
+  .control.control-editorial .control-grid > div > p,
+  .control.control-editorial .control-list p,
+  .section-shell.control .control-grid > div > p,
+  .section-shell.control .control-list p,
+  .closing.closing-editorial .closing-invitation p {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .section-shell.onboarding .onboarding-steps h3 {
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .onboarding .availability,
+  .creators .capability-note,
+  .closing .closing-preview-note {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+}
