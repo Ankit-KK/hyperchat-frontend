@@ -78,3 +78,7 @@ Automated browser coverage uses Chromium; physical devices, Safari and Firefox
 require separate verification. This site currently has hash navigation, not a
 multi-route application. The global component is reusable, but any future router
 should retain it at the application shell level.
+
+## Visitor preference
+
+Desktop visitors can use the fixed “Hide companion” / “Show companion” control. The choice is stored in `localStorage` under `hyperchat:companion`. Hiding runs the cursor cleanup (including video playback and listeners) and restores the native pointer. If storage is unavailable, the choice still applies until reload. The control is omitted for touch-first devices and reduced-motion preferences.

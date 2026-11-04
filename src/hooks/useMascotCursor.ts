@@ -320,8 +320,9 @@ function mountCursor(root: HTMLDivElement) {
   };
 }
 
-export function useMascotCursor(root: RefObject<HTMLDivElement | null>) {
+export function useMascotCursor(root: RefObject<HTMLDivElement | null>, enabled = true) {
   useEffect(() => {
+    if (!enabled) return;
     const media = matchMedia(config.media);
     let stop: (() => void) | undefined;
     const sync = () => {
@@ -333,5 +334,5 @@ export function useMascotCursor(root: RefObject<HTMLDivElement | null>) {
     sync();
     media.addEventListener("change", sync);
     return () => { media.removeEventListener("change", sync); stop?.(); };
-  }, [root]);
+  }, [root, enabled]);
 }

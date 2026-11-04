@@ -166,7 +166,7 @@ main,
   justify-content: space-between;
   gap: 24px;
   z-index: 40;
-  background: #221f1cf5;
+  background: var(--charcoal);
   border-bottom: 1px solid #f3ede21a;
 }
 .brand {
@@ -1772,14 +1772,15 @@ main,
   }
   .header {
     height: 65px;
-    padding: 0 6vw;
-    gap: 12px;
+    padding: 0 4vw;
+    gap: 8px;
   }
   .brand {
     font-size: 23px;
   }
   .header-cta {
     margin-left: auto;
+    min-height: 44px;
     padding: 9px 10px;
     font-size: 9px;
     gap: 7px;
@@ -1789,7 +1790,10 @@ main,
   }
   .menu-toggle {
     display: block;
-    padding: 8px 0 8px 5px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 10px;
+    flex-shrink: 0;
   }
   .menu-toggle svg {
     width: 20px;

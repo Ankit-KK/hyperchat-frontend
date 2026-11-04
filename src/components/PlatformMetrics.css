@@ -15,3 +15,4 @@
 .metric-reel{display:flex;flex-direction:column}
 .metric-reel>span{display:block;flex:none;height:1.15em;line-height:1.15;text-align:center}
 @media(prefers-reduced-motion:reduce){.metric-reel{animation:none}}
+.metrics-context { margin: 24px 0 0; color: var(--sand); font-size: 13px; line-height: 1.7; }

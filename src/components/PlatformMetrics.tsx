@@ -82,6 +82,7 @@ export default function PlatformMetrics({ values = metrics }: { values?: Platfor
           </div>
         ))}
       </dl>
+      <p className="metrics-context">Historical platform snapshot. These figures are not live.</p>
     </section>
   );
 }
