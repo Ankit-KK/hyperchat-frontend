@@ -2,7 +2,7 @@
 
 The owner-provided Qwen glass HC reveal plays on each full homepage load or refresh. There is no session or first-visit suppression. Other routes bypass it.
 
-- Fine-pointer desktop above 900px: the supplied glass shader and joined HC logo, adapted in `public/intro/glass-reveal.html`. The timeline runs once at 1.7× speed, starting a 420ms fade after roughly 1.6 seconds of animation while the renderer continues moving.
+- Fine-pointer desktop above 900px: the supplied glass shader and joined HC logo, adapted in `public/intro/glass-reveal.html`. The timeline runs once at 1.7× speed, starting a 700ms fade after roughly 1.6 seconds of animation while the renderer continues moving.
 - Phones, coarse pointers, smaller viewports and Save-Data: a 1.15-second SVG/CSS entrance using the supplied HC silhouette, with the same fade overlapping its final motion. They do not fetch or run the WebGL document.
 - Reduced motion: bypass entirely. Changing the preference during playback dismisses the intro.
 - Skip intro and Escape dismiss it. Keyboard focus stays on Skip while the site is inert, then moves to main content without scrolling.

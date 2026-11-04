@@ -1,10 +1,10 @@
-.entrance-reveal { position: fixed; inset: 0; z-index: 100; background: #f3ede2; color: #221f1c; opacity: 1; transition: opacity 420ms ease; }
+.entrance-reveal { position: fixed; inset: 0; z-index: 100; background: #f3ede2; color: #221f1c; opacity: 1; transition: opacity 700ms cubic-bezier(.4, 0, .2, 1); }
 .entrance-reveal[data-leaving="true"] { opacity: 0; }
-.entrance-reveal iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; opacity: 0; transform: scale(1); transition: transform 420ms ease-out; }
-.entrance-reveal[data-leaving="true"] iframe { transform: scale(1.035); }
+.entrance-reveal iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; opacity: 0; transform: scale(1); transition: transform 700ms cubic-bezier(.22, 1, .36, 1); }
+.entrance-reveal[data-leaving="true"] iframe { transform: scale(1.02); }
 .entrance-reveal iframe[data-ready="true"] { opacity: 1; }
 .entrance-logo { position: absolute; inset: 0; display: grid; place-items: center; }
-.entrance-monogram { grid-area: 1 / 1; width: clamp(130px, 28vw, 240px); height: auto; animation: entrance-mark 1.7s both; }
+.entrance-monogram { grid-area: 1 / 1; width: clamp(130px, 28vw, 240px); height: auto; animation: entrance-mark 2s both; }
 .entrance-skip { position: absolute; right: max(24px, env(safe-area-inset-right)); bottom: max(24px, env(safe-area-inset-bottom)); min-height: 44px; padding: 10px 16px; border: 1px solid #8c847b; background: #f3ede2; color: #221f1c; font-size: 14px; cursor: pointer; }
 .entrance-skip:focus-visible { outline: 2px solid #75451d; outline-offset: 4px; }
 @keyframes entrance-mark { 0% { opacity: 0; transform: scale(.85); } 100% { opacity: 1; transform: scale(1.03); } }
