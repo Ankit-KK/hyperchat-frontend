@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import "./PlatformMetrics.css";
 
-// Owner-supplied snapshot. Replace these values when a new snapshot is approved.
-// These are not connected to live telemetry.
+// Illustrative demo values, not measured platform results.
+// Replace with verified backend metrics when telemetry is available.
 export interface PlatformMetric {
   value: number;
   label: string;
@@ -72,7 +72,7 @@ export default function PlatformMetrics({ values = metrics }: { values?: Platfor
     <section className="platform-metrics section-shell" aria-labelledby="metrics-title">
       <div className="metrics-heading">
         <h2 id="metrics-title">Small interactions. Real momentum.</h2>
-        <span>PLATFORM SNAPSHOT</span>
+        <span>DEMO METRICS</span>
       </div>
       <dl className="metrics-list">
         {values.map(({ value, unit, label }) => (
@@ -82,7 +82,7 @@ export default function PlatformMetrics({ values = metrics }: { values?: Platfor
           </div>
         ))}
       </dl>
-      <p className="metrics-context">Historical platform snapshot. These figures are not live.</p>
+      <p className="metrics-context">Illustrative demo values, not actual platform results. Real metrics will be added later.</p>
     </section>
   );
 }

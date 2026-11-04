@@ -6,14 +6,14 @@ The public site is a frontend preview. Signup, payments, KYC, dashboards and liv
 
 - Opaque navigation surface; mobile menu and onboarding link have at least 44px height, with a 44px-wide menu target.
 - Desktop companion can be hidden or restored. The choice is saved locally; hiding stops its playback and event handlers and restores the native cursor. Touch-first and reduced-motion behavior remain unchanged.
-- Metrics explicitly identify the supplied figures as a historical snapshot, not live telemetry.
+- Metrics explicitly identify the figures as illustrative demo values, not actual platform results.
 - Production build, route metadata, social image dimensions, preview indexing protections, no-JavaScript summaries, loading/error recovery, touch navigation, and mobile animation gates checked.
 - Automated accessibility checks on home, Features, Company, Support, demo signup and Creator Terms at desktop, tablet and mobile sizes. Automated results do not replace screen-reader testing.
 - No page overflow in the inspected narrow layouts or at a 720×500 CSS viewport (equivalent available space to 200% zoom on a 1440×1000 viewport; not an actual browser-zoom test).
 
-## Facts still needed
+## Future metrics integration
 
-The owner must confirm the measurement date/window for 12,811 interactions, 12,767 delivered alerts and 299ms average event latency, including the events defining latency. No date or measurement definition has been invented.
+The owner confirmed that 12,811 interactions, 12,767 delivered alerts and 299ms average event latency are demo values. Replace them with verified backend metrics later; establish the measurement window and latency definition at that point. No historical results are claimed.
 
 ## Final deployment
 

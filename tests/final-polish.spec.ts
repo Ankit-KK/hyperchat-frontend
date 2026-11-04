@@ -23,7 +23,7 @@ test('companion preference survives reload and releases the native cursor', asyn
 test('header is opaque and mobile actions retain generous targets', async ({ page }, info) => {
   await page.goto('/');
   await expect(page.locator('.header')).toHaveCSS('background-color', 'rgb(34, 31, 28)');
-  await expect(page.locator('.metrics-context')).toContainText('not live');
+  await expect(page.locator('.metrics-context')).toContainText('not actual platform results');
   if (info.project.name === 'mobile') {
     await page.setViewportSize({ width: 320, height: 844 });
     const menu = page.getByRole('button', { name: 'Open navigation' });
