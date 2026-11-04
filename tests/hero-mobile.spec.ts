@@ -7,6 +7,7 @@ for (const width of [320, 390, 600]) {
     const page = await context.newPage();
     try {
       await page.goto(baseURL!);
+      await expect(page.locator('.entrance-reveal')).toHaveCount(0);
       const input = page.getByRole('textbox', { name: 'Your example message' });
       const action = page.locator('.mobile-message-play');
       await input.fill('A message from my phone');

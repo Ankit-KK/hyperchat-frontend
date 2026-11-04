@@ -1,4 +1,5 @@
-import { lazy, Suspense, useEffect, useRef } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import EntranceReveal from "./components/EntranceReveal";
 import PushpinTearFooter from "./components/ui/pushpin-tear-footer";
 import Navigation from "./components/Navigation";
 import MascotCursor from "./components/MascotCursor";
@@ -24,6 +25,7 @@ const legalTitles: Record<string, string> = {
 
 export default function App() {
   const path = window.location.pathname.replace(/\/+$/, "") || "/";
+  const [intro, setIntro] = useState(() => path === "/" && !matchMedia("(prefers-reduced-motion: reduce)").matches);
   useEffect(() => { updatePageSeo(path); }, [path]);
   const page =
     path === "/demo-signup" ? (<DemoSignupPage />) : path === "/" ? (
@@ -44,8 +46,13 @@ export default function App() {
 
   const root = useRef<HTMLDivElement>(null);
   return (
-    <div ref={root} className="site-root">
-      <MascotCursor />
+    <>
+    {intro && <EntranceReveal onComplete={() => {
+      setIntro(false);
+      requestAnimationFrame(() => document.getElementById("main")?.focus({ preventScroll: true }));
+    }} />}
+    <div ref={root} className="site-root" inert={intro}>
+      {!intro && <MascotCursor />}
       <a href="#main" className="skip-link">
         Skip to content
       </a>
@@ -81,5 +88,6 @@ export default function App() {
       </main>
       <PushpinTearFooter />
     </div>
+    </>
   );
 }

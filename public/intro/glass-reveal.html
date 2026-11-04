@@ -1,0 +1,579 @@
+<!-- Integration: owner-supplied Qwen reveal; bounded desktop intro, neutral refraction, isolated renderer. -->
+<!DOCTYPE html>
+<!--
+  HyperChat glass reveal — polished cut.
+  What changed in this pass:
+    · Letters form left→right: the word morph is now a per-pixel wave
+      (mW = uMorph2 * 1.55 - uv.x * 0.55), so HYPERCHAT writes itself on
+      instead of popping in as one block.
+    · The word grows as it forms (wordZoom 1 → 1.45 across the morph), so the
+      ending has real presence instead of a thin strip.
+    · Tighter timeline: split 2.3–2.9s, word 3.05–4.15s, release 4.7s.
+    · Warm vignette over the cream, favicon of the monogram, hint fades in
+      after the droplet lands, reduced-motion rests on the finished word.
+  Palette: backdrop #EAE5DB; ramp #221f1c → #8D857A → #C05B2E on every stage.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>HyperChat introduction</title>
+<meta name="robots" content="noindex, nofollow" />
+<style>
+  html, body { height: 100%; margin: 0; }
+  body { background: #f3ede2; overflow: hidden; }
+  #stage {
+    position: fixed; inset: 0;
+    background: #f3ede2;
+    cursor: default; user-select: none; -webkit-user-select: none;
+  }
+  #stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .vignette {
+    position: fixed; inset: 0; pointer-events: none;
+    background: radial-gradient(120% 95% at 50% 42%, rgba(0,0,0,0) 55%, rgba(32,25,20,.075) 100%);
+  }
+  .hint {
+    position: fixed; left: 0; right: 0; bottom: 26px;
+    text-align: center; pointer-events: none;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 10px; font-weight: 500; letter-spacing: .24em; text-transform: uppercase;
+    color: rgba(32, 25, 20, .38);
+    opacity: 0; animation: hintIn 1.1s 1.4s cubic-bezier(.2,.7,.2,1) both;
+  }
+  @keyframes hintIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  #stage.css-fallback { display: flex; align-items: center; justify-content: center; }
+  #stage.css-fallback svg { width: min(70%, 820px); height: auto; animation: hcPop 1.1s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes hcPop {
+    0% { opacity: 0; transform: scale(.55); filter: blur(14px); }
+    60% { opacity: 1; }
+    100% { opacity: 1; transform: scale(1); filter: blur(0); }
+  }
+</style>
+</head>
+<body>
+<div id="stage" role="img" aria-label="HyperChat monogram splitting into the HyperChat wordmark"></div>
+<div class="vignette"></div>
+
+
+<script>
+"use strict";
+var S = {
+  tileSize: 560, logoScale: 0.8, finalScale: 1.0, logoOffset: [0, 0],
+  iconPlate: false, keepPlate: false, originalColors: true,
+  opticalDepth: 1.1, dispersion: 0, colorBleed: 0, doubleBevel: 1, bevelWidth: 0.14, corner: 4.8,
+  cornerPull: 2.1, cornerWidth: 2.2, cornerFocus: 0.58, edgeSmear: 2.85, stretch: 0, tilt: 0.35, bulge: 1,
+  specular: 1, halo: 0, shadow: 1, ripple: 1,
+  bounce: 0, response: 0.42, startSize: 0.22, startZoom: 1.9, glide: 2.2, present: 4.7,
+  drift: 0.12, swell: 0.5, focus: 1, sheen: 1, lightTurn: 0.9,
+  hold: 1.6, background: "#f3ede2", plateColor: "#ffffff", logoColor: "#221f1c"
+};
+var SPLIT_A = 2.3, SPLIT_B = 2.9;
+var WORD_A  = 3.05, WORD_B = 4.15;
+var WORD_ZOOM = 0.45;   /* extra presence while the word writes on */
+
+/* Stage A — joined HC monogram (one connected shape) */
+var LOGO_A = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 590 320"><defs><linearGradient id="gA" gradientUnits="userSpaceOnUse" x1="0" y1="160" x2="590" y2="160"><stop offset="0" stop-color="#221f1c"/><stop offset="0.5" stop-color="#8c847b"/><stop offset="1" stop-color="#b8702f"/></linearGradient><mask id="mA"><rect x="0" y="0" width="590" height="320" fill="#ffffff"/><path d="M470 142 L700 55 L700 230 Z" fill="#000000"/></mask></defs><g fill="url(#gA)" mask="url(#mA)"><rect x="0" y="0" width="98" height="285" rx="10"/><rect x="40" y="103" width="200" height="70"/><path fill-rule="evenodd" d="M305 0 H495 A95 95 0 0 1 590 95 V190 A95 95 0 0 1 495 285 H305 A95 95 0 0 1 210 190 V95 A95 95 0 0 1 305 0 Z M345 65 H455 A45 45 0 0 1 500 110 V170 A45 45 0 0 1 455 215 H345 A45 45 0 0 1 300 170 V110 A45 45 0 0 1 345 65 Z"/><path d="M262 250 L375 318 L375 250 Z"/></g></svg>';
+
+/* Stage B — H (stem + crossbar stub) pulled left, C (+ tail) pulled right */
+var LOGO_B = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 320"><defs><linearGradient id="gB" gradientUnits="userSpaceOnUse" x1="0" y1="160" x2="740" y2="160"><stop offset="0" stop-color="#221f1c"/><stop offset="0.5" stop-color="#8c847b"/><stop offset="1" stop-color="#b8702f"/></linearGradient><mask id="mB"><rect x="0" y="0" width="740" height="320" fill="#ffffff"/><path d="M620 142 L850 55 L850 230 Z" fill="#000000"/></mask></defs><g fill="url(#gB)" mask="url(#mB)"><rect x="0" y="0" width="98" height="285" rx="10"/><rect x="40" y="103" width="120" height="70"/><path fill-rule="evenodd" d="M455 0 H645 A95 95 0 0 1 740 95 V190 A95 95 0 0 1 645 285 H455 A95 95 0 0 1 360 190 V95 A95 95 0 0 1 455 0 Z M495 65 H605 A45 45 0 0 1 650 110 V170 A45 45 0 0 1 605 215 H495 A45 45 0 0 1 450 170 V110 A45 45 0 0 1 495 65 Z"/><path d="M412 250 L525 318 L525 250 Z"/></g></svg>';
+
+/* Stage C — the full word, width locked by textLength so no glyph can clip */
+var LOGO_C = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 608 96"><defs><linearGradient id="gC" gradientUnits="userSpaceOnUse" x1="0" y1="48" x2="608" y2="48"><stop offset="0" stop-color="#221f1c"/><stop offset="0.5" stop-color="#8c847b"/><stop offset="1" stop-color="#b8702f"/></linearGradient></defs><text x="4" y="74" textLength="600" lengthAdjust="spacingAndGlyphs" font-family="Helvetica, Arial, sans-serif" font-weight="800" font-size="100" fill="url(#gC)">HYPERCHAT</text></svg>';
+
+/* ---------------- logo → texture + SDF ---------------- */
+var TEX = 512, BOX = 0.75;
+function svgToUrl(text) {
+  var svg = new DOMParser().parseFromString(text, "image/svg+xml").documentElement;
+  var w = parseFloat(svg.getAttribute("width") || ""), h = parseFloat(svg.getAttribute("height") || "");
+  var vb = (svg.getAttribute("viewBox") || "").split(/[\s,]+/).map(Number);
+  if (vb.length === 4 && vb[2] > 0 && vb[3] > 0) { w = vb[2]; h = vb[3]; }
+  if (!(w > 0 && h > 0)) w = h = 100;
+  var s = TEX / Math.max(w, h);
+  svg.setAttribute("width", String(Math.round(w * s)));
+  svg.setAttribute("height", String(Math.round(h * s)));
+  return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(new XMLSerializer().serializeToString(svg));
+}
+function fitToTexture(source, sw, sh) {
+  var tmp = document.createElement("canvas"); tmp.width = tmp.height = TEX;
+  var tc = tmp.getContext("2d", { willReadFrequently: true });
+  var s0 = Math.min(TEX / sw, TEX / sh), dx0 = (TEX - sw * s0) / 2, dy0 = (TEX - sh * s0) / 2;
+  tc.drawImage(source, dx0, dy0, sw * s0, sh * s0);
+  var d = tc.getImageData(0, 0, TEX, TEX).data;
+  var x0 = TEX, y0 = TEX, x1 = -1, y1 = -1;
+  for (var y = 0; y < TEX; y++) for (var x = 0; x < TEX; x++) {
+    var i = (y * TEX + x) * 4;
+    if (d[i + 3] > 8) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+  }
+  if (x1 < 0) throw new Error("empty logo");
+  var bw = x1 - x0 + 1, bh = y1 - y0 + 1, s = (TEX * BOX) / Math.max(bw, bh);
+  var out = document.createElement("canvas"); out.width = out.height = TEX;
+  var oc = out.getContext("2d", { willReadFrequently: true });
+  oc.imageSmoothingQuality = "high";
+  oc.drawImage(source, TEX / 2 - (x0 + bw / 2 - dx0) * s, TEX / 2 - (y0 + bh / 2 - dy0) * s, sw * s0 * s, sh * s0 * s);
+  return out;
+}
+function edt1d(grid, offset, stride, f, v, z, INF) {
+  v[0] = 0; z[0] = -INF; z[1] = INF; f[0] = grid[offset];
+  for (var q = 1, k = 0, s = 0; q < TEX; q++) {
+    f[q] = grid[offset + q * stride];
+    var q2 = q * q, r;
+    do { r = v[k]; s = (f[q] - f[r] + q2 - r * r) / (q - r) / 2; } while (s <= z[k] && --k > -1);
+    k++; v[k] = q; z[k] = s; z[k + 1] = INF;
+  }
+  for (var q2 = 0, k2 = 0; q2 < TEX; q2++) {
+    while (z[k2 + 1] < q2) k2++;
+    var r2 = v[k2], qr = q2 - r2;
+    grid[offset + q2 * stride] = f[r2] + qr * qr;
+  }
+}
+function buildSdf(canvas) {
+  var n = TEX * TEX;
+  var alpha = canvas.getContext("2d", { willReadFrequently: true }).getImageData(0, 0, TEX, TEX).data;
+  var INF = 1e20, outer = new Float64Array(n), inner = new Float64Array(n);
+  for (var i = 0; i < n; i++) {
+    var a = alpha[i * 4 + 3] / 255;
+    if (a >= 1) { outer[i] = 0; inner[i] = INF; }
+    else if (a <= 0) { outer[i] = INF; inner[i] = 0; }
+    else { var dd = 0.5 - a; outer[i] = dd > 0 ? dd * dd : 0; inner[i] = dd < 0 ? dd * dd : 0; }
+  }
+  var f = new Float64Array(TEX), z = new Float64Array(TEX + 1), v = new Uint16Array(TEX);
+  for (var x = 0; x < TEX; x++) { edt1d(outer, x, TEX, f, v, z, INF); edt1d(inner, x, TEX, f, v, z, INF); }
+  for (var y = 0; y < TEX; y++) { edt1d(outer, y * TEX, 1, f, v, z, INF); edt1d(inner, y * TEX, 1, f, v, z, INF); }
+  var sdf = new Float32Array(n);
+  for (var k = 0; k < n; k++) sdf[k] = (Math.sqrt(outer[k]) - Math.sqrt(inner[k])) / TEX;
+  return sdf;
+}
+function loadLogo(svgText) {
+  return new Promise(function (res, rej) {
+    var img = new Image();
+    img.onload = function () {
+      try { var c = fitToTexture(img, img.naturalWidth || TEX, img.naturalHeight || TEX); res({ canvas: c, sdf: buildSdf(c) }); }
+      catch (e) { rej(e); }
+    };
+    img.onerror = function () { rej(new Error("logo load failed")); };
+    img.src = svgToUrl(svgText);
+  });
+}
+
+/* ---------------- spring timeline ---------------- */
+var TAIL = 1.1, OUTRO = 0.5;
+var clamp01 = function (x) { return x < 0 ? 0 : x > 1 ? 1 : x; };
+var mix = function (a, b, t) { return a + (b - a) * t; };
+var smooth = function (a, b, x) { var t = clamp01((x - a) / (b - a)); return t * t * (3 - 2 * t); };
+var smoother = function (a, b, x) { var t = clamp01((x - a) / (b - a)); return t * t * t * (t * (t * 6 - 15) + 10); };
+function hexToRgb(hex) {
+  var h = hex.replace("#", ""); if (h.length === 3) h = h.replace(/./g, "$&$&");
+  var v = parseInt(h.slice(0, 6), 16) || 0;
+  return [((v >> 16) & 255) / 255, ((v >> 8) & 255) / 255, (v & 255) / 255];
+}
+var luminance = function (c) { return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
+function spring(t, response, damping) {
+  if (t <= 0) return 0;
+  var w = (2 * Math.PI) / response;
+  if (damping >= 1) return 1 - Math.exp(-w * t) * (1 + w * t);
+  var wd = w * Math.sqrt(1 - damping * damping);
+  return 1 - Math.exp(-damping * w * t) * (Math.cos(wd * t) + ((damping * w) / wd) * Math.sin(wd * t));
+}
+var reachCache = {};
+function timeToReach(level, response, damping) {
+  var key = level + "/" + response + "/" + damping;
+  if (reachCache[key] !== undefined) return reachCache[key];
+  var lo = 0, hi = 3;
+  for (var i = 0; i < 40; i++) { var mid = (lo + hi) / 2; if (spring(mid, response, damping) < level) lo = mid; else hi = mid; }
+  return (reachCache[key] = hi);
+}
+function frameAt(T, P, outro) {
+  outro = outro || 0;
+  var tx = P.present, keep = P.keepPlate ? 1 : 0, damping = 1 - P.bounce;
+  var grow = spring(T + 0.01, P.response, damping);
+  var tl = timeToReach(0.85, P.response, damping) - 0.01;
+  var tm = timeToReach(0.92, P.response, damping) - 0.01;
+  var morph = spring(T - tm, 0.4, 1);
+  var drop = 1 - smooth(0.05, 1, morph);
+  var appear = smooth(0, 0.08, T);
+  var drift = P.drift * spring(T - 0.3, 2.2, 1);
+  var zoomIn = 0.25 * spring(T, 0.7, 1) + 0.75 * smoother(0, P.glide, T);
+  var settle = spring(T - 0.5, 2.4, 1);
+  var exit = spring(T - tx, 0.95, 1);
+  var release = spring(T - tx - 0.05, 0.65, 1);
+  var dome = 0.15 * P.bulge * (1 - smooth(0.4, 0.95, grow));
+  /* the word gains presence while it writes on, then the release settles it */
+  var wordZoom = 1 + WORD_ZOOM * smoother(WORD_A, WORD_B + 0.35, T);
+  var view = (1 + (P.startZoom - 1) * (1 - zoomIn)) * (1 - 0.045 * settle) * wordZoom * mix(1, P.finalScale, exit) * (1 - 0.06 * outro);
+  var bandW = mix(P.bevelWidth, Math.max(P.bevelWidth, 0.4), drop);
+  var plateScale = mix(P.startSize, 1, grow) * (1 + drift) * (1 + 0.14 * release * (1 - keep)) * (1 - keep * (0.03 * release + 0.06 * outro));
+  var bg = hexToRgb(P.background);
+  return {
+    uPlateScale: plateScale, uShapeN: mix(2, P.corner, morph), uCornerN: P.corner,
+    uOptics: 1 - smooth(0.55, 1, release),
+    uPlateAlpha: keep ? appear * (1 - outro) : appear * (1 - smooth(0.45, 1, release)),
+    uLogoHalf: P.logoScale * view,
+    uLogoOff: [P.logoOffset[0] * view, P.logoOffset[1] * view],
+    uKeep: keep, uSheen: P.sheen,
+    uSweep: mix(-1.6, 1.6, smoother(0.9, tx - 0.1, T)),
+    uLightAng: P.lightTurn * smoother(0.4, tx + 0.4, T),
+    uBold: P.swell * 0.03 * (1 - zoomIn),
+    uBlur: P.focus * 0.05 * (1 - smooth(0.3, 0.95, grow)) + 0.03 * outro,
+    uFrost: P.focus * (1 - smooth(0.5, 0.95, grow)),
+    uPinch: 0.38 * P.stretch * smooth(0.1, 0.9, morph) * smooth(0.75, 0.97, zoomIn),
+    uTilt: P.tilt, uDome: dome, uDrop: drop, uRim: 1 + 0.8 * drop,
+    uHalo: P.halo * (0.5 + 0.5 * drop) * (1 - keep * release),
+    uShadow: Math.max(P.shadow * smooth(0.45, 0.8, grow) * (1 - smooth(0, 0.6, morph)), 0.8 * P.shadow * keep * release),
+    uGhost: smooth(0, 0.03, T) * (1 - smooth(0.04, 0.08, T)),
+    uRipR: 1 + 0.9 * Math.max(0, T - tl),
+    uRipA: P.ripple * smooth(tl, tl + 0.06, T) * Math.exp(-Math.max(0, T - tl) / 0.6),
+    uBare: (1 - keep) * smooth(tx - 0.25, tx, T) * (1 - outro),
+    uReach: bandW * plateScale, uCornerPull: P.cornerPull, uStreak: P.edgeSmear, uWiden: P.cornerWidth,
+    uSlab: 0.3 * P.opticalDepth, uEtaSpread: 0.06, uFocus: P.cornerFocus, uFocusK: 1.0,
+    uFocusSplit: 0.056 * P.colorBleed, uRimLine: 0.09, uCornerOn: smooth(0.35, 1, morph),
+    uGlow: 0.012 * P.colorBleed, uFaceDisp: 0.012 * P.dispersion, uVivid: 0.85,
+    uDissolve: release, uDisp: P.dispersion, uDouble: P.doubleBevel, uBevelW: bandW * (1 - release),
+    uSpec: P.specular, uIconPlate: P.iconPlate ? 1 : 0, uUseColor: P.originalColors ? 1 : 0,
+    uLightScene: luminance(bg) > 0.5 ? 1 : 0,
+    uLightGlass: luminance(P.iconPlate ? hexToRgb(P.plateColor) : bg) > 0.5 ? 1 : 0,
+    uMorph: smoother(SPLIT_A, SPLIT_B, T),
+    uMorph2: smoother(WORD_A, WORD_B, T),
+    uBg: bg, uPlateCol: hexToRgb(P.plateColor), uLogoCol: hexToRgb(P.logoColor)
+  };
+}
+
+/* ---------------- shader: 3 morph targets, staggered word wave ---------------- */
+var VERT = "#version 300 es\nin vec2 aPos;\nvoid main() { gl_Position = vec4(aPos, 0.0, 1.0); }";
+var FRAG = `#version 300 es
+precision highp float;
+out vec4 outColor;
+uniform vec2 uCenter; uniform float uTile;
+uniform sampler2D uSdf; uniform sampler2D uCol;
+uniform sampler2D uSdf2; uniform sampler2D uCol2;
+uniform sampler2D uSdf3; uniform sampler2D uCol3;
+uniform float uMorph; uniform float uMorph2;
+uniform float uTexSize; uniform float uBoxFrac;
+uniform float uPlateScale; uniform float uShapeN; uniform float uCornerN; uniform float uOptics;
+uniform float uPlateAlpha; uniform float uLogoHalf; uniform vec2 uLogoOff; uniform float uBold;
+uniform float uBlur; uniform float uFrost; uniform float uDome; uniform float uDrop; uniform float uPinch;
+uniform float uTilt; uniform float uRim; uniform float uHalo; uniform float uShadow; uniform float uGhost;
+uniform float uRipR; uniform float uRipA; uniform float uBare; uniform float uReach; uniform float uCornerPull;
+uniform float uStreak; uniform float uWiden; uniform float uSlab; uniform float uEtaSpread; uniform float uFocus;
+uniform float uFocusK; uniform float uFocusSplit; uniform float uRimLine; uniform float uCornerOn;
+uniform float uDissolve; uniform float uGlow; uniform float uFaceDisp; uniform float uVivid;
+uniform float uDisp; uniform float uDouble; uniform float uBevelW; uniform float uSpec; uniform float uIconPlate;
+uniform float uUseColor; uniform float uLightScene; uniform float uLightGlass; uniform float uKeep;
+uniform float uSheen; uniform float uSweep; uniform float uLightAng;
+uniform vec3 uBg; uniform vec3 uPlateCol; uniform vec3 uLogoCol;
+float px;
+vec2 rot(vec2 v, float a) { float c = cos(a), s = sin(a); return vec2(c * v.x - s * v.y, s * v.x + c * v.y); }
+vec3 colChain(sampler2D tex, vec2 uv, float lod) {
+  vec4 c0 = textureLod(tex, uv, lod);
+  vec4 c1 = textureLod(tex, uv, lod + 3.0);
+  vec4 c2 = textureLod(tex, uv, 7.0);
+  vec3 c = c2.rgb / max(c2.a, 1e-4);
+  c = mix(c, c1.rgb / max(c1.a, 1e-4), smoothstep(0.0, 0.06, c1.a));
+  c = mix(c, c0.rgb / max(c0.a, 1e-4), smoothstep(0.02, 0.3, c0.a));
+  return c;
+}
+vec4 logoAt(vec2 q, float blur, float aa) {
+  float L = uLogoHalf;
+  float k = 0.5 * uBoxFrac / L;
+  vec2 uv = vec2(0.5 + (q.x - uLogoOff.x) * k, 0.5 - (q.y - uLogoOff.y) * k);
+  float dA = texture(uSdf, uv).r;
+  float dB = texture(uSdf2, uv).r;
+  float dC = texture(uSdf3, uv).r;
+  /* word morph travels left → right so the letters write on in order */
+  float mW = clamp(uMorph2 * 1.55 - uv.x * 0.55, 0.0, 1.0);
+  float d = mix(mix(dA, dB, uMorph), dC, mW) / k;
+  float w = 0.75 * aa + blur;
+  float a = 1.0 - smoothstep(-w, w, d - uBold * L);
+  vec3 c = uLogoCol;
+  if (uUseColor > 0.5) {
+    float lod = log2(max(1.0, w * k * uTexSize));
+    if (uMorph2 > 0.001)      c = mix(colChain(uCol2, uv, lod), colChain(uCol3, uv, lod), mW);
+    else if (uMorph > 0.001)  c = mix(colChain(uCol, uv, lod), colChain(uCol2, uv, lod), uMorph);
+    else                      c = colChain(uCol, uv, lod);
+  }
+  return vec4(c, a);
+}
+float shape(vec2 p, float scale, float n, out vec2 nOut, out float g, out vec2 dg) {
+  vec2 pp = p / scale;
+  vec2 a = max(abs(pp), vec2(1e-6));
+  g = pow(pow(a.x, n) + pow(a.y, n), 1.0 / n);
+  dg = sign(pp) * pow(a, vec2(n - 1.0)) * pow(max(g, 1e-6), 1.0 - n);
+  float dgl = max(length(dg), 1e-6);
+  nOut = dg / dgl;
+  return (g - 1.0) / dgl * scale;
+}
+float contourRadius(vec2 p, float scale, float n) {
+  vec2 a = max(abs(p / scale), vec2(1e-4));
+  vec2 a1 = pow(a, vec2(n - 1.0));
+  vec2 a2 = pow(a, vec2(n - 2.0));
+  float k = (n - 1.0) * (a2.x * a1.y * a1.y + a2.y * a1.x * a1.x) / pow(max(dot(a1, a1), 1e-30), 1.5);
+  return scale / max(k, 1e-3);
+}
+vec2 refractSample(float x, float bwF, float eta, float R, vec2 dirOut, vec2 p, float dome, float offMul) {
+  float u = clamp(1.0 - x, 0.0, 0.995);
+  float th = asin(u), thr = asin(u / eta);
+  float z = uSlab + bwF * sqrt(1.0 - u * u);
+  float off = offMul * z * tan(th - thr);
+  off = off / (1.0 + off / (6.0 * R));
+  return p - (dirOut * off + p * dome) * uOptics;
+}
+float gauss(float x, float c, float w) { float d = (x - c) / w; return exp(-0.5 * d * d); }
+float band(float x, float a, float b, float w) { return smoothstep(a - w, a, x) * (1.0 - smoothstep(b, b + w, x)); }
+float bump(float x, float c, float w) { float d = (x - c) / w; return exp(-0.5 * d * d); }
+vec3 spectrum(float x) {
+  return vec3(bump(x, 0.34, 0.2) + 0.08 * bump(x, 0.93, 0.05), bump(x, 0.58, 0.1), bump(x, 0.8, 0.11));
+}
+float hash(vec2 p) { return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453); }
+void main() {
+  px = 2.0 / uTile;
+  vec2 p = (gl_FragCoord.xy - uCenter) * px;
+  vec4 lg = logoAt(p, uBlur, px);
+  vec3 plain = mix(uBg, lg.rgb, lg.a * uBare);
+  vec2 nOut, dg; float g;
+  float sd = shape(p, uPlateScale, uShapeN, nOut, g, dg);
+  float s = -sd;
+  float bw = max(uBevelW, 0.004) * uPlateScale;
+  float x = clamp(s / bw, 0.0, 1.0);
+  float R = contourRadius(p, uPlateScale, uShapeN);
+  vec2 pq = p * p;
+  float diag = 4.0 * pq.x * pq.y / max((pq.x + pq.y) * (pq.x + pq.y), 1e-6);
+  float tilt = mix(1.0 - uTilt, 1.0, smoothstep(-0.02, 0.02, p.x * p.y));
+  float pinchPart = uPinch * min(g * g, 1.0) * diag * diag * tilt;
+  float dome = uDome * (1.0 - min(g * g, 1.0)) + pinchPart;
+  vec2 dirOut = normalize(mix(nOut, p / max(length(p), 1e-4), 0.2));
+  float cornerness = max(smoothstep(0.1, 0.9, 4.0 * nOut.x * nOut.x * nOut.y * nOut.y), smoothstep(0.15, 0.75, diag));
+  float offMul = 1.0 + 0.4 * max(uCornerPull - 1.0, 0.0) * tilt * cornerness * uCornerOn;
+  vec2 focus = sign(p) * (pow(0.5, 1.0 / uShapeN) - uFocus * 0.70710678) * uPlateScale;
+  float focusW = tilt * cornerness * uOptics * uCornerOn;
+  float bwF = max(uReach, 0.004) * (1.0 + uWiden * tilt * cornerness * uCornerOn);
+  float xf = clamp(s / bwF, 0.0, 1.0);
+  vec2 qc = refractSample(xf, bwF, 1.5, R, dirOut, p, dome, offMul);
+  float foot = max(max(length(dFdx(qc)), length(dFdy(qc))), 0.25 * px);
+  vec3 bg = uBg;
+  vec3 lift = mix(uBg + vec3(0.06), mix(uBg, vec3(1.0), 0.55), uLightScene);
+  if (uGhost > 0.001) {
+    vec2 gn, gdg; float gg;
+    float gsd = shape(p, 1.0, uCornerN, gn, gg, gdg);
+    bg = mix(bg, lift, uGhost * 0.12 * (1.0 - smoothstep(-0.16, 0.14, gsd)));
+    bg *= 1.0 - uGhost * 0.03 * uLightScene * exp(-max(gsd, 0.0) / 0.12) * step(0.0, gsd);
+  }
+  float outside = max(sd, 0.0);
+  if (uRipA > 0.001) {
+    float d0 = (uRipR - 1.0) * uPlateScale;
+    float rx = (sd - d0) / 0.022;
+    float ring = exp(-rx * rx);
+    bg += uRipA * ring * (0.04 * (0.55 + 0.45 * dot(nOut, normalize(vec2(-0.5, 0.8))))) * mix(0.5, 1.0, uLightScene);
+    bg -= uRipA * 0.016 * uLightScene * exp(-(rx - 1.6) * (rx - 1.6));
+  }
+  float shadowFall = max(sd, 0.0) / (0.9 * uPlateScale);
+  bg *= 1.0 - uShadow * 0.03 * exp(-shadowFall * shadowFall) * step(0.0, sd);
+  vec3 haloCol = mix(vec3(0.62, 0.69, 0.80), vec3(1.0), uLightScene);
+  bg = mix(bg, haloCol, clamp(uHalo * (0.30 * exp(-outside / (0.025 * uPlateScale)) + 0.07 * exp(-outside / (0.12 * uPlateScale))), 0.0, 1.0) * step(0.0, sd));
+  vec3 col = bg;
+  float soft = px + uBlur * 0.8 + 0.06 * uDissolve * (1.0 - uKeep) * uPlateScale;
+  if (sd < soft) {
+    float y1 = 1.0 - x;
+    const float K = 2.6;
+    float base1 = max(1.0 - pow(y1, K), 1e-4);
+    float db = min(pow(y1, K - 1.0) * pow(base1, 1.0 / K - 1.0), 25.0);
+    float s1 = bw * 0.62;
+    float w2 = bw * 0.22;
+    float t2 = clamp((s - s1) / w2, -1.0, 1.0);
+    float dh2 = uDouble * bw * 0.16;
+    float dd = dh2 * 0.5 * cos(t2 * 1.5707963) * 1.5707963 / w2 * step(abs(t2), 0.999);
+    vec2 gDome = -uDome * 2.0 * g * dg * step(g, 1.0);
+    vec2 grad = -(db + dd) * nOut + gDome;
+    vec3 back = mix(uBg, uPlateCol, uIconPlate);
+    vec3 liftG = mix(back + vec3(0.06), mix(back, vec3(1.0), 0.55), uLightGlass);
+    float rblur = uBlur + 0.05 * length(qc - p) + min(uGlow * uOptics * (1.0 - xf) * foot / px, 0.04);
+    float cornerW = smoothstep(0.1, 0.9, 4.0 * nOut.x * nOut.x * nOut.y * nOut.y);
+    float streak = 0.35 * uStreak * bw * mix(0.15, 1.0, cornerW) * pow(1.0 - xf, 1.5) * uOptics;
+    vec2 tangent = vec2(-nOut.y, nOut.x);
+    vec3 acc = vec3(0.0), wsum = vec3(0.0);
+    for (int i = 0; i < 8; i++) {
+      float lam = (float(i) + 0.5) / 8.0;
+      float c = uDisp * (1.0 - 2.0 * lam);
+      vec2 along = tangent * (streak * 2.0 * (fract(float(i) * 0.618034 + 0.31) - 0.5));
+      float cf = uDisp * (1.0 - 2.0 * lam) * (lam > 0.5 ? 1.0 : 0.5);
+      vec2 sp = refractSample(xf, bwF, 1.5 + uEtaSpread * c, R, dirOut, p + along,
+                              dome + pinchPart * 0.3 * c, offMul);
+      vec2 focusL = focus - sign(p) * (0.70710678 * uFocusSplit * c * uPlateScale);
+      float wFocus = pow(1.0 - xf, uFocusK) * smoothstep(0.0, uRimLine * (1.0 + 0.6 * c), xf);
+      sp = mix(sp, mix(p + along, focusL, wFocus), focusW);
+      float faceOnly = smoothstep(0.7, 1.0, xf) * uOptics;
+      sp *= 1.0 + uFaceDisp * cf * faceOnly;
+      vec4 l = logoAt(sp, rblur + 0.12 * streak + uFaceDisp * 0.5 * max(c, 0.0) * faceOnly, foot);
+      vec3 w = vec3(1.0); // Neutral refraction: no RGB or purple fringes.
+      acc += mix(back, l.rgb, l.a) * w;
+      wsum += w;
+    }
+    vec3 trans = acc / wsum;
+    float tl = dot(trans, vec3(0.2126, 0.7152, 0.0722));
+    trans = clamp(tl + (trans - tl) * (1.0 + uVivid * uOptics), 0.0, 1.0);
+    float hazeLum = dot(trans, vec3(0.2126, 0.7152, 0.0722));
+    float hazeGate = mix(1.0 - smoothstep(0.25, 0.75, hazeLum), smoothstep(0.25, 0.75, hazeLum), uLightGlass);
+    trans = mix(trans, liftG, uFrost * 0.45 * hazeGate);
+    float glassAmt = pow(1.0 - uDissolve, 1.5);
+    float lit = uSpec * glassAmt;
+    vec3 rimCol = mix(vec3(0.80, 0.87, 0.97), vec3(1.0), uLightGlass);
+    float sc = uPlateScale;
+    float tLum = dot(trans, vec3(0.2126, 0.7152, 0.0722));
+    float lightOnly = smoothstep(0.35, 0.85, tLum);
+    float hw = smoothstep(-0.85, 0.5, dot(nOut, rot(vec2(0.5, 0.866), uLightAng)));
+    float tileBand = band(s, 0.016 * sc, 0.075 * sc, 0.022 * sc);
+    float dropBand = (1.0 - smoothstep(0.06 * sc, 0.13 * sc, s)) * smoothstep(0.0, 0.004 * sc, s);
+    float glow = mix(0.32 * tileBand, 0.75 * dropBand, uDrop) * lightOnly;
+    float edgeLine = gauss(s, 0.005 * sc, 0.0045 * sc);
+    float lip = gauss(s, 0.15 * sc, 0.007 * sc) * uDouble * (1.0 - uDrop);
+    vec3 lightGlass = mix(trans, vec3(1.0), glow * glassAmt);
+    lightGlass += (0.075 * hw * edgeLine + 0.06 * (0.4 + 0.6 * hw) * lip) * lit;
+    lightGlass *= 1.0 - 0.05 * (1.0 - hw) * edgeLine * glassAmt * (1.0 - uDrop);
+    lightGlass = mix(lightGlass, vec3(1.0), 0.55 * uDrop * glassAmt * edgeLine);
+    vec3 Nl = normalize(vec3(-grad, 1.0));
+    float edge = 1.0 - Nl.z;
+    vec2 ldir = rot(normalize(vec2(-0.62, 0.78)), uLightAng);
+    float side = dot(nOut, ldir);
+    float fres = pow(edge, 1.5);
+    vec3 rim = rimCol * fres * (0.35 + 0.65 * max(side, -side * 0.8)) * uRim * 0.65;
+    vec3 Hv = normalize(normalize(vec3(-0.45, 0.6, 0.66)) + vec3(0.0, 0.0, 1.0));
+    float spc = pow(max(dot(Nl, Hv), 0.0), 140.0) * 0.8 * smoothstep(0.0, 0.25, y1);
+    vec3 darkGlass = trans * (1.0 - 0.25 * fres) + (rim + vec3(spc)) * lit;
+    darkGlass = mix(darkGlass, rimCol, uDrop * 0.4 * uSpec * (1.0 - smoothstep(0.0, 0.1 * uPlateScale, s)));
+    vec3 glass = mix(darkGlass, lightGlass, uLightGlass);
+    float sweepD = dot(p / uPlateScale, normalize(vec2(0.8, 0.6))) - uSweep;
+    float sheen = uSheen * glassAmt * exp(-sweepD * sweepD / 0.03) * (0.55 + 0.45 * (1.0 - x));
+    glass = mix(glass, vec3(1.0), sheen * mix(0.22, 0.42, uLightGlass));
+    float cov = clamp(0.5 - sd / soft, 0.0, 1.0);
+    col = mix(bg, glass, cov);
+  }
+  vec3 outc = mix(plain, col, uPlateAlpha);
+  outc += (hash(gl_FragCoord.xy) - 0.5) / 255.0;
+  outColor = vec4(outc, 1.0);
+}`;
+
+/* ---------------- boot ---------------- */
+var stage = document.getElementById("stage");
+// Adapted from the owner-supplied Qwen reveal. One bounded run; the parent
+// owns skip, reduced motion, scroll locking and teardown of this sandbox.
+var disposed = false, raf = 0, context;
+function signal(type) { parent.postMessage({ source: "hyperchat-intro", type: type }, "*"); }
+function dispose() {
+  disposed = true; cancelAnimationFrame(raf);
+  if (context) { var ext = context.getExtension("WEBGL_lose_context"); if (ext) ext.loseContext(); }
+}
+window.addEventListener("pagehide", dispose);
+window.addEventListener("message", function (event) {
+  if (event.source === parent && event.data === "hyperchat-intro:stop") dispose();
+});
+
+function cssFallback() { signal("fallback"); dispose(); }
+
+function boot() {
+  var canvas = document.createElement("canvas");
+  canvas.setAttribute("aria-hidden", "true");
+  stage.appendChild(canvas);
+  var gl = canvas.getContext("webgl2", { antialias: false, premultipliedAlpha: false });
+  if (!gl) { canvas.remove(); cssFallback(); return; }
+  context = gl;
+  canvas.addEventListener("webglcontextlost", function () { if (!disposed) cssFallback(); });
+  function compile(type, src) {
+    var sh = gl.createShader(type);
+    gl.shaderSource(sh, src); gl.compileShader(sh);
+    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(sh) || "shader");
+    return sh;
+  }
+  var prog;
+  try {
+    prog = gl.createProgram();
+    gl.attachShader(prog, compile(gl.VERTEX_SHADER, VERT));
+    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FRAG));
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog) || "program");
+  } catch (err) { console.error(err); canvas.remove(); cssFallback(); return; }
+  gl.useProgram(prog);
+  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+  var loc = gl.getAttribLocation(prog, "aPos");
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+  var U = {}, count = gl.getProgramParameter(prog, gl.ACTIVE_UNIFORMS);
+  for (var i = 0; i < count; i++) { var info = gl.getActiveUniform(prog, i); U[info.name] = gl.getUniformLocation(prog, info.name); }
+  gl.uniform1i(U.uSdf, 0); gl.uniform1i(U.uCol, 1);
+  gl.uniform1i(U.uSdf2, 2); gl.uniform1i(U.uCol2, 3);
+  gl.uniform1i(U.uSdf3, 4); gl.uniform1i(U.uCol3, 5);
+  var tex = [];
+  for (var ti = 0; ti < 6; ti++) tex.push(gl.createTexture());
+  var hasLogo = false;
+  function params(filter) {
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, filter);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  }
+  function uploadSdf(unit, tt, sdf) {
+    gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, tt);
+    gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.R16F, TEX, TEX, 0, gl.RED, gl.FLOAT, sdf);
+    params(gl.LINEAR);
+  }
+  function uploadCol(unit, tt, cvs) {
+    gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, tt);
+    gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, gl.RGBA, gl.UNSIGNED_BYTE, cvs);
+    gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
+    gl.generateMipmap(gl.TEXTURE_2D);
+    params(gl.LINEAR_MIPMAP_LINEAR);
+  }
+  function render(tilePx) {
+    if (!hasLogo) return;
+    var w = canvas.width, h = canvas.height;
+    gl.viewport(0, 0, w, h);
+    gl.uniform2f(U.uCenter, w / 2, h / 2);
+    gl.uniform1f(U.uTile, tilePx);
+    gl.uniform1f(U.uTexSize, TEX);
+    gl.uniform1f(U.uBoxFrac, BOX);
+    var fr = frameAt(Math.min(time, END), S, outro);
+    for (var k in fr) { var v = fr[k]; if (typeof v === "number" && U[k]) gl.uniform1f(U[k], v); }
+    gl.uniform3fv(U.uBg, fr.uBg);
+    gl.uniform3fv(U.uPlateCol, fr.uPlateCol);
+    gl.uniform3fv(U.uLogoCol, fr.uLogoCol);
+    gl.uniform2fv(U.uLogoOff, fr.uLogoOff);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  }
+
+  var END = 4.5;
+  var time = 0, outro = 0, started = 0;
+
+  function tick(now) {
+    if (disposed) return;
+    if (!started) started = now;
+    time = Math.min(END, (now - started) / 1000 * 1.7);
+    var cw = canvas.clientWidth, ch = canvas.clientHeight;
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.25, 1000 / cw, 720 / ch);
+    var w = Math.max(1, Math.round(cw * dpr)), h = Math.max(1, Math.round(ch * dpr));
+    if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+    var tile = Math.min(S.tileSize, Math.min(cw, ch) / 1.75);
+    render(tile * dpr);
+    if (time >= 4.5) { signal("complete"); return; }
+    raf = requestAnimationFrame(tick);
+  }
+
+
+
+  /* Stage A is mandatory; B and C degrade to A so the reveal can never blank */
+  var jobA = loadLogo(LOGO_A);
+  var jobB = jobA.then(function (a) { return loadLogo(LOGO_B).catch(function () { return a; }); });
+  var jobC = jobA.then(function (a) { return loadLogo(LOGO_C).catch(function () { return a; }); });
+  Promise.all([jobA, jobB, jobC]).then(function (tri) {
+    if (disposed) return;
+    uploadSdf(0, tex[0], tri[0].sdf); uploadCol(1, tex[1], tri[0].canvas);
+    uploadSdf(2, tex[2], tri[1].sdf); uploadCol(3, tex[3], tri[1].canvas);
+    uploadSdf(4, tex[4], tri[2].sdf); uploadCol(5, tex[5], tri[2].canvas);
+    hasLogo = true;
+    signal("ready");
+    raf = requestAnimationFrame(tick);
+  }).catch(function (err) { console.error(err); canvas.remove(); cssFallback(); });
+}
+boot();
+</script>
+</body>
+</html>
