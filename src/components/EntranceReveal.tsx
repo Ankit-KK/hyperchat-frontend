@@ -70,7 +70,6 @@ export default function EntranceReveal({ onComplete }: { onComplete: () => void 
           <g className="entrance-c"><path fillRule="evenodd" d="M305 0H495A95 95 0 0 1 590 95V190A95 95 0 0 1 495 285H305A95 95 0 0 1 210 190V95A95 95 0 0 1 305 0ZM345 65H455A45 45 0 0 1 500 110V170A45 45 0 0 1 455 215H345A45 45 0 0 1 300 170V110A45 45 0 0 1 345 65Z"/><path d="M262 250 375 318 375 250Z"/></g>
         </g>
       </svg>
-      <span className="entrance-wordmark">HYPERCHAT</span>
     </div>
     {!lightweight && <iframe ref={frame} src="/intro/glass-reveal.html" title="HyperChat glass animation"
       sandbox="allow-scripts" tabIndex={-1} aria-hidden="true" data-ready={ready} />}

@@ -1,18 +1,6 @@
-<!-- Integration: owner-supplied Qwen reveal; bounded desktop intro, neutral refraction, isolated renderer. -->
 <!DOCTYPE html>
-<!--
-  HyperChat glass reveal — polished cut.
-  What changed in this pass:
-    · Letters form left→right: the word morph is now a per-pixel wave
-      (mW = uMorph2 * 1.55 - uv.x * 0.55), so HYPERCHAT writes itself on
-      instead of popping in as one block.
-    · The word grows as it forms (wordZoom 1 → 1.45 across the morph), so the
-      ending has real presence instead of a thin strip.
-    · Tighter timeline: split 2.3–2.9s, word 3.05–4.15s, release 4.7s.
-    · Warm vignette over the cream, favicon of the monogram, hint fades in
-      after the droplet lands, reduced-motion rests on the finished word.
-  Palette: backdrop #EAE5DB; ramp #221f1c → #8D857A → #C05B2E on every stage.
--->
+<!-- Owner-supplied Qwen glass renderer adapted to a single HC logo entrance.
+     Neutral/copper refraction, bounded playback, no wordmark formation. -->
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -51,7 +39,7 @@
 </style>
 </head>
 <body>
-<div id="stage" role="img" aria-label="HyperChat monogram splitting into the HyperChat wordmark"></div>
+<div id="stage" role="img" aria-label="HyperChat glass monogram"></div>
 <div class="vignette"></div>
 
 
@@ -67,18 +55,9 @@ var S = {
   drift: 0.12, swell: 0.5, focus: 1, sheen: 1, lightTurn: 0.9,
   hold: 1.6, background: "#f3ede2", plateColor: "#ffffff", logoColor: "#221f1c"
 };
-var SPLIT_A = 2.3, SPLIT_B = 2.9;
-var WORD_A  = 3.05, WORD_B = 4.15;
-var WORD_ZOOM = 0.45;   /* extra presence while the word writes on */
 
 /* Stage A — joined HC monogram (one connected shape) */
 var LOGO_A = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 590 320"><defs><linearGradient id="gA" gradientUnits="userSpaceOnUse" x1="0" y1="160" x2="590" y2="160"><stop offset="0" stop-color="#221f1c"/><stop offset="0.5" stop-color="#8c847b"/><stop offset="1" stop-color="#b8702f"/></linearGradient><mask id="mA"><rect x="0" y="0" width="590" height="320" fill="#ffffff"/><path d="M470 142 L700 55 L700 230 Z" fill="#000000"/></mask></defs><g fill="url(#gA)" mask="url(#mA)"><rect x="0" y="0" width="98" height="285" rx="10"/><rect x="40" y="103" width="200" height="70"/><path fill-rule="evenodd" d="M305 0 H495 A95 95 0 0 1 590 95 V190 A95 95 0 0 1 495 285 H305 A95 95 0 0 1 210 190 V95 A95 95 0 0 1 305 0 Z M345 65 H455 A45 45 0 0 1 500 110 V170 A45 45 0 0 1 455 215 H345 A45 45 0 0 1 300 170 V110 A45 45 0 0 1 345 65 Z"/><path d="M262 250 L375 318 L375 250 Z"/></g></svg>';
-
-/* Stage B — H (stem + crossbar stub) pulled left, C (+ tail) pulled right */
-var LOGO_B = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 320"><defs><linearGradient id="gB" gradientUnits="userSpaceOnUse" x1="0" y1="160" x2="740" y2="160"><stop offset="0" stop-color="#221f1c"/><stop offset="0.5" stop-color="#8c847b"/><stop offset="1" stop-color="#b8702f"/></linearGradient><mask id="mB"><rect x="0" y="0" width="740" height="320" fill="#ffffff"/><path d="M620 142 L850 55 L850 230 Z" fill="#000000"/></mask></defs><g fill="url(#gB)" mask="url(#mB)"><rect x="0" y="0" width="98" height="285" rx="10"/><rect x="40" y="103" width="120" height="70"/><path fill-rule="evenodd" d="M455 0 H645 A95 95 0 0 1 740 95 V190 A95 95 0 0 1 645 285 H455 A95 95 0 0 1 360 190 V95 A95 95 0 0 1 455 0 Z M495 65 H605 A45 45 0 0 1 650 110 V170 A45 45 0 0 1 605 215 H495 A45 45 0 0 1 450 170 V110 A45 45 0 0 1 495 65 Z"/><path d="M412 250 L525 318 L525 250 Z"/></g></svg>';
-
-/* Stage C — the full word, width locked by textLength so no glyph can clip */
-var LOGO_C = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 608 96"><defs><linearGradient id="gC" gradientUnits="userSpaceOnUse" x1="0" y1="48" x2="608" y2="48"><stop offset="0" stop-color="#221f1c"/><stop offset="0.5" stop-color="#8c847b"/><stop offset="1" stop-color="#b8702f"/></linearGradient></defs><text x="4" y="74" textLength="600" lengthAdjust="spacingAndGlyphs" font-family="Helvetica, Arial, sans-serif" font-weight="800" font-size="100" fill="url(#gC)">HYPERCHAT</text></svg>';
 
 /* ---------------- logo → texture + SDF ---------------- */
 var TEX = 512, BOX = 0.75;
@@ -198,7 +177,7 @@ function frameAt(T, P, outro) {
   var release = spring(T - tx - 0.05, 0.65, 1);
   var dome = 0.15 * P.bulge * (1 - smooth(0.4, 0.95, grow));
   /* the word gains presence while it writes on, then the release settles it */
-  var wordZoom = 1 + WORD_ZOOM * smoother(WORD_A, WORD_B + 0.35, T);
+  var wordZoom = 1;
   var view = (1 + (P.startZoom - 1) * (1 - zoomIn)) * (1 - 0.045 * settle) * wordZoom * mix(1, P.finalScale, exit) * (1 - 0.06 * outro);
   var bandW = mix(P.bevelWidth, Math.max(P.bevelWidth, 0.4), drop);
   var plateScale = mix(P.startSize, 1, grow) * (1 + drift) * (1 + 0.14 * release * (1 - keep)) * (1 - keep * (0.03 * release + 0.06 * outro));
@@ -231,8 +210,8 @@ function frameAt(T, P, outro) {
     uSpec: P.specular, uIconPlate: P.iconPlate ? 1 : 0, uUseColor: P.originalColors ? 1 : 0,
     uLightScene: luminance(bg) > 0.5 ? 1 : 0,
     uLightGlass: luminance(P.iconPlate ? hexToRgb(P.plateColor) : bg) > 0.5 ? 1 : 0,
-    uMorph: smoother(SPLIT_A, SPLIT_B, T),
-    uMorph2: smoother(WORD_A, WORD_B, T),
+    uMorph: 0,
+    uMorph2: 0,
     uBg: bg, uPlateCol: hexToRgb(P.plateColor), uLogoCol: hexToRgb(P.logoColor)
   };
 }
@@ -540,7 +519,7 @@ function boot() {
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
 
-  var END = 4.5;
+  var END = 3.4;
   var time = 0, outro = 0, started = 0;
 
   function tick(now) {
@@ -553,17 +532,15 @@ function boot() {
     if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
     var tile = Math.min(S.tileSize, Math.min(cw, ch) / 1.75);
     render(tile * dpr);
-    if (time >= 4.5) { signal("complete"); return; }
+    if (time >= END) { signal("complete"); return; }
     raf = requestAnimationFrame(tick);
   }
 
 
 
-  /* Stage A is mandatory; B and C degrade to A so the reveal can never blank */
-  var jobA = loadLogo(LOGO_A);
-  var jobB = jobA.then(function (a) { return loadLogo(LOGO_B).catch(function () { return a; }); });
-  var jobC = jobA.then(function (a) { return loadLogo(LOGO_C).catch(function () { return a; }); });
-  Promise.all([jobA, jobB, jobC]).then(function (tri) {
+  // Keep the joined HC logo throughout; no split or wordmark textures.
+  loadLogo(LOGO_A).then(function (logo) {
+    var tri = [logo, logo, logo];
     if (disposed) return;
     uploadSdf(0, tex[0], tri[0].sdf); uploadCol(1, tex[1], tri[0].canvas);
     uploadSdf(2, tex[2], tri[1].sdf); uploadCol(3, tex[3], tri[1].canvas);
