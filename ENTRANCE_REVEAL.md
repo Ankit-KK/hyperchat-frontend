@@ -2,8 +2,8 @@
 
 The owner-provided Qwen glass HC reveal plays on each full homepage load or refresh. There is no session or first-visit suppression. Other routes bypass it.
 
-- Fine-pointer desktop above 900px: the supplied glass shader and joined HC logo, adapted in `public/intro/glass-reveal.html`. The timeline runs once at 1.7× speed, keeping the logo intact for roughly 2 seconds of animation, followed by a 420ms fade.
-- Phones, coarse pointers, smaller viewports and Save-Data: a 1.6-second SVG/CSS reveal using the supplied HC silhouette, followed by the same fade. They do not fetch or run the WebGL document.
+- Fine-pointer desktop above 900px: the supplied glass shader and joined HC logo, adapted in `public/intro/glass-reveal.html`. The timeline runs once at 1.7× speed, starting a 420ms fade after roughly 1.6 seconds of animation while the renderer continues moving.
+- Phones, coarse pointers, smaller viewports and Save-Data: a 1.15-second SVG/CSS entrance using the supplied HC silhouette, with the same fade overlapping its final motion. They do not fetch or run the WebGL document.
 - Reduced motion: bypass entirely. Changing the preference during playback dismisses the intro.
 - Skip intro and Escape dismiss it. Keyboard focus stays on Skip while the site is inert, then moves to main content without scrolling.
 - The homepage loads underneath. A 4.5-second deadline plus the fade releases the page even if rendering fails. No simulated progress, backend dependency or waiting for all site assets.
@@ -15,4 +15,4 @@ The original renderer is isolated to preserve its shader without introducing its
 
 Verification covers replay on refresh, automatic exit, keyboard skip/Escape, reduced motion, lightweight devices, renderer failure timeout, focus/scroll restoration, and homepage demo behavior after entry. Real GPU/device performance still varies; physical iPhone/Android checks remain part of the launch handoff.
 
-The intro now uses one shared copper SVG at `src/assets/brand/hc-intro.svg`, traced from the owner's HC reference (connected H, open rounded C, downward speech tail). The parent sends that vector to the sandbox after load. Desktop has no flat-logo placeholder: the renderer is exposed only after its first rendered frame. Mobile/fallback uses the same vector directly, without the original purple gradient.
+The intro now uses one shared charcoal SVG at `src/assets/brand/hc-intro.svg`, traced from the owner's HC reference (connected H, open rounded C, downward speech tail). The parent sends that vector to the sandbox after load. Desktop has no flat-logo placeholder: the renderer is exposed only after its first rendered frame. Mobile/fallback uses the same vector directly, without the original purple gradient.

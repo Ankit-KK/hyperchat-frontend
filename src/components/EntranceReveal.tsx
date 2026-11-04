@@ -46,7 +46,7 @@ export default function EntranceReveal({ onComplete }: { onComplete: () => void 
 
   useEffect(() => {
     if (!lightweight) return;
-    const timer = setTimeout(() => setLeaving(true), 1600);
+    const timer = setTimeout(() => setLeaving(true), 1150);
     return () => clearTimeout(timer);
   }, [lightweight]);
 

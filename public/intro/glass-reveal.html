@@ -46,7 +46,7 @@
 <script>
 "use strict";
 var S = {
-  tileSize: 560, logoScale: 0.8, finalScale: 1.0, logoOffset: [0, 0],
+  tileSize: 560, logoScale: 0.68, finalScale: 1.0, logoOffset: [0, 0],
   iconPlate: false, keepPlate: false, originalColors: true,
   opticalDepth: 1.1, dispersion: 0, colorBleed: 0, doubleBevel: 1, bevelWidth: 0.14, corner: 4.8,
   cornerPull: 2.1, cornerWidth: 2.2, cornerFocus: 0.58, edgeSmear: 2.85, stretch: 0, tilt: 0.35, bulge: 1,
@@ -524,8 +524,8 @@ function boot() {
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
 
-  var END = 3.4;
-  var time = 0, outro = 0, started = 0, announced = false;
+  var FADE_AT = 2.7, END = 3.7;
+  var time = 0, outro = 0, started = 0, announced = false, finishing = false;
 
   function tick(now) {
     if (disposed) return;
@@ -538,7 +538,9 @@ function boot() {
     var tile = Math.min(S.tileSize, Math.min(cw, ch) / 1.75);
     render(tile * dpr);
     if (!announced) { announced = true; signal("ready"); }
-    if (time >= END) { signal("complete"); return; }
+    // Start the parent fade before stopping the renderer, so the glass never freezes.
+    if (time >= FADE_AT && !finishing) { finishing = true; signal("complete"); }
+    if (time >= END) return;
     raf = requestAnimationFrame(tick);
   }
 
