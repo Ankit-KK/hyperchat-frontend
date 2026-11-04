@@ -207,3 +207,22 @@ test("a browser without speech synthesis keeps its message preview usable", asyn
     "This made my evening. Keep creating!",
   );
 });
+
+test('voice stops when the page is backgrounded and can be replayed', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await installSpeechMock(page, voices);
+  await page.goto('/features');
+  await page.getByRole('button', { name: 'Text-to-speech', exact: true }).click();
+  await page.getByRole('button', { name: 'Play voice preview' }).click();
+  await page.evaluate(() => {
+    Object.defineProperty(document, 'hidden', { configurable: true, value: true });
+    document.dispatchEvent(new Event('visibilitychange'));
+  });
+  await expect(page.locator('.voice-preview [role=status]')).toContainText('stopped');
+  expect(await page.evaluate(() => (window as unknown as SpeechTestWindow).speechHarness.active)).toBeNull();
+  await page.evaluate(() => Object.defineProperty(document, 'hidden', { configurable: true, value: false }));
+  await page.getByRole('button', { name: 'Play voice preview' }).click();
+  await expect(page.getByRole('button', { name: 'Stop voice preview' })).toBeVisible();
+  await page.evaluate(() => window.dispatchEvent(new Event('pagehide')));
+  await expect(page.getByRole('button', { name: 'Play voice preview' })).toBeVisible();
+});

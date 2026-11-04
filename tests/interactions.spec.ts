@@ -231,7 +231,7 @@ test("unavailable audio gives feedback and leaves the toolkit usable", async ({
   await selectTool(page, "03 Soundboard");
   await page.getByRole("button", { name: "Play Warm bell" }).click();
   await expect(page.locator(".sound-status")).toContainText(
-    "Audio is unavailable in this browser",
+    "Audio could not play. Press Play to retry",
   );
   await expect(
     page.getByRole("button", { name: "Play Warm bell" }),
@@ -271,4 +271,18 @@ test("overlay sizing and OBS source toggles change their previews", async ({
       () => document.documentElement.scrollWidth <= innerWidth,
     ),
   ).toBeTruthy();
+});
+
+test('stalled sound startup times out and page exit cancels a retry', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.addInitScript(() => { AudioContext.prototype.resume = () => new Promise<void>(() => {}); });
+  await page.goto('/features');
+  await selectTool(page, '03 Soundboard');
+  await page.getByRole('button', { name: 'Play Warm bell' }).click();
+  await expect(page.locator('.sound-status')).toContainText('Starting Warm bell');
+  await expect(page.locator('.sound-status')).toContainText('Audio did not start', { timeout: 7000 });
+  await page.getByRole('button', { name: 'Play Warm bell' }).click();
+  await page.evaluate(() => window.dispatchEvent(new Event('pagehide')));
+  await expect(page.locator('.sound-status')).toContainText('Sound preview stopped');
+  await expect(page.getByRole('button', { name: 'Play Warm bell' })).toBeEnabled();
 });

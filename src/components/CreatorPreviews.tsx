@@ -159,15 +159,37 @@ export function SoundboardPreview() {
     },
     [],
   );
+  useEffect(() => {
+    const pause = () => {
+      if (!context.current) return;
+      stop();
+      setNotice("Sound preview stopped. Press Play to listen again.");
+    };
+    const onVisibility = () => { if (document.hidden) pause(); };
+    window.addEventListener("pagehide", pause);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      window.removeEventListener("pagehide", pause);
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, []);
   const play = async (sound: (typeof sounds)[number]) => {
     stop();
     const version = generation.current;
     setPlaying(sound.name);
+    setNotice(`Starting ${sound.name}…`);
     try {
       const audio = new AudioContext();
       context.current = audio;
+      timer.current = setTimeout(() => {
+        if (version !== generation.current) return;
+        stop();
+        setNotice("Audio did not start. Press Play to retry; check your browser’s sound settings if it happens again.");
+      }, 5000);
       await audio.resume();
       if (version !== generation.current || audio.state === "closed") return;
+      if (audio.state !== "running") throw new Error("Audio context did not start");
+      if (timer.current) clearTimeout(timer.current);
       sound.frequencies.forEach((frequency, i) => {
         const oscillator = audio.createOscillator();
         const gain = audio.createGain();
@@ -188,9 +210,10 @@ export function SoundboardPreview() {
         setNotice(`${sound.name} finished. Choose another example.`);
       }, 750);
     } catch {
+      if (version !== generation.current) return;
       stop();
       setNotice(
-        "Audio is unavailable in this browser. The soundboard layout is still available to explore.",
+        "Audio could not play. Press Play to retry, or check your browser’s sound settings. You can still explore the soundboard.",
       );
     }
   };

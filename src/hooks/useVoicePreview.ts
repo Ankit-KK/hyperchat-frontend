@@ -85,6 +85,16 @@ export function useVoicePreview() {
     setNotice("Voice preview stopped.");
   }, [cancelPlayback]);
 
+  useEffect(() => {
+    const pauseWhenHidden = () => { if (document.hidden && utterance.current) stop(); };
+    window.addEventListener("pagehide", stop);
+    document.addEventListener("visibilitychange", pauseWhenHidden);
+    return () => {
+      window.removeEventListener("pagehide", stop);
+      document.removeEventListener("visibilitychange", pauseWhenHidden);
+    };
+  }, [stop]);
+
   const play = useCallback(() => {
     if (!voice.current) return;
     cancelPlayback();
@@ -112,7 +122,7 @@ export function useVoicePreview() {
         cancelPlayback();
         setIsPlaying(false);
         setNotice(
-          "This device could not play the voice. You can still read the example message.",
+          "This device could not play the voice. Press Play to retry, or read the example message.",
         );
       };
       playbackTimer.current = setTimeout(() => {
@@ -123,12 +133,13 @@ export function useVoicePreview() {
           "Voice preview ended. You can replay it or read the example message.",
         );
       }, 20000);
+      speech.resume?.();
       speech.speak(message);
     } catch {
       cancelPlayback();
       setIsPlaying(false);
       setNotice(
-        "This device could not play the voice. You can still read the example message.",
+        "This device could not play the voice. Press Play to retry, or read the example message.",
       );
     }
   }, [cancelPlayback]);
