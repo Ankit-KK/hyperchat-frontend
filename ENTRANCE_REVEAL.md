@@ -14,3 +14,5 @@ The original renderer is isolated to preserve its shader without introducing its
 `EntranceReveal.tsx` owns timing, skip, fallback and accessibility. `App.tsx` gates only the homepage and defers mounting the companion until the introduction finishes. The existing homepage loading/error UI remains responsible for slow page chunks.
 
 Verification covers replay on refresh, automatic exit, keyboard skip/Escape, reduced motion, lightweight devices, renderer failure timeout, focus/scroll restoration, and homepage demo behavior after entry. Real GPU/device performance still varies; physical iPhone/Android checks remain part of the launch handoff.
+
+The intro now uses one shared copper SVG at `src/assets/brand/hc-intro.svg`, traced from the owner's HC reference (connected H, open rounded C, downward speech tail). The parent sends that vector to the sandbox after load. Desktop has no flat-logo placeholder: the renderer is exposed only after its first rendered frame. Mobile/fallback uses the same vector directly, without the original purple gradient.

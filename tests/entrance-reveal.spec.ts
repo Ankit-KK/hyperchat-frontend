@@ -49,6 +49,9 @@ test('failed desktop renderer remains accessible and releases the homepage', asy
   await page.route('**/intro/glass-reveal.html', route => route.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>Unavailable renderer</title>' }));
   await page.goto('/');
   const intro = page.locator('.entrance-reveal');
+  await expect(intro).toHaveAttribute('data-renderer', 'glass');
+  await expect(intro.locator('.entrance-logo')).toHaveCount(0);
+  await expect(intro.locator('iframe')).toHaveCSS('opacity', '0');
   const result = await new AxeBuilder({ page }).include('.entrance-reveal').disableRules(['frame-tested']).analyze();
   expect(result.violations).toEqual([]);
   await page.keyboard.press('Tab');

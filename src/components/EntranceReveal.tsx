@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import "./EntranceReveal.css";
+import hcLogo from "../assets/brand/hc-intro.svg?raw";
+
+const logoUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(hcLogo)}`;
 
 export default function EntranceReveal({ onComplete }: { onComplete: () => void }) {
   const [lightweight, setLightweight] = useState(() =>
@@ -62,16 +65,11 @@ export default function EntranceReveal({ onComplete }: { onComplete: () => void 
       if (event.key === "Escape") setLeaving(true);
       if (event.key === "Tab") { event.preventDefault(); skip.current?.focus(); }
     }}>
-    <div className="entrance-logo" data-hidden={!lightweight && ready} aria-hidden="true">
-      <svg className="entrance-monogram" viewBox="0 0 590 320" focusable="false">
-        <defs><mask id="entrance-hc-cut"><rect width="590" height="320" fill="white"/><path d="M470 142 700 55 700 230Z" fill="black"/></mask></defs>
-        <g mask="url(#entrance-hc-cut)" fill="currentColor">
-          <g className="entrance-h"><rect width="98" height="285" rx="10"/><rect x="40" y="103" width="200" height="70"/></g>
-          <g className="entrance-c"><path fillRule="evenodd" d="M305 0H495A95 95 0 0 1 590 95V190A95 95 0 0 1 495 285H305A95 95 0 0 1 210 190V95A95 95 0 0 1 305 0ZM345 65H455A45 45 0 0 1 500 110V170A45 45 0 0 1 455 215H345A45 45 0 0 1 300 170V110A45 45 0 0 1 345 65Z"/><path d="M262 250 375 318 375 250Z"/></g>
-        </g>
-      </svg>
-    </div>
+    {lightweight && <div className="entrance-logo" aria-hidden="true">
+      <img className="entrance-monogram" src={logoUrl} alt="" width="400" height="292" />
+    </div>}
     {!lightweight && <iframe ref={frame} src="/intro/glass-reveal.html" title="HyperChat glass animation"
+      onLoad={() => frame.current?.contentWindow?.postMessage({ source: "hyperchat-intro", type: "init", logo: hcLogo }, "*")}
       sandbox="allow-scripts" tabIndex={-1} aria-hidden="true" data-ready={ready} />}
     <button ref={skip} type="button" className="entrance-skip" onClick={() => setLeaving(true)}>Skip intro</button>
   </div>;
