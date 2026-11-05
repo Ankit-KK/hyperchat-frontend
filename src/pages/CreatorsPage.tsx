@@ -1,5 +1,7 @@
 import "./CreatorTermsOverview.css";
 import CreatorOnboarding from "../components/CreatorOnboarding";
+import ScrollMorphHero from "../components/ui/scroll-morph-hero";
+import { showcaseCreators } from "../data/showcase-creators";
 import PageIntro from "./PageIntro";
 export default function CreatorsPage() {
   return (
@@ -19,6 +21,7 @@ export default function CreatorsPage() {
         </dl>
         <p>For creator eligibility and settlement conditions, read our <a href="/terms-and-conditions">Creator Terms</a>. Questions? <a href="mailto:ankit@hyperchat.space?subject=Creator%20fees%20and%20payouts">Contact the team</a>.</p>
       </section>
+      <ScrollMorphHero creators={showcaseCreators} directory />
       <CreatorOnboarding />
       <section
         className="section-shell light page-faq"

@@ -61,7 +61,7 @@ test("creator list provides keyboard flips and an accessible reduced-motion layo
   await page.getByRole("button", { name: "View creator list" }).click();
   const section = page.locator("#creator-showcase");
   await expect(section).toHaveAttribute("data-phase", "grid");
-  const card = section.getByRole("button", { name: /captain_vaani/ });
+  const card = section.locator(".showcase-card").filter({ hasText: "captain_vaani" });
   await card.focus();
   await page.keyboard.press("Enter");
   await expect(card).toHaveAttribute("aria-pressed", "true");

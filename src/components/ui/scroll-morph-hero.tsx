@@ -8,6 +8,7 @@ import {
 import { ArrowUpRight } from "lucide-react";
 import type { ShowcaseCreator } from "@/data/showcase-creators";
 import { selectShowcaseCreators } from "@/lib/creator-selection";
+import CreatorShare, { creatorShareUrl } from "../CreatorShare";
 import { cn } from "@/lib/utils";
 import "./scroll-morph-hero.css";
 
@@ -103,25 +104,40 @@ function CreatorCard({ creator, index, total, phase, size, progress, mouse, grid
           </span>
         </motion.span>
       </button>
-      {grid && <div className="showcase-grid-caption"><a href={creator.url} target="_blank" rel="noopener noreferrer">{creator.name} <ArrowUpRight size={12} aria-hidden="true" /><span className="sr-only"> — open creator page in new tab</span></a>{creator.ambassador && <span className="showcase-ambassador">Brand ambassador</span>}</div>}
+      {grid && <div className="showcase-grid-caption"><button className="creator-select" type="button" aria-pressed={selected} onClick={onSelect}>Select {creator.name}</button><a href={creator.url} target="_blank" rel="noopener noreferrer">{creator.name} <ArrowUpRight size={12} aria-hidden="true" /><span className="sr-only"> — open creator page in new tab</span></a>{creator.ambassador && <span className="showcase-ambassador">Brand ambassador</span>}<CreatorShare id={creator.id} name={creator.name} /></div>}
     </motion.div>
   );
 }
 
-export default function ScrollMorphHero({ creators, className }: { creators: ShowcaseCreator[]; className?: string }) {
+export default function ScrollMorphHero({ creators, className, directory = false }: { creators: ShowcaseCreator[]; className?: string; directory?: boolean }) {
   const section = useRef<HTMLElement>(null);
   const stage = useRef<HTMLDivElement>(null);
   const cardArea = useRef<HTMLDivElement>(null);
   const inView = useInView(section, { amount: "some", once: true });
   const reduced = useSyncExternalStore(subscribeMotionPreference, readMotionPreference, () => false);
-  const [list, setList] = useState(false);
-  const grid = !!reduced || list;
+  const [list, setList] = useState(directory);
+  const grid = directory || !!reduced || list;
   const [query, setQuery] = useState("");
   const [limit, setLimit] = useState(24);
   const matching = creators.filter(creator => `${creator.name} ${creator.id}`.toLowerCase().includes(query.trim().toLowerCase()));
   const featured = useMemo(() => selectShowcaseCreators(creators), [creators]);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const selectedCreator = featured[selectedIndex] ?? featured[0];
+  const [selectedId, setSelectedId] = useState<string | null>(() => directory ? new URLSearchParams(window.location.search).get("creator") : null);
+  const selectedCreator = creators.find(creator => creator.id === selectedId) ?? (!grid ? featured[0] : undefined);
+  const profile = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!directory) return;
+    const sync = () => setSelectedId(new URLSearchParams(window.location.search).get("creator"));
+    window.addEventListener("popstate", sync);
+    return () => window.removeEventListener("popstate", sync);
+  }, [directory]);
+  const selectCreator = (id: string) => {
+    setSelectedId(id);
+    if (directory) window.history.replaceState(null, "", creatorShareUrl(id));
+    if (grid) requestAnimationFrame(() => {
+      profile.current?.focus({ preventScroll: true });
+      profile.current?.scrollIntoView({ behavior: "instant", block: "center" });
+    });
+  };
   const visibleCreators = grid ? matching.slice(0, limit) : featured;
   const [phase, setPhase] = useState<AnimationPhase>("scatter");
   const [size, setSize] = useState<Size>({ width: 1200, height: 800 });
@@ -166,7 +182,7 @@ export default function ScrollMorphHero({ creators, className }: { creators: Sho
         </header>
         <div className="showcase-controls">
           <span className="showcase-demo-label">{creators.length} CREATORS · THREE BRAND AMBASSADORS</span>
-          {!reduced && <button type="button" onClick={openList} aria-pressed={list}>
+          {!directory && !reduced && <button type="button" onClick={openList} aria-pressed={list}>
             {list ? "View scroll experience" : "View creator list"}<ArrowUpRight size={13} aria-hidden="true" />
           </button>}
         </div>
@@ -180,11 +196,19 @@ export default function ScrollMorphHero({ creators, className }: { creators: Sho
           <p>Your kind of live.<br /><em>Their way to join in.</em></p>
           <span>A clutch finish. A final song. A conversation worth joining. Give viewers a way to respond in the moment.</span>
         </motion.div>}
+        {grid && selectedCreator && <div className="creator-shared-profile" ref={profile} tabIndex={-1} aria-label={`Selected creator: ${selectedCreator.name}`}>
+          {selectedCreator.image && <img src={selectedCreator.image} alt="" width="96" height="96" />}
+          <div><span>{selectedCreator.ambassador ? "Brand ambassador" : "Selected creator"}</span><h3>{selectedCreator.name}</h3>
+            <a href={selectedCreator.url} target="_blank" rel="noopener noreferrer">Visit creator page <ArrowUpRight size={14} aria-hidden="true" /><span className="sr-only"> — opens in a new tab</span></a>
+          </div>
+          <CreatorShare key={selectedCreator.id} id={selectedCreator.id} name={selectedCreator.name} />
+        </div>}
+        {directory && selectedId && !selectedCreator && <p className="creator-share-missing" role="status">This creator link is no longer available. Search the directory below to find a creator.</p>}
         {grid && <div className="showcase-directory-controls"><label htmlFor="creator-search">Find a creator</label><input id="creator-search" type="search" value={query} placeholder="Search names or handles" onChange={event => { setQuery(event.target.value); setLimit(24); }} /><p role="status">{matching.length} {matching.length === 1 ? "creator" : "creators"}{matching.length === 0 ? " found. Try another name." : ` · showing ${Math.min(limit, matching.length)}`}</p></div>}
         <div className="showcase-cards" ref={cardArea}>
           {visibleCreators.map((creator, index) => <CreatorCard key={creator.id} creator={creator} index={index}
             total={visibleCreators.length} phase={phase} size={size} progress={scrollYProgress} mouse={smoothMouse} grid={grid}
-            selected={selectedCreator?.id === creator.id} onSelect={() => setSelectedIndex(index)} />)}
+            selected={selectedCreator?.id === creator.id} onSelect={() => selectCreator(creator.id)} />)}
         </div>
         {!grid && selectedCreator && <div className="showcase-selected-creator">
           <div aria-live="polite" aria-atomic="true">
