@@ -14,6 +14,7 @@ const HomePage = lazy(() => import("./pages/HomePage"));
 const FeaturesPage = lazy(() => import("./pages/FeaturesPage"));
 const CreatorsPage = lazy(() => import("./pages/CreatorsPage"));
 const CompanyPage = lazy(() => import("./pages/CompanyPage"));
+const WhatsNewPage = lazy(() => import("./pages/WhatsNewPage"));
 const SupportPage = lazy(() => import("./pages/SupportPage"));
 const LegalPage = lazy(() => import("./pages/LegalPage"));
 const legalTitles: Record<string, string> = {
@@ -34,6 +35,8 @@ export default function App() {
       <FeaturesPage />
     ) : path === "/creators" ? (
       <CreatorsPage />
+    ) : path === "/whats-new" ? (
+      <WhatsNewPage />
     ) : path === "/support" ? (
       <SupportPage />
     ) : path === "/company" ? (

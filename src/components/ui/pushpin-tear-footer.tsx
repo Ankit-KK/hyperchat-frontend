@@ -241,6 +241,7 @@ const groups = [
     links: [
       ["Home", "/"],
       ["Features", "/features"],
+      ["What’s new", "/whats-new"],
       ["For creators", "/creators"],
     ],
   },
@@ -388,7 +389,7 @@ export default function PushpinTearFooter() {
   };
 
   return (
-    <footer ref={footer} className="tear-footer" aria-label="HyperChat footer">
+    <footer id="footer" ref={footer} className="tear-footer" aria-label="HyperChat footer">
       <div className="tear-footer-content">
         <div className="tear-footer-top">
           <a className="tear-footer-brand" href="/" aria-label="HyperChat V2 home">

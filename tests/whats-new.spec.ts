@@ -1,0 +1,32 @@
+import { test, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+
+test('updates filter, keyboard access, layout and metadata', async ({ page }, testInfo) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/whats-new');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('A little better. Every update.');
+  await expect(page).toHaveTitle('What’s New at HyperChat — Website Updates');
+  await expect(page.locator('#update-list article')).toHaveCount(5);
+  const fixed = page.getByRole('button', { name: 'Fixed', exact: true });
+  await fixed.focus();
+  await page.keyboard.press('Enter');
+  await expect(fixed).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#update-list article')).toHaveCount(1);
+  await expect(page.locator('#update-list')).toContainText('Audio that knows when to pause.');
+  await page.getByRole('button', { name: 'Added', exact: true }).click();
+  await expect(page.locator('#update-list article')).toHaveCount(2);
+  await page.getByRole('button', { name: 'Improved', exact: true }).click();
+  await expect(page.locator('#update-list article')).toHaveCount(2);
+  await page.getByRole('link', { name: 'Find companion controls' }).click();
+  await expect(page).toHaveURL(/#footer$/);
+  await expect(page.locator('#footer')).toBeInViewport();
+  await page.getByRole('button', { name: 'All', exact: true }).click();
+  await page.evaluate(() => scrollTo(0, 0));
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  const issues = await new AxeBuilder({ page }).include('main').analyze();
+  expect(issues.violations).toEqual([]);
+  await page.screenshot({ path: `/tmp/whats-new-${testInfo.project.name}.png`, fullPage: true });
+  const toggle = page.getByRole('button', { name: 'Open navigation' });
+  if (await toggle.isVisible()) await toggle.click();
+  await expect(page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'What’s new' })).toHaveAttribute('aria-current', 'page');
+});

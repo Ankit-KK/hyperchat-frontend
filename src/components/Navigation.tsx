@@ -4,6 +4,7 @@ const links = [
   { href: "/features", text: "Features" },
   { href: "/creators", text: "For creators" },
   { href: "/company", text: "Company" },
+  { href: "/whats-new", text: "What’s new" },
   { href: "/support", text: "Support" },
 ];
 export default function Navigation() {
