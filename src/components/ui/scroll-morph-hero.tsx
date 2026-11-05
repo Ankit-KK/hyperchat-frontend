@@ -84,7 +84,7 @@ function CreatorCard({ creator, index, total, phase, size, progress, mouse, grid
   const portraitSelection = size.mobile && !grid;
   const back = !portraitSelection && (flipped || hovered);
   return (
-    <motion.div data-creator-id={creator.id} className={cn("showcase-card-position", grid && "showcase-card-grid")}
+    <motion.div data-creator-id={creator.id} data-selected={grid && selected || undefined} className={cn("showcase-card-position", grid && "showcase-card-grid")}
       style={grid ? undefined : { x, y, rotate, scale }}>
       <button type="button" className="showcase-card" data-tone={index % 4} data-ambassador={creator.ambassador || undefined}
         aria-label={portraitSelection ? creator.name + (creator.ambassador ? " — Brand ambassador" : "") : undefined}
@@ -118,25 +118,38 @@ export default function ScrollMorphHero({ creators, className, directory = false
   const [list, setList] = useState(directory);
   const grid = directory || !!reduced || list;
   const [query, setQuery] = useState("");
-  const [limit, setLimit] = useState(24);
+  const sharedLimit = (id: string | null) => Math.max(24, Math.ceil((creators.findIndex(creator => creator.id === id) + 1) / 24) * 24);
+  const [limit, setLimit] = useState(() => directory ? sharedLimit(new URLSearchParams(window.location.search).get("creator")) : 24);
   const matching = creators.filter(creator => `${creator.name} ${creator.id}`.toLowerCase().includes(query.trim().toLowerCase()));
   const featured = useMemo(() => selectShowcaseCreators(creators), [creators]);
   const [selectedId, setSelectedId] = useState<string | null>(() => directory ? new URLSearchParams(window.location.search).get("creator") : null);
   const selectedCreator = creators.find(creator => creator.id === selectedId) ?? (!grid ? featured[0] : undefined);
-  const profile = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!directory) return;
-    const sync = () => setSelectedId(new URLSearchParams(window.location.search).get("creator"));
+    const sync = () => {
+      const id = new URLSearchParams(window.location.search).get("creator");
+      setSelectedId(id);
+      setQuery("");
+      setLimit(sharedLimit(id));
+    };
     window.addEventListener("popstate", sync);
     return () => window.removeEventListener("popstate", sync);
-  }, [directory]);
+  }, [directory, creators]);
+  useEffect(() => {
+    if (!directory || !selectedId) return;
+    let second = 0;
+    const first = requestAnimationFrame(() => {
+      second = requestAnimationFrame(() => {
+        const card = Array.from(cardArea.current?.querySelectorAll<HTMLElement>("[data-creator-id]") ?? [])
+          .find(element => element.dataset.creatorId === selectedId);
+        card?.scrollIntoView({ behavior: "instant", block: "center" });
+      });
+    });
+    return () => { cancelAnimationFrame(first); cancelAnimationFrame(second); };
+  }, [directory, selectedId]);
   const selectCreator = (id: string) => {
     setSelectedId(id);
     if (directory) window.history.replaceState(null, "", creatorShareUrl(id));
-    if (grid) requestAnimationFrame(() => {
-      profile.current?.focus({ preventScroll: true });
-      profile.current?.scrollIntoView({ behavior: "instant", block: "center" });
-    });
   };
   const visibleCreators = grid ? matching.slice(0, limit) : featured;
   const [phase, setPhase] = useState<AnimationPhase>("scatter");
@@ -170,7 +183,7 @@ export default function ScrollMorphHero({ creators, className, directory = false
   };
   return (
     <section id="creator-showcase" ref={section} aria-labelledby="showcase-title"
-      className={cn("creator-showcase", grid && "showcase-list", className)} data-phase={grid ? "grid" : phase}>
+      className={cn("creator-showcase", grid && "showcase-list", directory && "showcase-directory", className)} data-phase={grid ? "grid" : phase}>
       <div ref={stage} className="showcase-stage"
         onPointerMove={(event) => {
           if (grid || event.pointerType !== "mouse") return;
@@ -196,13 +209,6 @@ export default function ScrollMorphHero({ creators, className, directory = false
           <p>Your kind of live.<br /><em>Their way to join in.</em></p>
           <span>A clutch finish. A final song. A conversation worth joining. Give viewers a way to respond in the moment.</span>
         </motion.div>}
-        {grid && selectedCreator && <div className="creator-shared-profile" ref={profile} tabIndex={-1} aria-label={`Selected creator: ${selectedCreator.name}`}>
-          {selectedCreator.image && <img src={selectedCreator.image} alt="" width="96" height="96" />}
-          <div><span>{selectedCreator.ambassador ? "Brand ambassador" : "Selected creator"}</span><h3>{selectedCreator.name}</h3>
-            <a href={selectedCreator.url} target="_blank" rel="noopener noreferrer">Visit creator page <ArrowUpRight size={14} aria-hidden="true" /><span className="sr-only"> — opens in a new tab</span></a>
-          </div>
-          <CreatorShare key={selectedCreator.id} id={selectedCreator.id} name={selectedCreator.name} />
-        </div>}
         {directory && selectedId && !selectedCreator && <p className="creator-share-missing" role="status">This creator link is no longer available. Search the directory below to find a creator.</p>}
         {grid && <div className="showcase-directory-controls"><label htmlFor="creator-search">Find a creator</label><input id="creator-search" type="search" value={query} placeholder="Search names or handles" onChange={event => { setQuery(event.target.value); setLimit(24); }} /><p role="status">{matching.length} {matching.length === 1 ? "creator" : "creators"}{matching.length === 0 ? " found. Try another name." : ` · showing ${Math.min(limit, matching.length)}`}</p></div>}
         <div className="showcase-cards" ref={cardArea}>

@@ -173,16 +173,11 @@
 .creator-select[aria-pressed="true"] { text-decoration: underline; text-decoration-color: #946030; text-underline-offset: 4px; }
 .creator-share-fallback { display: block; max-width: 100%; font-size: 12px; line-height: 1.6; }
 .creator-share-fallback input { display: block; width: 100%; min-width: 0; padding: 10px; color: var(--charcoal); background: var(--ivory); border: 1px solid var(--stone); font-size: 16px; }
-.creator-shared-profile { display: flex; gap: 24px; align-items: center; max-width: 1120px; margin: 0 auto 28px; padding: 24px 0; border-top: 1px solid var(--sand); scroll-margin-top: 110px; }
-.creator-shared-profile img { width: 96px; height: 96px; object-fit: cover; flex-shrink: 0; }
-.creator-shared-profile > div { min-width: 0; }
-.creator-shared-profile h3 { font-size: clamp(24px, 3vw, 36px); margin: 6px 0; overflow-wrap: anywhere; }
-.creator-shared-profile span { font-size: 12px; }
-.creator-shared-profile a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 13px; text-decoration: underline; text-underline-offset: 4px; }
-.creator-shared-profile > .creator-share { margin-left: auto; }
 .creator-share-missing { max-width: 1120px; margin: 0 auto 24px; line-height: 1.7; }
+/* Selection marks the existing card without giving anyone a larger feature slot. */
+.showcase-card-grid[data-selected="true"] { outline: 1px solid #946030; outline-offset: 8px; }
+.showcase-directory .showcase-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 900px; }
+.showcase-directory .showcase-grid-caption { display: flex; flex-direction: column; align-items: flex-start; }
 @media(max-width:600px) {
- .creator-shared-profile { flex-wrap: wrap; gap: 16px; }
- .creator-shared-profile > div:not(.creator-share) { flex: 1; }
- .creator-shared-profile > .creator-share { margin-left: 0; width: 100%; }
+ .showcase-directory .showcase-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
