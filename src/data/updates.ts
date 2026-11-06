@@ -15,7 +15,7 @@ export const websiteUpdates: WebsiteUpdate[] = [
   {
     id: "logo-header-transition", date: "2026-11-07", type: "Improved",
     title: "From first impression to the first moment.",
-    description: "The HC reveal now moves from the centre toward the navigation as the homepage appears. Desktop and phones share the glass reveal. Only the transparent logo travels toward the header, with a slower 1.2-second handoff; reduced-motion preferences bypass the intro.",
+    description: "The HC reveal now moves from the centre toward the navigation as the homepage appears. Desktop and phones share the glass reveal. Only the transparent logo travels toward the header, with a slower 1.6-second handoff; reduced-motion preferences bypass the intro.",
     href: "/", linkLabel: "See the new entrance",
   },
   {
