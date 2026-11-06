@@ -70,7 +70,7 @@ export default function EntranceReveal({ onComplete }: { onComplete: () => void 
     const timer = setTimeout(() => {
       frame.current?.contentWindow?.postMessage("hyperchat-intro:stop", "*");
       complete.current();
-    }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 800);
+    }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 1200);
     return () => clearTimeout(timer);
   }, [leaving]);
 
