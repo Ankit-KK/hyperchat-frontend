@@ -13,6 +13,24 @@ export interface WebsiteUpdate {
 // Add new entries at the top; filters and counts update automatically.
 export const websiteUpdates: WebsiteUpdate[] = [
   {
+    id: "readable-first-load", date: "2026-11-06", type: "Improved",
+    title: "Useful from the first load.",
+    description: "Key pages now include readable summaries and navigation before the interactive experience loads, helping visitors and search engines understand the site. We also reduced the ClipWave logo’s download size by about 92% without changing its design.",
+    href: "/features", linkLabel: "Explore HyperChat",
+  },
+  {
+    id: "equal-ambassador-presence", date: "2026-11-05", type: "Fixed",
+    title: "Three ambassadors. Equal presence.",
+    description: "captain_vaani, Chiaa and Latifa lead the creator directory with equal-size cards. Shared links now highlight a creator’s existing card instead of placing one person in a separate spotlight.",
+    href: "/creators#creator-showcase", linkLabel: "Meet the creators",
+  },
+  {
+    id: "share-creator-links", date: "2026-11-05", type: "Added",
+    title: "A creator worth sharing.",
+    description: "Copy a direct link to any creator in the directory. Opening it selects and reveals their card, even beyond the first page of results. Copy confirmation and a manual-copy fallback make sharing easier.",
+    href: "/creators#creator-showcase", linkLabel: "Find a creator to share",
+  },
+  {
     id: "audio-preview", date: "2026-11-04", type: "Fixed",
     title: "Audio that knows when to pause.",
     description: "Voice and sound previews now stop when you leave the page or switch tabs. If playback cannot start, clearer feedback helps you try again.",
