@@ -5,7 +5,7 @@ entry for each public route, with its title, description, canonical, Open Graph,
 Twitter card, and JSON-LD present **before JavaScript executes**. Vercel clean URLs
 serve these documents directly instead of rewriting every route to the homepage.
 The interactive body still renders on the client; a readable summary/navigation
-is included for no-JavaScript visitors. This is not full server rendering of all
+is delivered inside the initial root for every visitor, including crawlers and no-JavaScript visitors. React replaces this summary when the interactive page loads. This is not full server rendering of all
 page content.
 
 ## Launch configuration
@@ -23,7 +23,7 @@ preview HTML carries `noindex, follow`, and its sitemap is empty. Robots may cra
 to read that directive; do not block them with `Disallow: /`.
 
 When the final domain serves V2, set `VITE_SEO_INDEXABLE=true` in that Vercel
-production environment and redeploy. This emits nine public sitemap URLs and
+production environment and redeploy. This emits all indexable routes from the metadata catalogue and
 adds the sitemap location to robots.txt. Branch/PR preview builds remain noindex
 regardless of the launch flag. Demo signup and 404 stay noindex in every build.
 Archived policies have a noindex response header. No backend is required.
@@ -35,8 +35,10 @@ the final site origin. Protected Vercel previews cannot be scraped by social bot
 
 ## Editing and assets
 
+- `src/data/seo-content.json`: accurate primary-page summaries and contextual links; keep these aligned with visible page copy. These are summaries, not full prerenders. Legal routes identify the policy and direct readers to the JavaScript-enabled full text or support.
+- `src/data/updates.ts`: feeds both the interactive changelog and its initial HTML, avoiding stale duplicate entries.
 - `src/data/seo.json`: page titles/descriptions, default domain, image and alt text.
-- `scripts/build-seo.mjs`: static head metadata, noscript fallback, sitemap, robots,
+- `scripts/build-seo.mjs`: static head metadata, readable body summaries, sitemap, robots,
   and error document generation. Safe to rerun on an existing build.
 - `src/lib/seo.ts`: metadata consistency in development and unknown-route fallbacks.
 - `public/social/hyperchat-og.png`: local 1200×630 share artwork (~58 KB), rendered
@@ -45,7 +47,7 @@ the final site origin. Protected Vercel previews cannot be scraped by social bot
   Production builds use the committed image and need no browser installation.
 - `public/favicon.svg`: ivory HC typography on charcoal with a copper accent.
 
-Structured data describes the site, pages, and Streamheart Private Limited.
+Structured data describes the site, pages, Streamheart Private Limited, and canonical page breadcrumbs.
 No ratings, testimonials, offers, SLA, certification badges, or production usage
 statistics were invented. No tracking or analytics was introduced.
 
@@ -71,3 +73,14 @@ Once deployed to the final domain:
 3. Inspect real social previews; platform caches may need a refresh.
 4. Measure Core Web Vitals on physical devices and real traffic. No ranking or
    performance score is claimed from local checks.
+
+Builds use Node 24 (pinned in `.node-version` and package engines), including its native TypeScript data import support. No browser is required for deployment builds.
+
+## November 6, 2026 audit
+
+- Initial HTML now includes route-specific, readable body summaries and contextual links for the six primary pages. The changelog uses the same update data as React. This is not full SSR; legal text and interactive creator search still require JavaScript.
+- Added canonical breadcrumb structured data for inner pages. Existing titles, descriptions, social previews, canonical handling, redirects and preview exclusions were retained.
+- A local Lighthouse mobile run before image optimization measured performance 87, LCP 3.8 s, TBT 50 ms and CLS 0. These are simulated lab measurements, not field Core Web Vitals. SEO scored 69 because the preview intentionally carries `noindex`; indexing was not enabled to improve a score.
+- The audit identified an oversized ClipWave PNG. The rendered asset now uses a 440×331 WebP (39,886 bytes versus 508,596 bytes), preserving the original PNG as a source asset.
+- The supplied ElevenLabs badge CDN returned HTTP 403 from this environment. Its existing text fallback remains available. Recheck the external badge from production; no replacement brand artwork was invented.
+- Remaining launch work: final-domain indexing switch, live redirect/status verification, Search Console/Bing ownership and sitemap submission, real social-preview checks, and real-device performance measurements. The current LCP result remains an improvement opportunity.

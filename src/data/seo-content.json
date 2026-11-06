@@ -1,0 +1,116 @@
+{
+  "/": {
+    "heading": "Your stream. Their voice. A shared moment.",
+    "sections": [
+      {
+        "heading": "Live interactions for creators",
+        "text": "HyperChat brings messages, text-to-speech, recorded voices, sounds and media into a creator’s existing stream. Creators choose which interactions appear through their moderation settings.",
+        "href": "/features",
+        "label": "Explore interaction features"
+      },
+      {
+        "heading": "Built for your stream",
+        "text": "Explore local previews of audience interactions, the moderation queue and the journey from a viewer’s message to an OBS alert. Preview actions do not affect a real broadcast.",
+        "href": "/creators",
+        "label": "Creator fees, profiles and onboarding"
+      },
+      {
+        "heading": "The people behind HyperChat",
+        "text": "HyperChat is a product of Streamheart Private Limited, a DPIIT-recognised startup. Our partners include ClipWave and Soraivy, with support from ElevenLabs Grants.",
+        "href": "/company",
+        "label": "Meet the company and partners"
+      }
+    ]
+  },
+  "/features": {
+    "heading": "More ways to join the moment.",
+    "sections": [
+      {
+        "heading": "Messages, text-to-speech and recorded voice",
+        "text": "Text-to-speech reads a viewer’s typed message using a generated voice. A voice message plays the viewer’s own recorded audio. This website offers local previews; it does not record or submit voice messages."
+      },
+      {
+        "heading": "Soundboard, images and GIFs",
+        "text": "Explore sound and media previews alongside text and voice. Interaction types depend on what a creator enables."
+      },
+      {
+        "heading": "OBS alerts and creator controls",
+        "text": "Follow the interaction journey from viewer to HyperChat, OBS and the live stream. Try the local moderation preview to review, approve or hide example interactions.",
+        "href": "/support",
+        "label": "Get help with OBS, audio and moderation"
+      }
+    ]
+  },
+  "/creators": {
+    "heading": "Your next chapter starts here.",
+    "sections": [
+      {
+        "heading": "Creator fees and payouts",
+        "text": "HyperChat’s platform fee is 11%. Payouts are monthly, and international payments are accepted. Eligibility and settlement conditions are covered in the Creator Terms.",
+        "href": "/terms-and-conditions",
+        "label": "Read the Creator Terms"
+      },
+      {
+        "heading": "Meet the creators",
+        "text": "Explore our creator directory, including brand ambassadors captain_vaani, Chiaa and Latifa. JavaScript enables creator search and shareable profile selections."
+      },
+      {
+        "heading": "Prepare for onboarding",
+        "text": "V2 verification and activation are still being completed. For onboarding questions, contact ankit@hyperchat.space. HyperChat adds interactions to an existing broadcast through OBS browser sources.",
+        "href": "/support",
+        "label": "Find setup help"
+      }
+    ]
+  },
+  "/company": {
+    "heading": "Built around human connection.",
+    "sections": [
+      {
+        "heading": "Streamheart Private Limited",
+        "text": "HyperChat is a product of Streamheart Private Limited. We help live creators bring their audiences into the conversation. Streamheart Private Limited is recognised under the Startup India initiative."
+      },
+      {
+        "heading": "Partners and support",
+        "text": "ClipWave helps creators generate stream clips. Soraivy is a creator-first video platform built in India, designed to help small and emerging creators grow faster and earn more. HyperChat is supported by ElevenLabs Grants."
+      },
+      {
+        "heading": "Get in touch",
+        "text": "For creator, company or partnership enquiries, contact ankit@hyperchat.space.",
+        "href": "/support",
+        "label": "Contact and support"
+      }
+    ]
+  },
+  "/support": {
+    "heading": "Keep the moment going.",
+    "sections": [
+      {
+        "heading": "OBS alerts and audio",
+        "text": "Check that your browser source is visible in the active OBS scene. For audio, check the mixer, volume and monitoring device. A short local recording helps verify what your audience will hear."
+      },
+      {
+        "heading": "Voice previews and moderation",
+        "text": "The website’s speech preview uses a local voice provided by your browser or device. An interaction may wait for moderation or earlier items in the queue. Sending an interaction does not guarantee immediate on-stream appearance.",
+        "href": "/features",
+        "label": "Explore the local previews"
+      },
+      {
+        "heading": "Contact the team",
+        "text": "Email ankit@hyperchat.space for help. For payment and delivery questions, consult the viewer terms and refund policy.",
+        "href": "/cancellation-refunds",
+        "label": "Read the refund and cancellation policy"
+      }
+    ]
+  },
+  "/whats-new": {
+    "heading": "A little better. Every update.",
+    "sections": [
+      {
+        "heading": "Website and interactive preview updates",
+        "text": "Follow additions, improvements and fixes to HyperChat’s public website. These entries describe website changes as we build toward V2.",
+        "href": "/features",
+        "label": "Explore the interactive previews"
+      }
+    ]
+  }
+}

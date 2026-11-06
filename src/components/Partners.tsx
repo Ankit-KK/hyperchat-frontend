@@ -10,7 +10,7 @@ export default function Partners({ compact = false }: { compact?: boolean }) {
     <div className="partners-grid">
       <article className="partner-card" data-reveal>
         <span className="eyebrow">OUR PARTNER</span>
-        <div className="partner-brand"><img src="/partners/clipwave.png" alt="ClipWave" width="851" height="640" loading="lazy" decoding="async" /></div>
+        <div className="partner-brand"><img src="/partners/clipwave.webp" alt="ClipWave" width="440" height="331" loading="lazy" decoding="async" /></div>
         {!compact && <h3>Keep the moment going.</h3>}
         <p>ClipWave helps creators automatically generate stream clips, maintain public clip pages, and send clip notifications to Discord.</p>
         <a href="https://platform.clipwave.site/" target="_blank" rel="noopener noreferrer">Visit ClipWave <ArrowUpRight size={16} aria-hidden="true"/><span className="sr-only"> (opens in a new tab)</span></a>

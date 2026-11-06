@@ -67,3 +67,29 @@ test('prelaunch social images use the reachable deployment rather than the old l
     assert.ok(html.includes('rel="canonical" href="https://www.hyperchat.space/"'));
   });
 });
+
+test('primary routes ship useful body content and links outside noscript', async () => {
+  await fixture({VITE_SEO_INDEXABLE:'false'}, async read => {
+    for (const file of ['index.html','features.html','creators.html','company.html','support.html','whats-new.html']) {
+      const html = await read(file);
+      const body = html.match(/<!-- STATIC:START -->(.*?)<!-- STATIC:END -->/s)[1];
+      assert.ok(body.includes('<main'));
+      assert.ok(body.includes('<h2>'));
+      assert.ok(!body.includes('<noscript>'));
+      assert.ok(body.includes('href="/whats-new"'));
+      assert.equal((body.match(/<h1>/g) || []).length, 1);
+    }
+    assert.ok((await read('creators.html')).includes('11%'));
+    assert.ok((await read('features.html')).includes('Soundboard, images and GIFs'));
+    assert.ok((await read('whats-new.html')).includes('Audio that knows when to pause.'));
+  });
+});
+test('breadcrumbs use canonical route URLs without duplicate homepage crumbs', async () => {
+  await fixture({VITE_SEO_INDEXABLE:'true',VERCEL_ENV:'production'}, async read => {
+    const html = await read('features.html');
+    const graph = JSON.parse(html.match(/<script id="seo-schema" type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph'];
+    const breadcrumbs = graph.find(item => item['@type'] === 'BreadcrumbList');
+    assert.deepEqual(breadcrumbs.itemListElement.map(item => item.item), ['https://www.hyperchat.space/','https://www.hyperchat.space/features']);
+    assert.ok(!(await read('index.html')).includes('BreadcrumbList'));
+  });
+});
