@@ -6,7 +6,6 @@ const logoUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(hcLogo)}`
 
 export default function EntranceReveal({ onComplete }: { onComplete: () => void }) {
   const [lightweight, setLightweight] = useState(() =>
-    matchMedia("(max-width: 900px), (pointer: coarse)").matches ||
     Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData),
   );
   const [ready, setReady] = useState(false);
@@ -56,6 +55,7 @@ export default function EntranceReveal({ onComplete }: { onComplete: () => void 
       const brand = document.querySelector(".header .brand")?.getBoundingClientRect();
       if (!brand || !overlay.current) return;
       const logoWidth = lightweight ? Math.min(240, Math.max(130, innerWidth * .28)) : Math.min(560, Math.min(innerWidth, innerHeight) / 1.75) * .68;
+      overlay.current.style.setProperty("--flight-width", `${logoWidth}px`);
       overlay.current.style.setProperty("--dock-x", `${brand.left + 18 - innerWidth / 2}px`);
       overlay.current.style.setProperty("--dock-y", `${brand.top + brand.height / 2 - innerHeight / 2}px`);
       overlay.current.style.setProperty("--dock-scale", `${36 / logoWidth}`);
@@ -67,7 +67,6 @@ export default function EntranceReveal({ onComplete }: { onComplete: () => void 
 
   useEffect(() => {
     if (!leaving) return;
-    frame.current?.contentWindow?.postMessage("hyperchat-intro:dock", "*");
     const timer = setTimeout(() => {
       frame.current?.contentWindow?.postMessage("hyperchat-intro:stop", "*");
       complete.current();
@@ -81,9 +80,9 @@ export default function EntranceReveal({ onComplete }: { onComplete: () => void 
       if (event.key === "Escape") setLeaving(true);
       if (event.key === "Tab") { event.preventDefault(); skip.current?.focus(); }
     }}>
-    {lightweight && <div className="entrance-logo" aria-hidden="true">
+    <div className="entrance-logo" aria-hidden="true" data-light={lightweight}>
       <img className="entrance-monogram" src={logoUrl} alt="" width="400" height="292" />
-    </div>}
+    </div>
     {!lightweight && <iframe ref={frame} src="/intro/glass-reveal.html" title="HyperChat glass animation"
       onLoad={() => frame.current?.contentWindow?.postMessage({ source: "hyperchat-intro", type: "init", logo: hcLogo }, "*")}
       sandbox="allow-scripts" tabIndex={-1} aria-hidden="true" data-ready={ready} />}

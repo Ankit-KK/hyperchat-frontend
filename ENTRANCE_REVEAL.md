@@ -20,3 +20,6 @@ The intro now uses one shared charcoal-to-stone-to-copper SVG at `src/assets/bra
 ## Header handoff (November 7, 2026)
 
 The original reveal is retained. At exit, the overlay background clears while the logo translates and scales toward the measured header brand position over 800 ms. The wordmark fades in at the end of the flight. Desktop glass uses its existing renderer with a transparent background during travel; phones animate the lightweight SVG wrapper. Resize updates the destination. Reduced motion, skip, Escape, renderer deadline, focus restoration and cleanup remain in place.
+
+### Follow-up: isolated logo travel
+The glass iframe stays full-screen and fades in place. A transparent SVG of the same HC mark performs the centre-to-header travel, so the ivory renderer canvas cannot shrink with it. Phones now use the same glass reveal as desktop; Save-Data and renderer failure retain the light fallback. Reduced motion still bypasses the intro.

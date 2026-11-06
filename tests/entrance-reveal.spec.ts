@@ -19,16 +19,16 @@ test('homepage reveal fades away, repeats on reload, and can be skipped', async 
   await expect(page.locator('.stream-alert')).toHaveClass(/visible/);
 });
 
-test('touch devices use the light reveal without fetching the WebGL document', async ({ browser, baseURL }) => {
+test('touch devices use the same glass reveal as desktop', async ({ browser, baseURL }) => {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
   const page = await context.newPage();
   const requests: string[] = [];
   page.on('request', r => requests.push(r.url()));
   try {
     await page.goto(baseURL!);
-    await expect(page.locator('.entrance-reveal')).toHaveAttribute('data-renderer', 'light');
+    await expect(page.locator('.entrance-reveal')).toHaveAttribute('data-renderer', 'glass');
     await expect(page.locator('.entrance-reveal')).toHaveCount(0);
-    expect(requests.some(url => url.includes('/intro/glass-reveal.html'))).toBe(false);
+    expect(requests.some(url => url.includes('/intro/glass-reveal.html'))).toBe(true);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   } finally { await context.close(); }
 });
@@ -50,7 +50,7 @@ test('failed desktop renderer remains accessible and releases the homepage', asy
   await page.goto('/');
   const intro = page.locator('.entrance-reveal');
   await expect(intro).toHaveAttribute('data-renderer', 'glass');
-  await expect(intro.locator('.entrance-logo')).toHaveCount(0);
+  await expect(intro.locator('.entrance-logo')).toHaveCSS('opacity', '0');
   await expect(intro.locator('iframe')).toHaveCSS('opacity', '0');
   const result = await new AxeBuilder({ page }).include('.entrance-reveal').disableRules(['frame-tested']).analyze();
   expect(result.violations).toEqual([]);
@@ -85,6 +85,7 @@ test('logo docks toward the header while the homepage enters', async ({ page }) 
   expect(target.x).toBeCloseTo(target.expectedX);
   expect(target.y).toBeCloseTo(target.expectedY);
   await page.waitForTimeout(300);
+  await expect(intro.locator('iframe')).toHaveCSS('transform', 'none');
   const movement = await page.locator('.entrance-logo').evaluate(node => {
     const matrix = new DOMMatrix(getComputedStyle(node).transform);
     return { x: matrix.m41, y: matrix.m42, scale: matrix.m11 };
