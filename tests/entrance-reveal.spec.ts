@@ -71,3 +71,27 @@ test('Escape and live reduced-motion changes dismiss the intro', async ({ page }
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(page.locator('.entrance-reveal')).toHaveCount(0);
 });
+
+test('logo docks toward the header while the homepage enters', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  const intro = page.locator('.entrance-reveal');
+  await expect(intro).toHaveAttribute('data-leaving', 'true');
+  const target = await intro.evaluate(node => {
+    const style = getComputedStyle(node);
+    const brand = document.querySelector('.header .brand')!.getBoundingClientRect();
+    return { x: parseFloat(style.getPropertyValue('--dock-x')), y: parseFloat(style.getPropertyValue('--dock-y')), expectedX: brand.left + 18 - innerWidth / 2, expectedY: brand.top + brand.height / 2 - innerHeight / 2 };
+  });
+  expect(target.x).toBeCloseTo(target.expectedX);
+  expect(target.y).toBeCloseTo(target.expectedY);
+  await page.waitForTimeout(300);
+  const movement = await page.locator('.entrance-logo').evaluate(node => {
+    const matrix = new DOMMatrix(getComputedStyle(node).transform);
+    return { x: matrix.m41, y: matrix.m42, scale: matrix.m11 };
+  });
+  expect(movement.x).toBeLessThan(0);
+  expect(movement.y).toBeLessThan(0);
+  expect(movement.scale).toBeLessThan(1);
+  await expect(intro).toHaveCount(0);
+  await expect(page.locator('.header .brand')).toHaveCSS('opacity', '1');
+});

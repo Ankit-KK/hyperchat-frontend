@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./EntranceReveal.css";
 import hcLogo from "../assets/brand/hc-intro.svg?raw";
 
@@ -11,6 +11,7 @@ export default function EntranceReveal({ onComplete }: { onComplete: () => void 
   );
   const [ready, setReady] = useState(false);
   const [leaving, setLeaving] = useState(false);
+  const overlay = useRef<HTMLDivElement>(null);
   const frame = useRef<HTMLIFrameElement>(null);
   const skip = useRef<HTMLButtonElement>(null);
   const complete = useRef(onComplete);
@@ -50,16 +51,31 @@ export default function EntranceReveal({ onComplete }: { onComplete: () => void 
     return () => clearTimeout(timer);
   }, [lightweight]);
 
+  useLayoutEffect(() => {
+    const position = () => {
+      const brand = document.querySelector(".header .brand")?.getBoundingClientRect();
+      if (!brand || !overlay.current) return;
+      const logoWidth = lightweight ? Math.min(240, Math.max(130, innerWidth * .28)) : Math.min(560, Math.min(innerWidth, innerHeight) / 1.75) * .68;
+      overlay.current.style.setProperty("--dock-x", `${brand.left + 18 - innerWidth / 2}px`);
+      overlay.current.style.setProperty("--dock-y", `${brand.top + brand.height / 2 - innerHeight / 2}px`);
+      overlay.current.style.setProperty("--dock-scale", `${36 / logoWidth}`);
+    };
+    position();
+    window.addEventListener("resize", position);
+    return () => window.removeEventListener("resize", position);
+  }, [lightweight]);
+
   useEffect(() => {
     if (!leaving) return;
+    frame.current?.contentWindow?.postMessage("hyperchat-intro:dock", "*");
     const timer = setTimeout(() => {
       frame.current?.contentWindow?.postMessage("hyperchat-intro:stop", "*");
       complete.current();
-    }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 700);
+    }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 800);
     return () => clearTimeout(timer);
   }, [leaving]);
 
-  return <div className="entrance-reveal" data-lenis-prevent data-leaving={leaving} data-renderer={lightweight ? "light" : "glass"}
+  return <div ref={overlay} className="entrance-reveal" data-lenis-prevent data-leaving={leaving} data-renderer={lightweight ? "light" : "glass"}
     role="dialog" aria-modal="true" aria-label="Welcome to HyperChat"
     onKeyDown={event => {
       if (event.key === "Escape") setLeaving(true);

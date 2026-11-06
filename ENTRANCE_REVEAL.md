@@ -16,3 +16,7 @@ The original renderer is isolated to preserve its shader without introducing its
 Verification covers replay on refresh, automatic exit, keyboard skip/Escape, reduced motion, lightweight devices, renderer failure timeout, focus/scroll restoration, and homepage demo behavior after entry. Real GPU/device performance still varies; physical iPhone/Android checks remain part of the launch handoff.
 
 The intro now uses one shared charcoal-to-stone-to-copper SVG at `src/assets/brand/hc-intro.svg`, traced from the owner's HC reference (connected H, open rounded C, downward speech tail). The parent sends that vector to the sandbox after load. Desktop has no flat-logo placeholder: the renderer is exposed only after its first rendered frame. Mobile/fallback uses the same vector directly, without the original purple gradient.
+
+## Header handoff (November 7, 2026)
+
+The original reveal is retained. At exit, the overlay background clears while the logo translates and scales toward the measured header brand position over 800 ms. The wordmark fades in at the end of the flight. Desktop glass uses its existing renderer with a transparent background during travel; phones animate the lightweight SVG wrapper. Resize updates the destination. Reduced motion, skip, Escape, renderer deadline, focus restoration and cleanup remain in place.

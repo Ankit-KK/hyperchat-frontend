@@ -238,6 +238,7 @@ uniform float uDissolve; uniform float uGlow; uniform float uFaceDisp; uniform f
 uniform float uDisp; uniform float uDouble; uniform float uBevelW; uniform float uSpec; uniform float uIconPlate;
 uniform float uUseColor; uniform float uLightScene; uniform float uLightGlass; uniform float uKeep;
 uniform float uSheen; uniform float uSweep; uniform float uLightAng;
+uniform float uDock;
 uniform vec3 uBg; uniform vec3 uPlateCol; uniform vec3 uLogoCol;
 float px;
 vec2 rot(vec2 v, float a) { float c = cos(a), s = sin(a); return vec2(c * v.x - s * v.y, s * v.x + c * v.y); }
@@ -426,14 +427,14 @@ void main() {
   }
   vec3 outc = mix(plain, col, uPlateAlpha);
   outc += (hash(gl_FragCoord.xy) - 0.5) / 255.0;
-  outColor = vec4(outc, 1.0);
+  outColor = vec4(outc, mix(1.0, lg.a, uDock));
 }`;
 
 /* ---------------- boot ---------------- */
 var stage = document.getElementById("stage");
 // Adapted from the owner-supplied Qwen reveal. One bounded run; the parent
 // owns skip, reduced motion, scroll locking and teardown of this sandbox.
-var disposed = false, raf = 0, context;
+var disposed = false, raf = 0, context, docking = false;
 function signal(type) { parent.postMessage({ source: "hyperchat-intro", type: type }, "*"); }
 function dispose() {
   disposed = true; cancelAnimationFrame(raf);
@@ -443,6 +444,12 @@ window.addEventListener("pagehide", dispose);
 window.addEventListener("message", function (event) {
   if (event.source !== parent) return;
   if (event.data === "hyperchat-intro:stop") dispose();
+  if (event.data === "hyperchat-intro:dock") {
+    docking = true;
+    document.body.style.background = "transparent";
+    stage.style.background = "transparent";
+    document.querySelector(".vignette").style.display = "none";
+  }
   if (!disposed && !LOGO_A && event.data?.source === "hyperchat-intro" && event.data.type === "init" && typeof event.data.logo === "string") {
     LOGO_A = event.data.logo;
     boot();
@@ -513,6 +520,7 @@ function boot() {
     gl.viewport(0, 0, w, h);
     gl.uniform2f(U.uCenter, w / 2, h / 2);
     gl.uniform1f(U.uTile, tilePx);
+    gl.uniform1f(U.uDock, docking ? 1 : 0);
     gl.uniform1f(U.uTexSize, TEX);
     gl.uniform1f(U.uBoxFrac, BOX);
     var fr = frameAt(Math.min(time, END), S, outro);
@@ -524,7 +532,7 @@ function boot() {
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
 
-  var FADE_AT = 2.7, END = 4.3;
+  var FADE_AT = 2.7, END = 4.6;
   var time = 0, outro = 0, started = 0, announced = false, finishing = false;
 
   function tick(now) {

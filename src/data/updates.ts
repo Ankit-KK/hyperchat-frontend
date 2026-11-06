@@ -13,6 +13,12 @@ export interface WebsiteUpdate {
 // Add new entries at the top; filters and counts update automatically.
 export const websiteUpdates: WebsiteUpdate[] = [
   {
+    id: "logo-header-transition", date: "2026-11-07", type: "Improved",
+    title: "From first impression to the first moment.",
+    description: "The HC reveal now moves from the centre toward the navigation as the homepage appears. The glass reveal stays on desktop, with a lighter version on phones and a reduced-motion bypass.",
+    href: "/", linkLabel: "See the new entrance",
+  },
+  {
     id: "readable-first-load", date: "2026-11-06", type: "Improved",
     title: "Useful from the first load.",
     description: "Key pages now include readable summaries and navigation before the interactive experience loads, helping visitors and search engines understand the site. We also reduced the ClipWave logo’s download size by about 92% without changing its design.",
