@@ -80,7 +80,9 @@ test('logo docks toward the header while the homepage enters', async ({ page }) 
   const target = await intro.evaluate(node => {
     const style = getComputedStyle(node);
     const brand = document.querySelector('.header .brand')!.getBoundingClientRect();
-    return { x: parseFloat(style.getPropertyValue('--dock-x')), y: parseFloat(style.getPropertyValue('--dock-y')), expectedX: brand.left + 18 - innerWidth / 2, expectedY: brand.top + brand.height / 2 - innerHeight / 2 };
+    const badge = document.querySelector(".header .brand span")!.getBoundingClientRect();
+    const width = badge.left - brand.left - 8;
+    return { x: parseFloat(style.getPropertyValue('--dock-x')), y: parseFloat(style.getPropertyValue('--dock-y')), expectedX: brand.left + width / 2 - innerWidth / 2, expectedY: brand.top + brand.height / 2 - innerHeight / 2 };
   });
   expect(target.x).toBeCloseTo(target.expectedX);
   expect(target.y).toBeCloseTo(target.expectedY);

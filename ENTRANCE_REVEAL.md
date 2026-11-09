@@ -23,3 +23,6 @@ The original reveal is retained. At exit, the overlay background clears while th
 
 ### Follow-up: isolated logo travel
 The glass iframe stays full-screen and fades in place. A transparent SVG of the same HC mark performs the centre-to-header travel, so the ivory renderer canvas cannot shrink with it. Phones now use the same glass reveal as desktop; Save-Data and renderer failure retain the light fallback. Reduced motion still bypasses the intro.
+
+### Supplied wordmark (November 10, 2026)
+`src/assets/brand/hyperchat-intro.svg` uses the nine letter silhouettes from the owner's `logo-Main.svg`. Background tracing fragments and color overlays were omitted; lettering geometry is retained with the approved charcoal/stone/copper fill. The renderer and transparent travel layer share this asset. Responsive sizing fits the wide wordmark, and the destination matches the header text width, excluding the V2 badge. The 1.6-second travel and accessibility fallbacks are unchanged.

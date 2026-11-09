@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Owner-supplied Qwen glass renderer adapted to a single HC logo entrance.
+<!-- Owner-supplied Qwen glass renderer adapted to a single HyperChat wordmark entrance.
      Neutral/copper refraction, bounded playback, no wordmark formation. -->
 <html lang="en">
 <head>
@@ -39,7 +39,7 @@
 </style>
 </head>
 <body>
-<div id="stage" role="img" aria-label="HyperChat glass monogram"></div>
+<div id="stage" role="img" aria-label="HyperChat glass wordmark"></div>
 <div class="vignette"></div>
 
 
@@ -535,7 +535,7 @@ function boot() {
     var dpr = Math.min(window.devicePixelRatio || 1, 1.25, 1000 / cw, 720 / ch);
     var w = Math.max(1, Math.round(cw * dpr)), h = Math.max(1, Math.round(ch * dpr));
     if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
-    var tile = Math.min(S.tileSize, Math.min(cw, ch) / 1.75);
+    var tile = Math.min(900, cw * .88 / .68, ch * 1.25);
     render(tile * dpr);
     if (!announced) { announced = true; signal("ready"); }
     // Start the parent fade before stopping the renderer, so the glass never freezes.
@@ -546,7 +546,7 @@ function boot() {
 
 
 
-  // Keep the joined HC logo throughout; no split or wordmark textures.
+  // Keep the supplied HyperChat wordmark throughout; no split textures.
   loadLogo(LOGO_A).then(function (logo) {
     var tri = [logo, logo, logo];
     if (disposed) return;

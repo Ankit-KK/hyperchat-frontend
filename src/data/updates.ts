@@ -13,9 +13,15 @@ export interface WebsiteUpdate {
 // Add new entries at the top; filters and counts update automatically.
 export const websiteUpdates: WebsiteUpdate[] = [
   {
+    id: "wordmark-entrance", date: "2026-11-10", type: "Improved",
+    title: "Our name, in a new light.",
+    description: "The loading animation now reveals the full HyperChat wordmark in charcoal, stone and copper. It keeps the glass effect and the slower move to the navigation on desktop and phones.",
+    href: "/", linkLabel: "See the wordmark reveal",
+  },
+  {
     id: "logo-header-transition", date: "2026-11-07", type: "Improved",
     title: "From first impression to the first moment.",
-    description: "The HC reveal now moves from the centre toward the navigation as the homepage appears. Desktop and phones share the glass reveal. Only the transparent logo travels toward the header, with a slower 1.6-second handoff; reduced-motion preferences bypass the intro.",
+    description: "The logo reveal now moves from the centre toward the navigation as the homepage appears. Desktop and phones share the glass reveal. Only the transparent logo travels toward the header, with a slower 1.6-second handoff; reduced-motion preferences bypass the intro.",
     href: "/", linkLabel: "See the new entrance",
   },
   {

@@ -1,8 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./EntranceReveal.css";
-import hcLogo from "../assets/brand/hc-intro.svg?raw";
+import wordmarkLogo from "../assets/brand/hyperchat-intro.svg?raw";
 
-const logoUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(hcLogo)}`;
+const logoUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(wordmarkLogo)}`;
 
 export default function EntranceReveal({ onComplete }: { onComplete: () => void }) {
   const [lightweight, setLightweight] = useState(() =>
@@ -54,11 +54,14 @@ export default function EntranceReveal({ onComplete }: { onComplete: () => void 
     const position = () => {
       const brand = document.querySelector(".header .brand")?.getBoundingClientRect();
       if (!brand || !overlay.current) return;
-      const logoWidth = lightweight ? Math.min(240, Math.max(130, innerWidth * .28)) : Math.min(560, Math.min(innerWidth, innerHeight) / 1.75) * .68;
+      // Match the glass renderer’s settled width; keep the full word readable on phones.
+      const logoWidth = Math.min(900, innerWidth * .88 / .68, innerHeight * 1.25) * .68 * .955;
+      const badge = document.querySelector(".header .brand span")?.getBoundingClientRect();
+      const destinationWidth = badge ? badge.left - brand.left - 8 : brand.width;
       overlay.current.style.setProperty("--flight-width", `${logoWidth}px`);
-      overlay.current.style.setProperty("--dock-x", `${brand.left + 18 - innerWidth / 2}px`);
+      overlay.current.style.setProperty("--dock-x", `${brand.left + destinationWidth / 2 - innerWidth / 2}px`);
       overlay.current.style.setProperty("--dock-y", `${brand.top + brand.height / 2 - innerHeight / 2}px`);
-      overlay.current.style.setProperty("--dock-scale", `${36 / logoWidth}`);
+      overlay.current.style.setProperty("--dock-scale", `${destinationWidth / logoWidth}`);
     };
     position();
     window.addEventListener("resize", position);
@@ -81,10 +84,10 @@ export default function EntranceReveal({ onComplete }: { onComplete: () => void 
       if (event.key === "Tab") { event.preventDefault(); skip.current?.focus(); }
     }}>
     <div className="entrance-logo" aria-hidden="true" data-light={lightweight}>
-      <img className="entrance-monogram" src={logoUrl} alt="" width="400" height="292" />
+      <img className="entrance-monogram" src={logoUrl} alt="" width="1116" height="160" />
     </div>
     {!lightweight && <iframe ref={frame} src="/intro/glass-reveal.html" title="HyperChat glass animation"
-      onLoad={() => frame.current?.contentWindow?.postMessage({ source: "hyperchat-intro", type: "init", logo: hcLogo }, "*")}
+      onLoad={() => frame.current?.contentWindow?.postMessage({ source: "hyperchat-intro", type: "init", logo: wordmarkLogo }, "*")}
       sandbox="allow-scripts" tabIndex={-1} aria-hidden="true" data-ready={ready} />}
     <button ref={skip} type="button" className="entrance-skip" onClick={() => setLeaving(true)}>Skip intro</button>
   </div>;
