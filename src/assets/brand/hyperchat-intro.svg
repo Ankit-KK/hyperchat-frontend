@@ -1,15 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 104">
   <title>HyperChat</title>
   <!-- Original geometric lettering. Filled outlines stay sharp at every size. -->
-  <g fill="#B8702F" fill-rule="evenodd">
-    <path d="M0 0h18v31h52V0h18v82H70V49H18v33H0Z"/>
-    <path d="M100 20h17v36q0 9 10 9h35V20h17v57q0 27-28 27h-45l10-17h35q11 0 11-10h-36q-26 0-26-25Z"/>
-    <path d="M191 20h49q30 0 30 31t-30 31h-32v22h-17Zm17 17v28h30q15 0 15-14t-15-14Z"/>
-    <path d="M311 20h23q27 0 27 24v12h-62q2 10 15 10h44l-10 16h-35q-32 0-32-31t30-31Zm-12 22h45q-1-7-12-7h-18q-12 0-15 7Z"/>
-    <path d="M373 82V47q0-27 28-27h28l-10 17h-17q-12 0-12 12v33Z"/>
-    <path d="M473 0h52l-10 18h-40q-20 0-20 23t20 23h50l-10 18h-42q-36 0-36-41t36-41Z"/>
-    <path d="M537 0h17v20h32q28 0 28 28v34h-17V49q0-12-12-12h-31v45h-17Z"/>
-    <path d="M626 20h44q29 0 29 26v36h-49q-27 0-27-22t27-22h31q-2-3-12-3h-34Zm24 33q-10 0-10 7t10 7h32V53Z"/>
-    <path d="M712 4l17-4v20h21l-9 17h-12v19q0 10 10 10h11l-9 16h-7q-22 0-22-25V37h-9V20h9Z"/>
+  <defs>
+    <linearGradient id="hyperchat-warm" gradientUnits="userSpaceOnUse" x1="0" y1="52" x2="750" y2="52">
+      <stop offset="0" stop-color="#221F1C"/>
+      <stop offset=".5" stop-color="#8C847B"/>
+      <stop offset="1" stop-color="#B8702F"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#hyperchat-warm)" fill-rule="evenodd" stroke="#D7CBB9" stroke-width="1" stroke-linejoin="round" paint-order="stroke fill">
+    <path vector-effect="non-scaling-stroke" d="M0 0h18v31h52V0h18v82H70V49H18v33H0Z"/>
+    <path vector-effect="non-scaling-stroke" d="M100 20h17v36q0 9 10 9h35V20h17v57q0 27-28 27h-45l10-17h35q11 0 11-10h-36q-26 0-26-25Z"/>
+    <path vector-effect="non-scaling-stroke" d="M191 20h49q30 0 30 31t-30 31h-32v22h-17Zm17 17v28h30q15 0 15-14t-15-14Z"/>
+    <path vector-effect="non-scaling-stroke" d="M311 20h23q27 0 27 24v12h-62q2 10 15 10h44l-10 16h-35q-32 0-32-31t30-31Zm-12 22h45q-1-7-12-7h-18q-12 0-15 7Z"/>
+    <path vector-effect="non-scaling-stroke" d="M373 82V47q0-27 28-27h28l-10 17h-17q-12 0-12 12v33Z"/>
+    <path vector-effect="non-scaling-stroke" d="M473 0h52l-10 18h-40q-20 0-20 23t20 23h50l-10 18h-42q-36 0-36-41t36-41Z"/>
+    <path vector-effect="non-scaling-stroke" d="M537 0h17v20h32q28 0 28 28v34h-17V49q0-12-12-12h-31v45h-17Z"/>
+    <path vector-effect="non-scaling-stroke" d="M626 20h44q29 0 29 26v36h-49q-27 0-27-22t27-22h31q-2-3-12-3h-34Zm24 33q-10 0-10 7t10 7h32V53Z"/>
+    <path vector-effect="non-scaling-stroke" d="M712 4l17-4v20h21l-9 17h-12v19q0 10 10 10h11l-9 16h-7q-22 0-22-25V37h-9V20h9Z"/>
   </g>
 </svg>
