@@ -2,6 +2,8 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./EntranceReveal.css";
 import wordmarkLogo from "../assets/brand/hyperchat-intro.svg?raw";
 
+import { headerWordmark } from "../lib/brand";
+
 const logoUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(wordmarkLogo)}`;
 
 export default function EntranceReveal({ onComplete }: { onComplete: () => void }) {
@@ -84,6 +86,7 @@ export default function EntranceReveal({ onComplete }: { onComplete: () => void 
     }}>
     <div className="entrance-logo" aria-hidden="true" data-light={lightweight}>
       <img className="entrance-monogram" src={logoUrl} alt="" width="750" height="104" />
+      <img className="entrance-monogram entrance-header-tone" src={headerWordmark} alt="" width="750" height="104" />
     </div>
     {!lightweight && <iframe ref={frame} src="/intro/glass-reveal.html" title="HyperChat glass animation"
       onLoad={() => frame.current?.contentWindow?.postMessage({ source: "hyperchat-intro", type: "init", logo: wordmarkLogo }, "*")}

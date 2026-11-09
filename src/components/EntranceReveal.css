@@ -20,3 +20,7 @@ body:has(.entrance-reveal[data-leaving="true"]) .site-root main { animation: ent
 
 .entrance-logo[data-light="true"] { opacity: 1; }
 .entrance-logo[data-light="true"] .entrance-monogram { animation: entrance-mark 2s both; }
+
+.entrance-header-tone { opacity: 0; transition: opacity 500ms ease 750ms; }
+.entrance-reveal[data-leaving="true"] .entrance-header-tone { opacity: 1; }
+.entrance-logo[data-light="true"] .entrance-header-tone { animation: none; }

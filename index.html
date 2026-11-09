@@ -2,6 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <style>html.app-booting .static-page{display:none}html.app-booting body{background:#221f1c}</style>
+    <script>
+      (() => {
+        document.documentElement.classList.add('app-booting');
+        const revealFallback = () => document.documentElement.classList.remove('app-booting');
+        const deadline = setTimeout(revealFallback, 8000);
+        document.addEventListener('hyperchat:ready', () => { clearTimeout(deadline); revealFallback(); }, { once: true });
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link

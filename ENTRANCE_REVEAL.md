@@ -30,4 +30,4 @@ The glass iframe stays full-screen and fades in place. A transparent SVG of the 
 ### Clean geometric lettering and permanent header
 The traced paths have been replaced by original geometric letter outlines, inspired by the supplied reference rather than an exact font match. The charcoal/stone/copper multitone asset is shared by the shader, travelling SVG and header image; the old text/V2 badge is removed from the header. The destination is measured from the image itself. Texture resolution is 1024 on desktop and 768 on phones, with bounded render resolution. The 1.6-second transition is retained.
 
-The shared wordmark restores the earlier HC warm gradient. A fine sand keyline keeps the charcoal end legible on the dark header without changing assets at the end of the animation.
+The shared wordmark restores the earlier HC warm gradient. The dark-header variant uses filled stone, sand and copper tones without outlines. The travelling logo blends into this palette before landing, using identical geometry.

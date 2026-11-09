@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import brandWordmark from "../assets/brand/hyperchat-intro.svg";
+import { headerWordmark as brandWordmark } from "../lib/brand";
 const links = [
   { href: "/features", text: "Features" },
   { href: "/creators", text: "For creators" },

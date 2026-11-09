@@ -13,9 +13,15 @@ export interface WebsiteUpdate {
 // Add new entries at the top; filters and counts update automatically.
 export const websiteUpdates: WebsiteUpdate[] = [
   {
+    id: "refresh-summary-flash", date: "2026-11-10", type: "Fixed",
+    title: "A cleaner arrival, every refresh.",
+    description: "The readable page summary no longer flashes ahead of the loading animation. It remains available when JavaScript is disabled or the app cannot load.",
+    href: "/", linkLabel: "Visit the homepage",
+  },
+  {
     id: "wordmark-entrance", date: "2026-11-10", type: "Improved",
     title: "Our name, in a new light.",
-    description: "A clean, custom geometric HyperChat wordmark replaces the traced lettering. The same charcoal-to-stone-to-copper vector appears in the glass reveal and stays in the header after the slower transition, on desktop and phones.",
+    description: "A clean, custom geometric HyperChat wordmark replaces the traced lettering. The warm multitone vector appears in the glass reveal and stays in the header after the slower transition. Filled stone, sand and copper tones keep it readable on the dark header, without outlines.",
     href: "/", linkLabel: "See the wordmark reveal",
   },
   {

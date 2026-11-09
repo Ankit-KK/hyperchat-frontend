@@ -25,6 +25,7 @@ const legalTitles: Record<string, string> = {
 };
 
 export default function App() {
+  useEffect(() => { document.dispatchEvent(new Event("hyperchat:ready")); }, []);
   const path = window.location.pathname.replace(/\/+$/, "") || "/";
   const [intro, setIntro] = useState(() => path === "/" && !matchMedia("(prefers-reduced-motion: reduce)").matches);
   useEffect(() => { updatePageSeo(path); }, [path]);

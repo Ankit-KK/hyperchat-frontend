@@ -46,3 +46,12 @@ test('React replaces initial summaries without duplicate main content', async ({
     await expect(page.locator('main')).toHaveCount(1);
   }
 });
+
+test('slow app scripts do not flash the static summary; failure restores it', async ({page}) => {
+  await page.route('**/assets/*.js', route => route.abort());
+  await page.goto('/');
+  await expect(page.locator('html')).toHaveClass(/app-booting/);
+  await expect(page.locator('.static-page')).toBeHidden();
+  await expect(page.locator('.static-page')).toBeVisible({ timeout: 11000 });
+  await expect(page.getByRole('navigation', { name: 'Site pages' })).toBeVisible();
+});

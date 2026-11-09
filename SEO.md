@@ -84,3 +84,6 @@ Builds use Node 24 (pinned in `.node-version` and package engines), including it
 - The audit identified an oversized ClipWave PNG. The rendered asset now uses a 440×331 WebP (39,886 bytes versus 508,596 bytes), preserving the original PNG as a source asset.
 - The supplied ElevenLabs badge CDN returned HTTP 403 from this environment. Its existing text fallback remains available. Recheck the external badge from production; no replacement brand artwork was invented.
 - Remaining launch work: final-domain indexing switch, live redirect/status verification, Search Console/Bing ownership and sitemap submission, real social-preview checks, and real-device performance measurements. The current LCP result remains an improvement opportunity.
+
+### Startup summary visibility
+A tiny synchronous head script suppresses only `.static-page` during app startup to prevent a flash before the entrance. React signals its first committed mount to release the startup state. When JavaScript is disabled, the summary is immediately visible; when the app bundle fails, an eight-second deadline restores it. Initial HTML remains crawlable, and this is not a redirect to a policy page.
