@@ -15,7 +15,7 @@ export const websiteUpdates: WebsiteUpdate[] = [
   {
     id: "wordmark-entrance", date: "2026-11-10", type: "Improved",
     title: "Our name, in a new light.",
-    description: "The loading animation now reveals the full HyperChat wordmark in charcoal, stone and copper. It keeps the glass effect and the slower move to the navigation on desktop and phones.",
+    description: "A clean, custom geometric HyperChat wordmark replaces the traced lettering. The same copper vector appears in the glass reveal and stays in the header after the slower transition, on desktop and phones.",
     href: "/", linkLabel: "See the wordmark reveal",
   },
   {

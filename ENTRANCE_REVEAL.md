@@ -26,3 +26,6 @@ The glass iframe stays full-screen and fades in place. A transparent SVG of the 
 
 ### Supplied wordmark (November 10, 2026)
 `src/assets/brand/hyperchat-intro.svg` uses the nine letter silhouettes from the owner's `logo-Main.svg`. Background tracing fragments and color overlays were omitted; lettering geometry is retained with the approved charcoal/stone/copper fill. The renderer and transparent travel layer share this asset. Responsive sizing fits the wide wordmark, and the destination matches the header text width, excluding the V2 badge. The 1.6-second travel and accessibility fallbacks are unchanged.
+
+### Clean geometric lettering and permanent header
+The traced paths have been replaced by original geometric letter outlines, inspired by the supplied reference rather than an exact font match. The solid copper asset is shared by the shader, travelling SVG and header image; the old text/V2 badge is removed from the header. The destination is measured from the image itself. Texture resolution is 1024 on desktop and 768 on phones, with bounded render resolution. The 1.6-second transition is retained.

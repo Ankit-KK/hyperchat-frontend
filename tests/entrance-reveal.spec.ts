@@ -79,9 +79,8 @@ test('logo docks toward the header while the homepage enters', async ({ page }) 
   await expect(intro).toHaveAttribute('data-leaving', 'true');
   const target = await intro.evaluate(node => {
     const style = getComputedStyle(node);
-    const brand = document.querySelector('.header .brand')!.getBoundingClientRect();
-    const badge = document.querySelector(".header .brand span")!.getBoundingClientRect();
-    const width = badge.left - brand.left - 8;
+    const brand = document.querySelector('.header-wordmark')!.getBoundingClientRect();
+    const width = brand.width;
     return { x: parseFloat(style.getPropertyValue('--dock-x')), y: parseFloat(style.getPropertyValue('--dock-y')), expectedX: brand.left + width / 2 - innerWidth / 2, expectedY: brand.top + brand.height / 2 - innerHeight / 2 };
   });
   expect(target.x).toBeCloseTo(target.expectedX);
@@ -97,4 +96,6 @@ test('logo docks toward the header while the homepage enters', async ({ page }) 
   expect(movement.scale).toBeLessThan(1);
   await expect(intro).toHaveCount(0);
   await expect(page.locator('.header .brand')).toHaveCSS('opacity', '1');
+  await expect(page.locator('.header-wordmark')).toBeVisible();
+  await expect(page.locator('.header .brand')).not.toContainText('V2');
 });

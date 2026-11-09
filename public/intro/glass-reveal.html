@@ -60,7 +60,7 @@ var S = {
 var LOGO_A = ""; // Supplied by the parent from the shared, neutral HC vector.
 
 /* ---------------- logo → texture + SDF ---------------- */
-var TEX = 512, BOX = 0.75;
+var TEX = window.innerWidth <= 600 ? 768 : 1024, BOX = 0.75;
 function svgToUrl(text) {
   var svg = new DOMParser().parseFromString(text, "image/svg+xml").documentElement;
   var w = parseFloat(svg.getAttribute("width") || ""), h = parseFloat(svg.getAttribute("height") || "");
@@ -532,7 +532,7 @@ function boot() {
     if (!started) started = now;
     time = Math.min(END, (now - started) / 1000 * 1.7);
     var cw = canvas.clientWidth, ch = canvas.clientHeight;
-    var dpr = Math.min(window.devicePixelRatio || 1, 1.25, 1000 / cw, 720 / ch);
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.5, 1400 / cw, 1000 / ch);
     var w = Math.max(1, Math.round(cw * dpr)), h = Math.max(1, Math.round(ch * dpr));
     if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
     var tile = Math.min(900, cw * .88 / .68, ch * 1.25);

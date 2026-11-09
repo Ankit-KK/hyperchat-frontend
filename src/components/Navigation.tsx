@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
+import brandWordmark from "../assets/brand/hyperchat-intro.svg";
 const links = [
   { href: "/features", text: "Features" },
   { href: "/creators", text: "For creators" },
@@ -23,7 +24,7 @@ export default function Navigation() {
   return (
     <header className="header">
       <a href="/" className="brand" title="HyperChat home">
-        hyperchat<span>V2</span>
+        <img className="header-wordmark" src={brandWordmark} alt="HyperChat" width="750" height="104" />
       </a>
       <nav
         id="main-navigation"

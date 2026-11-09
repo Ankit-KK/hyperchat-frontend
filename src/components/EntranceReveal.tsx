@@ -52,12 +52,11 @@ export default function EntranceReveal({ onComplete }: { onComplete: () => void 
 
   useLayoutEffect(() => {
     const position = () => {
-      const brand = document.querySelector(".header .brand")?.getBoundingClientRect();
+      const brand = document.querySelector(".header-wordmark")?.getBoundingClientRect();
       if (!brand || !overlay.current) return;
       // Match the glass renderer’s settled width; keep the full word readable on phones.
       const logoWidth = Math.min(900, innerWidth * .88 / .68, innerHeight * 1.25) * .68 * .955;
-      const badge = document.querySelector(".header .brand span")?.getBoundingClientRect();
-      const destinationWidth = badge ? badge.left - brand.left - 8 : brand.width;
+      const destinationWidth = brand.width;
       overlay.current.style.setProperty("--flight-width", `${logoWidth}px`);
       overlay.current.style.setProperty("--dock-x", `${brand.left + destinationWidth / 2 - innerWidth / 2}px`);
       overlay.current.style.setProperty("--dock-y", `${brand.top + brand.height / 2 - innerHeight / 2}px`);
@@ -84,7 +83,7 @@ export default function EntranceReveal({ onComplete }: { onComplete: () => void 
       if (event.key === "Tab") { event.preventDefault(); skip.current?.focus(); }
     }}>
     <div className="entrance-logo" aria-hidden="true" data-light={lightweight}>
-      <img className="entrance-monogram" src={logoUrl} alt="" width="1116" height="160" />
+      <img className="entrance-monogram" src={logoUrl} alt="" width="750" height="104" />
     </div>
     {!lightweight && <iframe ref={frame} src="/intro/glass-reveal.html" title="HyperChat glass animation"
       onLoad={() => frame.current?.contentWindow?.postMessage({ source: "hyperchat-intro", type: "init", logo: wordmarkLogo }, "*")}
