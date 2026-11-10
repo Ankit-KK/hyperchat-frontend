@@ -24,6 +24,7 @@ function mountCursor(root: HTMLDivElement) {
   let inside = false;
   let keyboard = false;
   let dragging = false;
+  let pressOrigin: { x: number; y: number } | null = null;
   let available = true;
   let visible = false;
   let blocked = false;
@@ -192,7 +193,8 @@ function mountCursor(root: HTMLDivElement) {
     pointer.y = event.clientY;
     inside = true;
     keyboard = false;
-    if (event.buttons === 0) dragging = false;
+    if (event.buttons === 0) { dragging = false; pressOrigin = null; }
+    else if (pressOrigin && Math.hypot(event.clientX - pressOrigin.x, event.clientY - pressOrigin.y) > 6) dragging = true;
     moved = !first;
     placeTarget();
     if (first) { position.x = target.x; position.y = target.y; paint(); }
@@ -225,7 +227,10 @@ function mountCursor(root: HTMLDivElement) {
       latestPointer = undefined;
       processMove(latest);
     }
-    if (event.pointerType !== "mouse" || !inside) return;
+    if (event.pointerType !== "mouse") return;
+    // A mouse press restores pointer mode even after keyboard navigation.
+    processMove(event);
+    pressOrigin = null;
     dismissSpeech();
     context();
     if (editing && !blocked) {
@@ -239,11 +244,12 @@ function mountCursor(root: HTMLDivElement) {
       chooseState(true);
       later("excitement", () => chooseState(), config.excitementDuration);
     } else {
-      dragging = true;
-      hide();
+      // Wait for real movement before yielding to native text selection.
+      pressOrigin = { x: event.clientX, y: event.clientY };
     }
   };
   const up = () => {
+    pressOrigin = null;
     dragging = false;
     context();
     if (allowed()) playback.resume(desired);
@@ -252,9 +258,13 @@ function mountCursor(root: HTMLDivElement) {
     cancelAnimationFrame(inputFrame);
     inputFrame = 0;
     latestPointer = undefined;
-    inside = false; dragging = false; hide();
+    inside = false; dragging = false; pressOrigin = null; hide();
   };
-  const out = (event: PointerEvent) => { if (!event.relatedTarget) leave(); };
+  const out = (event: PointerEvent) => {
+    // Replacing a clicked element can emit pointerout without a related target.
+    // Only leave when the pointer actually crosses the viewport boundary.
+    if (!event.relatedTarget && (event.clientX <= 0 || event.clientY <= 0 || event.clientX >= innerWidth || event.clientY >= innerHeight)) leave();
+  };
   const key = (event: KeyboardEvent) => {
     const field = document.activeElement;
     if (event.key !== "Tab" && event.key !== "Escape" && field?.matches(editable) && field.closest("[data-mascot-hover]")) {

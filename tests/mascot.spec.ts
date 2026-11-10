@@ -349,3 +349,34 @@ test("message field keeps the buddy while editing and preview surfaces show hove
   await expect(root(page)).toHaveAttribute("data-active", "true");
   await expect(bubble).toHaveAttribute("data-open", "true");
 });
+
+test('ordinary clicks keep the buddy visible, while real drags yield and recover', async ({ page }) => {
+  await start(page, 550, 350);
+  // Use ordinary, non-interactive content to cover pointerdown before pointerup.
+  await page.evaluate(() => {
+    const area = document.createElement('div');
+    area.id = 'click-test-area';
+    area.textContent = 'Selectable ordinary page text';
+    area.style.cssText = 'position:fixed;left:500px;top:300px;width:300px;height:180px;z-index:50;background:#f3ede2;color:#221f1c';
+    document.body.append(area);
+  });
+  await page.mouse.move(550, 350);
+  await expect(root(page)).toHaveAttribute('data-active', 'true');
+  await page.mouse.down();
+  await expect(root(page)).toHaveAttribute('data-active', 'true');
+  await page.mouse.up();
+  await expect(root(page)).toHaveAttribute('data-active', 'true');
+  await page.evaluate(() => window.dispatchEvent(new PointerEvent('pointerout', { pointerType: 'mouse', clientX: 550, clientY: 350, relatedTarget: null })));
+  await expect(root(page)).toHaveAttribute('data-active', 'true');
+  await page.keyboard.press('Tab');
+  await expect(root(page)).toHaveAttribute('data-active', 'false');
+  await page.mouse.down();
+  await expect(root(page)).toHaveAttribute('data-active', 'true');
+  await page.mouse.up();
+  await page.mouse.down();
+  await page.mouse.move(620, 350);
+  await expect(root(page)).toHaveAttribute('data-active', 'false');
+  await page.mouse.up();
+  await expect(root(page)).toHaveAttribute('data-active', 'true');
+  await expect(currentVideo(page)).toHaveCount(1);
+});

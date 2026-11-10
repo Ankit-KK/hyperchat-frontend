@@ -13,6 +13,12 @@ export interface WebsiteUpdate {
 // Add new entries at the top; filters and counts update automatically.
 export const websiteUpdates: WebsiteUpdate[] = [
   {
+    id: "companion-click-visibility", date: "2026-11-10", type: "Fixed",
+    title: "Your buddy stays for the click.",
+    description: "Ordinary clicks no longer hide the desktop companion. Actual dragging still gives way to native text selection, and the buddy returns when you release the mouse.",
+    href: "/", linkLabel: "Meet your companion",
+  },
+  {
     id: "refresh-summary-flash", date: "2026-11-10", type: "Fixed",
     title: "A cleaner arrival, every refresh.",
     description: "The readable page summary no longer flashes ahead of the loading animation. It remains available when JavaScript is disabled or the app cannot load.",
