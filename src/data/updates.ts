@@ -27,7 +27,7 @@ export const websiteUpdates: WebsiteUpdate[] = [
   {
     id: "wordmark-entrance", date: "2026-11-10", type: "Improved",
     title: "Our name, in a new light.",
-    description: "A clean, custom geometric HyperChat wordmark replaces the traced lettering. The warm multitone vector appears in the glass reveal and stays in the header after the slower transition. Filled stone, sand and copper tones keep it readable on the dark header, without outlines.",
+    description: "A clean, custom geometric HyperChat wordmark replaces the traced lettering. The warm multitone vector appears in the glass reveal and stays in the header after the slower transition. Filled stone, sand and copper tones keep it readable on the dark header, without outlines. The browser tab uses the earlier HC monogram.",
     href: "/", linkLabel: "See the wordmark reveal",
   },
   {

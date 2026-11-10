@@ -45,7 +45,7 @@ the final site origin. Protected Vercel previews cannot be scraped by social bot
   from HyperChat typography and its approved palette. Optional regeneration:
   `node scripts/render-social-preview.mjs` (requires local Chromium/Playwright).
   Production builds use the committed image and need no browser installation.
-- `public/favicon.svg`: ivory HC typography on charcoal with a copper accent.
+- `public/favicon.svg`: the earlier HC monogram in charcoal, stone and copper on an ivory tile, padded for browser-tab sizes. The icon URL is versioned to refresh cached favicons.
 
 Structured data describes the site, pages, Streamheart Private Limited, and canonical page breadcrumbs.
 No ratings, testimonials, offers, SLA, certification badges, or production usage
