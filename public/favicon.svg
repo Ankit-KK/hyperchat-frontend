@@ -1,6 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-24 -78 448 448">
   <title>HyperChat</title>
-  <rect x="-24" y="-78" width="448" height="448" rx="64" fill="#F3EDE2"/>
   <defs>
     <linearGradient id="hc-warm" gradientUnits="userSpaceOnUse" x1="0" y1="146" x2="400" y2="146">
       <stop offset="0" stop-color="#221F1C"/>
