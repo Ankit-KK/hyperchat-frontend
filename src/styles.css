@@ -31,6 +31,7 @@
 }
 html {
   scroll-padding-top: 100px;
+  scrollbar-color: var(--stone) var(--charcoal);
 }
 body {
   margin: 0;
@@ -2473,7 +2474,7 @@ main,
 .support-topics a, .support-contact-note a { text-decoration: underline; text-underline-offset: 5px; }
 .support-topics a { font-size: 13px; line-height: 1.7; }
 .support-topic { padding-top: 30px; }
-.support-topic, .support-contact { scroll-margin-top: 110px; }
+.support-topic, .support-contact { scroll-margin-top: 12px; }
 .support-contact { border-top: 1px solid var(--sand); margin-top: 60px; padding-top: 40px; }
 .support-contact h2 { font-size: clamp(34px, 4vw, 60px); margin: 20px 0; }
 .support-contact p { max-width: 700px; line-height: 1.8; margin: 16px 0; }

@@ -13,6 +13,12 @@ export interface WebsiteUpdate {
 // Add new entries at the top; filters and counts update automatically.
 export const websiteUpdates: WebsiteUpdate[] = [
   {
+    id: "responsive-scrolling", date: "2026-11-11", type: "Improved",
+    title: "An easier way through the page.",
+    description: "Desktop scrolling settles sooner, section links glide on phones, and headings land neatly below the navigation. Keyboard navigation interrupts desktop glides immediately, while reduced-motion browsing stays instant. A subtle reading-progress line now works on supported mobile browsers too.",
+    href: "/", linkLabel: "Explore the homepage",
+  },
+  {
     id: "companion-footer-control", date: "2026-11-11", type: "Improved",
     title: "A quieter home for companion controls.",
     description: "Show or hide your desktop companion from a simple control in the footer. It now sits within the page instead of floating over content, and still remembers your choice.",

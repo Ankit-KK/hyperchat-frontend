@@ -5,6 +5,8 @@ test('touch-first scrolling avoids smooth-scroll loop, grain and liquid engine',
   const requests:string[]=[];
   page.on('request',request=>requests.push(request.url()));
   await page.goto('/');
+  await expect(page.locator('.entrance-reveal')).toHaveCount(0);
+  await expect(page.locator('.site-root')).not.toHaveAttribute('inert');
   await expect(page.locator('.hero')).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.classList.contains('lenis'))).toBeFalsy();
   await expect(page.locator('.grain')).toBeHidden();

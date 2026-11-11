@@ -8,7 +8,7 @@
 .legal-index a[aria-current="page"] { font-weight: 650; text-decoration: underline; text-underline-offset: 4px; }
 .legal-contents-toggle { display: none; }
 .legal-document { min-width: 0; overflow-wrap: anywhere; }
-.legal-document section { scroll-margin-top: 115px; padding: 0 0 36px; margin-bottom: 36px; border-bottom: 1px solid var(--sand); }
+.legal-document section { scroll-margin-top: 12px; padding: 0 0 36px; margin-bottom: 36px; border-bottom: 1px solid var(--sand); }
 .legal-document h2 { font-size: clamp(26px, 3vw, 38px); line-height: 1.25; margin-bottom: 24px; }
 .legal-document h3 { font-family: inherit; font-weight: 600; font-size: 17px; line-height: 1.5; margin: 30px 0 16px; }
 .legal-document p, .legal-document li { font-size: 14px; line-height: 1.9; }

@@ -6,7 +6,7 @@ test('updates filter, keyboard access, layout and metadata', async ({ page }, te
   await page.goto('/whats-new');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('A little better. Every update.');
   await expect(page).toHaveTitle('What’s New at HyperChat — Website Updates');
-  await expect(page.locator('#update-list article')).toHaveCount(14);
+  await expect(page.locator('#update-list article')).toHaveCount(15);
   const fixed = page.getByRole('button', { name: 'Fixed', exact: true });
   await fixed.focus();
   await page.keyboard.press('Enter');
@@ -16,7 +16,7 @@ test('updates filter, keyboard access, layout and metadata', async ({ page }, te
   await page.getByRole('button', { name: 'Added', exact: true }).click();
   await expect(page.locator('#update-list article')).toHaveCount(3);
   await page.getByRole('button', { name: 'Improved', exact: true }).click();
-  await expect(page.locator('#update-list article')).toHaveCount(7);
+  await expect(page.locator('#update-list article')).toHaveCount(8);
   await page.getByRole('link', { name: 'Find companion controls' }).click();
   await expect(page).toHaveURL(/#footer$/);
   await expect(page.locator('#footer')).toBeInViewport();

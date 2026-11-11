@@ -1,3 +1,14 @@
 /* Transform-only editorial rules. Native/reduced-motion layouts keep the border. */
 .experience-motion .section-label{position:relative;border-bottom-color:transparent}
 .experience-motion .section-label::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--line);transform:scaleX(var(--section-rule,1));transform-origin:left;pointer-events:none}
+
+/* The browser drives progress on phones too, without a JS scroll/render loop. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reading-progress {
+      animation: reading-progress linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+@keyframes reading-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
