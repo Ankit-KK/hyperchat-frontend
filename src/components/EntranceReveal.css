@@ -1,26 +1,20 @@
 .entrance-reveal { position: fixed; inset: 0; z-index: 100; background: transparent; color: #221f1c; --dock-x: 0px; --dock-y: 0px; --dock-scale: .15; }
 .entrance-reveal::before { content: ""; position: absolute; inset: 0; background: #f3ede2; transition: opacity 450ms ease; }
 .entrance-reveal[data-leaving="true"]::before { opacity: 0; }
-.entrance-reveal iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; opacity: 0; transition: opacity 150ms ease; }
-.entrance-reveal[data-leaving="true"] .entrance-logo { transform: translate(var(--dock-x), var(--dock-y)) scale(var(--dock-scale)); animation: entrance-handoff 1600ms both; }
+.entrance-reveal iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; opacity: 0;  }
+.entrance-reveal[data-leaving="true"] .entrance-logo { transform: translate(var(--dock-x), var(--dock-y)) scale(var(--dock-scale)); opacity: 1; }
 .entrance-reveal[data-leaving="true"] .entrance-skip { opacity: 0; }
-body:has(.entrance-reveal[data-leaving="true"]) .site-root .header .brand { animation: entrance-brand 1600ms both; }
+body:has(.entrance-reveal) .site-root .header .brand { visibility: hidden; }
 body:has(.entrance-reveal[data-leaving="true"]) .site-root main { animation: entrance-page 600ms cubic-bezier(.22, 1, .36, 1) both; }
-@keyframes entrance-handoff { 0%, 82% { opacity: 1; } 100% { opacity: 0; } }
-@keyframes entrance-brand { 0%, 70% { opacity: 0; } 100% { opacity: 1; } }
 @keyframes entrance-page { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 .entrance-reveal iframe[data-ready="true"] { opacity: 1; }
-.entrance-reveal[data-leaving="true"] iframe { opacity: 0; }
+.entrance-reveal[data-leaving="true"] iframe { opacity: 0; visibility: hidden; }
 .entrance-logo { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; z-index: 1; pointer-events: none; transition: transform 1600ms cubic-bezier(.76, 0, .24, 1); }
 .entrance-monogram { grid-area: 1 / 1; width: var(--flight-width, 240px); height: auto; }
 .entrance-skip { position: absolute; right: max(24px, env(safe-area-inset-right)); bottom: max(24px, env(safe-area-inset-bottom)); min-height: 44px; padding: 10px 16px; border: 1px solid #8c847b; background: #f3ede2; color: #221f1c; font-size: 14px; cursor: pointer; }
 .entrance-skip:focus-visible { outline: 2px solid #75451d; outline-offset: 4px; }
-@keyframes entrance-mark { 0% { opacity: 0; transform: scale(.85); } 100% { opacity: 1; transform: scale(1.03); } }
+@keyframes entrance-mark { 0% { opacity: 0; transform: scale(.85); } 100% { opacity: 1; transform: scale(1); } }
 @media (prefers-reduced-motion: reduce) { .entrance-reveal { transition: none; } .entrance-reveal * { animation: none !important; transition: none !important; } body:has(.entrance-reveal) .site-root main, body:has(.entrance-reveal) .header .brand { animation: none !important; } }
 
 .entrance-logo[data-light="true"] { opacity: 1; }
 .entrance-logo[data-light="true"] .entrance-monogram { animation: entrance-mark 2s both; }
-
-.entrance-header-tone { opacity: 0; transition: opacity 500ms ease 750ms; }
-.entrance-reveal[data-leaving="true"] .entrance-header-tone { opacity: 1; }
-.entrance-logo[data-light="true"] .entrance-header-tone { animation: none; }

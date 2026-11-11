@@ -1,10 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./EntranceReveal.css";
-import wordmarkLogo from "../assets/brand/hyperchat-intro.svg?raw";
-
-import { headerWordmark } from "../lib/brand";
-
-const logoUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(wordmarkLogo)}`;
+import { headerWordmark, headerWordmarkSvg } from "../lib/brand";
 
 export default function EntranceReveal({ onComplete }: { onComplete: () => void }) {
   const [lightweight, setLightweight] = useState(() =>
@@ -57,7 +53,7 @@ export default function EntranceReveal({ onComplete }: { onComplete: () => void 
       const brand = document.querySelector(".header-wordmark")?.getBoundingClientRect();
       if (!brand || !overlay.current) return;
       // Match the glass renderer’s settled width; keep the full word readable on phones.
-      const logoWidth = Math.min(900, innerWidth * .88 / .68, innerHeight * 1.25) * .68 * .955;
+      const logoWidth = Math.min(900, innerWidth * .88 / .68, innerHeight * 1.25) * .68 * .955 * .5;
       const destinationWidth = brand.width;
       overlay.current.style.setProperty("--flight-width", `${logoWidth}px`);
       overlay.current.style.setProperty("--dock-x", `${brand.left + destinationWidth / 2 - innerWidth / 2}px`);
@@ -85,11 +81,10 @@ export default function EntranceReveal({ onComplete }: { onComplete: () => void 
       if (event.key === "Tab") { event.preventDefault(); skip.current?.focus(); }
     }}>
     <div className="entrance-logo" aria-hidden="true" data-light={lightweight}>
-      <img className="entrance-monogram" src={logoUrl} alt="" width="750" height="104" />
-      <img className="entrance-monogram entrance-header-tone" src={headerWordmark} alt="" width="750" height="104" />
+      <img className="entrance-monogram" src={headerWordmark} alt="" width="750" height="104" />
     </div>
     {!lightweight && <iframe ref={frame} src="/intro/glass-reveal.html" title="HyperChat glass animation"
-      onLoad={() => frame.current?.contentWindow?.postMessage({ source: "hyperchat-intro", type: "init", logo: wordmarkLogo }, "*")}
+      onLoad={() => frame.current?.contentWindow?.postMessage({ source: "hyperchat-intro", type: "init", logo: headerWordmarkSvg }, "*")}
       sandbox="allow-scripts" tabIndex={-1} aria-hidden="true" data-ready={ready} />}
     <button ref={skip} type="button" className="entrance-skip" onClick={() => setLeaving(true)}>Skip intro</button>
   </div>;

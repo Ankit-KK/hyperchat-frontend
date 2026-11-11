@@ -31,3 +31,6 @@ The glass iframe stays full-screen and fades in place. A transparent SVG of the 
 The traced paths have been replaced by original geometric letter outlines, inspired by the supplied reference rather than an exact font match. The charcoal/stone/copper multitone asset is shared by the shader, travelling SVG and header image; the old text/V2 badge is removed from the header. The destination is measured from the image itself. Texture resolution is 1024 on desktop and 768 on phones, with bounded render resolution. The 1.6-second transition is retained.
 
 The shared wordmark restores the earlier HC warm gradient. The dark-header variant uses filled stone, sand and copper tones without outlines. The travelling logo blends into this palette before landing, using identical geometry.
+
+### Single-logo handoff (November 11, 2026)
+The reveal and travel layer use the same filled header palette. The centre reveal and its geometry are 50% smaller; the header retains its normal size. Only one SVG travel image is mounted. The glass iframe switches off when travel starts, and the normal header logo stays hidden until the overlay unmounts at the measured destination. There is no overlapping logo crossfade. Travel duration remains 1.6 seconds.

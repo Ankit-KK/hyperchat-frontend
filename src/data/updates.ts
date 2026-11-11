@@ -13,6 +13,12 @@ export interface WebsiteUpdate {
 // Add new entries at the top; filters and counts update automatically.
 export const websiteUpdates: WebsiteUpdate[] = [
   {
+    id: "single-logo-handoff", date: "2026-11-11", type: "Improved",
+    title: "One logo, all the way home.",
+    description: "The loading reveal is now half its previous size. A single wordmark travels to the header without overlapping copies, keeping the slower 1.6-second movement.",
+    href: "/", linkLabel: "See the entrance",
+  },
+  {
     id: "companion-click-visibility", date: "2026-11-10", type: "Fixed",
     title: "Your buddy stays for the click.",
     description: "Ordinary clicks no longer hide the desktop companion. Actual dragging still gives way to native text selection, and the buddy returns when you release the mouse.",

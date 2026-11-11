@@ -535,7 +535,7 @@ function boot() {
     var dpr = Math.min(window.devicePixelRatio || 1, 1.5, 1400 / cw, 1000 / ch);
     var w = Math.max(1, Math.round(cw * dpr)), h = Math.max(1, Math.round(ch * dpr));
     if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
-    var tile = Math.min(900, cw * .88 / .68, ch * 1.25);
+    var tile = Math.min(900, cw * .88 / .68, ch * 1.25) * .5;
     render(tile * dpr);
     if (!announced) { announced = true; signal("ready"); }
     // Start the parent fade before stopping the renderer, so the glass never freezes.

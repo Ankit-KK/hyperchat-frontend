@@ -77,6 +77,11 @@ test('logo docks toward the header while the homepage enters', async ({ page }) 
   await page.goto('/');
   const intro = page.locator('.entrance-reveal');
   await expect(intro).toHaveAttribute('data-leaving', 'true');
+  await expect(intro.locator('.entrance-monogram')).toHaveCount(1);
+  await expect(page.locator('.header .brand')).toHaveCSS('visibility', 'hidden');
+  await expect(intro.locator('iframe')).toHaveCSS('visibility', 'hidden');
+  const width = await intro.locator('.entrance-monogram').evaluate(el => parseFloat(getComputedStyle(el).width));
+  expect(width).toBeCloseTo(Math.min(900, 390 * .88 / .68, 844 * 1.25) * .68 * .955 * .5, 0);
   const target = await intro.evaluate(node => {
     const style = getComputedStyle(node);
     const brand = document.querySelector('.header-wordmark')!.getBoundingClientRect();
