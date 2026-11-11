@@ -13,6 +13,12 @@ export interface WebsiteUpdate {
 // Add new entries at the top; filters and counts update automatically.
 export const websiteUpdates: WebsiteUpdate[] = [
   {
+    id: "lighter-mobile-browsing", date: "2026-11-11", type: "Improved",
+    title: "Less to load. Easier to explore.",
+    description: "Phones and reduced-motion browsers now skip the desktop scrolling engine entirely. Creator-profile links have larger click targets, and section links still work if the scrolling enhancement cannot load.",
+    href: "/creators#creator-showcase", linkLabel: "Explore the creator directory",
+  },
+  {
     id: "responsive-scrolling", date: "2026-11-11", type: "Improved",
     title: "An easier way through the page.",
     description: "Desktop scrolling settles sooner, section links glide on phones, and headings land neatly below the navigation. Keyboard navigation interrupts desktop glides immediately, while reduced-motion browsing stays instant. A subtle reading-progress line now works on supported mobile browsers too.",

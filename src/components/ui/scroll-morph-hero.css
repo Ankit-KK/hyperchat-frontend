@@ -76,7 +76,7 @@
 .showcase-card-grid .showcase-card-front { padding: 0; }
 .showcase-card-grid .showcase-card-index { margin: 8px; padding: 5px; font-size: 8px; }
 .showcase-card-grid .showcase-card-name { padding: 9px; font-size: 11px; line-height: 1.4; }
-.showcase-grid-caption a { display: inline; overflow-wrap: anywhere; text-decoration: underline; text-underline-offset: 3px; }
+.showcase-grid-caption a { display: flex; align-items: center; min-height: 44px; padding: 8px 0; overflow-wrap: anywhere; text-decoration: underline; text-underline-offset: 3px; }
 .showcase-grid-caption svg { display: inline; vertical-align: middle; }
 .showcase-grid-caption .showcase-ambassador { color: var(--charcoal); margin-top: 5px; font-weight: 600; }
 .showcase-directory-controls { max-width: 1000px; margin: 0 auto 32px; }

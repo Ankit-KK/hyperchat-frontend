@@ -40,8 +40,9 @@ test('header is opaque and mobile actions retain generous targets', async ({ pag
 });
 
 test('representative pages have no automated accessibility violations', async ({ page }) => {
+  test.setTimeout(90000);
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  for (const route of ['/', '/features', '/company', '/support', '/demo-signup', '/terms-and-conditions']) {
+  for (const route of ['/', '/features', '/creators', '/company', '/support', '/demo-signup', '/whats-new', '/privacy-policy', '/terms-and-conditions', '/viewer-terms', '/cancellation-refunds']) {
     await page.goto(route);
     await page.locator('main h1').waitFor();
     await page.evaluate(() => document.fonts.ready);

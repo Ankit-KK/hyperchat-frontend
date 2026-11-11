@@ -46,14 +46,27 @@ test('narrow phone layouts keep navigation and content inside the viewport', asy
 test.describe('touch-first mobile', () => {
   test.use({ hasTouch: true, isMobile: true, viewport: { width: 390, height: 844 } });
   test('touch navigation works without loading mascot videos', async ({ page }) => {
-    const videos: string[] = [];
-    page.on('request', request => { if (request.url().includes('/mascot/')) videos.push(request.url()); });
+    const requests: string[] = [];
+    page.on('request', request => requests.push(request.url()));
     await page.goto('/');
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     await page.getByRole('button', { name: 'Open navigation' }).tap();
     await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Support', exact: true }).tap();
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Keep the moment going.');
-    expect(videos).toEqual([]);
+    expect(requests.filter(url => url.includes('/mascot/') || /desktop-experience-.*\.js/.test(url))).toEqual([]);
     await expect(page.locator('html')).not.toHaveClass(/has-mascot-cursor/);
   });
+});
+
+
+test('missing desktop enhancement leaves section links and content usable', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.route('**/assets/desktop-experience-*.js', route => route.abort());
+  await page.goto('/support');
+  await expect(page.locator('html')).not.toHaveClass(/lenis/);
+  await page.getByRole('link', { name: 'Text-to-speech & voice messages', exact: true }).click();
+  await expect(page.locator('#voice-help')).toBeFocused();
+  await expect(page.locator('#voice-help')).toBeInViewport();
+  await page.getByText('What is the difference between TTS and a voice message?', { exact: true }).click();
+  await expect(page.locator('#voice-help details[open]')).toContainText('viewer’s own recorded audio');
 });
