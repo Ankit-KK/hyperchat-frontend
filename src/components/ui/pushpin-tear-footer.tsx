@@ -425,6 +425,7 @@ export default function PushpinTearFooter() {
             <p className="tear-footer-company">
               HyperChat is a product of Streamheart Private Limited.
             </p>
+            <div id="companion-controls" />
           </div>
           {groups.map((group) => (
             <nav key={group.title} aria-label={`Footer ${group.title}`}>

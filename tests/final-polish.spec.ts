@@ -6,6 +6,8 @@ test('companion preference survives reload and releases the native cursor', asyn
   await page.goto('/');
   const toggle = page.getByRole('button', { name: /^(Hide|Show) companion$/ });
   await expect(toggle).toHaveText('Hide companion');
+  await expect(page.locator('#footer #companion-controls .companion-toggle')).toHaveCount(1);
+  await expect(toggle).toHaveCSS('position', 'static');
   await toggle.click();
   await expect(toggle).toHaveText('Show companion');
   await expect(page.locator('html')).not.toHaveClass(/has-mascot-cursor/);

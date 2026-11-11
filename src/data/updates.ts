@@ -13,6 +13,12 @@ export interface WebsiteUpdate {
 // Add new entries at the top; filters and counts update automatically.
 export const websiteUpdates: WebsiteUpdate[] = [
   {
+    id: "companion-footer-control", date: "2026-11-11", type: "Improved",
+    title: "A quieter home for companion controls.",
+    description: "Show or hide your desktop companion from a simple control in the footer. It now sits within the page instead of floating over content, and still remembers your choice.",
+    href: "#footer", linkLabel: "Find the companion control",
+  },
+  {
     id: "single-logo-handoff", date: "2026-11-11", type: "Improved",
     title: "One logo, all the way home.",
     description: "The loading reveal is now half its previous size. A single wordmark travels to the header without overlapping copies, keeping the slower 1.6-second movement.",
