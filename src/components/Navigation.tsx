@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { headerWordmark as brandWordmark } from "../lib/brand";
 const links = [
   { href: "/features", text: "Features" },
@@ -46,13 +46,6 @@ export default function Navigation() {
           </a>
         ))}
       </nav>
-      <a
-        className="header-cta"
-        href="/creators#onboarding"
-        onClick={() => setExpanded(false)}
-      >
-        Creator onboarding <ArrowUpRight size={15} />
-      </a>
       <button
         ref={toggle}
         className="menu-toggle"

@@ -31,7 +31,7 @@ test('header is opaque and mobile actions retain generous targets', async ({ pag
     const menu = page.getByRole('button', { name: 'Open navigation' });
     expect((await menu.boundingBox())!.width).toBeGreaterThanOrEqual(44);
     expect((await menu.boundingBox())!.height).toBeGreaterThanOrEqual(44);
-    expect((await page.locator('.header-cta').boundingBox())!.height).toBeGreaterThanOrEqual(44);
+    await expect(page.locator('.header-cta')).toHaveCount(0);
     await menu.click();
     await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Support', exact: true }).click();
     await expect(page).toHaveURL(/support$/);
