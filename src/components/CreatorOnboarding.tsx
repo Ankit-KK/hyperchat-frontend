@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import CreatorSignupCta from "./CreatorSignupCta";
 import "./OnboardingDepth.css";
 const onboarding = [
   [
@@ -52,6 +53,7 @@ export default function CreatorOnboarding({
               ? "Creator access begins with an application and a human review."
               : "A clear path from introducing your channel to setting up your first interaction. Here is the planned V2 onboarding journey."}
           </p>
+          {compact && <CreatorSignupCta lightSurface />}
           <div className="onboarding-availability">
             <strong>V2 applications aren’t open yet.</strong>
             <p>Verification and activation are still being completed. You can email us about creator onboarding in the meantime.</p>

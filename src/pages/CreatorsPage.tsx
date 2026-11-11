@@ -1,5 +1,6 @@
 import "./CreatorTermsOverview.css";
 import CreatorOnboarding from "../components/CreatorOnboarding";
+import CreatorSignupCta from "../components/CreatorSignupCta";
 import ScrollMorphHero from "../components/ui/scroll-morph-hero";
 import { showcaseCreators } from "../data/showcase-creators";
 import PageIntro from "./PageIntro";
@@ -10,7 +11,9 @@ export default function CreatorsPage() {
         eyebrow="FOR CREATORS"
         title="Your next chapter starts here."
         copy="Get to know the planned onboarding process, prepare your OBS setup, and find answers before you begin."
-      />{" "}
+      >
+        <CreatorSignupCta />
+      </PageIntro>
       <section className="creator-terms-overview section-shell light" aria-labelledby="creator-terms-title">
         <div className="section-label"><span>THE PRACTICAL DETAILS</span><span>FEES & PAYOUTS</span></div>
         <h2 id="creator-terms-title">Know where you stand.</h2>

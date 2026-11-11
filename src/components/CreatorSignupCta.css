@@ -1,0 +1,4 @@
+.creator-signup-cta { margin-top: 24px; }
+.creator-signup-cta .button { font-size: 14px; }
+.creator-signup-cta > p { margin: 10px 0 0; font-size: 12px; line-height: 1.6; color: var(--sand); }
+.creator-signup-cta-light > p { color: #655d53; }
