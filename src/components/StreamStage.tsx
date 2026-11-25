@@ -92,15 +92,14 @@ export default function StreamStage({
         className={`stream-alert ${visible ? "visible" : ""}`}
         aria-hidden={!visible}
       >
-        <span className="alert-symbol">
-          <MessageCircle size={19} />
-        </span>
-        <div>
-          <span className="alert-meta">A FEW WORDS. A SHARED MOMENT.</span>
-          <strong>Ari joined the conversation</strong>
-          <p>{message}</p>
+        <div className="alert-heading">
+          <span className="alert-symbol" aria-hidden="true">A</span>
+          <div>
+            <strong>Ankit</strong>
+            <span className="alert-meta">Joined the conversation · Demo</span>
+          </div>
         </div>
-        <span className="alert-signature">hyperchat</span>
+        <p>{message}</p>
       </div>
     </div>
   );

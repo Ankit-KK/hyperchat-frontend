@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import "./HeroDepth.css";
 import "./HeroMobile.css";
+import "./HeroCards.css";
 import StreamStage from "./StreamStage";
 import { useDemoSequence } from "../hooks/useDemoSequence";
 import { useState } from "react";
@@ -102,7 +103,7 @@ export default function ProductHero() {
               <div className="ticket-top">
                 <span className="viewer-avatar">A</span>
                 <div>
-                  <strong>Ari</strong>
+                  <strong>Ankit</strong>
                   <span>EXAMPLE VIEWER</span>
                 </div>
                 <Send size={14} />

@@ -11,6 +11,7 @@ test("a viewer's own words reach the audience, reset cancels and nothing is subm
       mutations.push(`${request.method()} ${request.url()}`);
   });
   await page.goto("/");
+  await expect(page.locator(".entrance-reveal")).toHaveCount(0);
   const message = page.getByRole("textbox", { name: "Your example message" });
   await expect(message).toHaveAttribute("maxlength", "96");
   await message.fill("   ");
@@ -36,7 +37,7 @@ test("a viewer's own words reach the audience, reset cancels and nothing is subm
   await expect(page.locator(".stream-alert")).toHaveClass(/visible/);
   await expect(page.locator(".stream-alert p")).toHaveText(personalMessage);
   await expect(page.locator(".stream-alert")).toContainText(
-    "Ari joined the conversation",
+    "Ankit",
   );
   await expect(page.locator(".theatre-status [role=status]")).toHaveText(
     "Your words are now part of the scene.",
