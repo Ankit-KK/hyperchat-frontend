@@ -304,7 +304,7 @@ function halfWidth(geo: THREE.BufferGeometry, tilt: number, yaw: number) {
 function strandCard() {
   const segs = 3, pos: number[] = [], idx: number[] = []
   for (let k = 0; k <= segs; k++) {
-    const t = k / segs, half = 0.019 * Math.pow(1 - t, 0.85) + 0.0008
+    const t = k / segs, half = 0.0065 * Math.pow(1 - t, 0.65) + 0.00025
     pos.push(-half, t, 0, half, t, 0)
   }
   for (let k = 0; k < segs; k++) {
@@ -348,7 +348,7 @@ export default function FooterCritterScene() {
   const [motionReduced, setMotionReduced] = React.useState(() => matchMedia("(prefers-reduced-motion: reduce)").matches)
   const [ready, setReady] = React.useState(false)
   const [unavailable, setUnavailable] = React.useState(false)
-  const critters = DEFAULT_CRITTERS, gravity = 2600, bounce = 0.32, wind = 0.6, density = 0.22, idleHops = false, curve = false
+  const critters = DEFAULT_CRITTERS, gravity = 2600, bounce = 0.32, wind = 0.6, density = 0.36, idleHops = false, curve = false
   const live = React.useRef<{sound: boolean; volume: number; onDrop?: () => void; onCritterClick?: (shape: CritterShape) => void}>({sound, volume: 0.2})
   live.current.sound = sound
   React.useEffect(() => {
@@ -421,7 +421,20 @@ export default function FooterCritterScene() {
       const front = geo.boundingBox ? geo.boundingBox.max.z : 0.3
       const yaw = -0.22 + hash(i * 3.3) * 0.3
       const reach = halfWidth(geo, 0.16, yaw) + 0.24 // on-screen half-width, longest (curled) fur included
-      const core = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: new THREE.Color(spec.colors[0]) }))
+      // A shaded, finely textured fabric base closes the gaps between fibers.
+      // This supplies plush volume without thousands of extra strands.
+      const core = new THREE.Mesh(geo, new THREE.ShaderMaterial({
+        uniforms: { uColor: { value: new THREE.Color(spec.colors[0]).convertLinearToSRGB() } },
+        vertexShader: `varying vec3 vNormal,vPoint;
+          void main(){vNormal=normalize(mat3(modelMatrix)*normal);vPoint=position;
+          gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+        fragmentShader: `uniform vec3 uColor;varying vec3 vNormal,vPoint;
+          void main(){
+            float grain=fract(sin(dot(floor(vPoint*260.),vec3(12.9898,78.233,37.719)))*43758.5453);
+            float light=.66+.34*max(dot(normalize(vNormal+vec3(vPoint.xy*.9,0.)),normalize(vec3(.4,1.,.8))),0.);
+            gl_FragColor=vec4(uColor*light*(.96+grain*.08),1.);
+          }`,
+      }))
       const [er, el, tilt, gap] = EYES[spec.eyes]
       const eyeY = EYE_LINE[spec.shape]
       const clear = er + el / 2 + 0.09
@@ -434,7 +447,7 @@ export default function FooterCritterScene() {
         const seed = s * 7.13 + i * 97
         sampler.sample(p, n)
         n.normalize()
-        let len = 0.15 * (0.86 + hash(seed + 3.1) * 0.28)
+        let len = 0.07 * (0.8 + hash(seed + 3.1) * 0.4)
         if (n.z > 0.4 && p.z > front - 0.2) {
           const d = Math.min(Math.hypot(p.x - gap, p.y - eyeY), Math.hypot(p.x + gap, p.y - eyeY))
           if (d < clear) len *= 0.08 + 0.92 * (d / clear) ** 2
@@ -460,7 +473,7 @@ export default function FooterCritterScene() {
           vertexShader: FUR_VERT,
           fragmentShader: FUR_FRAG,
           side: THREE.DoubleSide,
-          uniforms: { uTime: clock, uWind: windU, uSun: sun, uRoot: { value: disp(darker(spec.colors[0], 0.2)) }, uMid: { value: disp(new THREE.Color(spec.colors[0])) }, uTip: { value: disp(new THREE.Color(spec.colors[1])) }, ...u },
+          uniforms: { uTime: clock, uWind: windU, uSun: sun, uRoot: { value: disp(darker(spec.colors[0], 0.08)) }, uMid: { value: disp(new THREE.Color(spec.colors[0])) }, uTip: { value: disp(new THREE.Color(spec.colors[0]).lerp(new THREE.Color(spec.colors[1]), 0.28)) }, ...u },
         }),
       )
       fur.frustumCulled = false
