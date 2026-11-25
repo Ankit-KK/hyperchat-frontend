@@ -300,9 +300,9 @@ function halfWidth(geo: THREE.BufferGeometry, tilt: number, yaw: number) {
   return m
 }
 
-/** One tapered card per strand: 5 segments, root at y=0, tip at y=1 */
+/** One tapered card per strand: 3 segments, root at y=0, tip at y=1 */
 function strandCard() {
-  const segs = 5, pos: number[] = [], idx: number[] = []
+  const segs = 3, pos: number[] = [], idx: number[] = []
   for (let k = 0; k <= segs; k++) {
     const t = k / segs, half = 0.019 * Math.pow(1 - t, 0.85) + 0.0008
     pos.push(-half, t, 0, half, t, 0)
@@ -348,7 +348,7 @@ export default function FooterCritterScene() {
   const [motionReduced, setMotionReduced] = React.useState(() => matchMedia("(prefers-reduced-motion: reduce)").matches)
   const [ready, setReady] = React.useState(false)
   const [unavailable, setUnavailable] = React.useState(false)
-  const critters = DEFAULT_CRITTERS, gravity = 2600, bounce = 0.32, wind = 0.6, density = 0.45, idleHops = false, curve = false
+  const critters = DEFAULT_CRITTERS, gravity = 2600, bounce = 0.32, wind = 0.6, density = 0.22, idleHops = false, curve = false
   const live = React.useRef<{sound: boolean; volume: number; onDrop?: () => void; onCritterClick?: (shape: CritterShape) => void}>({sound, volume: 0.2})
   live.current.sound = sound
   React.useEffect(() => {
@@ -369,7 +369,8 @@ export default function FooterCritterScene() {
       setUnavailable(true)
       return // Footer links remain available without WebGL.
     }
-    gl.setPixelRatio(Math.min(1.5, window.devicePixelRatio || 1))
+    const compact = matchMedia("(max-width: 640px), (pointer: coarse)").matches
+    gl.setPixelRatio(Math.min(compact ? 1 : 1.25, window.devicePixelRatio || 1))
     gl.setClearColor(0x000000, 0)
     gl.domElement.className = "fcf-canvas"
     stage.appendChild(gl.domElement)
@@ -410,7 +411,7 @@ export default function FooterCritterScene() {
     })()
     const card = strandCard()
     const white = new THREE.MeshBasicMaterial({ color: 0xffffff })
-    const strands = Math.round(10000 * Math.max(0.2, density) * (world.w < 640 ? 0.6 : 1))
+    const strands = Math.round(10000 * Math.max(0.2, density) * (compact ? 0.55 : 1))
 
     const bodies: Body[] = []
     const rigs: Rig[] = critters.map((spec, i) => {
@@ -671,7 +672,16 @@ export default function FooterCritterScene() {
     const frame = (now: number) => {
       raf = 0
       if (!onScreen || document.hidden) return
-      const dt = Math.min(0.033, (now - last) / 1000)
+      // Do not render at 120/144 Hz just because the screen can. Quiet fur
+      // runs at 30 fps; dragging and falling retain up to 60 fps.
+      const active = held >= 0 || now - lastMove < 180 || bodies.some(b =>
+        b.live && (!b.onFloor || Math.abs(b.vx) > 8 || Math.abs(b.vy) > 8))
+      const interval = 1000 / (active ? 60 : 30)
+      if (!reduced && now - last < interval - 1) {
+        raf = requestAnimationFrame(frame)
+        return
+      }
+      const dt = Math.min(0.05, (now - last) / 1000)
       last = now
       time += dt
       clock.value = time
@@ -791,7 +801,8 @@ export default function FooterCritterScene() {
     const io = new IntersectionObserver(([en]) => {
       onScreen = en.isIntersecting
       if (onScreen) watch()
-      if (onScreen && !raf) {
+      else { cancelAnimationFrame(raf); raf = 0 }
+      if (onScreen && !document.hidden && !raf) {
         last = performance.now()
         raf = requestAnimationFrame(frame)
       }
