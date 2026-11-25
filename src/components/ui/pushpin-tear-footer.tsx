@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { ArrowUp, ArrowUpRight, Check, Copy } from "lucide-react";
 import "./pushpin-tear-footer.css";
+import FooterCritters from "../FooterCritters";
 
 // #region tear
 export type Flap = {
@@ -441,6 +442,7 @@ export default function PushpinTearFooter() {
           ))}
         </div>
       </div>
+      <FooterCritters />
       <div ref={art} className="tear-footer-art" data-animating={busy}>
         <svg
           viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
