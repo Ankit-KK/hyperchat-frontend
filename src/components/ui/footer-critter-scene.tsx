@@ -175,18 +175,15 @@ export function bendFor(top: number, height: number, viewport: number) {
 // ---------- creatures ----------
 
 const FUR_VERT =
-  "attribute vec3 aRoot;attribute vec3 aNrm;attribute vec4 aHair;" +
+  "attribute vec3 aRoot,aNrm,aSide,aLean,aWind;attribute vec4 aHair;" +
   "uniform float uTime,uWind,uJolt,uStroke;uniform vec3 uHand;" +
   "varying float vS;varying float vTint;varying vec3 vN;" +
   "void main(){" +
-  "float s=position.y;float s2=s*s;vec3 n=normalize(aNrm);" +
-  "vec3 ref=abs(n.y)<0.9?vec3(0.,1.,0.):vec3(1.,0.,0.);" +
-  "vec3 u=normalize(cross(n,ref));vec3 v=cross(n,u);" +
-  "float cs=cos(aHair.x),sn=sin(aHair.x);vec3 side=u*cs+v*sn;vec3 lean=v*cs-u*sn;" +
+  "float s=position.y;float s2=s*s;vec3 n=aNrm;vec3 side=aSide;vec3 lean=aLean;" +
   "float len=aHair.y;" +
   "vec3 p=aRoot+side*position.x+n*s*len+lean*aHair.z*s2*len;" +
   "float sway=0.7*sin(uTime*1.1+dot(aRoot,vec3(1.6,1.2,1.4)))+0.3*sin(uTime*1.7+dot(aRoot,vec3(-2.,2.5,.6)));" +
-  "vec3 wd=normalize(vec3(1.,0.,.45));wd-=n*dot(wd,n);" +
+  "vec3 wd=aWind;" +
   "p+=wd*(sway*uWind*s2*len*.55);" +
   "p+=side*(sin(uTime*32.+aHair.w*40.)*uJolt*s2*len*.45);" +
   "vec3 off=aRoot-uHand;float f=uStroke*smoothstep(.42,0.,length(off));" +
@@ -300,11 +297,11 @@ function halfWidth(geo: THREE.BufferGeometry, tilt: number, yaw: number) {
   return m
 }
 
-/** One tapered card per strand: 3 segments, root at y=0, tip at y=1 */
+/** One tapered card per strand: 5 segments, root at y=0, tip at y=1 */
 function strandCard() {
-  const segs = 3, pos: number[] = [], idx: number[] = []
+  const segs = 5, pos: number[] = [], idx: number[] = []
   for (let k = 0; k <= segs; k++) {
-    const t = k / segs, half = 0.0065 * Math.pow(1 - t, 0.65) + 0.00025
+    const t = k / segs, half = 0.019 * Math.pow(1 - t, 0.85) + 0.0008
     pos.push(-half, t, 0, half, t, 0)
   }
   for (let k = 0; k < segs; k++) {
@@ -348,7 +345,7 @@ export default function FooterCritterScene() {
   const [motionReduced, setMotionReduced] = React.useState(() => matchMedia("(prefers-reduced-motion: reduce)").matches)
   const [ready, setReady] = React.useState(false)
   const [unavailable, setUnavailable] = React.useState(false)
-  const critters = DEFAULT_CRITTERS, gravity = 2600, bounce = 0.32, wind = 0.6, density = 0.36, idleHops = false, curve = false
+  const critters = DEFAULT_CRITTERS, gravity = 2600, bounce = 0.32, wind = 0.6, density = 0.45, idleHops = false, curve = false
   const live = React.useRef<{sound: boolean; volume: number; onDrop?: () => void; onCritterClick?: (shape: CritterShape) => void}>({sound, volume: 0.2})
   live.current.sound = sound
   React.useEffect(() => {
@@ -364,13 +361,12 @@ export default function FooterCritterScene() {
     const reduced = motionReduced || paused
     let gl: THREE.WebGLRenderer
     try {
-      gl = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "low-power" })
+      gl = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" })
     } catch {
       setUnavailable(true)
       return // Footer links remain available without WebGL.
     }
-    const compact = matchMedia("(max-width: 640px), (pointer: coarse)").matches
-    gl.setPixelRatio(Math.min(compact ? 1 : 1.25, window.devicePixelRatio || 1))
+    gl.setPixelRatio(Math.min(1.5, window.devicePixelRatio || 1))
     gl.setClearColor(0x000000, 0)
     gl.domElement.className = "fcf-canvas"
     stage.appendChild(gl.domElement)
@@ -411,7 +407,7 @@ export default function FooterCritterScene() {
     })()
     const card = strandCard()
     const white = new THREE.MeshBasicMaterial({ color: 0xffffff })
-    const strands = Math.round(10000 * Math.max(0.2, density) * (compact ? 0.55 : 1))
+    const strands = Math.round(10000 * Math.max(0.2, density) * (world.w < 640 ? 0.6 : 1))
 
     const bodies: Body[] = []
     const rigs: Rig[] = critters.map((spec, i) => {
@@ -421,20 +417,7 @@ export default function FooterCritterScene() {
       const front = geo.boundingBox ? geo.boundingBox.max.z : 0.3
       const yaw = -0.22 + hash(i * 3.3) * 0.3
       const reach = halfWidth(geo, 0.16, yaw) + 0.24 // on-screen half-width, longest (curled) fur included
-      // A shaded, finely textured fabric base closes the gaps between fibers.
-      // This supplies plush volume without thousands of extra strands.
-      const core = new THREE.Mesh(geo, new THREE.ShaderMaterial({
-        uniforms: { uColor: { value: new THREE.Color(spec.colors[0]).convertLinearToSRGB() } },
-        vertexShader: `varying vec3 vNormal,vPoint;
-          void main(){vNormal=normalize(mat3(modelMatrix)*normal);vPoint=position;
-          gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
-        fragmentShader: `uniform vec3 uColor;varying vec3 vNormal,vPoint;
-          void main(){
-            float grain=fract(sin(dot(floor(vPoint*260.),vec3(12.9898,78.233,37.719)))*43758.5453);
-            float light=.66+.34*max(dot(normalize(vNormal+vec3(vPoint.xy*.9,0.)),normalize(vec3(.4,1.,.8))),0.);
-            gl_FragColor=vec4(uColor*light*(.96+grain*.08),1.);
-          }`,
-      }))
+      const core = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: new THREE.Color(spec.colors[0]) }))
       const [er, el, tilt, gap] = EYES[spec.eyes]
       const eyeY = EYE_LINE[spec.shape]
       const clear = er + el / 2 + 0.09
@@ -442,12 +425,26 @@ export default function FooterCritterScene() {
       // fur roots sampled over the body; strands near the eyes are trimmed so the eyes sit in a dip
       const sampler = new MeshSurfaceSampler(core).build()
       const roots = new Float32Array(strands * 3), nrms = new Float32Array(strands * 3), hair = new Float32Array(strands * 4)
+      const sides = new Float32Array(strands * 3), leans = new Float32Array(strands * 3), winds = new Float32Array(strands * 3)
       const p = new THREE.Vector3(), n = new THREE.Vector3()
+      const ref = new THREE.Vector3(), uAxis = new THREE.Vector3(), vAxis = new THREE.Vector3()
+      const sideAxis = new THREE.Vector3(), leanAxis = new THREE.Vector3(), windAxis = new THREE.Vector3()
+      const windDirection = new THREE.Vector3(1, 0, .45).normalize()
       for (let s = 0; s < strands; s++) {
         const seed = s * 7.13 + i * 97
         sampler.sample(p, n)
         n.normalize()
-        let len = 0.07 * (0.8 + hash(seed + 3.1) * 0.4)
+        ref.set(...(Math.abs(n.y) < .9 ? [0, 1, 0] : [1, 0, 0]) as [number, number, number])
+        uAxis.crossVectors(n, ref).normalize()
+        vAxis.crossVectors(n, uAxis)
+        const angle = hash(seed + 5.3) * Math.PI * 2
+        sideAxis.copy(uAxis).multiplyScalar(Math.cos(angle)).addScaledVector(vAxis, Math.sin(angle))
+        leanAxis.copy(vAxis).multiplyScalar(Math.cos(angle)).addScaledVector(uAxis, -Math.sin(angle))
+        windAxis.copy(windDirection).addScaledVector(n, -windDirection.dot(n))
+        sideAxis.toArray(sides, s * 3)
+        leanAxis.toArray(leans, s * 3)
+        windAxis.toArray(winds, s * 3)
+        let len = 0.15 * (0.86 + hash(seed + 3.1) * 0.28)
         if (n.z > 0.4 && p.z > front - 0.2) {
           const d = Math.min(Math.hypot(p.x - gap, p.y - eyeY), Math.hypot(p.x + gap, p.y - eyeY))
           if (d < clear) len *= 0.08 + 0.92 * (d / clear) ** 2
@@ -463,6 +460,9 @@ export default function FooterCritterScene() {
       fg.setAttribute("aRoot", new THREE.InstancedBufferAttribute(roots, 3))
       fg.setAttribute("aNrm", new THREE.InstancedBufferAttribute(nrms, 3))
       fg.setAttribute("aHair", new THREE.InstancedBufferAttribute(hair, 4))
+      fg.setAttribute("aSide", new THREE.InstancedBufferAttribute(sides, 3))
+      fg.setAttribute("aLean", new THREE.InstancedBufferAttribute(leans, 3))
+      fg.setAttribute("aWind", new THREE.InstancedBufferAttribute(winds, 3))
       fg.instanceCount = strands
       const u = { uJolt: { value: 0 }, uStroke: { value: 0 }, uHand: { value: new THREE.Vector3(9, 9, 9) } }
       // ShaderMaterial skips the output transform, so hand it display-space colours
@@ -473,7 +473,7 @@ export default function FooterCritterScene() {
           vertexShader: FUR_VERT,
           fragmentShader: FUR_FRAG,
           side: THREE.DoubleSide,
-          uniforms: { uTime: clock, uWind: windU, uSun: sun, uRoot: { value: disp(darker(spec.colors[0], 0.08)) }, uMid: { value: disp(new THREE.Color(spec.colors[0])) }, uTip: { value: disp(new THREE.Color(spec.colors[0]).lerp(new THREE.Color(spec.colors[1]), 0.28)) }, ...u },
+          uniforms: { uTime: clock, uWind: windU, uSun: sun, uRoot: { value: disp(darker(spec.colors[0], 0.2)) }, uMid: { value: disp(new THREE.Color(spec.colors[0])) }, uTip: { value: disp(new THREE.Color(spec.colors[1])) }, ...u },
         }),
       )
       fur.frustumCulled = false
@@ -681,10 +681,18 @@ export default function FooterCritterScene() {
 
     // ---- frame loop, paused off screen ----
     let onScreen = false, raf = 0, last = performance.now(), time = 0, nextHop = 4
+    let scrollingUntil = 0
+    const deferDuringScroll = () => { scrollingUntil = performance.now() + 120 }
+    window.addEventListener("scroll", deferDuringScroll, { passive: true })
     const handLocal = new THREE.Vector3()
     const frame = (now: number) => {
       raf = 0
       if (!onScreen || document.hidden) return
+      if (!reduced && held < 0 && now < scrollingUntil) {
+        last = now
+        raf = requestAnimationFrame(frame)
+        return
+      }
       // Do not render at 120/144 Hz just because the screen can. Quiet fur
       // runs at 30 fps; dragging and falling retain up to 60 fps.
       const active = held >= 0 || now - lastMove < 180 || bodies.some(b =>
@@ -825,6 +833,7 @@ export default function FooterCritterScene() {
 
     return () => {
       timers.forEach(clearTimeout)
+      window.removeEventListener("scroll", deferDuringScroll)
       document.removeEventListener("visibilitychange", visibility)
       cancelAnimationFrame(raf)
       io.disconnect()
