@@ -2,6 +2,13 @@
 
 A public landing page for HyperChat's live creator-engagement tools, built with React, TypeScript, Vite, Tailwind CSS, GSAP ScrollTrigger, and Lenis. Messages, voice, sound and media make the audience part of the broadcast. The hero turns a visitor's own words into a browser-local example interaction.
 
+## Backend integration / Claude handoff
+
+Start with [CLAUDE.md](CLAUDE.md) and [BACKEND_INTEGRATION.md](BACKEND_INTEGRATION.md).
+They explain the current architecture, local-demo boundaries, exact integration
+files, configuration, backend contract discovery and verification workflow for
+connecting to `Ankit-KK/hyperchat-v2`. No backend API connection is implemented yet.
+
 ## Run
 
 Use Node.js 24 and npm 11:
@@ -70,7 +77,7 @@ All preview records are fictional and remain in the browser. There are no applic
 | `src/font-config.css` | One-line display font selection |
 | `src/styles.css`, `src/fonts.css` | Responsive composition and local font definitions |
 
-The large HC sculpture and duplicated pinned interaction story were replaced following the owner's approval of a product-led direction. Three.js and its unused geometry/lifecycle code were removed; the prior implementation remains in Git history. Future integration should use a dedicated API/service layer and approved production configuration.
+The large HC sculpture and duplicated pinned interaction story were replaced following the owner's approval of a product-led direction. The old sculpture implementation remains in Git history. Three.js is now used by the lazy interactive footer characters; preserve their original fur quality and rendering optimizations. Future integration should use a dedicated API/service layer and approved production configuration.
 
 ## Verification and remaining assets
 
