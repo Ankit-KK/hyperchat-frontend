@@ -99,10 +99,14 @@ export function stepBodies(bodies: Body[], world: World, dt: number, hand: Hand 
     b.onFloor = false
     if (b.y - b.r < world.floor) {
       b.y = world.floor + b.r
-      if (b.vy < -80) impacts[i] = Math.min(1, -b.vy / 1400)
-      b.vy = -b.vy * e
-      if (Math.abs(b.vy) < 60) b.vy = 0
-      b.onFloor = true
+      // Only an incoming velocity creates an impact. Retain enough energy
+      // for diminishing rebounds, then sleep the tiny final bounce.
+      if (b.vy < 0) {
+        if (b.vy < -80) impacts[i] = Math.min(1, -b.vy / 1400)
+        b.vy = -b.vy * e
+        if (b.vy < 40) b.vy = 0
+      }
+      b.onFloor = b.vy === 0
       b.vx *= 1 - 3 * dt
       // rolling: spin follows the ground speed
       b.va += (-b.vx / b.r - b.va) * Math.min(1, 3 * dt)
@@ -345,7 +349,7 @@ export default function FooterCritterScene() {
   const [motionReduced, setMotionReduced] = React.useState(() => matchMedia("(prefers-reduced-motion: reduce)").matches)
   const [ready, setReady] = React.useState(false)
   const [unavailable, setUnavailable] = React.useState(false)
-  const critters = DEFAULT_CRITTERS, gravity = 2600, bounce = 0.32, wind = 0.6, density = 0.45, idleHops = false, curve = false
+  const critters = DEFAULT_CRITTERS, gravity = 2600, bounce = 0.62, wind = 0.6, density = 0.45, idleHops = false, curve = false
   const live = React.useRef<{sound: boolean; volume: number; onDrop?: () => void; onCritterClick?: (shape: CritterShape) => void}>({sound, volume: 0.2})
   live.current.sound = sound
   React.useEffect(() => {
@@ -579,7 +583,13 @@ export default function FooterCritterScene() {
     hopRef.current = () => {
       if (reduced) return
       wake()
-      bodies.forEach(b => { if (b.live && !b.held) { b.vy = 700; b.onFloor = false } })
+      bodies.forEach(b => {
+        if (!b.live || b.held) return
+        b.vy = 650 + Math.random() * 100
+        b.vx += (Math.random() - 0.5) * 110
+        b.va += (Math.random() - 0.5) * 3
+        b.onFloor = false
+      })
       blip(220, 520, 0.12, 0.3)
     }
     let dropped = false
@@ -708,8 +718,10 @@ export default function FooterCritterScene() {
       clock.value = time
       if (!reduced) {
         const hand = held >= 0 ? { x: hx, y: hy } : null
-        for (let s = 0; s < 3; s++) {
-          const hits = stepBodies(bodies, world, dt / 3, hand)
+        // Keep collision steps small even when the renderer drops a frame.
+        const substeps = Math.max(1, Math.ceil(dt * 180))
+        for (let s = 0; s < substeps; s++) {
+          const hits = stepBodies(bodies, world, dt / substeps, hand)
           hits.forEach((h, i) => {
             if (h <= 0) return
             const r = rigs[i]
